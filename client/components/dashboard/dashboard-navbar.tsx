@@ -273,13 +273,17 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
               <span className="text-[10px] text-zinc-400 mt-0.5">john.doe@buildingos.com</span>
             </div>
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
-            <DropdownMenuItem className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
-              <User className="h-3.5 w-3.5 text-zinc-450" />
-              <span>My Profile</span>
+            <DropdownMenuItem asChild className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
+              <Link href="/dashboard/profile" className="flex items-center gap-2 w-full">
+                <User className="h-3.5 w-3.5 text-zinc-450" aria-hidden="true" />
+                <span>My Profile</span>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
-              <Settings className="h-3.5 w-3.5 text-zinc-450" />
-              <span>Account Settings</span>
+            <DropdownMenuItem asChild className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
+              <Link href="/dashboard/settings" className="flex items-center gap-2 w-full">
+                <Settings className="h-3.5 w-3.5 text-zinc-450" aria-hidden="true" />
+                <span>Account Settings</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
               <CreditCard className="h-3.5 w-3.5 text-zinc-450" />

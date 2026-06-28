@@ -60,7 +60,7 @@ export function ProblemSection() {
     {
       icon: <EyeOff className="h-4.5 w-4.5" />,
       title: "No Visibility Across Multiple Buildings",
-      description: "Property and estate managers struggle to monitor staff logs, complaints, and billing status across different blocks.",
+      description: "Property and building managers struggle to monitor staff logs, complaints, and billing status across different blocks.",
     },
     {
       icon: <AlertTriangle className="h-4.5 w-4.5" />,

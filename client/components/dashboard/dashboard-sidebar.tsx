@@ -67,7 +67,6 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
     { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: "8" },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
     { name: "Payments", href: "/dashboard/payments", icon: Wallet },
-    { name: "Utilities", href: "/dashboard/utilities", icon: Zap },
     { name: "Parking", href: "/dashboard/parking", icon: Car },
     { name: "Visitors", href: "/dashboard/visitors", icon: Fingerprint },
     { name: "Staff", href: "/dashboard/staff", icon: UserCheck },

@@ -40,7 +40,7 @@ export function FAQSection() {
     {
       id: "faq-6",
       question: "Does the system support visitor and parking management?",
-      answer: "Yes, visitor entry approvals, gate passes, parking spot assignments, and security gate check-in logs are fully integrated into the operations dashboard for gated communities.",
+      answer: "Yes, visitor entry approvals, gate passes, parking spot assignments, and security gate check-in logs are fully integrated into the operations dashboard for building management.",
     },
     {
       id: "faq-7",

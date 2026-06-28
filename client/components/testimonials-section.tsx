@@ -44,7 +44,7 @@ export function TestimonialsSection() {
     {
       value: "150+",
       label: "Buildings Managed",
-      desc: "Residential towers & gated estates",
+      desc: "Residential towers & building complexes",
     },
     {
       value: "95,000+",
@@ -66,7 +66,7 @@ export function TestimonialsSection() {
   const logoPartners = [
     "GRANDVIEW PROP",
     "APEX HOMES",
-    "BELVEDERE ESTATE",
+    "BELVEDERE TOWERS",
     "PACIFIC TOWERS",
     "VANGUARD LIVING",
   ];
@@ -84,7 +84,7 @@ export function TestimonialsSection() {
             Trusted by Modern Residential Buildings
           </h2>
           <p className="mt-4 text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Designed for apartment buildings, gated communities, and building management teams that need operational clarity and resident satisfaction.
+            Designed for apartment buildings, residential complexes, and building management teams that need operational clarity and resident satisfaction.
           </p>
         </div>
 

@@ -146,7 +146,7 @@ export default function ComplaintsPage() {
       ],
       technicianNotes: "Requires override panel keys from central security office.",
       comments: [
-        { sender: "System", role: "Dispatcher", message: "Alert: SLA deadline exceeded. Escalating to Estate Manager.", time: "2026-06-28, 11:30 AM" }
+        { sender: "System", role: "Dispatcher", message: "Alert: SLA deadline exceeded. Escalating to Building Manager.", time: "2026-06-28, 11:30 AM" }
       ]
     },
     {

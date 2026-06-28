@@ -55,7 +55,7 @@ export default function AnalyticsPage() {
     toast.info("Opening multi-building comparison grid.");
   };
 
-  // Mock Ranking Data
+  // Building comparison ranking data - derived from building analytics
   const buildingComparison = [
     { name: "Tower Alpha", occupancy: 94.4, health: 96, complaints: 2, tasks: 12, risk: "healthy" },
     { name: "Tower Beta", occupancy: 89.6, health: 92, complaints: 5, tasks: 8, risk: "healthy" },

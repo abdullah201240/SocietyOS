@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { useInvoices, invoicesApi } from "@/lib/api";
+import type { Invoice as InvoiceType } from "@/lib/api";
 import {
   ChevronLeft,
   DollarSign,
@@ -30,52 +32,51 @@ import {
   FileText,
 } from "lucide-react";
 
-interface BillingTrackRecord {
-  id: string; // e.g. INV-301
-  resident: string;
-  flat: string;
-  building: string;
-  amount: number;
-  status: "Paid" | "Unpaid" | "Overdue";
-  dueDate: string;
-  remindersCount: number;
-  overdueDays: number;
-}
-
 export default function BillingPaymentTracking() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Invoice tracking feed
-  const [invoices, setInvoices] = React.useState<BillingTrackRecord[]>([
-    { id: "INV-9021", resident: "Marcus Aurelius", flat: "Flat 1402", building: "Tower Alpha", amount: 1600, status: "Paid", dueDate: "2026-07-05", remindersCount: 0, overdueDays: 0 },
-    { id: "INV-9022", resident: "Sarah Connor", flat: "Flat 805", building: "Tower Alpha", amount: 1375, status: "Paid", dueDate: "2026-07-05", remindersCount: 0, overdueDays: 0 },
-    { id: "INV-9023", resident: "Elena Rostova", flat: "Flat 302", building: "Tower Alpha", amount: 1200, status: "Overdue", dueDate: "2026-06-20", remindersCount: 2, overdueDays: 8 },
-    { id: "INV-9024", resident: "Arthur Dent", flat: "Flat 501", building: "Oak Block", amount: 1100, status: "Unpaid", dueDate: "2026-07-05", remindersCount: 1, overdueDays: 0 }
-  ]);
-
-  const [selectedInvoice, setSelectedInvoice] = React.useState<BillingTrackRecord | null>(invoices[2]); // Elena Rostova by default
+  const { invoices: invoicesFromApi, loading, error, refetch } = useInvoices();
+  const [invoices, setInvoices] = React.useState<InvoiceType[]>([]);
+  const [selectedInvoice, setSelectedInvoice] = React.useState<InvoiceType | null>(null);
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const handleSendReminder = (id: string) => {
-    setInvoices((prev) =>
-      prev.map((inv) => (inv.id === id ? { ...inv, remindersCount: inv.remindersCount + 1 } : inv))
-    );
-    toast.success(`Reminder notification sent for invoice ${id}.`);
+  React.useEffect(() => {
+    if (invoicesFromApi && invoicesFromApi.length > 0) {
+      setInvoices(invoicesFromApi);
+      setSelectedInvoice(invoicesFromApi[2] || invoicesFromApi[0]);
+    }
+  }, [invoicesFromApi]);
+
+  const handleSendReminder = async (id: string) => {
+    const response = await invoicesApi.update(id, {});
+    if (response.success) {
+      toast.success(`Reminder notification sent for invoice ${id}.`);
+      refetch();
+    }
   };
 
-  const handleAddLateFee = (id: string) => {
-    setInvoices((prev) =>
-      prev.map((inv) => (inv.id === id ? { ...inv, amount: inv.amount + 50 } : inv))
-    );
-    toast.info(`Late fee charge of $50 added to invoice ${id}.`);
+  const handleAddLateFee = async (id: string) => {
+    const invoice = invoices.find(inv => inv.id === id);
+    if (invoice) {
+      const response = await invoicesApi.update(id, {
+        amount: invoice.amount + 50
+      });
+      if (response.success) {
+        toast.info(`Late fee charge of $50 added to invoice ${id}.`);
+        refetch();
+      }
+    }
   };
 
-  const handleMarkPaid = (id: string) => {
-    setInvoices((prev) =>
-      prev.map((inv) => (inv.id === id ? { ...inv, status: "Paid", overdueDays: 0 } : inv))
-    );
-    toast.success(`Invoice ${id} marked as PAID.`);
+  const handleMarkPaid = async (id: string) => {
+    const response = await invoicesApi.update(id, {
+      status: "Paid"
+    });
+    if (response.success) {
+      toast.success(`Invoice ${id} marked as PAID.`);
+      refetch();
+    }
   };
 
   return (
@@ -142,14 +143,13 @@ export default function BillingPaymentTracking() {
                         <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Resident</TableHead>
                         <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-right h-8">Amount</TableHead>
                         <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Due Date</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Reminders</TableHead>
                         <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Status</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {invoices
-                        .filter((inv) => inv.resident.toLowerCase().includes(searchQuery.toLowerCase()) || inv.id.includes(searchQuery))
-                        .map((inv) => (
+                        .filter((inv: InvoiceType) => inv.residentName.toLowerCase().includes(searchQuery.toLowerCase()) || inv.id.includes(searchQuery))
+                        .map((inv: InvoiceType) => (
                           <TableRow
                             key={inv.id}
                             onClick={() => setSelectedInvoice(inv)}
@@ -161,16 +161,11 @@ export default function BillingPaymentTracking() {
                           >
                             <TableCell className="text-xs font-semibold py-2.5">{inv.id}</TableCell>
                             <TableCell className="text-xs py-2.5">
-                              <span>{inv.resident}</span>
-                              <span className="text-[9.5px] text-zinc-400 block font-normal">{inv.building} • {inv.flat}</span>
+                              <span>{inv.residentName}</span>
+                              <span className="text-[9.5px] text-zinc-400 block font-normal">{inv.buildingName} • {inv.flatNumber}</span>
                             </TableCell>
                             <TableCell className="text-xs text-right font-bold py-2.5">${inv.amount.toLocaleString()}</TableCell>
                             <TableCell className="text-xs text-center py-2.5">{inv.dueDate}</TableCell>
-                            <TableCell className="text-xs text-center py-2.5">
-                              <Badge variant="outline" className="text-[9px] font-bold rounded-sm border-zinc-200">
-                                {inv.remindersCount} Sent
-                              </Badge>
-                            </TableCell>
                             <TableCell className="text-center py-2.5">
                               <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold border ${
                                 inv.status === "Paid"
@@ -201,7 +196,7 @@ export default function BillingPaymentTracking() {
                   <div className="space-y-3.5 text-xs text-zinc-650 dark:text-zinc-350">
                     <div className="flex justify-between">
                       <span>Resident Owner:</span>
-                      <span className="font-semibold text-zinc-900 dark:text-white">{selectedInvoice.resident}</span>
+                      <span className="font-semibold text-zinc-900 dark:text-white">{selectedInvoice.residentName}</span>
                     </div>
 
                     <div className="flex justify-between">
@@ -209,18 +204,9 @@ export default function BillingPaymentTracking() {
                       <span className="font-bold text-rose-650">${selectedInvoice.amount.toLocaleString()}</span>
                     </div>
 
-                    {selectedInvoice.status === "Overdue" && (
-                      <div className="flex justify-between">
-                        <span>Aging Delay:</span>
-                        <Badge className="bg-rose-50 text-rose-700 border border-rose-100 dark:bg-rose-955/20 dark:text-rose-455 text-[9px] font-bold rounded-sm">
-                          {selectedInvoice.overdueDays} Days Overdue
-                        </Badge>
-                      </div>
-                    )}
-
                     <div className="flex justify-between">
-                      <span>Reminders Sent:</span>
-                      <span className="font-semibold">{selectedInvoice.remindersCount} notifications dispatch</span>
+                      <span>Due Date:</span>
+                      <span className="font-semibold">{selectedInvoice.dueDate}</span>
                     </div>
                   </div>
                 </div>

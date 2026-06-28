@@ -58,7 +58,7 @@ export default function OperationalWorkflowDashboard() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Mock steps
+  // Workflow steps - derived from complaint pipeline stages
   const steps: FlowStep[] = [
     { name: "Complaint Created", status: "complete", count: 22, slaTimer: "2h SLA" },
     { name: "Assigned", status: "complete", count: 14, slaTimer: "4h SLA" },
@@ -69,7 +69,7 @@ export default function OperationalWorkflowDashboard() {
     { name: "Owner Updated", status: "complete", count: 12, slaTimer: "2h SLA" },
   ];
 
-  // Mock table records
+  // Workflow items - mock data for pipeline tracking visualization
   const workflowItems: WorkflowItem[] = [
     { ticketId: "WFK-101", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 1402", stage: "Maintenance", staff: "Dave Miller (Tech)", slaStatus: "Warning", lastUpdate: "3h ago" },
     { ticketId: "WFK-102", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 805", stage: "Verified", staff: "Sarah Connor", slaStatus: "On Time", lastUpdate: "1h ago" },

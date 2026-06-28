@@ -13,6 +13,8 @@ import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useComplaints, complaintsApi } from "@/lib/api";
+import type { Complaint as ComplaintType } from "@/lib/api";
 import {
   UserPlus,
   Wrench,
@@ -34,6 +36,52 @@ export default function DashboardPage() {
   const orgs = ["Tower A - Grandview", "Tower B - Grandview", "Tower C - Grandview"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
   const [isRefreshing, setIsRefreshing] = React.useState(false);
+  
+  // Complaint form state
+  const [newComplaintText, setNewComplaintText] = React.useState("");
+  const [newComplaintCat, setNewComplaintCat] = React.useState("Plumbing");
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleTenantComplaintSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newComplaintText.trim()) return;
+    
+    setIsSubmitting(true);
+    try {
+      const response = await complaintsApi.create({
+        category: newComplaintCat as "Plumbing" | "Electrical" | "Elevator" | "Facilities" | "Safety" | "HVAC" | "Comms",
+        description: newComplaintText,
+        status: "Open",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        createdDate: new Date().toISOString(),
+        slaDeadline: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+        priority: "Low" as "Low" | "Medium" | "High" | "Critical",
+        buildingName: currentOrg,
+        flatNumber: "Tenant Unit",
+        residentName: "Current User",
+        assignee: "Unassigned",
+        images: [],
+        timeline: [{ title: "Ticket Created", desc: "Complaint submitted", date: new Date().toISOString() }],
+        comments: []
+      });
+
+      if (response.success) {
+        toast.success(`Complaint ticket "${response.data.id}" submitted successfully to building office.`);
+        setNewComplaintText("");
+        refetch();
+      } else {
+        toast.error(response.error || "Failed to submit complaint");
+      }
+    } catch (error) {
+      toast.error("Failed to submit complaint");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const { complaints, loading, error, refetch } = useComplaints();
+  const tenantComplaints = complaints.slice(0, 5); // Show only first 5 for dashboard
   
   // Stakeholder role switcher state
   const [role, setRole] = React.useState<"building_owner" | "flat_owner" | "tenant">("building_owner");
@@ -57,29 +105,6 @@ export default function DashboardPage() {
       setIsRefreshing(false);
       toast.success("Ledger synced successfully with real-time pipeline records.");
     }, 500);
-  };
-
-  // Mock Tenant data
-  const [tenantComplaints, setTenantComplaints] = React.useState([
-    { id: "TKT-302", category: "Plumbing", text: "Low water pressure in kitchen faucet", status: "In Progress", time: "2h ago" },
-    { id: "TKT-301", category: "Electrical", text: "Generator switch fuse tripped", status: "Resolved", time: "2 days ago" },
-  ]);
-  const [newComplaintText, setNewComplaintText] = React.useState("");
-  const [newComplaintCat, setNewComplaintCat] = React.useState("Plumbing");
-
-  const handleTenantComplaintSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newComplaintText.trim()) return;
-    const newTkt = {
-      id: `TKT-${303 + tenantComplaints.length}`,
-      category: newComplaintCat,
-      text: newComplaintText,
-      status: "Submitted",
-      time: "Just now",
-    };
-    setTenantComplaints((prev) => [newTkt, ...prev]);
-    setNewComplaintText("");
-    toast.success(`Complaint ticket "${newTkt.id}" submitted successfully to building office.`);
   };
 
   const activityFeed = [
@@ -392,7 +417,7 @@ export default function DashboardPage() {
                   <div className="space-y-0.5">
                     <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Submitted Tickets</span>
                     <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
-                      {tenantComplaints.filter((c) => c.status !== "Resolved").length} Active
+                      {tenantComplaints.filter((c: ComplaintType) => c.status !== "Resolved").length} Active
                     </span>
                   </div>
                   <AlertCircle className="h-4.5 w-4.5 text-zinc-400" />
@@ -521,13 +546,13 @@ export default function DashboardPage() {
                   <Card className="rounded-md border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-850 dark:bg-zinc-950 space-y-3">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white">My Maintenance Log</h3>
                     <div className="space-y-2.5">
-                      {tenantComplaints.map((item) => (
+                      {tenantComplaints.map((item: ComplaintType) => (
                         <div key={item.id} className="p-2.5 rounded border border-zinc-150 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-1">
                           <div className="flex justify-between items-center text-[10px]">
                             <span className="font-bold text-zinc-900 dark:text-white">{item.id} ({item.category})</span>
-                            <span className="text-zinc-400">{item.time}</span>
+                            <span className="text-zinc-400">{new Date(item.createdDate).toLocaleDateString()}</span>
                           </div>
-                          <p className="text-zinc-700 dark:text-zinc-300 leading-snug">{item.text}</p>
+                          <p className="text-zinc-700 dark:text-zinc-300 leading-snug">{item.description}</p>
                           <div className="flex justify-between items-center pt-1 border-t border-zinc-200/50 dark:border-zinc-800/50 text-[9.5px]">
                             <span className="text-zinc-400">Current Stage:</span>
                             <span className={`font-bold ${

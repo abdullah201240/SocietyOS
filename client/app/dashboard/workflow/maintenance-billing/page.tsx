@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { invoicesApi } from "@/lib/api";
 import {
   ChevronLeft,
   Wrench,
@@ -28,8 +29,10 @@ import {
   Percent,
 } from "lucide-react";
 
-interface RepairRecord {
-  id: string; // e.g. REP-492
+// Local interface for repair conversion tracking
+interface RepairConversionRecord {
+  id: string;
+  taskId: number;
   flat: string;
   building: string;
   technician: string;
@@ -42,14 +45,15 @@ export default function MaintenanceBillingConversion() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Mock completed maintenance logs
-  const [repairs, setRepairs] = React.useState<RepairRecord[]>([
-    { id: "REP-492", flat: "Flat 1402", building: "Tower Alpha", technician: "Dave Miller", category: "Plumbing", laborHours: 3.5, partsUsed: ["PVC pipe seals", "Teflon thread joint tape"] },
-    { id: "REP-493", flat: "Flat 805", building: "Tower Alpha", technician: "John Doe", category: "Electrical", laborHours: 2, partsUsed: ["10A copper circuit fuse", "wire wire conduits"] },
-    { id: "REP-494", flat: "Flat 302", building: "Tower Alpha", technician: "Dave Miller", category: "HVAC Maintenance", laborHours: 4, partsUsed: ["air compressor filters", "1.5 ton blower belt"] }
+  // Mock completed maintenance logs for billing conversion workflow
+  // This page converts completed maintenance tasks into invoices
+  const [repairs, setRepairs] = React.useState<RepairConversionRecord[]>([
+    { id: "REP-492", taskId: 1, flat: "Flat 1402", building: "Tower Alpha", technician: "Dave Miller", category: "Plumbing", laborHours: 3.5, partsUsed: ["PVC pipe seals", "Teflon thread joint tape"] },
+    { id: "REP-493", taskId: 2, flat: "Flat 805", building: "Tower Alpha", technician: "John Doe", category: "Electrical", laborHours: 2, partsUsed: ["10A copper circuit fuse", "wire conduits"] },
+    { id: "REP-494", taskId: 3, flat: "Flat 302", building: "Tower Alpha", technician: "Dave Miller", category: "HVAC", laborHours: 4, partsUsed: ["air filters", "blower belt"] }
   ]);
 
-  const [selectedRepair, setSelectedRepair] = React.useState<RepairRecord>(repairs[0]);
+  const [selectedRepair, setSelectedRepair] = React.useState<RepairConversionRecord | null>(repairs[0]);
 
   // Billing Cost Configuration state
   const [costs, setCosts] = React.useState({
@@ -60,17 +64,49 @@ export default function MaintenanceBillingConversion() {
   });
 
   // Calculate fields
-  const laborDues = selectedRepair.laborHours * costs.laborRate;
+  const laborDues = selectedRepair ? selectedRepair.laborHours * costs.laborRate : 0;
   const subtotal = laborDues + costs.partsCost + costs.overheadMarkup;
   const taxAmount = (subtotal * costs.taxRate) / 100;
   const totalInvoiceVal = subtotal + taxAmount;
 
-  const handleApproveAndInvoice = () => {
-    toast.success(`Invoice generated successfully for ${selectedRepair.flat} (${selectedRepair.building}) totalling $${totalInvoiceVal.toFixed(2)}.`);
-    // Remove the conversion item from list
-    setRepairs((prev) => prev.filter((r) => r.id !== selectedRepair.id));
-    if (repairs.length > 1) {
-      setSelectedRepair(repairs.filter((r) => r.id !== selectedRepair.id)[0]);
+  const handleApproveAndInvoice = async () => {
+    if (!selectedRepair) {
+      toast.error("No repair selected");
+      return;
+    }
+    
+    try {
+      // Create invoice from maintenance task
+      const response = await invoicesApi.create({
+        buildingGroup: currentOrg,
+        buildingName: selectedRepair.building,
+        flatNumber: selectedRepair.flat,
+        residentName: "Resident",
+        ownerName: "Owner",
+        amount: totalInvoiceVal,
+        status: "Unpaid",
+        dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        utilityCharges: 0,
+        maintenanceCharges: totalInvoiceVal,
+        otherCharges: 0,
+        paymentMethod: "Pending"
+      });
+
+      if (response.success) {
+        toast.success(`Invoice generated successfully for ${selectedRepair.flat} (${selectedRepair.building}) totalling $${totalInvoiceVal.toFixed(2)}.`);
+        // Remove the conversion item from list
+        setRepairs((prev) => {
+          const filtered = prev.filter((r) => r.id !== selectedRepair.id);
+          if (filtered.length > 0) {
+            setSelectedRepair(filtered[0]);
+          }
+          return filtered;
+        });
+      } else {
+        toast.error(response.error || "Failed to create invoice");
+      }
+    } catch (error) {
+      toast.error("Failed to create invoice");
     }
   };
 
@@ -139,7 +175,7 @@ export default function MaintenanceBillingConversion() {
                           key={rep.id}
                           onClick={() => setSelectedRepair(rep)}
                           className={`cursor-pointer transition-colors ${
-                            selectedRepair.id === rep.id
+                            selectedRepair && selectedRepair.id === rep.id
                               ? "bg-zinc-50 dark:bg-zinc-900 font-semibold"
                               : "hover:bg-zinc-50/50 dark:hover:bg-zinc-900/10"
                           }`}
@@ -228,7 +264,7 @@ export default function MaintenanceBillingConversion() {
             </div>
 
             {/* Right Column: Invoice Preview Summary */}
-            {repairs.length > 0 && (
+            {repairs.length > 0 && selectedRepair && (
               <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950 p-4 flex flex-col justify-between">
                 <div className="space-y-4">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 border-b border-zinc-100 pb-2 dark:border-zinc-900 flex items-center gap-1">

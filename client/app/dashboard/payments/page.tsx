@@ -219,21 +219,18 @@ export default function PaymentCenterPage() {
                     <div className="flex justify-between text-[11px]">
                       <span>Bank Transfer / ACH</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">68% ($19,800)</span>
-                    </div>
                     <Progress value={68} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                   </div>
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px]">
                       <span>Mobile Banking / Cards</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">24% ($7,000)</span>
-                    </div>
                     <Progress value={24} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                   </div>
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px]">
                       <span>Cash / Manual Checks</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">8% ($2,400)</span>
-                    </div>
                     <Progress value={8} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                   </div>
                 </div>

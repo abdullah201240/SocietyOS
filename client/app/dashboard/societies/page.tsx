@@ -473,56 +473,52 @@ export default function SocietiesPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Societies</span>
                   <Building2 className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalSocieties}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Manageable platforms</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Residents</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalResidents.toLocaleString()}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total onboarded accounts</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Operations</span>
                   <Activity className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeOperations}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Currently serving units</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">SLA Efficiency Score</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" aria-hidden="true" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{avgEfficiency}%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Target metrics threshold</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -531,7 +527,7 @@ export default function SocietiesPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -618,7 +614,7 @@ export default function SocietiesPage() {
 
             {/* Society Table Card */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -640,7 +636,6 @@ export default function SocietiesPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No societies match current query</span>
                       <span className="text-[10px] mt-0.5">Try resetting the sidebar filters.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -670,7 +665,6 @@ export default function SocietiesPage() {
                               <div className="flex items-center gap-1">
                                 <MapPin className="h-3 w-3 text-zinc-400 shrink-0" />
                                 <span>{s.location}</span>
-                              </div>
                             </TableCell>
                             <TableCell className="text-xs font-medium text-zinc-800 dark:text-zinc-200 text-center py-2.5">
                               {s.buildings}
@@ -754,11 +748,9 @@ export default function SocietiesPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">CONTACT EMAIL</span>
                       <span className="font-medium text-zinc-900 dark:text-white break-all">{selectedSociety.email}</span>
-                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">FOUNDED DATE</span>
                       <span className="font-medium text-zinc-900 dark:text-white">{selectedSociety.founded}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -770,7 +762,6 @@ export default function SocietiesPage() {
                       <div className="flex justify-between text-[10.5px] text-zinc-600 dark:text-zinc-400">
                         <span className="font-semibold">Collections compliance</span>
                         <span className="font-bold text-zinc-850 dark:text-zinc-350">{selectedSociety.collectionProgress}%</span>
-                      </div>
                       <Progress value={selectedSociety.collectionProgress} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     </div>
 
@@ -778,7 +769,6 @@ export default function SocietiesPage() {
                       <div className="flex justify-between text-[10.5px] text-zinc-650 dark:text-zinc-400">
                         <span className="font-semibold">Average SLA resolution rate</span>
                         <span className="font-bold text-zinc-850 dark:text-zinc-350">14 hrs (Avg)</span>
-                      </div>
                       <Progress value={92} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     </div>
                   </div>
@@ -796,7 +786,6 @@ export default function SocietiesPage() {
                         <div className="min-w-0">
                           <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{m.name}</span>
                           <span className="text-[9.5px] text-zinc-450 block">{m.role} • {m.phone}</span>
-                        </div>
                       </div>
                     ))}
                   </div>
@@ -815,7 +804,6 @@ export default function SocietiesPage() {
                               <Building className="h-3.5 w-3.5 text-zinc-400" /> {t.name}
                             </span>
                             <span className="text-zinc-500 font-medium">Occupied: {t.occupied} / {t.total} ({occupancyPercent}%)</span>
-                          </div>
                           <Progress value={occupancyPercent} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                         </div>
                       );
@@ -833,7 +821,6 @@ export default function SocietiesPage() {
                         <div>
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.action}</span>
                           <span className="text-[9.5px] text-zinc-400 block mt-0.5">{a.time}</span>
-                        </div>
                       </div>
                     ))}
                   </div>

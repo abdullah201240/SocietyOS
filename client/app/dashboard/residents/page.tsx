@@ -544,70 +544,54 @@ export default function ResidentsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Residents</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total onboarded occupants.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Residents</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalResidents}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Onboarded database accounts</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Occupancy</span>
                   <Building className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeOccupancy}%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total portfolio occupancy SLA</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Owner vs Tenant Ratio</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
                     {ratioOwnersPercent}% <span className="text-xs font-semibold text-zinc-400">Owner</span>
                   </span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">{100 - ratioOwnersPercent}% tenant occupants</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Verifications</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{pendingVerifications}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Onboarding validation checklists</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -616,7 +600,7 @@ export default function ResidentsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -717,7 +701,7 @@ export default function ResidentsPage() {
 
             {/* Resident Table Card */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -739,7 +723,6 @@ export default function ResidentsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No resident accounts matched</span>
                       <span className="text-[10px] mt-0.5">Try resetting filtering criteria.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -859,11 +842,9 @@ export default function ResidentsPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">PHONE</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">{selectedResident.phone}</span>
-                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">EMAIL ADDRESS</span>
                       <span className="font-semibold text-zinc-900 dark:text-white break-all">{selectedResident.email}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -881,7 +862,6 @@ export default function ResidentsPage() {
                             <div>
                               <span className="font-semibold block">{v.make} {v.model}</span>
                               <span className="text-[9.5px] text-zinc-450 block">{v.plate}</span>
-                            </div>
                           </div>
                           <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold bg-zinc-50">
                             {v.slot}
@@ -925,7 +905,6 @@ export default function ResidentsPage() {
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{m.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{m.relation}</span>
-                          </div>
                         ))}
                       </div>
                     )}
@@ -940,7 +919,6 @@ export default function ResidentsPage() {
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{c.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{c.relation} • {c.phone}</span>
-                          </div>
                         ))}
                       </div>
                     )}
@@ -960,7 +938,6 @@ export default function ResidentsPage() {
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 block leading-tight">{g.visitorName} ({g.type})</span>
                             <span className="text-[9.5px] text-zinc-400 block mt-0.5">{g.date}</span>
-                          </div>
                         </div>
                       ))}
                     </div>

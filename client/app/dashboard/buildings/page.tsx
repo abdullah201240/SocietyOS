@@ -516,68 +516,52 @@ export default function BuildingsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Buildings</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total structural building units.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Buildings</span>
                   <Building className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalBuildings}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total structural units managed</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Occupancy Rate</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{averageOccupancy}%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">{occupiedFlatsSum} of {totalFlatsSum} flats filled</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Issues</span>
                   <Wrench className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeMaintenanceIssues}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Towers requesting dispatch service</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Utility Summary</span>
                   <Zap className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">92.4%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Power & water consumption efficiency</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -586,7 +570,7 @@ export default function BuildingsPage() {
             
             {/* Sidebar Filters panel */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -673,7 +657,7 @@ export default function BuildingsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -695,7 +679,6 @@ export default function BuildingsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No building structures found</span>
                       <span className="text-[10px] mt-0.5">Try widening filter options.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -825,17 +808,14 @@ export default function BuildingsPage() {
                       <span className="font-bold text-zinc-900 dark:text-white">
                         {Math.round((selectedBuilding.occupiedFlats / selectedBuilding.totalFlats) * 100)}%
                       </span>
-                    </div>
                     <Progress value={Math.round((selectedBuilding.occupiedFlats / selectedBuilding.totalFlats) * 100)} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] -100 pt-2">
                       <div className="flex justify-between">
                         <span className="text-zinc-450">TOTAL FLATS</span>
                         <span className="font-semibold">{selectedBuilding.totalFlats}</span>
-                      </div>
                       <div className="flex justify-between">
                         <span className="text-zinc-450">OCCUPIED</span>
                         <span className="font-semibold">{selectedBuilding.occupiedFlats}</span>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -851,7 +831,6 @@ export default function BuildingsPage() {
                       <div>
                         <span className="text-[9px] text-zinc-400 block uppercase font-bold tracking-wider">Water / Day</span>
                         <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{selectedBuilding.waterConsumption}</span>
-                      </div>
                     </div>
                     <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 flex items-center gap-2">
                       <div className="rounded p-1 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400">
@@ -860,7 +839,6 @@ export default function BuildingsPage() {
                       <div>
                         <span className="text-[9px] text-zinc-400 block uppercase font-bold tracking-wider">Power / Day</span>
                         <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{selectedBuilding.electricityConsumption}</span>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -873,7 +851,6 @@ export default function BuildingsPage() {
                       <div className="flex justify-between text-[10px] text-zinc-500">
                         <span>Parking utilization rate</span>
                         <span className="font-bold text-zinc-900 dark:text-white">{selectedBuilding.parkingUtilization}%</span>
-                      </div>
                       <Progress value={selectedBuilding.parkingUtilization} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     </div>
                   </div>
@@ -891,7 +868,6 @@ export default function BuildingsPage() {
                         <div className="min-w-0">
                           <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{staff.name}</span>
                           <span className="text-[9.5px] text-zinc-450 block">{staff.role} • {staff.contact}</span>
-                        </div>
                       </div>
                     ))}
                   </div>
@@ -907,7 +883,6 @@ export default function BuildingsPage() {
                         <div>
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.log}</span>
                           <span className="text-[9.5px] text-zinc-400 block mt-0.5">{a.time}</span>
-                        </div>
                       </div>
                     ))}
                   </div>

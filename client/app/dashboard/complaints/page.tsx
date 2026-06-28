@@ -506,68 +506,52 @@ export default function ComplaintsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Open Tickets</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total unresolved active complaints.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Open Tickets</span>
                   <AlertCircle className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalOpen}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total tickets requiring operational resolve</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">High Priority</span>
                   <Flame className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalHigh}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Critical & High priority issues</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Avg Resolution SLA</span>
                   <Clock className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{avgSlaHrs} Hrs</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Average ticket closure duration</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">SLA Compliance Rate</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{slaCompliancePercent}%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Target SLA parameters met</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -576,7 +560,7 @@ export default function ComplaintsPage() {
             
             {/* Sidebar Filters panel */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -699,7 +683,7 @@ export default function ComplaintsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -721,7 +705,6 @@ export default function ComplaintsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No operational tickets matched</span>
                       <span className="text-[10px] mt-0.5">Try clear filters list.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -844,7 +827,6 @@ export default function ComplaintsPage() {
                     }`}>
                       {selectedTicket.status}
                     </span>
-                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">PRIORITY</span>
                     <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
@@ -856,15 +838,12 @@ export default function ComplaintsPage() {
                     }`}>
                       {selectedTicket.priority}
                     </span>
-                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">ASSIGNEE</span>
                     <span className="font-semibold block mt-1">{selectedTicket.assignee}</span>
-                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">SLA DEADLINE</span>
                     <span className="font-semibold block mt-1">{selectedTicket.slaDeadline}</span>
-                  </div>
                 </div>
 
                 {/* 2. Complaint Description */}
@@ -895,7 +874,6 @@ export default function ComplaintsPage() {
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.title}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.desc}</span>
                           <span className="text-[9px] text-zinc-400 block mt-0.5">{item.date}</span>
-                        </div>
                       </div>
                     ))}
                   </div>
@@ -910,7 +888,6 @@ export default function ComplaintsPage() {
                         <div className="flex justify-between items-center text-[10px] text-zinc-400 mb-1 font-semibold">
                           <span>{comment.sender} ({comment.role})</span>
                           <span>{comment.time}</span>
-                        </div>
                         <p className="text-zinc-700 dark:text-zinc-350">{comment.message}</p>
                       </div>
                     ))}
@@ -935,10 +912,8 @@ export default function ComplaintsPage() {
                   <div className="space-y-2.5">
                     <span className="text-[9.5px] uppercase font-bold text-zinc-455 dark:text-zinc-500 tracking-wider block">Resident feedback</span>
                     <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs space-y-1.5">
-                      <div className="flex items-center gap-1">
-                        <span className="text-zinc-500">Rating:</span>
+                      <span className="text-zinc-500">Rating:</span>
                         <span className="font-bold text-amber-600">{"★".repeat(selectedTicket.residentRating)}</span>
-                      </div>
                       {selectedTicket.residentFeedback && (
                         <p className="italic text-zinc-650 dark:text-zinc-400">"{selectedTicket.residentFeedback}"</p>
                       )}

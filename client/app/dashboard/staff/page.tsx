@@ -393,68 +393,52 @@ export default function StaffPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Staff</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total onboarded staff records.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Staff</span>
                   <UserCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalStaff}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total active personnel profiles</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Active Shifts</span>
                   <Clock className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeShiftsCount}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Staff active on clock rotation shifts</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Role Distribution</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">6 Roles</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Security, Maintenance, Admin divisions</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Assignments</span>
                   <Clock className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{pendingAssignmentsCount}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Personnel waiting ticket dispatch queues</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -463,7 +447,7 @@ export default function StaffPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -538,7 +522,7 @@ export default function StaffPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -560,7 +544,6 @@ export default function StaffPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No staff records found</span>
                       <span className="text-[10px] mt-0.5">Try resetting filter metrics.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -671,7 +654,6 @@ export default function StaffPage() {
                     <div>
                       <span className="font-bold block">Workload Warning Spike</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">Personnel is currently assigned {selectedStaff.activeTasks} open ticket tasks. Recommend redistributing new maintenance intakes.</span>
-                    </div>
                   </div>
                 )}
 
@@ -682,11 +664,9 @@ export default function StaffPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9px]">PHONE</span>
                       <span className="font-semibold">{selectedStaff.phone}</span>
-                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">EMAIL</span>
                       <span className="font-semibold break-all">{selectedStaff.email}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -716,7 +696,6 @@ export default function StaffPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs">
                           <span>{item.taskName}</span>
                           <span className="font-semibold">{item.status} ({item.date})</span>
-                        </div>
                       ))}
                     </div>
                   )}
@@ -729,7 +708,6 @@ export default function StaffPage() {
                     <div key={idx} className="flex justify-between text-xs -100 pb-2 last:0 last:pb-0 text-zinc-550 dark:text-zinc-450">
                       <span>{log.action}</span>
                       <span>{log.timestamp}</span>
-                    </div>
                   ))}
                 </div>
 

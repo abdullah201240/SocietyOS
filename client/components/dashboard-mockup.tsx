@@ -228,7 +228,7 @@ export function DashboardMockup() {
                     <div className="text-[8.5px] sm:text-[9px] text-zinc-500 dark:text-zinc-400 flex items-start gap-0.5 mt-0.5">
                       <TrendingUp className="h-3 w-3 text-emerald-600 shrink-0 mt-0.5" />
                       <span className="leading-tight truncate">
-                        <span className="text-emerald-600 font-semibold">+$14.2k</span> this week
+                        <span className="text-emerald-600 font-semibold">+৳14.2k</span> this week
                       </span>
                     </div>
                   </CardContent>
@@ -476,8 +476,8 @@ export function DashboardMockup() {
                   <p className="text-[10px] text-zinc-500">June 2026 Maintenance collection status.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">$142,500</span>
-                  <span className="text-[10px] text-zinc-500">collected of $148,000</span>
+                  <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">৳142,500</span>
+                  <span className="text-[10px] text-zinc-500">collected of ৳148,000</span>
                 </div>
               </div>
 
@@ -500,7 +500,7 @@ export function DashboardMockup() {
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 26</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">$185.00</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200">৳185.00</span>
                     <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-emerald-700 bg-emerald-50/80 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
                   </div>
                 </div>
@@ -511,7 +511,7 @@ export function DashboardMockup() {
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 25</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">$185.00</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200">৳185.00</span>
                     <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-emerald-700 bg-emerald-50/80 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
                   </div>
                 </div>
@@ -522,7 +522,7 @@ export function DashboardMockup() {
                     <span className="text-[9px] text-zinc-500 mt-0.5">Clubhouse Deposit • June 24</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">$250.00</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200">৳250.00</span>
                     <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-rose-700 bg-rose-50/80 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">Overdue</Badge>
                   </div>
                 </div>

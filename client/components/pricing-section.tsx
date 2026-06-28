@@ -26,7 +26,7 @@ export function PricingSection() {
     {
       name: "Starter",
       description: "For small apartment buildings and single blocks.",
-      price: "$49",
+      price: "৳4,900",
       period: "per month, billed annually",
       features: [
         "Complaint management",
@@ -42,7 +42,7 @@ export function PricingSection() {
     {
       name: "Growth",
       description: "For medium-sized societies and growing communities.",
-      price: "$129",
+      price: "৳12,900",
       period: "per month, billed annually",
       features: [
         "Everything in Starter",

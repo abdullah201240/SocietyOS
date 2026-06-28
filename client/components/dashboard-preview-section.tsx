@@ -82,7 +82,7 @@ export function DashboardPreviewSection() {
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Collection Dues</span>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">96.4%</div>
                 <div className="text-[10px] text-zinc-500 flex items-center gap-1.5">
-                  <span className="font-semibold text-emerald-600">+$142.5k</span>
+                  <span className="font-semibold text-emerald-600">+৳142.5k</span>
                   <span>collected</span>
                 </div>
               </div>
@@ -239,11 +239,11 @@ export function DashboardPreviewSection() {
               <div className="space-y-2 text-[11px]">
                 <div className="flex items-center justify-between py-2 -100 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 transition-all cursor-pointer">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Unit 803 • Water & Waste Dues</span>
-                  <span className="font-bold text-zinc-800 dark:text-zinc-200">$45.00</span>
+                  <span className="font-bold text-zinc-800 dark:text-zinc-200">৳45.00</span>
                 </div>
                 <div className="flex items-center justify-between py-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 rounded-lg transition-all cursor-pointer">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Unit 1104 • Grid Electricity</span>
-                  <span className="font-bold text-zinc-800 dark:text-zinc-200">$112.50</span>
+                  <span className="font-bold text-zinc-800 dark:text-zinc-200">৳112.50</span>
                 </div>
               </div>
             </Card>

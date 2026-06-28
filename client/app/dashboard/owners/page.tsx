@@ -453,7 +453,6 @@ export default function OwnersPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No owners match filter criteria</span>
                       <span className="text-[10px] mt-0.5">Try resetting search metrics.</span>
-                    </div>
                   ) : (
                     <div className="overflow-x-auto w-full">
                       <Table>
@@ -597,15 +596,12 @@ export default function OwnersPage() {
                     <div className="flex justify-between">
                       <span className="text-zinc-400">MONTHLY DUES CASHFLOW:</span>
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">${selectedOwner.monthlyIncome.toLocaleString()}</span>
-                    </div>
                     <div className="flex justify-between">
                       <span className="text-zinc-400">ACTIVE LEASE TENANTS:</span>
                       <span className="font-semibold">{selectedOwner.activeTenants} Tenants</span>
-                    </div>
                     <div className="flex justify-between">
                       <span className="text-zinc-400">PORTFOLIO OCCUPANCY:</span>
                       <span className="font-semibold">{selectedOwner.occupancyOverview}</span>
-                    </div>
                   </div>
                 </div>
 

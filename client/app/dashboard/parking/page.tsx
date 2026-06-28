@@ -437,68 +437,52 @@ export default function ParkingPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Parking Slots</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total parking allocations layout counters.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Parking Slots</span>
                   <Car className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalSlots}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total parking slots managed</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Occupied Slots</span>
                   <Car className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{occupiedSlotsCount}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">{Math.round((occupiedSlotsCount / totalSlots) * 100)}% parking space occupancy</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Visitor Usage</span>
                   <Car className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{visitorSlotsCount}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Active guest parking check-ins</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Parking Revenue</span>
                   <DollarSign className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{parkingRevenueVal}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Monthly permit collections</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -507,7 +491,7 @@ export default function ParkingPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -615,7 +599,7 @@ export default function ParkingPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -637,7 +621,6 @@ export default function ParkingPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No parking records matched</span>
                       <span className="text-[10px] mt-0.5">Try resetting filter metrics.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -748,7 +731,6 @@ export default function ParkingPage() {
                     <div>
                       <span className="font-bold block">Parking Violation Alert</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">Unauthorized vehicle license {selectedSlot.vehicleNumber} parked in resident slot.</span>
-                    </div>
                   </div>
                 )}
 
@@ -759,11 +741,9 @@ export default function ParkingPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9px]">NAME</span>
                       <span className="font-semibold">{selectedSlot.residentName}</span>
-                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">FLAT UNIT</span>
                       <span className="font-semibold">{selectedSlot.flatNumber}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -774,11 +754,9 @@ export default function ParkingPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9px]">TYPE</span>
                       <span className="font-semibold">{selectedSlot.vehicleType}</span>
-                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">LICENSE PLATE</span>
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">{selectedSlot.vehicleNumber}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -793,7 +771,6 @@ export default function ParkingPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs">
                           <span>Plate: {item.vehicleNumber}</span>
                           <span className="font-semibold">Check-in: {item.checkIn}</span>
-                        </div>
                       ))}
                     </div>
                   )}
@@ -812,7 +789,6 @@ export default function ParkingPage() {
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 block">{log.event}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{log.time} • Operator: {log.guard}</span>
-                          </div>
                         </div>
                       ))}
                     </div>

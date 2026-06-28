@@ -443,68 +443,52 @@ export default function UtilitiesPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Consumption</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total registered telemetry units consumed.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Consumption</span>
                   <Activity className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalConsumption}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total consumption metrics across blocks</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Outstanding Dues</span>
                   <AlertCircle className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${outstandingDues.toFixed(2)}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total unpaid utility statements balance</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Monthly Revenue</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${utilityRevenue.toFixed(2)}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Monthly bill ledger collections</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Meters</span>
                   <Activity className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeReadings}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Active automated meters reporting</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -513,7 +497,7 @@ export default function UtilitiesPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-455" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -601,7 +585,7 @@ export default function UtilitiesPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -623,7 +607,6 @@ export default function UtilitiesPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No utility records matched</span>
                       <span className="text-[10px] mt-0.5">Try widening filter options.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -735,7 +718,6 @@ export default function UtilitiesPage() {
                     <div>
                       <span className="font-bold block">Abnormal consumption detected</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">{selectedMeter.alerts[0]}</span>
-                    </div>
                   </div>
                 )}
 
@@ -745,7 +727,6 @@ export default function UtilitiesPage() {
                   <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs">
                     <span className="text-zinc-400 block text-[9px]">RESIDENT NAME</span>
                     <span className="font-semibold text-zinc-900 dark:text-white">{selectedMeter.residentName}</span>
-                  </div>
                 </div>
 
                 {/* 2. Billing breakdown */}
@@ -755,11 +736,9 @@ export default function UtilitiesPage() {
                     <div className="flex justify-between items-center text-zinc-500">
                       <span>Usage ({selectedMeter.usageAmount})</span>
                       <span className="font-semibold text-zinc-800 dark:text-zinc-200">${selectedMeter.billingAmount.toFixed(2)}</span>
-                    </div>
                     <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold -100 pt-2">
                       <span>Total Utility Amount</span>
                       <span>${selectedMeter.billingAmount.toFixed(2)}</span>
-                    </div>
                   </div>
                 </div>
 
@@ -774,7 +753,6 @@ export default function UtilitiesPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs text-zinc-550 dark:text-zinc-350">
                           <span>Reading date: {item.date}</span>
                           <span className="font-semibold">Reading: {item.reading.toLocaleString()} ({item.usage})</span>
-                        </div>
                       ))}
                     </div>
                   )}
@@ -793,7 +771,6 @@ export default function UtilitiesPage() {
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 font-semibold block">{item.task}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">Date: {item.date} • Tech: {item.technician}</span>
-                          </div>
                         </div>
                       ))}
                     </div>

@@ -509,68 +509,52 @@ export default function FlatsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Flats</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total registered apartment flat units.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Flats</span>
                   <Home className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalFlats}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total database unit registers</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Occupied Units</span>
                   <Users className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{occupiedUnits}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">{Math.round((occupiedUnits / totalFlats) * 100)}% flat occupancy rate</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Vacant Units</span>
                   <Home className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{vacantUnits}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Ready-to-occupy flats</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Residents</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
-                <div className="mt-2.5 flex items-baseline">
+                <div className="mt-1.5 flex items-baseline">
                   <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{activeResidents}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Includes registered family members</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -579,7 +563,7 @@ export default function FlatsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -663,7 +647,7 @@ export default function FlatsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
@@ -685,7 +669,6 @@ export default function FlatsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No flat units found</span>
                       <span className="text-[10px] mt-0.5">Try adjusting query keywords.</span>
-                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -809,7 +792,6 @@ export default function FlatsPage() {
                       <span className="text-[10px] text-zinc-500 block flex items-center gap-1">
                         <Phone className="h-3 w-3" /> {selectedFlat.ownerPhone} • {selectedFlat.ownerEmail}
                       </span>
-                    </div>
 
                     {/* Tenant profile card (if present) */}
                     {selectedFlat.tenantStatus === "Tenant-Occupied" && (
@@ -822,7 +804,6 @@ export default function FlatsPage() {
                         <div className="mt-1.5 flex justify-between text-[9.5px] text-zinc-500 -100 pt-1.5">
                           <span>Rent: {selectedFlat.rentAmount}</span>
                           <span>Lease ends: {selectedFlat.leaseExpires}</span>
-                        </div>
                       </div>
                     )}
                   </div>
@@ -839,7 +820,6 @@ export default function FlatsPage() {
                       }`}>
                         {selectedFlat.utilityBalance < 0 ? `-$${Math.abs(selectedFlat.utilityBalance)}` : selectedFlat.utilityBalance > 0 ? `+$${selectedFlat.utilityBalance}` : "$0.00"}
                       </span>
-                    </div>
                     {selectedFlat.utilityBalance < 0 && (
                       <div className="mt-1.5 text-[9px] text-rose-600 font-semibold bg-rose-50 dark:bg-rose-950/20 px-2 py-1 rounded -100">
                         Notice: Outstanding dues in maintenance bills. Payment invoice due.
@@ -860,7 +840,6 @@ export default function FlatsPage() {
                           <div key={idx} className="rounded -150 p-2 bg-zinc-50/50 dark:bg-zinc-950/40">
                             <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">{m.name}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{m.relation} • {m.age} yrs</span>
-                          </div>
                         ))}
                       </div>
                     )}
@@ -882,7 +861,6 @@ export default function FlatsPage() {
                           <div>
                             <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{c.name}</span>
                             <span className="text-[9.5px] text-zinc-450 block">{c.relation} • {c.phone}</span>
-                          </div>
                         </div>
                       ))}
                     </div>
@@ -902,7 +880,6 @@ export default function FlatsPage() {
                           <div className="min-w-0 flex-1">
                             <span className="text-zinc-800 dark:text-zinc-200 font-semibold block leading-tight truncate">{m.ticket}</span>
                             <span className="text-[9.5px] text-zinc-400 block mt-0.5">{m.date}</span>
-                          </div>
                           <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold  shrink-0 ${
                             m.status === "Resolved"
                               ? "bg-emerald-50 text-emerald-700-200 dark:bg-emerald-950/20 dark:text-emerald-450"

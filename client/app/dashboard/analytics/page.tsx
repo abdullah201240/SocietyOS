@@ -132,22 +132,10 @@ export default function AnalyticsPage() {
 
           {/* Top KPI Cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Operational Efficiency</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Overall platform performance rating.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Operational Efficiency</span>
                   <Activity className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
                 <div className="mt-2.5 flex items-baseline gap-1.5">
@@ -155,13 +143,12 @@ export default function AnalyticsPage() {
                   <span className="inline-flex items-center gap-0.5 text-[9.5px] font-bold text-emerald-600">
                     <TrendingUp className="h-3 w-3" /> +1.2%
                   </span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Baseline calculated monthly</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Complaint Resolution</span>
                   <Clock className="h-4 w-4 text-zinc-400 shrink-0" />
@@ -171,13 +158,12 @@ export default function AnalyticsPage() {
                   <span className="inline-flex items-center gap-0.5 text-[9.5px] font-bold text-emerald-600">
                     <TrendingUp className="h-3 w-3" /> -2.4 Hrs
                   </span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Average ticket closure time</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Collection Rate</span>
                   <DollarSign className="h-4 w-4 text-zinc-400 shrink-0" />
@@ -187,13 +173,12 @@ export default function AnalyticsPage() {
                   <span className="inline-flex items-center gap-0.5 text-[9.5px] font-bold text-rose-600">
                     -0.4%
                   </span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Target collection parameters met</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
 
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
+            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
+              <CardContent className="p-2.5">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">SLA Compliance</span>
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
@@ -203,9 +188,8 @@ export default function AnalyticsPage() {
                   <span className="inline-flex items-center gap-0.5 text-[9.5px] font-bold text-emerald-600">
                     +0.8%
                   </span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total SLA parameters met</div>
-              </CardContent>
+              </div>
+            </CardContent>
             </Card>
           </div>
 
@@ -214,7 +198,7 @@ export default function AnalyticsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -290,7 +274,7 @@ export default function AnalyticsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* 1. Complaint Pattern Analysis */}
-                <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950 p-4">
+                <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950 p-4">
                   <div className="flex items-center gap-1 -100 pb-2 mb-3.5">
                     <AlertCircle className="h-4 w-4 text-zinc-400" />
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Complaint Pattern Analysis</h3>
@@ -299,27 +283,23 @@ export default function AnalyticsPage() {
                     <div className="flex justify-between items-center text-[11px] text-zinc-500">
                       <span>Plumbing issues frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">42% (Recurring)</span>
-                    </div>
                     <Progress value={42} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="flex justify-between items-center text-[11px] text-zinc-500">
                       <span>Electrical issues frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">28%</span>
-                    </div>
                     <Progress value={28} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="flex justify-between items-center text-[11px] text-zinc-500">
                       <span>Elevator faults frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">18%</span>
-                    </div>
                     <Progress value={18} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="pt-2 -100 flex justify-between text-[10px] text-zinc-450 uppercase font-bold">
                       <span>Peak Hours: 08:30 AM - 10:00 AM</span>
                       <span className="text-rose-600">Unresolved Clusters: 2</span>
-                    </div>
                   </div>
                 </Card>
 
                 {/* 2. Financial Behavior Insights */}
-                <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950 p-4">
+                <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950 p-4">
                   <div className="flex items-center gap-1 -100 pb-2 mb-3.5">
                     <DollarSign className="h-4 w-4 text-zinc-400" />
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Financial Behavior Insights</h3>
@@ -330,37 +310,31 @@ export default function AnalyticsPage() {
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[80%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">Mar</span>
-                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[85%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">Apr</span>
-                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[92%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">May</span>
-                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-t-sm h-[96%]" />
                         <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold">Jun</span>
-                      </div>
                     </div>
                     <div className="flex justify-between text-[10px] text-zinc-450 -100 pt-2">
                       <span>Overdue aging avg: 4.8 days</span>
                       <span>Leakage indicators: None</span>
-                    </div>
                   </div>
                 </Card>
               </div>
 
               {/* Row 2: Building Performance Ranking Comparison Grid */}
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950">
                 <div className="p-4 -100 flex items-center justify-between">
                   <div className="flex items-center gap-1">
                     <BarChart3 className="h-4 w-4 text-zinc-400" />
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Building Performance Comparison</h3>
                   </div>
                   <span className="text-[10px] text-zinc-450 font-bold">Ranking based on Health Score</span>
-                </div>
                 <Table>
                   <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
                     <TableRow className="hover:bg-transparent">
@@ -401,7 +375,7 @@ export default function AnalyticsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Staff completion efficiency */}
-                <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950 p-4">
+                <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950 p-4">
                   <div className="flex items-center gap-1 -100 pb-2 mb-3.5">
                     <Briefcase className="h-4 w-4 text-zinc-400" />
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Staff Workload Distribution</h3>
@@ -410,23 +384,20 @@ export default function AnalyticsPage() {
                     <div className="flex justify-between items-center text-[11px] text-zinc-550">
                       <span>Steve Rogers (Security)</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">96% Completed</span>
-                    </div>
                     <Progress value={96} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="flex justify-between items-center text-[11px] text-zinc-550">
                       <span>Marcus Stone (Manager)</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">90% Completed</span>
-                    </div>
                     <Progress value={90} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="flex justify-between items-center text-[11px] text-zinc-550">
                       <span>Bruce Banner (Maintenance)</span>
                       <span className="font-semibold text-rose-600">65% (Overloaded)</span>
-                    </div>
                     <Progress value={65} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                   </div>
                 </Card>
 
                 {/* Resident engagement metrics */}
-                <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950 p-4">
+                <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:bg-zinc-950 p-4">
                   <div className="flex items-center gap-1 -100 pb-2 mb-3.5">
                     <Users className="h-4 w-4 text-zinc-400" />
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Resident Engagement Metrics</h3>
@@ -435,15 +406,12 @@ export default function AnalyticsPage() {
                     <div className="flex justify-between -100 pb-2">
                       <span>Complaint Submission Rate</span>
                       <span className="font-semibold text-zinc-850 dark:text-zinc-200">12% / month</span>
-                    </div>
                     <div className="flex justify-between -100 pb-2">
                       <span>Payment Consistency Rating</span>
                       <span className="font-bold text-emerald-600">Optimal (98%)</span>
-                    </div>
                     <div className="flex justify-between -100 pb-2">
                       <span>Mobile App Usage Frequency</span>
                       <span className="font-semibold text-zinc-850 dark:text-zinc-200">84% Daily Active</span>
-                    </div>
                   </div>
                 </Card>
 

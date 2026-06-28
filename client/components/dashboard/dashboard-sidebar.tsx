@@ -119,25 +119,6 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
             <Link
               key={item.name}
               href={item.href}
-              onClick={(e) => {
-                if (
-                  item.href !== "/dashboard" &&
-                  item.href !== "/dashboard/societies" &&
-                  item.href !== "/dashboard/buildings" &&
-                  item.href !== "/dashboard/flats" &&
-                  item.href !== "/dashboard/residents" &&
-                  item.href !== "/dashboard/complaints" &&
-                  item.href !== "/dashboard/billing" &&
-                  item.href !== "/dashboard/utilities" &&
-                  item.href !== "/dashboard/parking" &&
-                  item.href !== "/dashboard/visitors" &&
-                  item.href !== "/dashboard/staff" &&
-                  item.href !== "/dashboard/analytics" &&
-                  item.href !== "/dashboard/settings"
-                ) {
-                  e.preventDefault();
-                }
-              }}
               className={`flex items-center justify-between rounded px-3 py-1.5 text-xs font-medium transition-colors ${
                 isActive
                   ? "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white font-semibold"

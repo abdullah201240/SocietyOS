@@ -31,6 +31,7 @@ import {
   Wallet,
   Sun,
   Moon,
+  Network,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -67,6 +68,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
 
   const menuItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Workflows", href: "/dashboard/workflow", icon: Network },
     { name: "Societies", href: "/dashboard/societies", icon: Building2 },
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },

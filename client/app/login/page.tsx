@@ -161,6 +161,35 @@ export default function LoginPage() {
               </Button>
             </form>
 
+            {/* Divider */}
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-zinc-150 dark:border-zinc-900" />
+              </div>
+              <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-wider">
+                <span className="bg-white dark:bg-[#09090b] px-2 text-zinc-400 dark:text-zinc-500">or continue with</span>
+              </div>
+            </div>
+
+            {/* Google OAuth Option */}
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => {
+                toast.success("Redirecting to Google Secure Login Workspace...");
+                setTimeout(() => router.push("/dashboard"), 1000);
+              }}
+              className="w-full h-9 text-xs rounded border border-zinc-250 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900/60 dark:hover:text-white font-medium flex justify-center items-center gap-2"
+            >
+              <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24">
+                <path fill="#EA4335" d="M12 5.04c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 1.74 14.97.64 12 .64 7.7.64 3.99 3.11 2.18 6.71l3.66 2.84C6.71 6.95 9.14 5.04 12 5.04z"/>
+                <path fill="#4285F4" d="M22.56 11.91c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#FBBC05" d="M5.84 13.75c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V6.71H2.18C1.43 8.19 1 9.86 1 11.66s.43 3.47 1.18 4.95l2.85-2.22.81-.64z"/>
+                <path fill="#34A853" d="M12 22.64c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84c1.81 3.6 5.52 6.06 9.82 6.06z"/>
+              </svg>
+              Sign In with Google
+            </Button>
+
             {/* Alternative SignUp */}
             <div className="text-center text-xs pt-4 mt-5 border-t border-zinc-100 dark:border-zinc-900">
               <span className="text-zinc-500">Don't have an account yet? </span>

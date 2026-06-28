@@ -273,4 +273,14 @@ export const inventoryAssetSchema = z.object({
   warrantyExpires: z.string().optional(),
 });
 
+// 26. Facility Booking Schema
+export const facilityBookingSchema = z.object({
+  flatNumber: z.string().min(1, "Flat unit number is required"),
+  residentName: z.string().min(2, "Resident name must be at least 2 characters"),
+  facilityName: z.enum(["Community Hall", "Rooftop Pool", "Tennis Court", "Mini Gym"]),
+  bookingDate: z.string().refine((val) => !isNaN(Date.parse(val)) && val.trim() !== "", "Booking date is required"),
+  timeSlot: z.string().min(1, "Time slot selection is required"),
+});
+
+
 

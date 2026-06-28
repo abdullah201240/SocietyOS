@@ -658,14 +658,55 @@ export default function VisitorsPage() {
                 {/* 1. Host & Visitor Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Access credentials</span>
-                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
+                  <div className="rounded border border-zinc-200 dark:border-zinc-800 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-zinc-400 block text-[9px]">VEHICLE REGISTRATION</span>
-                      <span className="font-bold text-indigo-600 dark:text-indigo-400">{selectedVisitor.vehicleNumber}</span>
+                      <span className="font-bold text-indigo-650 dark:text-indigo-400">{selectedVisitor.vehicleNumber}</span>
                     </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">OTP VERIFICATION</span>
-                      <span className="font-semibold">{selectedVisitor.verificationStatus}</span>
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-200">{selectedVisitor.verificationStatus}</span>
+                    </div>
+                  </div>
+
+                  {/* Visual QR Code Access Card */}
+                  <div className="flex flex-col items-center justify-center p-4 border border-zinc-200 dark:border-zinc-850 rounded bg-zinc-50 dark:bg-zinc-950/40 text-center space-y-2 select-none">
+                    <div className="h-32 w-32 bg-white p-2 rounded flex items-center justify-center border border-zinc-200 shadow-sm dark:border-zinc-800">
+                      <svg className="w-28 h-28 text-zinc-900" viewBox="0 0 100 100">
+                        <rect x="0" y="0" width="25" height="25" fill="currentColor" />
+                        <rect x="5" y="5" width="15" height="15" fill="white" />
+                        <rect x="10" y="10" width="5" height="5" fill="currentColor" />
+
+                        <rect x="75" y="0" width="25" height="25" fill="currentColor" />
+                        <rect x="80" y="5" width="15" height="15" fill="white" />
+                        <rect x="85" y="10" width="5" height="5" fill="currentColor" />
+
+                        <rect x="0" y="75" width="25" height="25" fill="currentColor" />
+                        <rect x="5" y="80" width="15" height="15" fill="white" />
+                        <rect x="10" y="85" width="5" height="5" fill="currentColor" />
+                        
+                        <rect x="35" y="5" width="5" height="5" fill="currentColor" />
+                        <rect x="45" y="0" width="5" height="10" fill="currentColor" />
+                        <rect x="60" y="10" width="10" height="5" fill="currentColor" />
+                        <rect x="30" y="20" width="15" height="5" fill="currentColor" />
+                        <rect x="50" y="30" width="5" height="15" fill="currentColor" />
+                        <rect x="5" y="35" width="10" height="5" fill="currentColor" />
+                        <rect x="20" y="45" width="5" height="5" fill="currentColor" />
+                        <rect x="70" y="40" width="15" height="10" fill="currentColor" />
+                        <rect x="90" y="30" width="5" height="5" fill="currentColor" />
+                        <rect x="35" y="55" width="10" height="5" fill="currentColor" />
+                        <rect x="80" y="60" width="5" height="15" fill="currentColor" />
+                        <rect x="60" y="75" width="10" height="10" fill="currentColor" />
+                        <rect x="30" y="85" width="10" height="5" fill="currentColor" />
+                        <rect x="45" y="75" width="5" height="5" fill="currentColor" />
+                        <rect x="40" y="40" width="5" height="5" fill="currentColor" />
+                        <rect x="55" y="55" width="10" height="5" fill="currentColor" />
+                        <rect x="80" y="85" width="15" height="10" fill="currentColor" />
+                      </svg>
+                    </div>
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-wider block">Access Pass QR</span>
+                      <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-mono block">SCAN PASS AT ACCESS GATE</span>
                     </div>
                   </div>
                 </div>

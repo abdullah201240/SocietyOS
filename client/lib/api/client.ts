@@ -24,7 +24,8 @@ import type {
   GeneratorLog,
   Announcement,
   DocumentRecord,
-  InventoryAsset
+  InventoryAsset,
+  FacilityBooking
 } from './types';
 
 import {
@@ -45,7 +46,8 @@ import {
   generatorLogsData as initialGenLogs,
   announcementsData as initialAnnouncements,
   documentRecordsData as initialDocuments,
-  inventoryAssetsData as initialInventory
+  inventoryAssetsData as initialInventory,
+  facilityBookingsData as initialBookings
 } from './data';
 
 // ============================================================================
@@ -93,6 +95,7 @@ const generatorLogsData = loadDb<GeneratorLog[]>('buildingos_db_generator_logs',
 const announcementsData = loadDb<Announcement[]>('buildingos_db_announcements', initialAnnouncements);
 const documentRecordsData = loadDb<DocumentRecord[]>('buildingos_db_documents', initialDocuments);
 const inventoryAssetsData = loadDb<InventoryAsset[]>('buildingos_db_inventory', initialInventory);
+const facilityBookingsData = loadDb<FacilityBooking[]>('buildingos_db_bookings', initialBookings);
 
 // Simulate network delay
 const delay = (ms: number = 300) => new Promise(resolve => setTimeout(resolve, ms));
@@ -1030,6 +1033,50 @@ export const inventoryApi = {
     inventoryAssetsData[index].updatedAt = new Date().toISOString();
     saveDb('buildingos_db_inventory', inventoryAssetsData);
     return { success: true, data: cloneData(inventoryAssetsData[index]), message: 'Asset status updated' };
+  }
+};
+
+// ============================================================================
+// Facility Bookings API
+// ============================================================================
+export const bookingsApi = {
+  getAll: async (filters?: ApiFilters): Promise<ApiResponse<PaginatedResponse<FacilityBooking>>> => {
+    await delay();
+    let filtered = cloneData(facilityBookingsData);
+    if (filters) {
+      filtered = applyFilters(filtered, filters);
+    }
+    return {
+      success: true,
+      data: {
+        data: filtered.sort((a, b) => new Date(b.bookingDate).getTime() - new Date(a.bookingDate).getTime()),
+        total: filtered.length,
+        page: 1,
+        limit: 100,
+        totalPages: 1
+      }
+    };
+  },
+
+  create: async (data: Omit<FacilityBooking, 'id'>): Promise<ApiResponse<FacilityBooking>> => {
+    await delay();
+    const newId = `BKG-${900 + facilityBookingsData.length + 1}`;
+    const newBooking = { ...data, id: newId };
+    facilityBookingsData.unshift(newBooking);
+    saveDb('buildingos_db_bookings', facilityBookingsData);
+    return { success: true, data: cloneData(newBooking), message: 'Facility booking reserved' };
+  },
+
+  updateStatus: async (id: string, status: "Confirmed" | "Pending" | "Cancelled"): Promise<ApiResponse<FacilityBooking>> => {
+    await delay();
+    const index = facilityBookingsData.findIndex(b => b.id === id);
+    if (index === -1) {
+      return { success: false, data: null as any, error: 'Booking not found' };
+    }
+    facilityBookingsData[index].status = status;
+    facilityBookingsData[index].updatedAt = new Date().toISOString();
+    saveDb('buildingos_db_bookings', facilityBookingsData);
+    return { success: true, data: cloneData(facilityBookingsData[index]), message: `Booking marked as ${status}` };
   }
 };
 

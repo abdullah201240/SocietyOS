@@ -669,4 +669,40 @@ export function useInventoryAssets(filters?: ApiFilters) {
   return { assets, loading, error, refetch: fetchAssets };
 }
 
+// ============================================================================
+// Facility Booking Hooks
+// ============================================================================
+import { bookingsApi } from './client';
+import type { FacilityBooking } from './types';
+
+export function useFacilityBookings(filters?: ApiFilters) {
+  const [bookings, setBookings] = useState<FacilityBooking[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchBookings = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await bookingsApi.getAll(filters);
+      if (response.success) {
+        setBookings(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch bookings');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
+  return { bookings, loading, error, refetch: fetchBookings };
+}
+
+
 

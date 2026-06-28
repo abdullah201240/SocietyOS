@@ -385,4 +385,19 @@ export interface InventoryAsset extends BaseEntity {
   stockCount: number;
 }
 
+// ============================================================================
+// Facility Booking Types
+// ============================================================================
+export interface FacilityBooking extends BaseEntity {
+  id: string;
+  flatNumber: string;
+  buildingName: string;
+  residentName: string;
+  facilityName: "Community Hall" | "Rooftop Pool" | "Tennis Court" | "Mini Gym";
+  bookingDate: string;
+  timeSlot: string;
+  status: "Confirmed" | "Pending" | "Cancelled";
+}
+
+
 

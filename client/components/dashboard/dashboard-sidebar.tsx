@@ -24,6 +24,10 @@ import {
   Wallet,
   ChevronLeft,
   ChevronRight,
+  Megaphone,
+  FileText,
+  Box,
+  CalendarDays,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -87,6 +91,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
     { name: "Communications", href: "/dashboard/communication", icon: Megaphone },
     { name: "Documents", href: "/dashboard/documents", icon: FileText },
     { name: "Inventory", href: "/dashboard/inventory", icon: Box },
+    { name: "Bookings", href: "/dashboard/bookings", icon: CalendarDays },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
     { name: "Utilities", href: "/dashboard/utilities", icon: Zap },
     { name: "Payments", href: "/dashboard/payments", icon: Wallet },

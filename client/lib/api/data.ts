@@ -20,7 +20,8 @@ import type {
   GeneratorLog,
   Announcement,
   DocumentRecord,
-  InventoryAsset
+  InventoryAsset,
+  FacilityBooking
 } from './types';
 
 // ============================================================================
@@ -856,5 +857,15 @@ export const inventoryAssetsData: InventoryAsset[] = [
   { id: "AST-703", name: "Backup Generator Fuel Filters", buildingName: "Tower Alpha", category: "Supplies", status: "Operational", stockCount: 15, createdAt: "2026-01-01T00:00:00Z", updatedAt: "2026-06-20T10:00:00Z" },
   { id: "AST-704", name: "Fire Extinguishers ABC Dry Chem", buildingName: "Tower Beta", category: "Utility", status: "Operational", lastServiced: "2026-06-01T10:00:00Z", warrantyExpires: "2029-06-01T00:00:00Z", stockCount: 24, createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-01T10:00:00Z" }
 ];
+
+// ============================================================================
+// Facility Bookings Mock Data
+// ============================================================================
+export const facilityBookingsData: FacilityBooking[] = [
+  { id: "BKG-901", flatNumber: "101", buildingName: "Tower Alpha", residentName: "Alice Vance", facilityName: "Community Hall", bookingDate: "2026-07-04T00:00:00Z", timeSlot: "10:00 AM - 02:00 PM", status: "Confirmed", createdAt: "2026-06-28T10:00:00Z", updatedAt: "2026-06-28T10:00:00Z" },
+  { id: "BKG-902", flatNumber: "202", buildingName: "Tower Alpha", residentName: "Bob Smith", facilityName: "Rooftop Pool", bookingDate: "2026-07-02T00:00:00Z", timeSlot: "04:00 PM - 06:00 PM", status: "Pending", createdAt: "2026-06-28T11:00:00Z", updatedAt: "2026-06-28T11:00:00Z" },
+  { id: "BKG-903", flatNumber: "302", buildingName: "Tower Alpha", residentName: "Charlie Brown", facilityName: "Mini Gym", bookingDate: "2026-06-29T00:00:00Z", timeSlot: "08:00 AM - 10:00 AM", status: "Confirmed", createdAt: "2026-06-27T09:00:00Z", updatedAt: "2026-06-27T09:00:00Z" }
+];
+
 
 

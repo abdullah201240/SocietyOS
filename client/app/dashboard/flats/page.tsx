@@ -36,6 +36,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, flatSchema } from "@/lib/validations";
 import {
   Home,
   Users,
@@ -101,6 +102,25 @@ export default function FlatsPage() {
   // Onboard new flat
   const handleAddFlat = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      flatNumber: newFlat.flatNumber,
+      floor: newFlat.floor,
+      buildingName: newFlat.buildingName,
+      ownerName: newFlat.ownerName,
+      ownerPhone: newFlat.ownerPhone,
+      ownerEmail: newFlat.ownerEmail,
+      tenantStatus: newFlat.tenantStatus,
+      parkingAssignment: newFlat.parkingAssignment,
+      utilityBalance: Number(newFlat.utilityBalance),
+    };
+
+    const validation = validateData(flatSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newFlatData: Omit<FlatType, 'id'> = {
       flatNumber: newFlat.flatNumber,
       floor: newFlat.floor,

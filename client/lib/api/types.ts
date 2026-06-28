@@ -245,3 +245,61 @@ export interface ApiFilters {
   dateTo?: string;
   [key: string]: string | undefined;
 }
+
+// ============================================================================
+// User Profile Types
+// ============================================================================
+export interface UserProfile extends BaseEntity {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  role: "building_owner" | "flat_owner" | "tenant" | "admin" | "staff";
+  avatar?: string;
+  address: string;
+  identityVerified: boolean;
+  taxTIN?: string;
+  accountTier: "Enterprise" | "Standard" | "Basic";
+  // Building owner specific
+  tradeLicense?: string;
+  vatBIN?: string;
+  managedBuildings?: string[];
+  // Flat owner specific
+  bankName?: string;
+  bankAccount?: string;
+  routingNumber?: string;
+  ownedFlats?: { unit: string; rent: string; status: string }[];
+  // Tenant specific
+  nidVerified?: boolean;
+  policeVerified?: boolean;
+  leaseAgreement?: string;
+  rentedFlat?: string;
+  leasePeriod?: string;
+  landlordName?: string;
+  landlordEmail?: string;
+}
+
+// ============================================================================
+// Settings Types
+// ============================================================================
+export interface SystemSettings extends BaseEntity {
+  id: string;
+  // Organization settings
+  buildingGroupName: string;
+  buildingAddress: string;
+  timezone: string;
+  // Billing settings
+  lateFeeAmount: number;
+  billingCycle: "Weekly" | "Monthly" | "Quarterly";
+  // Notification settings
+  smsAlerts: boolean;
+  emailNotifications: boolean;
+  // Utility settings
+  electricityRate: number;
+  waterRate: number;
+  // Security settings
+  otpVerification: boolean;
+  // Integration settings
+  stripeApiKey?: string;
+  gateWebhookUrl?: string;
+}

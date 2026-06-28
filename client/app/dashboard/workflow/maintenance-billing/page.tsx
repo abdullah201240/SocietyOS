@@ -19,7 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { invoicesApi } from "@/lib/api";
+import { useMaintenance, invoicesApi } from "@/lib/api";
+import type { MaintenanceTask } from "@/lib/api";
 import {
   ChevronLeft,
   Wrench,
@@ -45,15 +46,33 @@ export default function MaintenanceBillingConversion() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Mock completed maintenance logs for billing conversion workflow
-  // This page converts completed maintenance tasks into invoices
-  const [repairs, setRepairs] = React.useState<RepairConversionRecord[]>([
-    { id: "REP-492", taskId: 1, flat: "Flat 1402", building: "Tower Alpha", technician: "Dave Miller", category: "Plumbing", laborHours: 3.5, partsUsed: ["PVC pipe seals", "Teflon thread joint tape"] },
-    { id: "REP-493", taskId: 2, flat: "Flat 805", building: "Tower Alpha", technician: "John Doe", category: "Electrical", laborHours: 2, partsUsed: ["10A copper circuit fuse", "wire conduits"] },
-    { id: "REP-494", taskId: 3, flat: "Flat 302", building: "Tower Alpha", technician: "Dave Miller", category: "HVAC", laborHours: 4, partsUsed: ["air filters", "blower belt"] }
-  ]);
+  // Fetch completed maintenance tasks from API
+  const { tasks: tasksFromApi, loading, error, refetch } = useMaintenance();
+  
+  // Convert completed maintenance tasks to repair records for billing workflow
+  const [repairs, setRepairs] = React.useState<RepairConversionRecord[]>([]);
+  const [selectedRepair, setSelectedRepair] = React.useState<RepairConversionRecord | null>(null);
 
-  const [selectedRepair, setSelectedRepair] = React.useState<RepairConversionRecord | null>(repairs[0]);
+  React.useEffect(() => {
+    if (tasksFromApi && tasksFromApi.length > 0) {
+      // Filter completed tasks and convert to repair conversion records
+      const completedTasks = tasksFromApi.filter(t => t.status === "Completed");
+      const repairRecords: RepairConversionRecord[] = completedTasks.map((task, idx) => ({
+        id: `REP-${492 + idx}`,
+        taskId: task.id,
+        flat: "Flat Unit", // MaintenanceTask doesn't have flatNumber
+        building: task.building,
+        technician: task.assignedTo || "Unassigned",
+        category: task.category,
+        laborHours: 2, // Default value - MaintenanceTask doesn't have laborHours
+        partsUsed: [] // Default value - MaintenanceTask doesn't have partsUsed
+      }));
+      setRepairs(repairRecords);
+      if (repairRecords.length > 0) {
+        setSelectedRepair(repairRecords[0]);
+      }
+    }
+  }, [tasksFromApi]);
 
   // Billing Cost Configuration state
   const [costs, setCosts] = React.useState({

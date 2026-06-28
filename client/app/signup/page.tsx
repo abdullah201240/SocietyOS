@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, signupSchema } from "@/lib/validations";
 import {
   Building2,
   Eye,
@@ -38,12 +39,18 @@ export default function SignupPage() {
 
   const handleSignupSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !phone || !password) {
-      toast.error("Please fill in all mandatory fields.");
-      return;
-    }
-    if (!agreeTerms) {
-      toast.error("You must agree to the Terms of Service.");
+    
+    const validation = validateData(signupSchema, {
+      name,
+      email,
+      phone,
+      password,
+      role,
+      agreeTerms,
+    });
+
+    if (!validation.success) {
+      toast.error(validation.error);
       return;
     }
 

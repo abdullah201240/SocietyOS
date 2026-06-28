@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, loginSchema } from "@/lib/validations";
 import {
   Building2,
   Eye,
@@ -28,8 +29,9 @@ export default function LoginPage() {
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
-      toast.error("Please enter email and password.");
+    const validation = validateData(loginSchema, { email, password, rememberMe });
+    if (!validation.success) {
+      toast.error(validation.error);
       return;
     }
     setLoading(true);

@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, invoiceSchema } from "@/lib/validations";
 import {
   CreditCard,
   AlertCircle,
@@ -90,6 +91,25 @@ export default function GlobalBillingPage() {
 
   const handleGenerateInvoice = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      buildingGroup: newInvoice.buildingGroup,
+      buildingName: newInvoice.buildingName,
+      flatNumber: newInvoice.flatNumber,
+      residentName: newInvoice.residentName,
+      ownerName: newInvoice.ownerName,
+      amount: Number(newInvoice.amount),
+      dueDate: newInvoice.dueDate,
+      utilityCharges: Number(newInvoice.utilityCharges),
+      maintenanceCharges: Number(newInvoice.maintenanceCharges),
+    };
+
+    const validation = validateData(invoiceSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newInvoiceData: Omit<InvoiceType, 'id'> = {
       buildingGroup: newInvoice.buildingGroup,
       buildingName: newInvoice.buildingName,

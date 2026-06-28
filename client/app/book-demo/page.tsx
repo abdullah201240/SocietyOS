@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, bookDemoSchema } from "@/lib/validations";
 import {
   Building2,
   ArrowLeft,
@@ -38,8 +39,9 @@ export default function BookDemoPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.phone || !form.property || !form.date) {
-      toast.error("Please fill in all mandatory fields.");
+    const validation = validateData(bookDemoSchema, form);
+    if (!validation.success) {
+      toast.error(validation.error);
       return;
     }
     setLoading(true);

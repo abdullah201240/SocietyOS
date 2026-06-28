@@ -36,6 +36,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, complaintSchema, commentSchema } from "@/lib/validations";
 import {
   AlertCircle,
   Users,
@@ -64,17 +65,17 @@ export default function ComplaintsPage() {
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Fetch complaints from API
-  const { complaints, loading, error, refetch } = useComplaints();
+  const { complaints: complaintsFromApi, loading, error, refetch } = useComplaints();
   const [tickets, setTickets] = React.useState<Complaint[]>([]);
 
   // Sync API data with local state
   React.useEffect(() => {
-    if (complaints) {
-      setTickets(complaints);
+    if (complaintsFromApi) {
+      setTickets(complaintsFromApi);
     }
-  }, [complaints]);
+  }, [complaintsFromApi]);
 
-  // Form State
+  // Form Dialog State
   const [newTicket, setNewTicket] = React.useState({
     residentName: "",
     flatNumber: "",
@@ -88,12 +89,12 @@ export default function ComplaintsPage() {
   const [createOpen, setCreateOpen] = React.useState(false);
   const [selectedTicket, setSelectedTicket] = React.useState<Complaint | null>(null);
 
-  // Filter States
+  // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [filterStatus, setFilterStatus] = React.useState("All");
   const [filterPriority, setFilterPriority] = React.useState("All");
-  const [filterBuilding, setFilterBuilding] = React.useState("All");
+  const [filterStatus, setFilterStatus] = React.useState("All");
   const [filterCategory, setFilterCategory] = React.useState("All");
+  const [filterBuilding, setFilterBuilding] = React.useState("All");
   const [filterTechnician, setFilterTechnician] = React.useState("All");
   const [filterSla, setFilterSla] = React.useState("All");
 
@@ -102,6 +103,23 @@ export default function ComplaintsPage() {
 
   const handleCreateTicket = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      residentName: newTicket.residentName,
+      flatNumber: newTicket.flatNumber,
+      buildingName: newTicket.buildingName,
+      category: newTicket.category,
+      priority: newTicket.priority,
+      assignee: newTicket.assignee || undefined,
+      description: newTicket.description,
+    };
+
+    const validation = validateData(complaintSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newComplaint: Omit<Complaint, 'id'> = {
       residentName: newTicket.residentName,
       flatNumber: newTicket.flatNumber,
@@ -199,7 +217,12 @@ export default function ComplaintsPage() {
 
   const handleAddComment = async (e: React.FormEvent, id: string) => {
     e.preventDefault();
-    if (!newComment.trim()) return;
+    
+    const validation = validateData(commentSchema, { message: newComment });
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
 
     const commentItem = {
       sender: "John Doe",

@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, buildingSchema } from "@/lib/validations";
 import {
   Building,
   Building2,
@@ -104,6 +105,25 @@ export default function BuildingsPage() {
   // Onboard new building handler
   const handleAddBuilding = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      name: newBuilding.name,
+      buildingGroup: newBuilding.buildingGroup,
+      type: newBuilding.type,
+      floors: Number(newBuilding.floors),
+      totalFlats: Number(newBuilding.totalFlats),
+      occupiedFlats: Number(newBuilding.occupiedFlats),
+      maintenanceStatus: newBuilding.maintenanceStatus,
+      parkingUtilization: Number(newBuilding.parkingUtilization),
+      operationalStatus: newBuilding.operationalStatus,
+    };
+
+    const validation = validateData(buildingSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newBuildingData: Omit<BuildingType, 'id'> = {
       name: newBuilding.name,
       buildingGroup: newBuilding.buildingGroup,

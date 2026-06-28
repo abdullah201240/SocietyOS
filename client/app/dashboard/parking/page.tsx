@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, parkingSchema } from "@/lib/validations";
 import {
   Car,
   AlertCircle,
@@ -94,6 +95,24 @@ export default function ParkingPage() {
 
   const handleAssignSlot = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      slotNumber: newSlot.slotNumber,
+      buildingName: newSlot.buildingName,
+      flatNumber: newSlot.flatNumber || undefined,
+      residentName: newSlot.residentName || undefined,
+      vehicleType: newSlot.vehicleType,
+      vehicleNumber: newSlot.vehicleNumber || undefined,
+      category: newSlot.category,
+      occupancyStatus: newSlot.occupancyStatus,
+    };
+
+    const validation = validateData(parkingSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newSlotData: Omit<ParkingSlotType, 'id'> = {
       slotNumber: newSlot.slotNumber,
       buildingName: newSlot.buildingName,

@@ -36,6 +36,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, residentSchema } from "@/lib/validations";
 import {
   Users,
   Wrench,
@@ -100,6 +101,24 @@ export default function ResidentsPage() {
 
   const handleAddResident = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      name: newResident.name,
+      flatNumber: newResident.flatNumber,
+      buildingName: newResident.buildingName,
+      residentType: newResident.residentType,
+      phone: newResident.phone,
+      email: newResident.email,
+      outstandingDues: Number(newResident.outstandingDues),
+      operationalStatus: newResident.operationalStatus,
+    };
+
+    const validation = validateData(residentSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newResidentData: Omit<ResidentType, 'id'> = {
       name: newResident.name,
       flatNumber: newResident.flatNumber,

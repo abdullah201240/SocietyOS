@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, contactSchema } from "@/lib/validations";
 import { Mail, Phone, MapPin, Send, HelpCircle } from "lucide-react";
 
 export function ContactSection() {
@@ -21,8 +22,9 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill in all required fields.");
+    const validation = validateData(contactSchema, form);
+    if (!validation.success) {
+      toast.error(validation.error);
       return;
     }
     setLoading(true);

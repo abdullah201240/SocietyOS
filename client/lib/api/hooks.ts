@@ -400,3 +400,73 @@ export function useStaff(filters?: ApiFilters) {
 
   return { staff, loading, error, refetch: fetchStaff };
 }
+
+// ============================================================================
+// User Profile Hook
+// ============================================================================
+import { userProfileApi } from './client';
+import type { UserProfile } from './types';
+
+export function useUserProfile() {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchProfile = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await userProfileApi.get();
+      if (response.success) {
+        setProfile(response.data);
+      } else {
+        setError(response.error || 'Failed to fetch profile');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
+
+  return { profile, loading, error, refetch: fetchProfile };
+}
+
+// ============================================================================
+// System Settings Hook
+// ============================================================================
+import { systemSettingsApi } from './client';
+import type { SystemSettings } from './types';
+
+export function useSystemSettings() {
+  const [settings, setSettings] = useState<SystemSettings | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchSettings = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await systemSettingsApi.get();
+      if (response.success) {
+        setSettings(response.data);
+      } else {
+        setError(response.error || 'Failed to fetch settings');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);
+
+  return { settings, loading, error, refetch: fetchSettings };
+}

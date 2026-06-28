@@ -14,6 +14,8 @@ import type {
   ParkingSlot,
   Visitor,
   Staff,
+  UserProfile,
+  SystemSettings,
   ApiResponse,
   PaginatedResponse,
   ApiFilters
@@ -29,7 +31,9 @@ import {
   paymentsData,
   parkingData,
   visitorsData,
-  staffData
+  staffData,
+  userProfileData,
+  systemSettingsData
 } from './data';
 
 // ============================================================================
@@ -641,5 +645,37 @@ export const staffApi = {
     }
     staffData.splice(index, 1);
     return { success: true, data: undefined, message: 'Staff deleted' };
+  }
+};
+
+// ============================================================================
+// User Profile API
+// ============================================================================
+export const userProfileApi = {
+  get: async (): Promise<ApiResponse<UserProfile>> => {
+    await delay();
+    return { success: true, data: cloneData(userProfileData) };
+  },
+
+  update: async (data: Partial<UserProfile>): Promise<ApiResponse<UserProfile>> => {
+    await delay();
+    Object.assign(userProfileData, data, { updatedAt: new Date().toISOString() });
+    return { success: true, data: cloneData(userProfileData), message: 'Profile updated' };
+  }
+};
+
+// ============================================================================
+// System Settings API
+// ============================================================================
+export const systemSettingsApi = {
+  get: async (): Promise<ApiResponse<SystemSettings>> => {
+    await delay();
+    return { success: true, data: cloneData(systemSettingsData) };
+  },
+
+  update: async (data: Partial<SystemSettings>): Promise<ApiResponse<SystemSettings>> => {
+    await delay();
+    Object.assign(systemSettingsData, data, { updatedAt: new Date().toISOString() });
+    return { success: true, data: cloneData(systemSettingsData), message: 'Settings updated' };
   }
 };

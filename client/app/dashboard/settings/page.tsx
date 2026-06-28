@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { useSystemSettings, systemSettingsApi } from "@/lib/api";
+import type { SystemSettings } from "@/lib/api";
 import {
   Settings,
   Building,
@@ -21,31 +23,57 @@ import {
   Fingerprint,
   Activity,
   Plus,
+  RefreshCw,
 } from "lucide-react";
 
 export default function SettingsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Form states
-  const [buildingGroupName, setBuildingGroupName] = React.useState("Grandview Towers");
-  const [buildingAddress, setBuildingAddress] = React.useState("102 Ocean Drive, Sector 4, Metropolis");
-  const [timezone, setTimezone] = React.useState("GMT-05:00 Eastern Time");
+  // Fetch system settings from API
+  const { settings, loading, error, refetch } = useSystemSettings();
+  const [isSaving, setIsSaving] = React.useState(false);
 
-  const [lateFeeAmount, setLateFeeAmount] = React.useState(15.00);
-  const [billingCycle, setBillingCycle] = React.useState("Monthly");
-
-  const [smsAlerts, setSmsAlerts] = React.useState(true);
-  const [emailNotifications, setEmailNotifications] = React.useState(true);
-
-  const [electricityRate, setElectricityRate] = React.useState(0.20);
-  const [waterRate, setWaterRate] = React.useState(0.029);
-
-  const [otpVerify, setOtpVerify] = React.useState(true);
-
-  const handleSaveSettings = (category: string) => {
-    toast.success(`${category} configurations updated successfully!`);
+  const handleSaveSettings = async (category: string) => {
+    if (!settings) return;
+    
+    setIsSaving(true);
+    try {
+      const response = await systemSettingsApi.update(settings);
+      if (response.success) {
+        toast.success(`${category} configurations updated and synced successfully!`);
+        refetch();
+      } else {
+        toast.error(response.error || `Failed to update ${category}`);
+      }
+    } catch (err) {
+      toast.error(`Failed to update ${category}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="text-center space-y-2">
+          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-indigo-600" />
+          <p className="text-sm text-zinc-600">Loading settings...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !settings) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="text-center space-y-2">
+          <p className="text-sm text-red-600">{error || "Failed to load settings"}</p>
+          <Button onClick={refetch} variant="outline">Retry</Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
@@ -114,19 +142,19 @@ export default function SettingsPage() {
                 <CardContent className="p-4 space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building Group Name</Label>
-                    <Input value={buildingGroupName} onChange={(e) => setBuildingGroupName(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input value={settings.buildingGroupName} onChange={(e) => systemSettingsApi.update({ buildingGroupName: e.target.value })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Address Location</Label>
-                    <Input value={buildingAddress} onChange={(e) => setBuildingAddress(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input value={settings.buildingAddress} onChange={(e) => systemSettingsApi.update({ buildingAddress: e.target.value })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Timezone</Label>
-                    <Input value={timezone} onChange={(e) => setTimezone(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input value={settings.timezone} onChange={(e) => systemSettingsApi.update({ timezone: e.target.value })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="flex justify-end pt-2">
-                    <Button onClick={() => handleSaveSettings("Organization")} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
-                      Save Profiles Settings
+                    <Button onClick={() => handleSaveSettings("Organization")} disabled={isSaving} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
+                      {isSaving ? "Saving..." : "Save Profiles Settings"}
                     </Button>
                   </div>
                 </CardContent>
@@ -181,11 +209,11 @@ export default function SettingsPage() {
                 <CardContent className="p-4 space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Late Payment Fee ($)</Label>
-                    <Input type="number" value={lateFeeAmount} onChange={(e) => setLateFeeAmount(Number(e.target.value))} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input type="number" value={settings.lateFeeAmount} onChange={(e) => systemSettingsApi.update({ lateFeeAmount: Number(e.target.value) })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Billing Run Cycle</Label>
-                    <select value={billingCycle} onChange={(e) => setBillingCycle(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none">
+                    <select value={settings.billingCycle} onChange={(e) => systemSettingsApi.update({ billingCycle: e.target.value as "Weekly" | "Monthly" | "Quarterly" })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200 bg-white px-2 dark:bg-zinc-900 outline-none">
                       <option value="Weekly">Weekly Cycle Run</option>
                       <option value="Monthly">Monthly Cycle Run</option>
                       <option value="Quarterly">Quarterly Cycle Run</option>
@@ -213,14 +241,14 @@ export default function SettingsPage() {
                       <span className="font-semibold block text-zinc-850 dark:text-zinc-200">SMS Gate Alerts</span>
                       <span className="text-[10px] text-zinc-450 block">Send OTP text checks directly to host mobiles on gate pre-approvals.</span>
                     </div>
-                    <input type="checkbox" checked={smsAlerts} onChange={(e) => setSmsAlerts(e.target.checked)} className="h-4 w-4 rounded-200 text-indigo-600 outline-none" />
+                    <input type="checkbox" checked={settings.smsAlerts} onChange={(e) => systemSettingsApi.update({ smsAlerts: e.target.checked })} className="h-4 w-4 rounded border-zinc-200 text-indigo-600 outline-none" />
                   </div>
                   <div className="flex justify-between items-center -100 pb-2.5">
                     <div>
                       <span className="font-semibold block text-zinc-850 dark:text-zinc-200">Email Invoices Alerts</span>
                       <span className="text-[10px] text-zinc-450 block">Auto-dispatch PDF statements billing run alerts to verified resident emails.</span>
                     </div>
-                    <input type="checkbox" checked={emailNotifications} onChange={(e) => setEmailNotifications(e.target.checked)} className="h-4 w-4 rounded-200 text-indigo-600 outline-none" />
+                    <input type="checkbox" checked={settings.emailNotifications} onChange={(e) => systemSettingsApi.update({ emailNotifications: e.target.checked })} className="h-4 w-4 rounded border-zinc-200 text-indigo-600 outline-none" />
                   </div>
                   <div className="flex justify-end pt-2">
                     <Button onClick={() => handleSaveSettings("Notification Alerts")} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
@@ -241,11 +269,11 @@ export default function SettingsPage() {
                 <CardContent className="p-4 space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Electricity Rate ($/kWh)</Label>
-                    <Input type="number" step="0.01" value={electricityRate} onChange={(e) => setElectricityRate(Number(e.target.value))} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input type="number" step="0.01" value={settings.electricityRate} onChange={(e) => systemSettingsApi.update({ electricityRate: Number(e.target.value) })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Water Consumption Rate ($/L)</Label>
-                    <Input type="number" step="0.001" value={waterRate} onChange={(e) => setWaterRate(Number(e.target.value))} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input type="number" step="0.001" value={settings.waterRate} onChange={(e) => systemSettingsApi.update({ waterRate: Number(e.target.value) })} className="col-span-2 h-8.5 text-xs rounded-sm border-zinc-200" />
                   </div>
                   <div className="flex justify-end pt-2">
                     <Button onClick={() => handleSaveSettings("Utility Indices")} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
@@ -269,7 +297,7 @@ export default function SettingsPage() {
                       <span className="font-semibold block text-zinc-850 dark:text-zinc-200">Force Gate Pass OTP checks</span>
                       <span className="text-[10px] text-zinc-450 block">Requires guards to input visitor passcode for confirmation check.</span>
                     </div>
-                    <input type="checkbox" checked={otpVerify} onChange={(e) => setOtpVerify(e.target.checked)} className="h-4 w-4 rounded-200 text-indigo-600 outline-none" />
+                    <input type="checkbox" checked={settings.otpVerification} onChange={(e) => systemSettingsApi.update({ otpVerification: e.target.checked })} className="h-4 w-4 rounded border-zinc-200 text-indigo-600 outline-none" />
                   </div>
                   <div className="flex justify-end pt-2">
                     <Button onClick={() => handleSaveSettings("Security Policies")} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">

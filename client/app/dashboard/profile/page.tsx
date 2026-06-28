@@ -10,6 +10,9 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, profileSchema } from "@/lib/validations";
+import { useUserProfile, userProfileApi } from "@/lib/api";
+import type { UserProfile } from "@/lib/api";
 import {
   User,
   Building,
@@ -30,31 +33,84 @@ export default function ProfilePage() {
   const orgs = ["Tower A - Grandview", "Tower B - Grandview", "Tower C - Grandview"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
   
-  // Role profile switcher
-  const [role, setRole] = React.useState<"building_owner" | "flat_owner" | "tenant">("building_owner");
+  // Fetch user profile from API
+  const { profile, loading, error, refetch } = useUserProfile();
   const [isSyncing, setIsSyncing] = React.useState(false);
 
-  React.useEffect(() => {
-    const saved = localStorage.getItem("buildingos-user-role");
-    if (saved) {
-      setRole(saved as any);
-    }
-  }, []);
-
-  const handleRoleChange = (newRole: typeof role) => {
-    setRole(newRole);
-    localStorage.setItem("buildingos-user-role", newRole);
-    toast.success(`Switched profile view to ${newRole.replace("_", " ").toUpperCase()}`);
-  };
-
-  const handleSaveProfile = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleRoleChange = async (newRole: UserProfile["role"]) => {
+    if (!profile) return;
     setIsSyncing(true);
-    setTimeout(() => {
+    try {
+      const response = await userProfileApi.update({ role: newRole });
+      if (response.success) {
+        refetch();
+        localStorage.setItem("buildingos-user-role", newRole);
+        toast.success(`Switched profile view to ${newRole.replace("_", " ").toUpperCase()}`);
+      } else {
+        toast.error(response.error || "Failed to update role");
+      }
+    } catch (error) {
+      toast.error("Failed to update role");
+    } finally {
       setIsSyncing(false);
-      toast.success("Profile records updated and synced with cloud identity ledger.");
-    }, 800);
+    }
   };
+
+  const handleSaveProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!profile) return;
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const updates = {
+      name: formData.get("name") as string,
+      phone: formData.get("phone") as string,
+    };
+
+    const validation = validateData(profileSchema, updates);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
+    setIsSyncing(true);
+    try {
+      const response = await userProfileApi.update(updates);
+      if (response.success) {
+        toast.success("Profile records updated and synced with cloud identity ledger.");
+        refetch();
+      } else {
+        toast.error(response.error || "Failed to update profile");
+      }
+    } catch (error) {
+      toast.error("Failed to update profile");
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="text-center space-y-2">
+          <RefreshCw className="h-8 w-8 animate-spin mx-auto text-indigo-600" />
+          <p className="text-sm text-zinc-600">Loading profile...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !profile) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <div className="text-center space-y-2">
+          <p className="text-sm text-red-600">{error || "Failed to load profile"}</p>
+          <Button onClick={refetch} variant="outline">Retry</Button>
+        </div>
+      </div>
+    );
+  }
+
+  const role = profile.role;
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
@@ -110,7 +166,7 @@ export default function ProfilePage() {
                   <div className="flex justify-center">
                     <div className="relative">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-600 text-white font-bold text-xl shadow-md shadow-indigo-500/20">
-                        {role === "building_owner" ? "JD" : role === "flat_owner" ? "SS" : "DM"}
+                        {profile.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                       </div>
                       <span className="absolute bottom-0 right-0 rounded-full bg-emerald-500 p-1 text-white border-2 border-white dark:border-zinc-950">
                         <ShieldCheck className="h-3 w-3" />
@@ -121,18 +177,14 @@ export default function ProfilePage() {
                   {/* Identification */}
                   <div className="space-y-1">
                     <h2 className="text-sm font-bold text-zinc-900 dark:text-white">
-                      {role === "building_owner"
-                        ? "John Doe"
-                        : role === "flat_owner"
-                        ? "Stephen Strange"
-                        : "Dave Miller"}
+                      {profile.name}
                     </h2>
                     <p className="text-[10px] text-zinc-400 font-semibold tracking-wider uppercase">
                       {role.replace("_", " ")}
                     </p>
                     <div className="pt-1">
                       <Badge variant="outline" className="text-[9px] font-bold rounded-sm border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60">
-                        ID: {role === "building_owner" ? "UID-8839-BO" : role === "flat_owner" ? "UID-1024-FO" : "UID-2059-TR"}
+                        ID: {profile.id.toUpperCase()}
                       </Badge>
                     </div>
                   </div>
@@ -142,25 +194,17 @@ export default function ProfilePage() {
                     <div className="flex items-center gap-2.5 text-zinc-650 dark:text-zinc-350">
                       <Mail className="h-4 w-4 shrink-0 text-zinc-400" />
                       <span className="truncate">
-                        {role === "building_owner"
-                          ? "john.doe@buildingos.com"
-                          : role === "flat_owner"
-                          ? "stephen@strangeholdings.com"
-                          : "dave.miller@varatia.net"}
+                        {profile.email}
                       </span>
                     </div>
                     <div className="flex items-center gap-2.5 text-zinc-650 dark:text-zinc-350">
                       <Phone className="h-4 w-4 shrink-0 text-zinc-400" />
-                      <span>{role === "building_owner" ? "+880 1712 123456" : role === "flat_owner" ? "+880 1819 987654" : "+880 1914 555666"}</span>
+                      <span>{profile.phone}</span>
                     </div>
                     <div className="flex items-center gap-2.5 text-zinc-650 dark:text-zinc-350">
                       <MapPin className="h-4 w-4 shrink-0 text-zinc-400" />
                       <span className="truncate">
-                        {role === "building_owner"
-                          ? "Grandview Corporate Suite, Dhaka"
-                          : role === "flat_owner"
-                          ? "12 Old Bailey St, Sector 1"
-                          : "Flat 1402, Tower A - Grandview"}
+                        {profile.address}
                       </span>
                     </div>
                   </div>
@@ -208,7 +252,8 @@ export default function ProfilePage() {
                         <Label htmlFor="prof-name" className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Display Name</Label>
                         <Input
                           id="prof-name"
-                          defaultValue={role === "building_owner" ? "John Doe" : role === "flat_owner" ? "Stephen Strange" : "Dave Miller"}
+                          name="name"
+                          defaultValue={profile.name}
                           className="h-8.5 text-xs rounded-sm"
                         />
                       </div>
@@ -216,7 +261,8 @@ export default function ProfilePage() {
                         <Label htmlFor="prof-phone" className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Contact Number</Label>
                         <Input
                           id="prof-phone"
-                          defaultValue={role === "building_owner" ? "+880 1712 123456" : role === "flat_owner" ? "+880 1819 987654" : "+880 1914 555666"}
+                          name="phone"
+                          defaultValue={profile.phone}
                           className="h-8.5 text-xs rounded-sm"
                         />
                       </div>
@@ -228,7 +274,7 @@ export default function ProfilePage() {
                         <Input
                           id="prof-email"
                           disabled
-                          defaultValue={role === "building_owner" ? "john.doe@buildingos.com" : role === "flat_owner" ? "stephen@strangeholdings.com" : "dave.miller@varatia.net"}
+                          defaultValue={profile.email}
                           className="h-8.5 text-xs rounded-sm bg-zinc-50 dark:bg-zinc-900 cursor-not-allowed opacity-75"
                         />
                       </div>

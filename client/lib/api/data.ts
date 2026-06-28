@@ -12,7 +12,9 @@ import type {
   Payment,
   ParkingSlot,
   Visitor,
-  Staff
+  Staff,
+  UserProfile,
+  SystemSettings
 } from './types';
 
 // ============================================================================
@@ -742,3 +744,44 @@ export const staffData: Staff[] = [
     permissions: ["manage_visitors", "view_logs"]
   }
 ];
+
+// ============================================================================
+// User Profile Data
+// ============================================================================
+export const userProfileData: UserProfile = {
+  id: "user-001",
+  name: "John Doe",
+  email: "john.doe@buildingos.com",
+  phone: "+880 1712 123456",
+  role: "building_owner",
+  address: "Grandview Corporate Suite, Dhaka",
+  identityVerified: true,
+  taxTIN: "TIN-893049103",
+  accountTier: "Enterprise",
+  tradeLicense: "TR-990-2025-ABCD",
+  vatBIN: "BIN-102938475",
+  managedBuildings: ["Tower A - Grandview", "Tower B - Grandview", "Tower C - Grandview"],
+  createdAt: "2025-01-01T00:00:00Z",
+  updatedAt: "2026-06-28T00:00:00Z"
+};
+
+// ============================================================================
+// System Settings Data
+// ============================================================================
+export const systemSettingsData: SystemSettings = {
+  id: "settings-001",
+  buildingGroupName: "Grandview Towers",
+  buildingAddress: "102 Ocean Drive, Sector 4, Metropolis",
+  timezone: "GMT-05:00 Eastern Time",
+  lateFeeAmount: 15.00,
+  billingCycle: "Monthly",
+  smsAlerts: true,
+  emailNotifications: true,
+  electricityRate: 0.20,
+  waterRate: 0.029,
+  otpVerification: true,
+  stripeApiKey: "sk_test_••••••••••••••••••••••••",
+  gateWebhookUrl: "https://api.buildingos.com/v1/gate-stream",
+  createdAt: "2025-01-01T00:00:00Z",
+  updatedAt: "2026-06-28T00:00:00Z"
+};

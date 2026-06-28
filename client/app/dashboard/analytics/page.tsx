@@ -19,6 +19,8 @@ import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { useBuildings, useComplaints, useMaintenance } from "@/lib/api";
+import type { Building } from "@/lib/api";
 import {
   BarChart3,
   TrendingUp,
@@ -34,9 +36,24 @@ import {
   Users,
 } from "lucide-react";
 
+// Building analytics interface
+interface BuildingAnalytics {
+  name: string;
+  occupancy: number;
+  health: number;
+  complaints: number;
+  tasks: number;
+  risk: "healthy" | "warning" | "critical";
+}
+
 export default function AnalyticsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
+
+  // Fetch data from APIs
+  const { buildings } = useBuildings();
+  const { complaints } = useComplaints();
+  const { tasks: maintenanceTasks } = useMaintenance();
 
   // Filters State
   const [selectedBuilding, setSelectedBuilding] = React.useState("All");
@@ -55,14 +72,40 @@ export default function AnalyticsPage() {
     toast.info("Opening multi-building comparison grid.");
   };
 
-  // Building comparison ranking data - derived from building analytics
-  const buildingComparison = [
-    { name: "Tower Alpha", occupancy: 94.4, health: 96, complaints: 2, tasks: 12, risk: "healthy" },
-    { name: "Tower Beta", occupancy: 89.6, health: 92, complaints: 5, tasks: 8, risk: "healthy" },
-    { name: "Tower Gamma", occupancy: 88.1, health: 81, complaints: 4, tasks: 15, risk: "warning" },
-    { name: "Block East", occupancy: 92.0, health: 98, complaints: 2, tasks: 4, risk: "healthy" },
-    { name: "Clubhouse Wing", occupancy: 80.0, health: 95, complaints: 0, tasks: 2, risk: "neutral" }
-  ];
+  // Derive building comparison from actual API data
+  const buildingComparison: BuildingAnalytics[] = React.useMemo(() => {
+    return buildings.map((building: Building) => {
+      // Count complaints for this building
+      const buildingComplaints = complaints.filter(c => c.buildingName === building.name).length;
+      
+      // Count maintenance tasks for this building
+      const buildingTasks = maintenanceTasks.filter(t => t.building === building.name).length;
+      
+      // Calculate health score (100 - penalties)
+      let health = 100;
+      health -= buildingComplaints * 3; // -3 per complaint
+      health -= buildingTasks * 2; // -2 per task
+      
+      // Calculate occupancy based on flats
+      const occupancy = building.totalFlats > 0 
+        ? (building.occupiedFlats / building.totalFlats) * 100 
+        : 0;
+      
+      // Determine risk level
+      let risk: "healthy" | "warning" | "critical" = "healthy";
+      if (health < 70 || buildingComplaints > 10) risk = "critical";
+      else if (health < 85 || buildingComplaints > 5) risk = "warning";
+      
+      return {
+        name: building.name,
+        occupancy: Math.round(occupancy * 10) / 10,
+        health: Math.max(0, health),
+        complaints: buildingComplaints,
+        tasks: buildingTasks,
+        risk
+      };
+    }).sort((a, b) => b.health - a.health); // Sort by health score descending
+  }, [buildings, complaints, maintenanceTasks]);
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">

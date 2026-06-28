@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, visitorSchema } from "@/lib/validations";
 import {
   Fingerprint,
   Users,
@@ -92,6 +93,22 @@ export default function VisitorsPage() {
 
   const handlePreApprove = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      name: newVisitor.name,
+      hostName: newVisitor.hostName,
+      flatNumber: newVisitor.flatNumber,
+      buildingName: newVisitor.buildingName,
+      purpose: newVisitor.purpose,
+      vehicleNumber: newVisitor.vehicleNumber || undefined,
+    };
+
+    const validation = validateData(visitorSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newVisitorData: Omit<VisitorType, 'id'> = {
       name: newVisitor.name,
       hostName: newVisitor.hostName,

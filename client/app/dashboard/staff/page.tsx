@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, staffSchema } from "@/lib/validations";
 import {
   UserCheck,
   Users,
@@ -93,6 +94,24 @@ export default function StaffPage() {
 
   const handleAddStaff = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationData = {
+      name: newStaff.name,
+      role: newStaff.role,
+      department: newStaff.department,
+      assignedBuilding: newStaff.assignedBuilding,
+      shiftTiming: newStaff.shiftTiming,
+      phone: newStaff.phone,
+      email: newStaff.email,
+      accessLevel: newStaff.accessLevel,
+    };
+
+    const validation = validateData(staffSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     const newStaffData: Omit<StaffType, 'id'> = {
       name: newStaff.name,
       role: newStaff.role,

@@ -10,6 +10,7 @@ import { QuickActions } from "@/components/dashboard/quick-actions";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, complaintSchema } from "@/lib/validations";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +45,21 @@ export default function DashboardPage() {
 
   const handleTenantComplaintSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComplaintText.trim()) return;
+
+    const validationData = {
+      category: newComplaintCat,
+      description: newComplaintText,
+      priority: "Low",
+      buildingName: currentOrg,
+      flatNumber: "Tenant Unit",
+      residentName: "Current User",
+    };
+
+    const validation = validateData(complaintSchema, validationData);
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
     
     setIsSubmitting(true);
     try {

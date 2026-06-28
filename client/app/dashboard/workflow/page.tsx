@@ -18,6 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { useComplaints, useInvoices, useMaintenance } from "@/lib/api";
+import type { Complaint, Invoice, MaintenanceTask } from "@/lib/api";
 import {
   Network,
   Clock,
@@ -58,25 +60,76 @@ export default function OperationalWorkflowDashboard() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Workflow steps - derived from complaint pipeline stages
-  const steps: FlowStep[] = [
-    { name: "Complaint Created", status: "complete", count: 22, slaTimer: "2h SLA" },
-    { name: "Assigned", status: "complete", count: 14, slaTimer: "4h SLA" },
-    { name: "Maintenance", status: "delayed", count: 8, slaTimer: "24h SLA" },
-    { name: "Verified", status: "pending", count: 5, slaTimer: "12h SLA" },
-    { name: "Bill Generated", status: "complete", count: 18, slaTimer: "8h SLA" },
-    { name: "Payment Received", status: "complete", count: 12, slaTimer: "48h SLA" },
-    { name: "Owner Updated", status: "complete", count: 12, slaTimer: "2h SLA" },
-  ];
+  // Fetch data from APIs
+  const { complaints } = useComplaints();
+  const { invoices } = useInvoices();
+  const { tasks: maintenanceTasks } = useMaintenance();
 
-  // Workflow items - mock data for pipeline tracking visualization
-  const workflowItems: WorkflowItem[] = [
-    { ticketId: "WFK-101", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 1402", stage: "Maintenance", staff: "Dave Miller (Tech)", slaStatus: "Warning", lastUpdate: "3h ago" },
-    { ticketId: "WFK-102", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 805", stage: "Verified", staff: "Sarah Connor", slaStatus: "On Time", lastUpdate: "1h ago" },
-    { ticketId: "WFK-103", buildingGroup: "Meadow View Complex", building: "Oak Block", flat: "Flat 302", stage: "Bill Generated", staff: "Auto system", slaStatus: "On Time", lastUpdate: "5m ago" },
-    { ticketId: "WFK-104", buildingGroup: "Grandview Towers", building: "Tower Beta", flat: "Flat 201", stage: "Payment Received", staff: "Stripe auto webhook", slaStatus: "On Time", lastUpdate: "10m ago" },
-    { ticketId: "WFK-105", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 101", stage: "Assigned", staff: "Unassigned", slaStatus: "Breached", lastUpdate: "26h ago" }
-  ];
+  // Derive workflow steps from actual complaint data
+  const steps: FlowStep[] = React.useMemo(() => {
+    const totalComplaints = complaints.length;
+    const inProgress = complaints.filter(c => c.status === "In Progress").length;
+    const resolved = complaints.filter(c => c.status === "Resolved").length;
+    const open = complaints.filter(c => c.status === "Open").length;
+    const escalated = complaints.filter(c => c.status === "Escalated").length;
+    const paidInvoices = invoices.filter(inv => inv.status === "Paid").length;
+    const completedTasks = maintenanceTasks.filter(t => t.status === "Completed").length;
+
+    return [
+      { name: "Complaint Created", status: "complete", count: totalComplaints, slaTimer: "2h SLA" },
+      { name: "Assigned", status: open > 0 ? "delayed" : "complete", count: totalComplaints - open, slaTimer: "4h SLA" },
+      { name: "Maintenance", status: inProgress > 3 ? "delayed" : "complete", count: inProgress, slaTimer: "24h SLA" },
+      { name: "Verified", status: escalated > 0 ? "pending" : "complete", count: escalated, slaTimer: "12h SLA" },
+      { name: "Bill Generated", status: "complete", count: invoices.length, slaTimer: "8h SLA" },
+      { name: "Payment Received", status: "complete", count: paidInvoices, slaTimer: "48h SLA" },
+      { name: "Owner Updated", status: "complete", count: resolved + completedTasks, slaTimer: "2h SLA" },
+    ];
+  }, [complaints, invoices, maintenanceTasks]);
+
+  // Derive workflow items from complaints and maintenance tasks
+  const workflowItems: WorkflowItem[] = React.useMemo(() => {
+    const items: WorkflowItem[] = [];
+
+    // Add active complaints as workflow items
+    complaints.slice(0, 3).forEach((complaint, idx) => {
+      const hoursAgo = Math.floor((Date.now() - new Date(complaint.createdDate).getTime()) / (1000 * 60 * 60));
+      let slaStatus: "On Time" | "Warning" | "Breached" = "On Time";
+      if (hoursAgo > 24) slaStatus = "Breached";
+      else if (hoursAgo > 12) slaStatus = "Warning";
+
+      items.push({
+        ticketId: complaint.id,
+        buildingGroup: currentOrg,
+        building: complaint.buildingName,
+        flat: complaint.flatNumber,
+        stage: complaint.status === "Open" ? "Assigned" : complaint.status,
+        staff: complaint.assignee,
+        slaStatus,
+        lastUpdate: hoursAgo < 1 ? "Just now" : `${hoursAgo}h ago`
+      });
+    });
+
+    // Add maintenance tasks as workflow items
+    maintenanceTasks.slice(0, 2).forEach((task, idx) => {
+      const hoursAgo = Math.floor((Date.now() - new Date(task.reportedDate).getTime()) / (1000 * 60 * 60));
+      let slaStatus: "On Time" | "Warning" | "Breached" = "On Time";
+      if (hoursAgo > 48) slaStatus = "Breached";
+      else if (hoursAgo > 24) slaStatus = "Warning";
+
+      items.push({
+        ticketId: `MT-${task.id}`,
+        buildingGroup: currentOrg,
+        building: task.building,
+        flat: "N/A",
+        stage: task.status,
+        staff: task.assignedTo,
+        slaStatus,
+        lastUpdate: hoursAgo < 1 ? "Just now" : `${hoursAgo}h ago`
+      });
+    });
+
+    return items;
+  }, [complaints, maintenanceTasks, currentOrg]);
 
   // Automations Toggles
   const [triggers, setTriggers] = React.useState({

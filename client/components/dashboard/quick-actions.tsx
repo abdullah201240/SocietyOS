@@ -17,12 +17,71 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import {
+  validateData,
+  quickComplaintSchema,
+  quickResidentSchema,
+  quickInvoiceSchema,
+  quickNoticeSchema,
+} from "@/lib/validations";
 
 export function QuickActions() {
   const [openDialog, setOpenDialog] = React.useState<"complaint" | "resident" | "invoice" | "notice" | null>(null);
 
   const handleSubmit = (e: React.FormEvent, action: string) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    
+    if (action === "Created Complaint") {
+      const data = {
+        title: formData.get("c-title") as string,
+        flat: formData.get("c-flat") as string,
+        desc: formData.get("c-desc") as string,
+      };
+      
+      const validation = validateData(quickComplaintSchema, data);
+      if (!validation.success) {
+        toast.error(validation.error);
+        return;
+      }
+    } else if (action === "Registered Resident") {
+      const data = {
+        name: formData.get("r-name") as string,
+        flat: formData.get("r-flat") as string,
+        phone: formData.get("r-phone") as string,
+      };
+      
+      const validation = validateData(quickResidentSchema, data);
+      if (!validation.success) {
+        toast.error(validation.error);
+        return;
+      }
+    } else if (action === "Generated Invoice") {
+      const amountVal = formData.get("i-amount");
+      const data = {
+        flat: formData.get("i-flat") as string,
+        amount: amountVal ? Number(amountVal) : NaN,
+        desc: formData.get("i-desc") as string,
+      };
+      
+      const validation = validateData(quickInvoiceSchema, data);
+      if (!validation.success) {
+        toast.error(validation.error);
+        return;
+      }
+    } else if (action === "Published Notice") {
+      const data = {
+        title: formData.get("n-title") as string,
+        desc: formData.get("n-desc") as string,
+      };
+      
+      const validation = validateData(quickNoticeSchema, data);
+      if (!validation.success) {
+        toast.error(validation.error);
+        return;
+      }
+    }
+
     toast.success(`Action successfully executed: ${action}`);
     setOpenDialog(null);
   };
@@ -55,15 +114,15 @@ export function QuickActions() {
               <div className="grid gap-3.5 py-4">
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="c-title" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Title</Label>
-                  <Input id="c-title" required placeholder="e.g. Water pump making loud noise" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="c-title" name="c-title" required placeholder="e.g. Water pump making loud noise" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="c-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Unit / Area</Label>
-                  <Input id="c-flat" required placeholder="e.g. Tower A Lift Lobby" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="c-flat" name="c-flat" required placeholder="e.g. Tower A Lift Lobby" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="c-desc" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Description</Label>
-                  <Textarea id="c-desc" required placeholder="Describe the issue details here..." className="col-span-3 text-xs rounded-sm-200 min-h-[60px]" />
+                  <Textarea id="c-desc" name="c-desc" required placeholder="Describe the issue details here..." className="col-span-3 text-xs rounded-sm-200 min-h-[60px]" />
                 </div>
               </div>
               <DialogFooter>
@@ -94,15 +153,15 @@ export function QuickActions() {
               <div className="grid gap-3.5 py-4">
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="r-name" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Full Name</Label>
-                  <Input id="r-name" required placeholder="e.g. David Miller" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="r-name" name="r-name" required placeholder="e.g. David Miller" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="r-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Flat Unit</Label>
-                  <Input id="r-flat" required placeholder="e.g. Tower B - Flat 1204" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="r-flat" name="r-flat" required placeholder="e.g. Tower B - Flat 1204" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="r-phone" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Phone</Label>
-                  <Input id="r-phone" type="tel" required placeholder="e.g. +1 555-0199" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="r-phone" name="r-phone" type="tel" required placeholder="e.g. +1 555-0199" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
               </div>
               <DialogFooter>
@@ -133,15 +192,15 @@ export function QuickActions() {
               <div className="grid gap-3.5 py-4">
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="i-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Flat Unit</Label>
-                  <Input id="i-flat" required placeholder="e.g. Flat 1402" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="i-flat" name="i-flat" required placeholder="e.g. Flat 1402" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="i-amount" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Amount ($)</Label>
-                  <Input id="i-amount" type="number" required placeholder="e.g. 185.00" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="i-amount" name="i-amount" type="number" required placeholder="e.g. 185.00" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="i-desc" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Details</Label>
-                  <Input id="i-desc" required placeholder="e.g. July Maintenance Fee" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="i-desc" name="i-desc" required placeholder="e.g. July Maintenance Fee" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
               </div>
               <DialogFooter>
@@ -172,11 +231,11 @@ export function QuickActions() {
               <div className="grid gap-3.5 py-4">
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="n-title" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Headline</Label>
-                  <Input id="n-title" required placeholder="e.g. Preventive pesticide spraying on Sunday" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
+                  <Input id="n-title" name="n-title" required placeholder="e.g. Preventive pesticide spraying on Sunday" className="col-span-3 h-8.5 text-xs rounded-sm-200" />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-3">
                   <Label htmlFor="n-desc" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Message</Label>
-                  <Textarea id="n-desc" required placeholder="Type announcement details here..." className="col-span-3 text-xs rounded-sm-200 min-h-[80px]" />
+                  <Textarea id="n-desc" name="n-desc" required placeholder="Type announcement details here..." className="col-span-3 text-xs rounded-sm-200 min-h-[80px]" />
                 </div>
               </div>
               <DialogFooter>

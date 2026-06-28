@@ -621,6 +621,7 @@ export default function ParkingPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No parking records matched</span>
                       <span className="text-[10px] mt-0.5">Try resetting filter metrics.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -731,6 +732,7 @@ export default function ParkingPage() {
                     <div>
                       <span className="font-bold block">Parking Violation Alert</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">Unauthorized vehicle license {selectedSlot.vehicleNumber} parked in resident slot.</span>
+                    </div>
                   </div>
                 )}
 
@@ -741,22 +743,26 @@ export default function ParkingPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9px]">NAME</span>
                       <span className="font-semibold">{selectedSlot.residentName}</span>
+                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">FLAT UNIT</span>
                       <span className="font-semibold">{selectedSlot.flatNumber}</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* 2. Vehicle Registration details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Vehicle registration details</span>
-                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-3 gap-2">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-zinc-400 block text-[9px]">TYPE</span>
                       <span className="font-semibold">{selectedSlot.vehicleType}</span>
+                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">LICENSE PLATE</span>
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">{selectedSlot.vehicleNumber}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -771,6 +777,7 @@ export default function ParkingPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs">
                           <span>Plate: {item.vehicleNumber}</span>
                           <span className="font-semibold">Check-in: {item.checkIn}</span>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -789,6 +796,7 @@ export default function ParkingPage() {
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 block">{log.event}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{log.time} • Operator: {log.guard}</span>
+                          </div>
                         </div>
                       ))}
                     </div>

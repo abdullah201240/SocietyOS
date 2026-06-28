@@ -280,21 +280,25 @@ export default function AnalyticsPage() {
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Complaint Pattern Analysis</h3>
                   </div>
                   <div className="space-y-3 text-xs">
-                    <div className="flex justify-between items-center text-[11px] text-zinc-500">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-555">
                       <span>Plumbing issues frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">42% (Recurring)</span>
+                    </div>
                     <Progress value={42} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="flex justify-between items-center text-[11px] text-zinc-500">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-555">
                       <span>Electrical issues frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">28%</span>
+                    </div>
                     <Progress value={28} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="flex justify-between items-center text-[11px] text-zinc-500">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-550">
                       <span>Elevator faults frequency</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">18%</span>
+                    </div>
                     <Progress value={18} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="pt-2 -100 flex justify-between text-[10px] text-zinc-450 uppercase font-bold">
+                    <div className="pt-2 -100 flex justify-between text-[10px] text-zinc-455 uppercase font-bold">
                       <span>Peak Hours: 08:30 AM - 10:00 AM</span>
                       <span className="text-rose-600">Unresolved Clusters: 2</span>
+                    </div>
                   </div>
                 </Card>
 
@@ -310,19 +314,24 @@ export default function AnalyticsPage() {
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[80%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">Mar</span>
+                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[85%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">Apr</span>
+                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-800 hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors rounded-t-sm h-[92%]" />
                         <span className="text-[9px] text-zinc-400 font-semibold">May</span>
+                      </div>
                       <div className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
                         <div className="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-t-sm h-[96%]" />
                         <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold">Jun</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between text-[10px] text-zinc-450 -100 pt-2">
+                    <div className="flex justify-between text-[10px] text-zinc-455 -100 pt-2">
                       <span>Overdue aging avg: 4.8 days</span>
                       <span>Leakage indicators: None</span>
+                    </div>
                   </div>
                 </Card>
               </div>
@@ -335,6 +344,7 @@ export default function AnalyticsPage() {
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Building Performance Comparison</h3>
                   </div>
                   <span className="text-[10px] text-zinc-450 font-bold">Ranking based on Health Score</span>
+                </div>
                 <Table>
                   <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
                     <TableRow className="hover:bg-transparent">
@@ -381,17 +391,20 @@ export default function AnalyticsPage() {
                     <h3 className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Staff Workload Distribution</h3>
                   </div>
                   <div className="space-y-3 text-xs">
-                    <div className="flex justify-between items-center text-[11px] text-zinc-550">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-555">
                       <span>Steve Rogers (Security)</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">96% Completed</span>
+                    </div>
                     <Progress value={96} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="flex justify-between items-center text-[11px] text-zinc-550">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-555">
                       <span>Marcus Stone (Manager)</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">90% Completed</span>
+                    </div>
                     <Progress value={90} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="flex justify-between items-center text-[11px] text-zinc-550">
+                    <div className="flex justify-between items-center text-[11px] text-zinc-555">
                       <span>Bruce Banner (Maintenance)</span>
                       <span className="font-semibold text-rose-600">65% (Overloaded)</span>
+                    </div>
                     <Progress value={65} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                   </div>
                 </Card>
@@ -406,12 +419,15 @@ export default function AnalyticsPage() {
                     <div className="flex justify-between -100 pb-2">
                       <span>Complaint Submission Rate</span>
                       <span className="font-semibold text-zinc-850 dark:text-zinc-200">12% / month</span>
+                    </div>
                     <div className="flex justify-between -100 pb-2">
                       <span>Payment Consistency Rating</span>
                       <span className="font-bold text-emerald-600">Optimal (98%)</span>
+                    </div>
                     <div className="flex justify-between -100 pb-2">
                       <span>Mobile App Usage Frequency</span>
                       <span className="font-semibold text-zinc-850 dark:text-zinc-200">84% Daily Active</span>
+                    </div>
                   </div>
                 </Card>
 

@@ -592,6 +592,7 @@ export default function VisitorsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No visitor logs found</span>
                       <span className="text-[10px] mt-0.5">Try resetting filter metrics.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -696,6 +697,7 @@ export default function VisitorsPage() {
                     <div>
                       <span className="font-bold block">Incident Log Report</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">{selectedVisitor.incidentNotes}</span>
+                    </div>
                   </div>
                 )}
 
@@ -706,9 +708,11 @@ export default function VisitorsPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9px]">VEHICLE REGISTRATION</span>
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">{selectedVisitor.vehicleNumber}</span>
+                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">OTP VERIFICATION</span>
                       <span className="font-semibold">{selectedVisitor.verificationStatus}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -722,6 +726,7 @@ export default function VisitorsPage() {
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.title}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.note}</span>
                           <span className="text-[9px] text-zinc-400 block mt-0.5">{item.time}</span>
+                        </div>
                       </div>
                     ))}
                   </div>

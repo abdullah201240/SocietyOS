@@ -470,6 +470,7 @@ export default function GlobalBillingPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No invoices match selected criteria</span>
                       <span className="text-[10px] mt-0.5">Try resetting search metrics.</span>
+                    </div>
                   ) : (
                     <div className="overflow-x-auto w-full">
                       <Table>
@@ -582,9 +583,11 @@ export default function GlobalBillingPage() {
                     <div className="flex justify-between">
                       <span className="text-zinc-450">Landlord Owner Name:</span>
                       <span className="font-semibold">{selectedInvoice.ownerName}</span>
+                    </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-450">Society Address Block:</span>
+                      <span className="text-zinc-400">Society Address Block:</span>
                       <span className="font-semibold">{selectedInvoice.society}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -609,6 +612,7 @@ export default function GlobalBillingPage() {
                       <span>৳{selectedInvoice.amount.toLocaleString()}</span>
                     </div>
                   </div>
+                </div>
 
                 {/* 3. Transaction Details */}
                 <div className="space-y-2">

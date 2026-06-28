@@ -669,6 +669,7 @@ export default function FlatsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No flat units found</span>
                       <span className="text-[10px] mt-0.5">Try adjusting query keywords.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -792,6 +793,7 @@ export default function FlatsPage() {
                       <span className="text-[10px] text-zinc-500 block flex items-center gap-1">
                         <Phone className="h-3 w-3" /> {selectedFlat.ownerPhone} • {selectedFlat.ownerEmail}
                       </span>
+                    </div>
 
                     {/* Tenant profile card (if present) */}
                     {selectedFlat.tenantStatus === "Tenant-Occupied" && (
@@ -804,6 +806,7 @@ export default function FlatsPage() {
                         <div className="mt-1.5 flex justify-between text-[9.5px] text-zinc-500 -100 pt-1.5">
                           <span>Rent: {selectedFlat.rentAmount}</span>
                           <span>Lease ends: {selectedFlat.leaseExpires}</span>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -820,6 +823,7 @@ export default function FlatsPage() {
                       }`}>
                         {selectedFlat.utilityBalance < 0 ? `-$${Math.abs(selectedFlat.utilityBalance)}` : selectedFlat.utilityBalance > 0 ? `+$${selectedFlat.utilityBalance}` : "$0.00"}
                       </span>
+                    </div>
                     {selectedFlat.utilityBalance < 0 && (
                       <div className="mt-1.5 text-[9px] text-rose-600 font-semibold bg-rose-50 dark:bg-rose-950/20 px-2 py-1 rounded -100">
                         Notice: Outstanding dues in maintenance bills. Payment invoice due.
@@ -840,6 +844,7 @@ export default function FlatsPage() {
                           <div key={idx} className="rounded -150 p-2 bg-zinc-50/50 dark:bg-zinc-950/40">
                             <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">{m.name}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{m.relation} • {m.age} yrs</span>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -860,7 +865,8 @@ export default function FlatsPage() {
                           </div>
                           <div>
                             <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{c.name}</span>
-                            <span className="text-[9.5px] text-zinc-450 block">{c.relation} • {c.phone}</span>
+                            <span className="text-[9.5px] text-zinc-455 block">{c.relation} • {c.phone}</span>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -871,7 +877,7 @@ export default function FlatsPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Maintenance ticket history</span>
                   {selectedFlat.maintenanceHistory.length === 0 ? (
-                    <span className="text-[10px] text-zinc-450 block italic">No past tickets reported from this unit.</span>
+                    <span className="text-[10px] text-zinc-455 block italic">No past tickets reported from this unit.</span>
                   ) : (
                     <div className="space-y-2.5">
                       {selectedFlat.maintenanceHistory.map((m) => (
@@ -879,11 +885,12 @@ export default function FlatsPage() {
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div className="min-w-0 flex-1">
                             <span className="text-zinc-800 dark:text-zinc-200 font-semibold block leading-tight truncate">{m.ticket}</span>
-                            <span className="text-[9.5px] text-zinc-400 block mt-0.5">{m.date}</span>
+                            <span className="text-[9.5px] text-zinc-455 block mt-0.5">{m.date}</span>
+                          </div>
                           <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold  shrink-0 ${
                             m.status === "Resolved"
-                              ? "bg-emerald-50 text-emerald-700-200 dark:bg-emerald-950/20 dark:text-emerald-450"
-                              : "bg-amber-50 text-amber-700-200 dark:bg-amber-950/20 dark:text-amber-450"
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                              : "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-955/20 dark:text-amber-450"
                           }`}>
                             {m.status}
                           </Badge>

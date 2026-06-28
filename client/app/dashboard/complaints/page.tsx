@@ -705,6 +705,7 @@ export default function ComplaintsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No operational tickets matched</span>
                       <span className="text-[10px] mt-0.5">Try clear filters list.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -827,6 +828,7 @@ export default function ComplaintsPage() {
                     }`}>
                       {selectedTicket.status}
                     </span>
+                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">PRIORITY</span>
                     <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
@@ -838,12 +840,15 @@ export default function ComplaintsPage() {
                     }`}>
                       {selectedTicket.priority}
                     </span>
+                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">ASSIGNEE</span>
                     <span className="font-semibold block mt-1">{selectedTicket.assignee}</span>
+                  </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">SLA DEADLINE</span>
                     <span className="font-semibold block mt-1">{selectedTicket.slaDeadline}</span>
+                  </div>
                 </div>
 
                 {/* 2. Complaint Description */}
@@ -874,6 +879,7 @@ export default function ComplaintsPage() {
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.title}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.desc}</span>
                           <span className="text-[9px] text-zinc-400 block mt-0.5">{item.date}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -888,6 +894,7 @@ export default function ComplaintsPage() {
                         <div className="flex justify-between items-center text-[10px] text-zinc-400 mb-1 font-semibold">
                           <span>{comment.sender} ({comment.role})</span>
                           <span>{comment.time}</span>
+                        </div>
                         <p className="text-zinc-700 dark:text-zinc-350">{comment.message}</p>
                       </div>
                     ))}

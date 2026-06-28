@@ -544,6 +544,7 @@ export default function StaffPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No staff records found</span>
                       <span className="text-[10px] mt-0.5">Try resetting filter metrics.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -654,19 +655,22 @@ export default function StaffPage() {
                     <div>
                       <span className="font-bold block">Workload Warning Spike</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">Personnel is currently assigned {selectedStaff.activeTasks} open ticket tasks. Recommend redistributing new maintenance intakes.</span>
+                    </div>
                   </div>
                 )}
 
                 {/* 1. Account Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Contact credentials</span>
-                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-955/40 text-xs grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-zinc-400 block text-[9px]">PHONE</span>
                       <span className="font-semibold">{selectedStaff.phone}</span>
+                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9px]">EMAIL</span>
                       <span className="font-semibold break-all">{selectedStaff.email}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -676,11 +680,11 @@ export default function StaffPage() {
                   <div className="flex flex-wrap gap-1.5">
                     {selectedStaff.permissions.map((perm, idx) => (
                       <Badge key={idx} variant="outline" className="text-[9px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold bg-zinc-50/50">
-                        <Lock className="h-2.5 w-2.5 mr-1 inline-block" /> {perm}
+                        {perm}
                       </Badge>
                     ))}
                     {selectedStaff.permissions.length === 0 && (
-                      <span className="text-[10px] text-zinc-450 italic">No explicit privileges mapped. Inherits {selectedStaff.role} defaults.</span>
+                      <span className="text-[10px] text-zinc-455 italic">No explicit privileges mapped. Inherits {selectedStaff.role} defaults.</span>
                     )}
                   </div>
                 </div>
@@ -696,6 +700,7 @@ export default function StaffPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs">
                           <span>{item.taskName}</span>
                           <span className="font-semibold">{item.status} ({item.date})</span>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -708,6 +713,7 @@ export default function StaffPage() {
                     <div key={idx} className="flex justify-between text-xs -100 pb-2 last:0 last:pb-0 text-zinc-550 dark:text-zinc-450">
                       <span>{log.action}</span>
                       <span>{log.timestamp}</span>
+                    </div>
                   ))}
                 </div>
 

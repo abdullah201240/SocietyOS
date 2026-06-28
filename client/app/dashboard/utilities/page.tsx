@@ -607,6 +607,7 @@ export default function UtilitiesPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No utility records matched</span>
                       <span className="text-[10px] mt-0.5">Try widening filter options.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -718,6 +719,7 @@ export default function UtilitiesPage() {
                     <div>
                       <span className="font-bold block">Abnormal consumption detected</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">{selectedMeter.alerts[0]}</span>
+                    </div>
                   </div>
                 )}
 
@@ -727,6 +729,7 @@ export default function UtilitiesPage() {
                   <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs">
                     <span className="text-zinc-400 block text-[9px]">RESIDENT NAME</span>
                     <span className="font-semibold text-zinc-900 dark:text-white">{selectedMeter.residentName}</span>
+                  </div>
                 </div>
 
                 {/* 2. Billing breakdown */}
@@ -736,9 +739,11 @@ export default function UtilitiesPage() {
                     <div className="flex justify-between items-center text-zinc-500">
                       <span>Usage ({selectedMeter.usageAmount})</span>
                       <span className="font-semibold text-zinc-800 dark:text-zinc-200">৳{selectedMeter.billingAmount.toFixed(2)}</span>
+                    </div>
                     <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold -100 pt-2">
                       <span>Total Utility Amount</span>
                       <span>৳{selectedMeter.billingAmount.toFixed(2)}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -753,6 +758,7 @@ export default function UtilitiesPage() {
                         <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs text-zinc-550 dark:text-zinc-350">
                           <span>Reading date: {item.date}</span>
                           <span className="font-semibold">Reading: {item.reading.toLocaleString()} ({item.usage})</span>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -770,7 +776,8 @@ export default function UtilitiesPage() {
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 font-semibold block">{item.task}</span>
-                            <span className="text-[9.5px] text-zinc-450 block mt-0.5">Date: {item.date} • Tech: {item.technician}</span>
+                            <span className="text-[9.5px] text-zinc-455 block mt-0.5">Date: {item.date} • Tech: {item.technician}</span>
+                          </div>
                         </div>
                       ))}
                     </div>

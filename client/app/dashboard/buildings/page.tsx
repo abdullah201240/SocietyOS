@@ -679,6 +679,7 @@ export default function BuildingsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No building structures found</span>
                       <span className="text-[10px] mt-0.5">Try widening filter options.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -808,14 +809,17 @@ export default function BuildingsPage() {
                       <span className="font-bold text-zinc-900 dark:text-white">
                         {Math.round((selectedBuilding.occupiedFlats / selectedBuilding.totalFlats) * 100)}%
                       </span>
+                    </div>
                     <Progress value={Math.round((selectedBuilding.occupiedFlats / selectedBuilding.totalFlats) * 100)} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] -100 pt-2">
                       <div className="flex justify-between">
                         <span className="text-zinc-450">TOTAL FLATS</span>
                         <span className="font-semibold">{selectedBuilding.totalFlats}</span>
+                      </div>
                       <div className="flex justify-between">
                         <span className="text-zinc-450">OCCUPIED</span>
                         <span className="font-semibold">{selectedBuilding.occupiedFlats}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -831,6 +835,7 @@ export default function BuildingsPage() {
                       <div>
                         <span className="text-[9px] text-zinc-400 block uppercase font-bold tracking-wider">Water / Day</span>
                         <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{selectedBuilding.waterConsumption}</span>
+                      </div>
                     </div>
                     <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 flex items-center gap-2">
                       <div className="rounded p-1 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400">
@@ -839,6 +844,7 @@ export default function BuildingsPage() {
                       <div>
                         <span className="text-[9px] text-zinc-400 block uppercase font-bold tracking-wider">Power / Day</span>
                         <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{selectedBuilding.electricityConsumption}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -851,6 +857,7 @@ export default function BuildingsPage() {
                       <div className="flex justify-between text-[10px] text-zinc-500">
                         <span>Parking utilization rate</span>
                         <span className="font-bold text-zinc-900 dark:text-white">{selectedBuilding.parkingUtilization}%</span>
+                      </div>
                       <Progress value={selectedBuilding.parkingUtilization} className="h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
                     </div>
                   </div>
@@ -868,6 +875,7 @@ export default function BuildingsPage() {
                         <div className="min-w-0">
                           <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{staff.name}</span>
                           <span className="text-[9.5px] text-zinc-450 block">{staff.role} • {staff.contact}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -883,6 +891,7 @@ export default function BuildingsPage() {
                         <div>
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.log}</span>
                           <span className="text-[9.5px] text-zinc-400 block mt-0.5">{a.time}</span>
+                        </div>
                       </div>
                     ))}
                   </div>

@@ -723,6 +723,7 @@ export default function ResidentsPage() {
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No resident accounts matched</span>
                       <span className="text-[10px] mt-0.5">Try resetting filtering criteria.</span>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
@@ -842,9 +843,11 @@ export default function ResidentsPage() {
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">PHONE</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">{selectedResident.phone}</span>
+                    </div>
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">EMAIL ADDRESS</span>
                       <span className="font-semibold text-zinc-900 dark:text-white break-all">{selectedResident.email}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -862,6 +865,7 @@ export default function ResidentsPage() {
                             <div>
                               <span className="font-semibold block">{v.make} {v.model}</span>
                               <span className="text-[9.5px] text-zinc-450 block">{v.plate}</span>
+                            </div>
                           </div>
                           <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold bg-zinc-50">
                             {v.slot}
@@ -904,7 +908,8 @@ export default function ResidentsPage() {
                         {selectedResident.familyMembers.map((m, idx) => (
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{m.name}</span>
-                            <span className="text-[9px] text-zinc-450 block">{m.relation}</span>
+                            <span className="text-[9px] text-zinc-455 block">{m.relation}</span>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -919,6 +924,7 @@ export default function ResidentsPage() {
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{c.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{c.relation} • {c.phone}</span>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -937,7 +943,8 @@ export default function ResidentsPage() {
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 block leading-tight">{g.visitorName} ({g.type})</span>
-                            <span className="text-[9.5px] text-zinc-400 block mt-0.5">{g.date}</span>
+                            <span className="text-[9.5px] text-zinc-455 block mt-0.5">{g.date}</span>
+                          </div>
                         </div>
                       ))}
                     </div>

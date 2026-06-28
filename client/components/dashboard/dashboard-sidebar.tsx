@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Building,
@@ -43,6 +43,7 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   // Live badge counts from API
@@ -55,6 +56,12 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
   const openMaintenance = tasks
     ? tasks.filter((t) => t.status === "Open" || t.status === "In Progress").length
     : 0;
+
+  const handleLogout = () => {
+    document.cookie = "buildingos-session=; path=/; max-age=0; SameSite=Lax";
+    localStorage.removeItem("buildingos-sidebar-collapsed");
+    router.push("/login");
+  };
 
   React.useEffect(() => {
     const saved = localStorage.getItem("buildingos-sidebar-collapsed");
@@ -223,7 +230,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
           {!isCollapsed && <span>Documentation</span>}
         </Link>
         <button
-          onClick={() => alert("Logging out of BuildingOS...")}
+          onClick={handleLogout}
           title={isCollapsed ? "Logout" : undefined}
           className={`flex items-center gap-2.5 rounded text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 hover:text-rose-700 ${
             isCollapsed ? "h-8 w-8 justify-center p-0" : "px-3 py-1.5 w-full"

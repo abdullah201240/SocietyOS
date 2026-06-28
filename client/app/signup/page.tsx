@@ -55,6 +55,10 @@ export default function SignupPage() {
 
     setLoading(true);
     setTimeout(() => {
+      // Set a demo session cookie so the proxy allows /dashboard access.
+      // Replace with a real auth token (NextAuth / Clerk / JWT) when backend is ready.
+      document.cookie = `buildingos-session=demo-session-${Date.now()}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax`;
+
       setLoading(false);
       toast.success("Registration successful! Syncing workspace profile...");
       localStorage.setItem("buildingos-user-role", role);

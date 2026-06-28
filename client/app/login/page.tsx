@@ -35,6 +35,11 @@ export default function LoginPage() {
     }
     setLoading(true);
     setTimeout(() => {
+      // Set a demo session cookie so the proxy allows /dashboard access.
+      // Replace this with a real auth token (NextAuth / Clerk / JWT) when your backend is ready.
+      const maxAge = rememberMe ? 60 * 60 * 24 * 30 : 60 * 60 * 24 * 7; // 30 days or 7 days
+      document.cookie = `buildingos-session=demo-session-${Date.now()}; path=/; max-age=${maxAge}; SameSite=Lax`;
+
       setLoading(false);
       toast.success("Login successful! Welcome back.");
       setTimeout(() => {

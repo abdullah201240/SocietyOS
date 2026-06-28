@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Bell,
   Search,
@@ -46,8 +46,17 @@ interface DashboardNavbarProps {
 
 export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
+
+  const handleLogout = () => {
+    // Clear the session cookie (set max-age=0 to delete it)
+    document.cookie = "buildingos-session=; path=/; max-age=0; SameSite=Lax";
+    // Clean up local state
+    localStorage.removeItem("buildingos-sidebar-collapsed");
+    router.push("/login");
+  };
 
   const [notifications, setNotifications] = React.useState([
     { id: 1, text: "New complaint filed for Flat 302 (Water leak)", time: "5m ago", unread: true },
@@ -291,7 +300,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
             <DropdownMenuItem
-              onClick={() => alert("Logging out of BuildingOS...")}
+              onClick={handleLogout}
               className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 text-rose-650 hover:bg-rose-50 dark:hover:bg-rose-955/20 font-medium"
             >
               <LogOut className="h-3.5 w-3.5" />

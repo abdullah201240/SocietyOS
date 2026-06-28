@@ -524,7 +524,21 @@ export default function ParkingPage() {
                   </span>
                 </CardHeader>
                 <CardContent className="p-0">
-                  {filteredSlots.length === 0 ? (
+                  {loading ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400 select-none">
+                      <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-200 border-t-indigo-600 dark:border-zinc-800 dark:border-t-indigo-400 mb-2" />
+                      <span className="text-xs font-semibold animate-pulse">Loading parking slots...</span>
+                    </div>
+                  ) : error ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center text-rose-500 select-none">
+                      <AlertCircle className="h-8 w-8 mb-2" />
+                      <span className="text-xs font-semibold">Failed to load parking data</span>
+                      <span className="text-[10px] text-zinc-500 mt-0.5">{error}</span>
+                      <Button size="xs" variant="outline" className="mt-3 text-[10px] h-7 cursor-pointer" onClick={() => refetch()}>
+                        Retry Sync
+                      </Button>
+                    </div>
+                  ) : filteredSlots.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400 select-none">
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
                       <span className="text-xs font-semibold">No parking records matched</span>

@@ -59,7 +59,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="h-10 px-5" asChild>
-                  <Link href="/book-demo">Start Free Trial</Link>
+                  <Link href="/signup">Start Free Trial</Link>
                 </Button>
               </div>
 

@@ -66,7 +66,7 @@ export function NavBar() {
             <Link href="/login">Login</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/book-demo">Book Demo</Link>
+            <Link href="/signup">Sign Up</Link>
           </Button>
         </div>
 
@@ -103,7 +103,7 @@ export function NavBar() {
                 <Link href="/login">Login</Link>
               </Button>
               <Button size="sm" className="w-full justify-center" asChild>
-                <Link href="/book-demo">Book Demo</Link>
+                <Link href="/signup">Sign Up</Link>
               </Button>
             </div>
           </nav>

@@ -244,8 +244,8 @@ export default function LoginPage() {
                 {/* Sign up link */}
                 <div className="text-center text-sm">
                   <span className="text-zinc-500 dark:text-zinc-400">Don't have an account? </span>
-                  <Link href="#signup" className="font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
-                    Request a demo
+                  <Link href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">
+                    Sign up now
                   </Link>
                 </div>
               </div>

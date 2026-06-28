@@ -36,8 +36,8 @@ export function PricingSection() {
         "Basic billing & tracking",
         "Standard email support",
       ],
-      ctaText: "Start Free Trial",
-      ctaHref: "/book-demo",
+      ctaText: "Register & Start Free",
+      ctaHref: "/signup",
       variant: "default",
     },
     {
@@ -53,8 +53,8 @@ export function PricingSection() {
         "Analytics dashboards",
         "Priority 24/7 support",
       ],
-      ctaText: "Book Demo",
-      ctaHref: "/book-demo",
+      ctaText: "Sign Up Now",
+      ctaHref: "/signup",
       variant: "highlight",
     },
     {
@@ -70,8 +70,8 @@ export function PricingSection() {
         "Dedicated onboarding agent",
         "Uptime SLA compliance support",
       ],
-      ctaText: "Contact Sales",
-      ctaHref: "/#contact",
+      ctaText: "Sign Up for Enterprise",
+      ctaHref: "/signup",
       variant: "enterprise",
     },
   ];

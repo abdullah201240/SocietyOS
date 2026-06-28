@@ -15,7 +15,7 @@ export function FAQSection() {
     {
       id: "faq-1",
       question: "Can multiple buildings be managed from one dashboard?",
-      answer: "Yes, SocietyOS supports centralized portfolio management across multiple buildings, towers, and residential estates. Managers can toggle between complexes with a single click, comparing financials, tickets, and staffing in real time.",
+      answer: "Yes, BuildingOS supports centralized portfolio management across multiple buildings, towers, and residential estates. Managers can toggle between complexes with a single click, comparing financials, tickets, and staffing in real time.",
     },
     {
       id: "faq-2",
@@ -62,7 +62,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Everything you need to know about managing communities with SocietyOS.
+            Everything you need to know about managing buildings with BuildingOS.
           </p>
         </div>
 

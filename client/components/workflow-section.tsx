@@ -15,7 +15,7 @@ import {
 
 export function WorkflowSection() {
   return (
-    <section id="workflow" className="py-16 md:py-24 -100 bg-white dark:bg-black">
+    <section id="solutions" className="py-16 md:py-24 -100 bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Headers */}

@@ -83,7 +83,7 @@ export function ProblemSection() {
               Building Operations Shouldn't Be Chaos
             </h2>
             <p className="text-base text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-md">
-              Most societies still rely on WhatsApp groups, spreadsheets, phone calls, and paper logs to manage daily operations.
+              Most buildings still rely on WhatsApp groups, spreadsheets, phone calls, and paper logs to manage daily operations.
             </p>
           </div>
 

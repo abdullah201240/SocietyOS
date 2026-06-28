@@ -19,7 +19,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   Dialog,
   DialogContent,
@@ -64,7 +63,7 @@ import {
 interface BuildingRecord {
   id: number;
   name: string;
-  societyName: string;
+  buildingGroup: string;
   type: "Residential" | "Commercial" | "Amenity";
   floors: number;
   totalFlats: number;
@@ -82,7 +81,7 @@ interface BuildingRecord {
 }
 
 export default function BuildingsPage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Initial Mock Building Data
@@ -90,7 +89,7 @@ export default function BuildingsPage() {
     {
       id: 1,
       name: "Tower Alpha",
-      societyName: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       type: "Residential",
       floors: 15,
       totalFlats: 125,
@@ -120,7 +119,7 @@ export default function BuildingsPage() {
     {
       id: 2,
       name: "Tower Beta",
-      societyName: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       type: "Residential",
       floors: 15,
       totalFlats: 125,
@@ -148,7 +147,7 @@ export default function BuildingsPage() {
     {
       id: 3,
       name: "Tower Gamma",
-      societyName: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       type: "Residential",
       floors: 12,
       totalFlats: 93,
@@ -175,7 +174,7 @@ export default function BuildingsPage() {
     {
       id: 4,
       name: "Clubhouse Wing",
-      societyName: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       type: "Amenity",
       floors: 2,
       totalFlats: 10,
@@ -202,7 +201,7 @@ export default function BuildingsPage() {
     {
       id: 5,
       name: "Block East",
-      societyName: "Pine Crest Society",
+      buildingGroup: "Meadow View Complex",
       type: "Residential",
       floors: 10,
       totalFlats: 100,
@@ -229,7 +228,7 @@ export default function BuildingsPage() {
   // Form Dialog State
   const [newBuilding, setNewBuilding] = React.useState({
     name: "",
-    societyName: "Grandview Towers",
+    buildingGroup: "Grandview Towers",
     type: "Residential" as "Residential" | "Commercial" | "Amenity",
     floors: 10,
     totalFlats: 80,
@@ -257,7 +256,7 @@ export default function BuildingsPage() {
     const created: BuildingRecord = {
       id: buildings.length + 1,
       name: newBuilding.name,
-      societyName: newBuilding.societyName,
+      buildingGroup: newBuilding.buildingGroup,
       type: newBuilding.type,
       floors: Number(newBuilding.floors),
       totalFlats: Number(newBuilding.totalFlats),
@@ -273,7 +272,7 @@ export default function BuildingsPage() {
         { name: "Steve Rogers", role: "Electrical Specialist", contact: "+1 555-0199" }
       ],
       activity: [
-        { id: 1, log: "Building onboarded & initialized on SocietyOS", time: "Just now" }
+        { id: 1, log: "Building onboarded & initialized on BuildingOS", time: "Just now" }
       ],
       towersBreakdown: [
         { floor: 1, occupied: Math.round(Number(newBuilding.occupiedFlats) / Number(newBuilding.floors)), total: Math.round(Number(newBuilding.totalFlats) / Number(newBuilding.floors)) }
@@ -287,7 +286,7 @@ export default function BuildingsPage() {
     // Reset Form
     setNewBuilding({
       name: "",
-      societyName: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       type: "Residential",
       floors: 10,
       totalFlats: 80,
@@ -310,7 +309,7 @@ export default function BuildingsPage() {
   const filteredBuildings = buildings.filter((b) => {
     const matchesSearch =
       b.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      b.societyName.toLowerCase().includes(searchQuery.toLowerCase());
+      b.buildingGroup.toLowerCase().includes(searchQuery.toLowerCase());
 
     let matchesOccupancy = true;
     const rate = (b.occupiedFlats / b.totalFlats) * 100;
@@ -415,11 +414,11 @@ export default function BuildingsPage() {
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="b-society" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Society</Label>
+                        <Label htmlFor="b-group" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building Group</Label>
                         <select
-                          id="b-society"
-                          value={newBuilding.societyName}
-                          onChange={(e) => setNewBuilding({ ...newBuilding, societyName: e.target.value })}
+                          id="b-group"
+                          value={newBuilding.buildingGroup}
+                          onChange={(e) => setNewBuilding({ ...newBuilding, buildingGroup: e.target.value })}
                           className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           {orgs.map((org) => (
@@ -663,7 +662,7 @@ export default function BuildingsPage() {
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
                       type="text"
-                      placeholder="Search buildings by name, society..."
+                      placeholder="Search buildings by name, building group..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
@@ -685,7 +684,7 @@ export default function BuildingsPage() {
                       <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
                         <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building Name</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Society Name</TableHead>
+                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building Group</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Floors</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Total Flats</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Occupied</TableHead>
@@ -707,7 +706,7 @@ export default function BuildingsPage() {
                               {b.name}
                             </TableCell>
                             <TableCell className="text-[11px] text-zinc-550 dark:text-zinc-400 py-2.5">
-                              {b.societyName}
+                              {b.buildingGroup}
                             </TableCell>
                             <TableCell className="text-xs font-medium text-zinc-800 dark:text-zinc-250 text-center py-2.5">
                               {b.floors}
@@ -793,7 +792,7 @@ export default function BuildingsPage() {
                 </SheetTitle>
                 <SheetDescription className="text-[10px] text-zinc-550 flex items-center gap-1 mt-0.5">
                   <MapPin className="h-3 w-3 text-zinc-400 shrink-0" />
-                  <span>{selectedBuilding.societyName} • {selectedBuilding.type} Wing</span>
+                  <span>{selectedBuilding.buildingGroup} • {selectedBuilding.type} Wing</span>
                 </SheetDescription>
               </SheetHeader>
 

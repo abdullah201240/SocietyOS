@@ -43,7 +43,7 @@ interface BillingTrackRecord {
 }
 
 export default function BillingPaymentTracking() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Initial Mock Invoice tracking feed

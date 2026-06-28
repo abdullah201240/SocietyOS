@@ -39,7 +39,7 @@ interface RepairRecord {
 }
 
 export default function MaintenanceBillingConversion() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Mock completed maintenance logs

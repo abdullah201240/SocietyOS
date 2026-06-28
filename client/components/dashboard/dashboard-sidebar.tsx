@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Building2,
   Building,
   Home,
   Users,
@@ -22,11 +21,7 @@ import {
   Plus,
   LogOut,
   HelpCircle,
-  Contact,
-  Link as LinkIcon,
-  DollarSign,
   Wallet,
-  Network,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -48,16 +43,12 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
 
   const menuItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Workflows", href: "/dashboard/workflow", icon: Network },
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },
     { name: "Residents", href: "/dashboard/residents", icon: Users },
-    { name: "Owners", href: "/dashboard/owners", icon: Contact },
-    { name: "Linking", href: "/dashboard/owners/linking", icon: LinkIcon },
     { name: "Complaints", href: "/dashboard/complaints", icon: AlertCircle, badge: "12" },
     { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: "8" },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
-    { name: "Financials", href: "/dashboard/owners/financial", icon: DollarSign },
     { name: "Payments", href: "/dashboard/payments", icon: Wallet },
     { name: "Utilities", href: "/dashboard/utilities", icon: Zap },
     { name: "Parking", href: "/dashboard/parking", icon: Car },
@@ -73,16 +64,16 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
       <div className="flex h-12 items-center px-4 -200">
         <div className="flex items-center gap-2">
           <div className="flex h-6 w-6 items-center justify-center rounded bg-indigo-600 text-white font-bold text-xs select-none">
-            S
+            B
           </div>
-          <span className="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">SocietyOS</span>
+          <span className="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">BuildingOS</span>
           <span className="rounded bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 text-[9px] font-semibold text-zinc-600 dark:text-zinc-400 uppercase select-none">
             v1.0
           </span>
         </div>
       </div>
 
-      {/* Organization Switcher */}
+      {/* Building Switcher */}
       <div className="p-3 -200">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -93,7 +84,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-52 -200 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
             <DropdownMenuLabel className="text-[10px] uppercase font-bold text-zinc-455 tracking-wider px-2 py-1">
-              Select Community
+              Select Building
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
             {orgs.map((org) => (
@@ -112,7 +103,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
             <DropdownMenuItem className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 hover:bg-zinc-50 dark:hover:bg-zinc-850 font-medium">
               <Plus className="h-3.5 w-3.5" />
-              <span>Add new society</span>
+              <span>Add new building</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -162,7 +153,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
           <span>Documentation</span>
         </Link>
         <button
-          onClick={() => alert("Logging out of SocietyOS...")}
+          onClick={() => alert("Logging out of BuildingOS...")}
           className="flex w-full items-center gap-2.5 rounded px-3 py-1.5 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 hover:text-rose-700"
         >
           <LogOut className="h-4 w-4 shrink-0" />

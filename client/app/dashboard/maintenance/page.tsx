@@ -56,7 +56,7 @@ interface MaintenanceTask {
 }
 
 export default function MaintenancePage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedTask, setSelectedTask] = React.useState<MaintenanceTask | null>(null);

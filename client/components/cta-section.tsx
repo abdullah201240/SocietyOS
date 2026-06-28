@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Wrench, Shield, CheckCircle2 } from "lucide-react";
 
+import Link from "next/link";
+
 export function CTASection() {
   return (
     <section className="py-16 md:py-24 -100 bg-zinc-50/20 dark:bg-black/30 overflow-hidden relative">
@@ -28,13 +30,13 @@ export function CTASection() {
             {/* Action buttons */}
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <Button size="default" className="text-xs h-9.5 font-semibold gap-1.5 px-5 rounded-md" asChild>
-                <a href="#book-demo">
+                <Link href="/book-demo">
                   Book Demo
                   <ArrowRight className="h-3.5 w-3.5" />
-                </a>
+                </Link>
               </Button>
               <Button size="default" variant="outline" className="text-xs h-9.5 font-semibold px-5 rounded-md-200 hover:bg-zinc-50 dark:hover:bg-zinc-900" asChild>
-                <a href="#contact-sales">Contact Sales</a>
+                <Link href="/#contact">Contact Sales</Link>
               </Button>
             </div>
 

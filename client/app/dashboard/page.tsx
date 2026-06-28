@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { UserPlus, Wrench, CreditCard, ShieldCheck, RefreshCw } from "lucide-react";
 
 export default function DashboardPage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Tower A - Grandview", "Tower B - Grandview", "Tower C - Grandview"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -82,7 +82,7 @@ export default function DashboardPage() {
                 Operational Overview
               </h1>
               <p className="text-[11px] text-zinc-550 dark:text-zinc-400">
-                Monitor complaints, maintenance, residents, and financial operations across your communities.
+                Monitor complaints, maintenance, residents, and financial operations across your buildings.
               </p>
             </div>
             

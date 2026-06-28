@@ -45,7 +45,7 @@ interface FlowStep {
 // Live Workflow Item Interface
 interface WorkflowItem {
   ticketId: string;
-  society: string;
+  buildingGroup: string;
   building: string;
   flat: string;
   stage: string;
@@ -55,7 +55,7 @@ interface WorkflowItem {
 }
 
 export default function OperationalWorkflowDashboard() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Mock steps
@@ -71,11 +71,11 @@ export default function OperationalWorkflowDashboard() {
 
   // Mock table records
   const workflowItems: WorkflowItem[] = [
-    { ticketId: "WFK-101", society: "Grandview Towers", building: "Tower Alpha", flat: "Flat 1402", stage: "Maintenance", staff: "Dave Miller (Tech)", slaStatus: "Warning", lastUpdate: "3h ago" },
-    { ticketId: "WFK-102", society: "Grandview Towers", building: "Tower Alpha", flat: "Flat 805", stage: "Verified", staff: "Sarah Connor", slaStatus: "On Time", lastUpdate: "1h ago" },
-    { ticketId: "WFK-103", society: "Pine Crest Society", building: "Oak Block", flat: "Flat 302", stage: "Bill Generated", staff: "Auto system", slaStatus: "On Time", lastUpdate: "5m ago" },
-    { ticketId: "WFK-104", society: "Grandview Towers", building: "Tower Beta", flat: "Flat 201", stage: "Payment Received", staff: "Stripe auto webhook", slaStatus: "On Time", lastUpdate: "10m ago" },
-    { ticketId: "WFK-105", society: "Grandview Towers", building: "Tower Alpha", flat: "Flat 101", stage: "Assigned", staff: "Unassigned", slaStatus: "Breached", lastUpdate: "26h ago" }
+    { ticketId: "WFK-101", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 1402", stage: "Maintenance", staff: "Dave Miller (Tech)", slaStatus: "Warning", lastUpdate: "3h ago" },
+    { ticketId: "WFK-102", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 805", stage: "Verified", staff: "Sarah Connor", slaStatus: "On Time", lastUpdate: "1h ago" },
+    { ticketId: "WFK-103", buildingGroup: "Meadow View Complex", building: "Oak Block", flat: "Flat 302", stage: "Bill Generated", staff: "Auto system", slaStatus: "On Time", lastUpdate: "5m ago" },
+    { ticketId: "WFK-104", buildingGroup: "Grandview Towers", building: "Tower Beta", flat: "Flat 201", stage: "Payment Received", staff: "Stripe auto webhook", slaStatus: "On Time", lastUpdate: "10m ago" },
+    { ticketId: "WFK-105", buildingGroup: "Grandview Towers", building: "Tower Alpha", flat: "Flat 101", stage: "Assigned", staff: "Unassigned", slaStatus: "Breached", lastUpdate: "26h ago" }
   ];
 
   // Automations Toggles

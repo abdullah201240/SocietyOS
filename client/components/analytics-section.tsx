@@ -30,10 +30,10 @@ export function AnalyticsSection() {
             Real-Time Reporting
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-            Operational Insights That Improve Community Management
+            Operational Insights That Improve Building Management
           </h2>
           <p className="mt-4 text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Track complaints, monitor payments, analyze maintenance performance, and gain visibility across every building and resident operation.
+            Track complaints, monitor payments, analyze maintenance performance, and gain visibility across every building and flat operation.
           </p>
         </div>
 
@@ -253,17 +253,17 @@ export function AnalyticsSection() {
                   <span>Active SLA</span>
                 </div>
                 <div className="flex items-center justify-between py-1 -50">
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Apex Towers</span>
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Tower A</span>
                   <span className="font-semibold text-emerald-600">98.2%</span>
                   <span className="text-zinc-500">1.4 hrs</span>
                 </div>
                 <div className="flex items-center justify-between py-1 -50">
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Belvedere Estate</span>
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Tower B</span>
                   <span className="font-semibold text-emerald-600">95.4%</span>
                   <span className="text-zinc-500">2.1 hrs</span>
                 </div>
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Pacific Plaza</span>
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">Tower C</span>
                   <span className="font-semibold text-emerald-600">94.8%</span>
                   <span className="text-zinc-500">1.9 hrs</span>
                 </div>

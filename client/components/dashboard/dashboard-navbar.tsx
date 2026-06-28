@@ -14,7 +14,6 @@ import {
   Building,
   Menu,
   LayoutDashboard,
-  Building2,
   Home,
   Users,
   AlertCircle,
@@ -25,13 +24,9 @@ import {
   UserCheck,
   BarChart3,
   HelpCircle,
-  Contact,
-  Link as LinkIcon,
-  DollarSign,
   Wallet,
   Sun,
   Moon,
-  Network,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -68,16 +63,12 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
 
   const menuItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Workflows", href: "/dashboard/workflow", icon: Network },
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },
     { name: "Residents", href: "/dashboard/residents", icon: Users },
-    { name: "Owners", href: "/dashboard/owners", icon: Contact },
-    { name: "Linking", href: "/dashboard/owners/linking", icon: LinkIcon },
     { name: "Complaints", href: "/dashboard/complaints", icon: AlertCircle, badge: "12" },
     { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: "8" },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
-    { name: "Financials", href: "/dashboard/owners/financial", icon: DollarSign },
     { name: "Payments", href: "/dashboard/payments", icon: Wallet },
     { name: "Utilities", href: "/dashboard/utilities", icon: Zap },
     { name: "Parking", href: "/dashboard/parking", icon: Car },
@@ -106,10 +97,10 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
             <SheetHeader className="p-4 -200 text-left">
               <div className="flex items-center gap-2">
                 <div className="flex h-6 w-6 items-center justify-center rounded bg-indigo-600 text-white font-bold text-xs select-none">
-                  S
+                  B
                 </div>
                 <SheetTitle className="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">
-                  SocietyOS
+                  BuildingOS
                 </SheetTitle>
               </div>
               <SheetDescription className="text-[10px] text-zinc-500">v1.0 • Residential OS</SheetDescription>
@@ -279,7 +270,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
           <DropdownMenuContent align="end" className="w-56 -200 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
             <div className="flex flex-col px-3 py-2 text-left">
               <span className="text-xs font-semibold text-zinc-900 dark:text-white">John Doe</span>
-              <span className="text-[10px] text-zinc-400 mt-0.5">john.doe@societyos.com</span>
+              <span className="text-[10px] text-zinc-400 mt-0.5">john.doe@buildingos.com</span>
             </div>
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
             <DropdownMenuItem className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-700 dark:text-zinc-300">
@@ -296,7 +287,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-zinc-100 dark:bg-zinc-800" />
             <DropdownMenuItem
-              onClick={() => alert("Logging out of SocietyOS...")}
+              onClick={() => alert("Logging out of BuildingOS...")}
               className="text-xs px-2 py-1.5 rounded cursor-pointer flex items-center gap-2 text-rose-650 hover:bg-rose-50 dark:hover:bg-rose-955/20 font-medium"
             >
               <LogOut className="h-3.5 w-3.5" />

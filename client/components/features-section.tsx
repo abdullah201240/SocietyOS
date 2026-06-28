@@ -28,10 +28,10 @@ export function FeaturesSection() {
             Platform Capabilities
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-            Everything Needed to Run Modern Communities
+            Everything Needed to Run Modern Buildings
           </h2>
           <p className="mt-4 text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Manage residents, buildings, maintenance operations, billing, security, and communication from one centralized platform.
+            Manage flats, residents, maintenance operations, billing, security, and communication from one centralized platform.
           </p>
         </div>
 
@@ -257,23 +257,23 @@ export function FeaturesSection() {
             {/* Micro Dashboard Mockup */}
             <div className="w-full h-32 -100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold -150 pb-1.5">
-                <span>PROPERTY HUB</span>
-                <span className="text-zinc-500">3 Portfolios</span>
+                <span>BUILDING HUB</span>
+                <span className="text-zinc-500">3 Towers</span>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between bg-white p-1.5 rounded -100 text-[9px] dark:bg-zinc-900/60">
                   <div className="flex items-center gap-1.5">
                     <Building className="h-3.5 w-3.5 text-zinc-750 dark:text-zinc-300" />
-                    <span className="font-semibold text-zinc-700 dark:text-zinc-300">Apex Towers</span>
+                    <span className="font-semibold text-zinc-700 dark:text-zinc-300">Tower A</span>
                   </div>
-                  <span className="text-[7.5px] text-zinc-400">124 Units</span>
+                  <span className="text-[7.5px] text-zinc-400">124 Flats</span>
                 </div>
                 <div className="flex items-center justify-between bg-zinc-100/60 p-1.5 rounded  text-[9px] dark:bg-zinc-900/20">
                   <div className="flex items-center gap-1.5">
                     <Building2 className="h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400" />
-                    <span className="font-medium text-zinc-600 dark:text-zinc-400">Pacific Plaza</span>
+                    <span className="font-medium text-zinc-600 dark:text-zinc-400">Tower B</span>
                   </div>
-                  <span className="text-[7.5px] text-zinc-400">88 Units</span>
+                  <span className="text-[7.5px] text-zinc-400">88 Flats</span>
                 </div>
               </div>
             </div>
@@ -284,10 +284,10 @@ export function FeaturesSection() {
                 <div className="p-1 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-950/30 dark:group-hover:text-indigo-400 transition-colors">
                   <Building2 className="h-4 w-4" />
                 </div>
-                <h3 className="font-semibold text-sm text-zinc-900 dark:text-zinc-50">Multi-Building Hub</h3>
+                <h3 className="font-semibold text-sm text-zinc-900 dark:text-zinc-50">Building & Flat Hub</h3>
               </div>
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Monitor multiple societies, buildings, and properties from a unified operational dashboard.
+                Monitor multiple buildings and flats from a unified operational dashboard.
               </p>
             </div>
           </div>

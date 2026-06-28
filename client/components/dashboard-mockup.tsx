@@ -52,9 +52,9 @@ export function DashboardMockup() {
           <div className="flex h-6 w-6 items-center justify-center bg-zinc-50 dark:bg-zinc-900">
             <Building className="h-3 w-3 text-zinc-800 dark:text-zinc-200" />
           </div>
-          <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">SocietyOS Console</span>
+          <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">BuildingOS Console</span>
           <span className="text-[10px] text-zinc-400 dark:text-zinc-500">/</span>
-          <span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Grandview Towers</span>
+          <span className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">Tower A - Grandview</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="relative hidden sm:block group">

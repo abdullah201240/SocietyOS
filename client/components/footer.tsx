@@ -16,10 +16,10 @@ export function Footer() {
               <div className="h-5.5 w-5.5 rounded bg-indigo-600 text-white flex items-center justify-center dark:bg-indigo-500 dark:text-white">
                 <Building className="h-3.5 w-3.5" />
               </div>
-              <span>SocietyOS</span>
+              <span>BuildingOS</span>
             </Link>
             <p className="text-zinc-450 dark:text-zinc-505 leading-relaxed max-w-xs text-[11px]">
-              Modern operating system for apartment societies, residential communities, and building management teams.
+              Modern operating system for apartment buildings, residential towers, and building management teams.
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export function Footer() {
         {/* Bottom Legal & Footer Metas */}
         <div className="pt-8 -150 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left text-[10px] text-zinc-400">
-            <p>SocietyOS © 2026. Empowering modern residential communities worldwide.</p>
+            <p>BuildingOS © 2026. Empowering modern residential buildings worldwide.</p>
             <p className="text-[9px] text-zinc-400/85">
               Designed for compliance with property management and local housing committee regulations.
             </p>

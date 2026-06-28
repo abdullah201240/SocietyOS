@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -36,12 +37,12 @@ export function PricingSection() {
         "Standard email support",
       ],
       ctaText: "Start Free Trial",
-      ctaHref: "#start-trial",
+      ctaHref: "/book-demo",
       variant: "default",
     },
     {
       name: "Growth",
-      description: "For medium-sized societies and growing communities.",
+      description: "For medium-sized buildings and growing portfolios.",
       price: "৳12,900",
       period: "per month, billed annually",
       features: [
@@ -53,7 +54,7 @@ export function PricingSection() {
         "Priority 24/7 support",
       ],
       ctaText: "Book Demo",
-      ctaHref: "#book-demo",
+      ctaHref: "/book-demo",
       variant: "highlight",
     },
     {
@@ -70,7 +71,7 @@ export function PricingSection() {
         "Uptime SLA compliance support",
       ],
       ctaText: "Contact Sales",
-      ctaHref: "#contact-sales",
+      ctaHref: "/#contact",
       variant: "enterprise",
     },
   ];
@@ -85,10 +86,10 @@ export function PricingSection() {
             Pricing Plans
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-            Simple Pricing for Modern Communities
+            Simple Pricing for Modern Buildings
           </h2>
           <p className="mt-4 text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Flexible plans designed for apartment societies, residential towers, and multi-building communities.
+            Flexible plans designed for apartment buildings, residential towers, and multi-building portfolios.
           </p>
         </div>
 
@@ -162,10 +163,10 @@ export function PricingSection() {
                   }
                   asChild
                 >
-                  <a href={plan.ctaHref}>
+                  <Link href={plan.ctaHref}>
                     {plan.ctaText}
                     {plan.variant === "highlight" && <ArrowRight className="h-3.5 w-3.5" />}
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </Card>

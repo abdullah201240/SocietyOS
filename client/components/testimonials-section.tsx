@@ -21,16 +21,16 @@ interface Metric {
 export function TestimonialsSection() {
   const testimonials: Testimonial[] = [
     {
-      quote: "Before SocietyOS, complaints were scattered across WhatsApp. Now we have centralized logs, auto-assignments, and real-time status updates. Our response time dropped from days to under two hours.",
+      quote: "Before BuildingOS, complaints were scattered across WhatsApp. Now we have centralized logs, auto-assignments, and real-time status updates. Our response time dropped from days to under two hours.",
       name: "Rajesh Mehta",
-      role: "Apartment Committee President",
-      property: "Grandview Heights (320 units)",
+      role: "Building Committee President",
+      property: "Grandview Heights (320 flats)",
     },
     {
-      quote: "Managing accounts and utility billing for five different properties used to be a full-time Excel nightmare. SocietyOS consolidated everything into one dashboard. Rent collection is now automated.",
+      quote: "Managing accounts and utility billing for five different buildings used to be a full-time Excel nightmare. BuildingOS consolidated everything into one dashboard. Rent collection is now automated.",
       name: "Sarah Jenkins",
-      role: "Property Operations Manager",
-      property: "Apex Management Portfolios",
+      role: "Building Operations Manager",
+      property: "Apex Building Portfolios",
     },
     {
       quote: "The preventive maintenance schedule has saved us thousands in emergency elevator and plumbing repairs. Resident satisfaction is at an all-time high due to clear push alerts and transparency.",
@@ -81,10 +81,10 @@ export function TestimonialsSection() {
             Trust & Credibility
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-            Trusted by Modern Residential Communities
+            Trusted by Modern Residential Buildings
           </h2>
           <p className="mt-4 text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Designed for apartment societies, gated communities, and building management teams that need operational clarity and resident satisfaction.
+            Designed for apartment buildings, gated communities, and building management teams that need operational clarity and resident satisfaction.
           </p>
         </div>
 

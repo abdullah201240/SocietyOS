@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { FAQSection } from "@/components/faq-section";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
+import { ContactSection } from "@/components/contact-section";
 import { ArrowRight, CheckCircle2, ShieldCheck, Activity, Users } from "lucide-react";
 
 export default function Home() {
@@ -35,30 +36,30 @@ export default function Home() {
               {/* Modern subtle badge */}
               <div className="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 text-xs text-zinc-600 dark:text-zinc-400">
                 <span className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100" />
-                Operating System for Gated Communities
+                Operating System for Buildings & Flats
               </div>
 
               {/* Headline */}
               <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl lg:text-5xl lg:leading-[1.1]">
-                Run Your Entire Society <br />
+                Run Your Entire Building <br />
                 <span className="text-zinc-500 dark:text-zinc-400">From One Platform</span>
               </h1>
 
               {/* Subtitle */}
               <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-lg">
-                Manage buildings, residents, complaints, billing, parking, maintenance, and security operations in one modern platform. Built for residential towers, apartment societies, and estate managers.
+                Manage buildings, flats, residents, complaints, billing, parking, maintenance, and security operations in one modern platform. Built for residential towers, apartment buildings, and property managers.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-2">
                 <Button size="lg" className="h-10 px-5 gap-1.5" asChild>
-                  <Link href="#book-demo">
+                  <Link href="/book-demo">
                     Book Demo
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="h-10 px-5" asChild>
-                  <Link href="#start-trial">Start Free Trial</Link>
+                  <Link href="/book-demo">Start Free Trial</Link>
                 </Button>
               </div>
 
@@ -115,7 +116,7 @@ export default function Home() {
       {/* Testimonials & Trust Metrics Section */}
       <TestimonialsSection />
 
-      {/* SocietyOS Pricing Section */}
+      {/* BuildingOS Pricing Section */}
       <PricingSection />
 
       {/* Frequently Asked Questions Accordion Section */}
@@ -123,6 +124,9 @@ export default function Home() {
 
       {/* Final Conversion CTA Section */}
       <CTASection />
+
+      {/* Direct Contact Sales / Support Form Section */}
+      <ContactSection />
 
       {/* Enterprise Multi-Column Footer Section */}
       <Footer />

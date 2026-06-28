@@ -22,10 +22,10 @@ export function NavBar() {
   }, []);
 
   const navigation = [
-    { name: "Features", href: "#features" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Contact", href: "#contact" },
+    { name: "Features", href: "/#features" },
+    { name: "Solutions", href: "/#solutions" },
+    { name: "Pricing", href: "/#pricing" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -43,7 +43,7 @@ export function NavBar() {
             <div className="flex h-8 w-8 items-center justify-center bg-zinc-50 dark:bg-zinc-900">
               <Building2 className="h-4.5 w-4.5 text-indigo-600 dark:text-indigo-400" />
             </div>
-            <span className="text-base font-bold tracking-tight">SocietyOS</span>
+            <span className="text-base font-bold tracking-tight">BuildingOS</span>
           </Link>
         </div>
 
@@ -66,7 +66,7 @@ export function NavBar() {
             <Link href="/login">Login</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="#book-demo">Book Demo</Link>
+            <Link href="/book-demo">Book Demo</Link>
           </Button>
         </div>
 
@@ -103,7 +103,7 @@ export function NavBar() {
                 <Link href="/login">Login</Link>
               </Button>
               <Button size="sm" className="w-full justify-center" asChild>
-                <Link href="#book-demo">Book Demo</Link>
+                <Link href="/book-demo">Book Demo</Link>
               </Button>
             </div>
           </nav>

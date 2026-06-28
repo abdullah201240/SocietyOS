@@ -52,7 +52,7 @@ import {
 // Types
 interface InvoiceRecord {
   id: string; // e.g. INV-9021
-  society: string;
+  buildingGroup: string;
   buildingName: string;
   flatNumber: string;
   residentName: string;
@@ -67,14 +67,14 @@ interface InvoiceRecord {
 }
 
 export default function GlobalBillingPage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Initial Mock Global Billing Data
   const [invoices, setInvoices] = React.useState<InvoiceRecord[]>([
     {
       id: "INV-9021",
-      society: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       buildingName: "Tower Alpha",
       flatNumber: "1402",
       residentName: "Marcus Aurelius",
@@ -89,7 +89,7 @@ export default function GlobalBillingPage() {
     },
     {
       id: "INV-9022",
-      society: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       buildingName: "Tower Alpha",
       flatNumber: "805",
       residentName: "Sarah Connor",
@@ -104,7 +104,7 @@ export default function GlobalBillingPage() {
     },
     {
       id: "INV-9023",
-      society: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       buildingName: "Tower Alpha",
       flatNumber: "302",
       residentName: "Elena Rostova",
@@ -119,7 +119,7 @@ export default function GlobalBillingPage() {
     },
     {
       id: "INV-9024",
-      society: "Pine Crest Society",
+      buildingGroup: "Meadow View Complex",
       buildingName: "Oak Block",
       flatNumber: "501",
       residentName: "Arthur Dent",
@@ -136,7 +136,7 @@ export default function GlobalBillingPage() {
 
   // Form State
   const [newInvoice, setNewInvoice] = React.useState({
-    society: "Grandview Towers",
+    buildingGroup: "Grandview Towers",
     buildingName: "Tower Alpha",
     flatNumber: "",
     residentName: "",
@@ -153,14 +153,14 @@ export default function GlobalBillingPage() {
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
   const [filterStatus, setFilterStatus] = React.useState("All");
-  const [filterSociety, setFilterSociety] = React.useState("All");
+  const [filterBuildingGroup, setFilterBuildingGroup] = React.useState("All");
   const [filterBuilding, setFilterBuilding] = React.useState("All");
 
   const handleGenerateInvoice = (e: React.FormEvent) => {
     e.preventDefault();
     const created: InvoiceRecord = {
       id: `INV-${9000 + invoices.length + 1}`,
-      society: newInvoice.society,
+      buildingGroup: newInvoice.buildingGroup,
       buildingName: newInvoice.buildingName,
       flatNumber: newInvoice.flatNumber,
       residentName: newInvoice.residentName,
@@ -180,7 +180,7 @@ export default function GlobalBillingPage() {
 
     // Reset Form
     setNewInvoice({
-      society: "Grandview Towers",
+      buildingGroup: "Grandview Towers",
       buildingName: "Tower Alpha",
       flatNumber: "",
       residentName: "",
@@ -406,7 +406,7 @@ export default function GlobalBillingPage() {
                   <Button
                     onClick={() => {
                       setFilterStatus("All");
-                      setFilterSociety("All");
+                      setFilterBuildingGroup("All");
                       setFilterBuilding("All");
                       setSearchQuery("");
                       toast.success("Filters reset.");

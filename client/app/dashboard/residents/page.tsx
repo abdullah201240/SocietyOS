@@ -57,205 +57,23 @@ import {
   Phone,
   ShieldAlert,
 } from "lucide-react";
-
-// Types
-interface ResidentRecord {
-  id: number;
-  name: string;
-  flatNumber: string;
-  buildingName: string;
-  residentType: "Owner" | "Tenant";
-  phone: string;
-  email: string;
-  moveInDate: string;
-  outstandingDues: number; // negative value represents outstanding dues
-  operationalStatus: "Active" | "Pending Verification" | "Inactive";
-  familyMembers: { name: string; relation: string; phone: string }[];
-  emergencyContacts: { name: string; relation: string; phone: string }[];
-  vehicles: { make: string; model: string; plate: string; slot: string }[];
-  documents: { name: string; status: "Verified" | "Pending" | "Missing" }[];
-  complaints: { title: string; date: string; status: string }[];
-  payments: { item: string; amount: string; date: string; status: string }[];
-  gatePasses: { visitorName: string; type: string; date: string }[];
-  commsLog: { title: string; date: string; status: string }[];
-}
+import { useResidents, residentsApi } from "@/lib/api";
+import type { Resident as ResidentType } from "@/lib/api";
 
 export default function ResidentsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Resident Data
-  const [residents, setResidents] = React.useState<ResidentRecord[]>([
-    {
-      id: 1,
-      name: "Harold Brooks",
-      flatNumber: "1402",
-      buildingName: "Tower Alpha",
-      residentType: "Owner",
-      phone: "+1 555-0102",
-      email: "h.brooks@gmail.com",
-      moveInDate: "2020-11-15",
-      outstandingDues: -185.00,
-      operationalStatus: "Active",
-      familyMembers: [
-        { name: "Linda Brooks", relation: "Spouse", phone: "+1 555-0182" },
-        { name: "Tim Brooks", relation: "Son", phone: "N/A" }
-      ],
-      emergencyContacts: [
-        { name: "Arthur Brooks", relation: "Brother", phone: "+1 555-0190" }
-      ],
-      vehicles: [
-        { make: "Toyota", model: "RAV4 (Silver)", plate: "CA-9Y12", slot: "Slot L1-42" }
-      ],
-      documents: [
-        { name: "Government ID", status: "Verified" },
-        { name: "Ownership Certificate", status: "Verified" }
-      ],
-      complaints: [
-        { title: "Intercom line dead", date: "2026-06-25", status: "Assigned" }
-      ],
-      payments: [
-        { item: "June Maintenance dues", amount: "$185.00", date: "2026-06-26", status: "Pending" },
-        { item: "May Maintenance dues", amount: "$185.00", date: "2026-05-26", status: "Paid" }
-      ],
-      gatePasses: [
-        { visitorName: "Amazon Delivery", type: "Delivery", date: "Today, 11:20 AM" },
-        { visitorName: "John Doe Senior", type: "Guest", date: "Yesterday, 3:00 PM" }
-      ],
-      commsLog: [
-        { title: "Invoice notification raised", date: "2026-06-26", status: "Sent" }
-      ]
-    },
-    {
-      id: 2,
-      name: "Sarah Connor",
-      flatNumber: "805",
-      buildingName: "Tower Alpha",
-      residentType: "Tenant",
-      phone: "+1 555-0212",
-      email: "s.connor@cyberdyne.net",
-      moveInDate: "2025-05-01",
-      outstandingDues: -45.00,
-      operationalStatus: "Active",
-      familyMembers: [
-        { name: "John Connor", relation: "Son", phone: "+1 555-0925" }
-      ],
-      emergencyContacts: [
-        { name: "Dr. Silberman", relation: "Physician", phone: "+1 555-0900" }
-      ],
-      vehicles: [
-        { make: "Harley Davidson", model: "Fat Boy (Black)", plate: "LA-4Z20", slot: "Slot L2-19" }
-      ],
-      documents: [
-        { name: "Government ID", status: "Verified" },
-        { name: "Lease Agreement", status: "Verified" }
-      ],
-      complaints: [
-        { title: "Water pressure drop diagnostics", date: "2026-06-28", status: "In Progress" }
-      ],
-      payments: [
-        { item: "Water surcharge (Q2)", amount: "$45.00", date: "2026-06-28", status: "Pending" },
-        { item: "Clubhouse booking fee", amount: "$120.00", date: "2026-06-15", status: "Paid" }
-      ],
-      gatePasses: [
-        { visitorName: "Sarah's Guest (Kyle)", type: "Guest", date: "Today, 10:30 AM" }
-      ],
-      commsLog: [
-        { title: "Water warning alert received", date: "2026-06-28", status: "Delivered" }
-      ]
-    },
-    {
-      id: 3,
-      name: "David Vance",
-      flatNumber: "1204",
-      buildingName: "Tower Alpha",
-      residentType: "Owner",
-      phone: "+1 555-0105",
-      email: "david.vance@techcorp.com",
-      moveInDate: "2023-08-10",
-      outstandingDues: -250.00,
-      operationalStatus: "Active",
-      familyMembers: [],
-      emergencyContacts: [
-        { name: "Janet Vance", relation: "Mother", phone: "+1 555-0111" }
-      ],
-      vehicles: [
-        { make: "Audi", model: "Q5 (White)", plate: "NY-2B88", slot: "Slot L2-05" }
-      ],
-      documents: [
-        { name: "Government ID", status: "Verified" },
-        { name: "Property Deed", status: "Verified" }
-      ],
-      complaints: [],
-      payments: [
-        { item: "Clubhouse deposit due", amount: "$250.00", date: "2026-06-24", status: "Pending" }
-      ],
-      gatePasses: [],
-      commsLog: [
-        { title: "Amenity billing dues warning", date: "2026-06-25", status: "Sent" }
-      ]
-    },
-    {
-      id: 4,
-      name: "Mark Wahlberg",
-      flatNumber: "604",
-      buildingName: "Tower Beta",
-      residentType: "Tenant",
-      phone: "+1 555-0955",
-      email: "marky.mark@wahlbergers.com",
-      moveInDate: "2024-03-01",
-      outstandingDues: 0.00,
-      operationalStatus: "Active",
-      familyMembers: [
-        { name: "Rhea Wahlberg", relation: "Spouse", phone: "+1 555-0922" }
-      ],
-      emergencyContacts: [
-        { name: "Donnie Wahlberg", relation: "Brother", phone: "+1 555-0921" }
-      ],
-      vehicles: [
-        { make: "Ford", model: "F-150 (Blue)", plate: "MA-7X99", slot: "Slot L1-02" }
-      ],
-      documents: [
-        { name: "Government ID", status: "Verified" },
-        { name: "Lease Contract", status: "Verified" }
-      ],
-      complaints: [],
-      payments: [
-        { item: "June Lease Payment", amount: "$2,800.00", date: "2026-06-01", status: "Paid" }
-      ],
-      gatePasses: [
-        { visitorName: "FedEx Cargo Delivery", type: "Delivery", date: "Today, 09:45 AM" }
-      ],
-      commsLog: []
-    },
-    {
-      id: 5,
-      name: "Arthur Pendragon",
-      flatNumber: "301",
-      buildingName: "Tower Gamma",
-      residentType: "Owner",
-      phone: "+1 555-0301",
-      email: "a.pendragon@camelot.co",
-      moveInDate: "2026-06-15",
-      outstandingDues: 0.00,
-      operationalStatus: "Pending Verification",
-      familyMembers: [],
-      emergencyContacts: [
-        { name: "Merlin Ambrosius", relation: "Advisor", phone: "+1 555-0000" }
-      ],
-      vehicles: [],
-      documents: [
-        { name: "Government ID", status: "Verified" },
-        { name: "Property Deed", status: "Pending" }
-      ],
-      complaints: [],
-      payments: [],
-      gatePasses: [],
-      commsLog: [
-        { title: "Verification documents requested", date: "2026-06-16", status: "Sent" }
-      ]
+  // Fetch residents from API
+  const { residents: residentsFromApi, loading, error, refetch } = useResidents();
+  const [residents, setResidents] = React.useState<ResidentType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (residentsFromApi) {
+      setResidents(residentsFromApi);
     }
-  ]);
+  }, [residentsFromApi]);
 
   // Form State
   const [newResident, setNewResident] = React.useState({
@@ -270,7 +88,7 @@ export default function ResidentsPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedResident, setSelectedResident] = React.useState<ResidentRecord | null>(null);
+  const [selectedResident, setSelectedResident] = React.useState<ResidentType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -280,10 +98,9 @@ export default function ResidentsPage() {
   const [filterComplaints, setFilterComplaints] = React.useState("All");
   const [filterBuilding, setFilterBuilding] = React.useState("All");
 
-  const handleAddResident = (e: React.FormEvent) => {
+  const handleAddResident = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: ResidentRecord = {
-      id: residents.length + 1,
+    const newResidentData: Omit<ResidentType, 'id'> = {
       name: newResident.name,
       flatNumber: newResident.flatNumber,
       buildingName: newResident.buildingName,
@@ -303,9 +120,15 @@ export default function ResidentsPage() {
       commsLog: [{ title: "Welcome notification sent", date: "Just now", status: "Sent" }]
     };
 
-    setResidents((prev) => [...prev, created]);
-    setCreateOpen(false);
-    toast.success(`Resident "${created.name}" onboarded successfully!`);
+    const response = await residentsApi.create(newResidentData);
+    if (response.success) {
+      setResidents((prev) => [...prev, response.data]);
+      setCreateOpen(false);
+      toast.success(`Resident "${response.data.name}" onboarded successfully!`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to add resident");
+    }
 
     // Reset Form
     setNewResident({
@@ -858,7 +681,7 @@ export default function ResidentsPage() {
                     <span className="text-[10px] text-zinc-450 block italic">No vehicles registered.</span>
                   ) : (
                     <div className="space-y-2">
-                      {selectedResident.vehicles.map((v, idx) => (
+                      {selectedResident.vehicles.map((v: { make: string; model: string; plate: string; slot: string }, idx: number) => (
                         <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
                           <div className="flex items-center gap-2">
                             <Car className="h-4 w-4 text-zinc-400" />
@@ -880,7 +703,7 @@ export default function ResidentsPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-455 dark:text-zinc-500 tracking-wider block">Verification documents</span>
                   <div className="space-y-2">
-                    {selectedResident.documents.map((d, idx) => (
+                    {selectedResident.documents.map((d: { name: string; status: string }, idx: number) => (
                       <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 text-xs bg-zinc-50/50 dark:bg-zinc-950/20">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-250 flex items-center gap-1.5">
                           <FileText className="h-3.5 w-3.5 text-zinc-400" /> {d.name}
@@ -905,7 +728,7 @@ export default function ResidentsPage() {
                       <span className="text-[10px] text-zinc-450 block italic">None registered.</span>
                     ) : (
                       <div className="space-y-1.5">
-                        {selectedResident.familyMembers.map((m, idx) => (
+                        {selectedResident.familyMembers.map((m: { name: string; relation: string; phone: string }, idx: number) => (
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{m.name}</span>
                             <span className="text-[9px] text-zinc-455 block">{m.relation}</span>
@@ -920,7 +743,7 @@ export default function ResidentsPage() {
                       <span className="text-[10px] text-zinc-450 block italic">None registered.</span>
                     ) : (
                       <div className="space-y-1.5">
-                        {selectedResident.emergencyContacts.map((c, idx) => (
+                        {selectedResident.emergencyContacts.map((c: { name: string; relation: string; phone: string }, idx: number) => (
                           <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{c.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{c.relation} • {c.phone}</span>

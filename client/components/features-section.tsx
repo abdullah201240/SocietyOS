@@ -39,9 +39,9 @@ export function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
           {/* Card 1: Complaint Tracking */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>RECENT COMPLAINTS</span>
                 <span className="text-zinc-500">4 Active</span>
@@ -79,9 +79,9 @@ export function FeaturesSection() {
           </div>
 
           {/* Card 2: Maintenance Operations */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>STAFF DISPATCH</span>
                 <span className="text-emerald-500 font-medium">92% Resolved</span>
@@ -123,9 +123,9 @@ export function FeaturesSection() {
           </div>
 
           {/* Card 3: Billing & Service Charges */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>INVOICES OVERVIEW</span>
                 <span className="text-emerald-500 font-medium">96.3%</span>
@@ -163,9 +163,9 @@ export function FeaturesSection() {
           </div>
 
           {/* Card 4: Visitor & Security Management */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>GATE ACTIVITY</span>
                 <span className="text-zinc-500">Live</span>
@@ -209,9 +209,9 @@ export function FeaturesSection() {
           </div>
 
           {/* Card 5: Parking Management */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>PARKING ASSIGNMENT</span>
                 <span className="text-zinc-500">82% Occupied</span>
@@ -253,9 +253,9 @@ export function FeaturesSection() {
           </div>
 
           {/* Card 6: Multi-Building Dashboard */}
-          <div className="group flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
+          <div className="group flex flex-col justify-between border border-zinc-200/80 bg-white p-5 hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/30 dark:hover:border-zinc-700">
             {/* Micro Dashboard Mockup */}
-            <div className="w-full h-32 rounded-md border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
+            <div className="w-full h-32 border border-zinc-100 bg-zinc-50/50 p-3 mb-5 overflow-hidden dark:border-zinc-900 dark:bg-zinc-900/10 flex flex-col gap-2">
               <div className="flex items-center justify-between text-[9px] text-zinc-400 font-semibold border-b border-zinc-150 pb-1.5 dark:border-zinc-900">
                 <span>PROPERTY HUB</span>
                 <span className="text-zinc-500">3 Portfolios</span>

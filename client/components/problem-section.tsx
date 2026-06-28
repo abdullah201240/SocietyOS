@@ -19,8 +19,8 @@ interface PainCardProps {
 
 function PainCard({ icon, title, description }: PainCardProps) {
   return (
-    <div className="group flex items-start gap-4 p-4 rounded-lg border border-zinc-200/80 bg-white hover:border-zinc-300 hover:shadow-xs transition-all dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:hover:border-zinc-700">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-zinc-200 bg-zinc-50 text-zinc-700 transition-all group-hover:bg-indigo-50/60 group-hover:text-indigo-600 group-hover:border-indigo-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:group-hover:bg-indigo-950/30 dark:group-hover:text-indigo-400 dark:group-hover:border-indigo-900">
+    <div className="group flex items-start gap-4 p-4 border border-zinc-200/80 bg-white hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:hover:border-zinc-700">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-zinc-50 text-zinc-700 group-hover:bg-indigo-50/60 group-hover:text-indigo-600 dark:bg-zinc-900 dark:text-zinc-300 dark:group-hover:bg-indigo-950/30 dark:group-hover:text-indigo-400">
         {icon}
       </div>
       <div className="space-y-1">

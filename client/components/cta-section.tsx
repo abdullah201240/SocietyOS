@@ -12,7 +12,7 @@ export function CTASection() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] dark:bg-[linear-gradient(to_right,#151518_1px,transparent_1px),linear-gradient(to_bottom,#151518_1px,transparent_1px)] opacity-70" />
       
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative">
-        <div className="border border-zinc-200/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/40 rounded-xl p-8 md:p-12 text-center max-w-4xl mx-auto shadow-xs">
+        <div className="border border-zinc-200/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/40 p-8 md:p-12 text-center max-w-4xl mx-auto">
           
           <div className="flex flex-col items-center max-w-2xl mx-auto">
             <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-white dark:bg-zinc-950">

@@ -43,7 +43,7 @@ export function WorkflowSection() {
             <div className="relative flex flex-col items-start gap-4">
               {/* Connector and Step Indicator */}
               <div className="flex items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-indigo-100 bg-white shadow-xs dark:border-indigo-950/40 dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
+                <div className="flex h-14 w-14 items-center justify-center bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
                   <FileText className="h-5 w-5" />
                 </div>
                 <div className="lg:hidden h-0.5 flex-1 border-t border-dashed border-zinc-200 dark:border-zinc-800" />
@@ -52,7 +52,7 @@ export function WorkflowSection() {
               <span className="hidden lg:block text-[10px] font-bold tracking-wider text-zinc-450 dark:text-zinc-550">STEP 1</span>
               
               {/* Card content */}
-              <div className="w-full flex-1 flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
+              <div className="w-full flex-1 flex flex-col justify-between border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
                 {/* Visual mini-mockup */}
                 <div className="w-full h-36 rounded border border-zinc-150 bg-white p-3 mb-4 text-[10px] flex flex-col justify-between dark:border-zinc-900 dark:bg-zinc-950">
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
@@ -97,7 +97,7 @@ export function WorkflowSection() {
             <div className="relative flex flex-col items-start gap-4">
               {/* Connector and Step Indicator */}
               <div className="flex items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-indigo-100 bg-white shadow-xs dark:border-indigo-950/40 dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
+                <div className="flex h-14 w-14 items-center justify-center bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
                   <Inbox className="h-5 w-5" />
                 </div>
                 <div className="lg:hidden h-0.5 flex-1 border-t border-dashed border-zinc-200 dark:border-zinc-800" />
@@ -106,7 +106,7 @@ export function WorkflowSection() {
               <span className="hidden lg:block text-[10px] font-bold tracking-wider text-zinc-450 dark:text-zinc-550">STEP 2</span>
               
               {/* Card content */}
-              <div className="w-full flex-1 flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
+              <div className="w-full flex-1 flex flex-col justify-between border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
                 {/* Visual mini-mockup */}
                 <div className="w-full h-36 rounded border border-zinc-150 bg-white p-3 mb-4 text-[10px] flex flex-col justify-between dark:border-zinc-900 dark:bg-zinc-950">
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
@@ -142,7 +142,7 @@ export function WorkflowSection() {
             <div className="relative flex flex-col items-start gap-4">
               {/* Connector and Step Indicator */}
               <div className="flex items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-indigo-100 bg-white shadow-xs dark:border-indigo-950/40 dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
+                <div className="flex h-14 w-14 items-center justify-center bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
                   <Wrench className="h-5 w-5" />
                 </div>
                 <div className="lg:hidden h-0.5 flex-1 border-t border-dashed border-zinc-200 dark:border-zinc-800" />
@@ -151,7 +151,7 @@ export function WorkflowSection() {
               <span className="hidden lg:block text-[10px] font-bold tracking-wider text-zinc-450 dark:text-zinc-550">STEP 3</span>
               
               {/* Card content */}
-              <div className="w-full flex-1 flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
+              <div className="w-full flex-1 flex flex-col justify-between border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
                 {/* Visual mini-mockup */}
                 <div className="w-full h-36 rounded border border-zinc-150 bg-white p-3 mb-4 text-[10px] flex flex-col justify-between dark:border-zinc-900 dark:bg-zinc-950">
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
@@ -192,7 +192,7 @@ export function WorkflowSection() {
             <div className="relative flex flex-col items-start gap-4">
               {/* Connector and Step Indicator */}
               <div className="flex items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-indigo-100 bg-white shadow-xs dark:border-indigo-950/40 dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
+                <div className="flex h-14 w-14 items-center justify-center bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
                 <span className="text-xs font-bold text-zinc-450 dark:text-zinc-550 lg:hidden">STEP 4</span>
@@ -200,7 +200,7 @@ export function WorkflowSection() {
               <span className="hidden lg:block text-[10px] font-bold tracking-wider text-zinc-450 dark:text-zinc-550">STEP 4</span>
               
               {/* Card content */}
-              <div className="w-full flex-1 flex flex-col justify-between rounded-lg border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
+              <div className="w-full flex-1 flex flex-col justify-between border border-zinc-200/80 bg-zinc-50/50 p-4 dark:border-zinc-800/80 dark:bg-zinc-950/20">
                 {/* Visual mini-mockup */}
                 <div className="w-full h-36 rounded border border-zinc-150 bg-white p-3 mb-4 text-[10px] flex flex-col justify-between dark:border-zinc-900 dark:bg-zinc-950">
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">

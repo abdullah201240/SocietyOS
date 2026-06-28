@@ -41,7 +41,7 @@ export function AnalyticsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Card 1: Complaint Resolution Analytics (lg:col-span-7) */}
-          <Card className="lg:col-span-7 rounded-lg border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5 shadow-xs">
+          <Card className="lg:col-span-7 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Complaint Resolution Analytics</CardTitle>
@@ -103,7 +103,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 2: Financial Overview (lg:col-span-5) */}
-          <Card className="lg:col-span-5 rounded-lg border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5 shadow-xs">
+          <Card className="lg:col-span-5 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Financial Overview</CardTitle>
@@ -149,7 +149,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 3: Maintenance Performance (lg:col-span-4) */}
-          <Card className="lg:col-span-4 rounded-lg border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5 shadow-xs">
+          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Maintenance SLA</CardTitle>
@@ -190,7 +190,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 4: Building Occupancy Metrics (lg:col-span-4) */}
-          <Card className="lg:col-span-4 rounded-lg border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5 shadow-xs">
+          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Occupancy Metrics</CardTitle>
@@ -235,7 +235,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 5: Multi-Building Insights (lg:col-span-4) */}
-          <Card className="lg:col-span-4 rounded-lg border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5 shadow-xs">
+          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Multi-Building Hub</CardTitle>

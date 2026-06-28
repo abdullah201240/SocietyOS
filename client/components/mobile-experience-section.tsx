@@ -64,7 +64,7 @@ export function MobileExperienceSection() {
                 <button
                   key={screen.id}
                   onClick={() => setActiveScreen(screen.id as any)}
-                  className={`w-full text-left p-3.5 rounded-lg border transition-all flex items-start gap-4 ${
+                  className={`w-full text-left p-3.5 border transition-all flex items-start gap-4 ${
                     activeScreen === screen.id
                       ? "bg-indigo-50/20 border-indigo-200 dark:bg-indigo-950/20 dark:border-indigo-900"
                       : "bg-white border-zinc-100 hover:border-zinc-200 dark:bg-transparent dark:border-zinc-900 dark:hover:border-zinc-800"
@@ -89,7 +89,7 @@ export function MobileExperienceSection() {
             </div>
 
             {/* Highlights List */}
-            <div className="grid grid-cols-2 gap-3 pt-6 border-t border-zinc-100 dark:border-zinc-900 text-xs font-semibold text-zinc-650 dark:text-zinc-400">
+            <div className="grid grid-cols-2 gap-3 pt-6 text-xs font-semibold text-zinc-650 dark:text-zinc-400">
               <div className="flex items-center gap-2"><Check className="h-4 w-4 text-indigo-600 dark:text-indigo-400" /> Instant Reporting</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4 text-indigo-600 dark:text-indigo-400" /> Digital Guest Passes</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4 text-indigo-600 dark:text-indigo-400" /> Auto Bill Payments</div>
@@ -101,7 +101,7 @@ export function MobileExperienceSection() {
           <div className="lg:col-span-6 flex justify-center">
             <div className="relative">
               {/* Outer phone wrapper */}
-              <div className="relative mx-auto h-[530px] w-[265px] rounded-[36px] border-[7px] border-zinc-900 bg-white shadow-xl dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden flex flex-col justify-between">
+              <div className="relative mx-auto h-[530px] w-[265px] border-[7px] border-zinc-900 bg-white dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden flex flex-col justify-between">
                 
                 {/* Dynamic island notches */}
                 <div className="absolute top-2 left-1/2 transform -translate-x-1/2 h-3.5 w-18 bg-zinc-900 rounded-full z-20 flex items-center justify-center dark:bg-zinc-800" />
@@ -227,7 +227,7 @@ export function MobileExperienceSection() {
 
               </div>
               {/* Subtle phone shadow depth overlay backing */}
-              <div className="absolute -inset-1 rounded-[38px] bg-zinc-200/50 dark:bg-zinc-800/40 opacity-20 blur-md -z-10" />
+              <div className="absolute -inset-1 bg-zinc-200/50 dark:bg-zinc-800/40 opacity-20 blur-md -z-10" />
             </div>
           </div>
 

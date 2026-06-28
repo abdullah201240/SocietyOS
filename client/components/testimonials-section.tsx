@@ -93,7 +93,7 @@ export function TestimonialsSection() {
           {testimonials.map((t, idx) => (
             <Card
               key={idx}
-              className="rounded-lg border border-zinc-200/80 bg-white p-6 hover:border-zinc-300 dark:border-zinc-850 dark:bg-zinc-950/30 dark:hover:border-zinc-700 shadow-none flex flex-col justify-between"
+              className="border border-zinc-200/80 bg-white p-6 hover:border-zinc-300 dark:border-zinc-850 dark:bg-zinc-950/30 dark:hover:border-zinc-700 shadow-none flex flex-col justify-between"
             >
               <div className="space-y-4">
                 {/* 5 stars */}

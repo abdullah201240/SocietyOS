@@ -84,8 +84,8 @@ export function DashboardMockup() {
               onClick={() => setActiveTab("overview")}
               className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[11px] font-medium transition-all duration-200 ${
                 activeTab === "overview"
-                  ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-700 dark:from-indigo-500/20 dark:to-purple-500/20 dark:text-indigo-400 font-semibold shadow-sm border border-indigo-200/50 dark:border-indigo-800/50"
-                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200 hover:translate-x-0.5"
+                  ? "bg-indigo-500/10 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400 font-semibold"
+                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200"
               }`}
             >
               <LayoutDashboard className="h-4 w-4" />
@@ -95,8 +95,8 @@ export function DashboardMockup() {
               onClick={() => setActiveTab("complaints")}
               className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[11px] font-medium transition-all duration-200 ${
                 activeTab === "complaints"
-                  ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-700 dark:from-indigo-500/20 dark:to-purple-500/20 dark:text-indigo-400 font-semibold shadow-sm border border-indigo-200/50 dark:border-indigo-800/50"
-                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200 hover:translate-x-0.5"
+                  ? "bg-indigo-500/10 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400 font-semibold"
+                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200"
               }`}
             >
               <AlertCircle className="h-4 w-4" />
@@ -106,8 +106,8 @@ export function DashboardMockup() {
               onClick={() => setActiveTab("maintenance")}
               className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[11px] font-medium transition-all duration-200 ${
                 activeTab === "maintenance"
-                  ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-700 dark:from-indigo-500/20 dark:to-purple-500/20 dark:text-indigo-400 font-semibold shadow-sm border border-indigo-200/50 dark:border-indigo-800/50"
-                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200 hover:translate-x-0.5"
+                  ? "bg-indigo-500/10 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400 font-semibold"
+                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200"
               }`}
             >
               <Wrench className="h-4 w-4" />
@@ -117,8 +117,8 @@ export function DashboardMockup() {
               onClick={() => setActiveTab("billing")}
               className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[11px] font-medium transition-all duration-200 ${
                 activeTab === "billing"
-                  ? "bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-700 dark:from-indigo-500/20 dark:to-purple-500/20 dark:text-indigo-400 font-semibold shadow-sm border border-indigo-200/50 dark:border-indigo-800/50"
-                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200 hover:translate-x-0.5"
+                  ? "bg-indigo-500/10 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400 font-semibold"
+                  : "text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900/60 dark:hover:text-zinc-200"
               }`}
             >
               <CreditCard className="h-4 w-4" />
@@ -162,7 +162,7 @@ export function DashboardMockup() {
               </div>
               {/* Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <Card size="sm" className="rounded-xl bg-gradient-to-br from-zinc-50 to-white border-zinc-200/60 shadow-sm hover:shadow-lg hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 dark:from-zinc-900/50 dark:to-zinc-950/30 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Residents</span>
@@ -180,7 +180,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="rounded-xl bg-gradient-to-br from-zinc-50 to-white border-zinc-200/60 shadow-sm hover:shadow-lg hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 dark:from-zinc-900/50 dark:to-zinc-950/30 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Complaints</span>
@@ -198,7 +198,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="rounded-xl bg-gradient-to-br from-zinc-50 to-white border-zinc-200/60 shadow-sm hover:shadow-lg hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 dark:from-zinc-900/50 dark:to-zinc-950/30 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Maintenance</span>
@@ -216,7 +216,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="rounded-xl bg-gradient-to-br from-zinc-50 to-white border-zinc-200/60 shadow-sm hover:shadow-lg hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 dark:from-zinc-900/50 dark:to-zinc-950/30 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Billing</span>
@@ -238,7 +238,7 @@ export function DashboardMockup() {
               {/* Analytics and Active tasks preview */}
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {/* Chart Card */}
-                <Card size="sm" className="rounded-xl md:col-span-3 border border-zinc-200/60 bg-gradient-to-br from-white to-zinc-50/50 shadow-sm hover:shadow-md transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/50 dark:to-zinc-950/30">
+                <Card size="sm" className="md:col-span-3 border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-5 pb-3">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Building Energy & Maintenance Expenses</CardTitle>
@@ -284,7 +284,7 @@ export function DashboardMockup() {
                 </Card>
 
                 {/* Quick tasks overview */}
-                <Card size="sm" className="rounded-xl md:col-span-2 border border-zinc-200/60 bg-gradient-to-br from-white to-zinc-50/50 shadow-sm hover:shadow-md transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/50 dark:to-zinc-950/30">
+                <Card size="sm" className="md:col-span-2 border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-5 pb-3">
                     <CardTitle className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Active Incidents</CardTitle>
                   </CardHeader>
@@ -324,7 +324,7 @@ export function DashboardMockup() {
                   <h3 className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">Complaints & Tickets Inbox</h3>
                   <p className="text-[10px] text-zinc-500">Click a complaint row to toggle through progress stages.</p>
                 </div>
-                <Button size="xs" className="h-7 rounded-lg text-[10px] gap-1.5 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
+                <Button size="xs" className="h-7 text-[10px] gap-1.5">
                   <Plus className="h-3 w-3" /> Raise Ticket
                 </Button>
               </div>
@@ -334,11 +334,11 @@ export function DashboardMockup() {
                   <div
                     key={item.id}
                     onClick={() => toggleComplaintStatus(item.id)}
-                    className="group flex items-center justify-between border border-zinc-200/60 bg-gradient-to-r from-zinc-50/80 to-white p-3 rounded-xl hover:from-zinc-100/80 hover:to-zinc-50/80 hover:shadow-md hover:scale-[1.01] dark:border-zinc-800/60 dark:from-zinc-900/20 dark:to-zinc-950/10 dark:hover:from-zinc-900/40 dark:hover:to-zinc-900/20 transition-all cursor-pointer xoss-slide-up"
+                    className="group flex items-center justify-between border border-zinc-200/60 bg-zinc-50/80 p-3 hover:bg-zinc-100/80 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/40 transition-all cursor-pointer"
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 rounded-full p-1.5 bg-gradient-to-br from-zinc-100 to-zinc-200/80 dark:from-zinc-800 dark:to-zinc-900/80 text-zinc-600 dark:text-zinc-400 shadow-sm">
+                      <div className="mt-0.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                         <AlertCircle className="h-3.5 w-3.5" />
                       </div>
                       <div>
@@ -398,7 +398,7 @@ export function DashboardMockup() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card size="sm" className="rounded-xl border border-zinc-200/60 bg-gradient-to-br from-white to-zinc-50/50 shadow-sm hover:shadow-md transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/50 dark:to-zinc-950/30">
+                <Card size="sm" className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-4">
                     <CardTitle className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Upcoming Schedule</CardTitle>
                   </CardHeader>
@@ -427,7 +427,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="rounded-xl border border-zinc-200/60 bg-gradient-to-br from-white to-zinc-50/50 shadow-sm hover:shadow-md transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/50 dark:to-zinc-950/30">
+                <Card size="sm" className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-4">
                     <CardTitle className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Asset Health</CardTitle>
                   </CardHeader>
@@ -482,7 +482,7 @@ export function DashboardMockup() {
               </div>
 
               {/* Progress bar */}
-              <div className="space-y-2 bg-gradient-to-br from-zinc-50/80 to-white p-3.5 rounded-xl border border-zinc-200/60 dark:from-zinc-900/40 dark:to-zinc-950/30 dark:border-zinc-800/60 shadow-sm">
+              <div className="space-y-2 bg-zinc-50/80 p-3.5 border border-zinc-200/60 dark:bg-zinc-900/40 dark:border-zinc-800/60">
                 <div className="flex justify-between text-[10px] text-zinc-600 dark:text-zinc-400">
                   <span className="font-semibold">Collection Progress</span>
                   <span className="font-bold text-zinc-800 dark:text-zinc-200">96.3%</span>
@@ -494,7 +494,7 @@ export function DashboardMockup() {
 
               {/* Transaction list */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-gradient-to-r from-zinc-50/50 to-white rounded-xl hover:shadow-md hover:scale-[1.01] transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/20 dark:to-zinc-950/10">
+                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 1402 (H. Brooks)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 26</span>
@@ -505,7 +505,7 @@ export function DashboardMockup() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-gradient-to-r from-zinc-50/50 to-white rounded-xl hover:shadow-md hover:scale-[1.01] transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/20 dark:to-zinc-950/10">
+                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 805 (A. Patel)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 25</span>
@@ -516,7 +516,7 @@ export function DashboardMockup() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-gradient-to-r from-zinc-50/50 to-white rounded-xl hover:shadow-md hover:scale-[1.01] transition-all duration-200 dark:border-zinc-800/60 dark:from-zinc-900/20 dark:to-zinc-950/10">
+                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 301 (S. Henderson)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Clubhouse Deposit • June 24</span>

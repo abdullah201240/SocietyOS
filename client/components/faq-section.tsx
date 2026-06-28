@@ -67,7 +67,7 @@ export function FAQSection() {
         </div>
 
         {/* Accordion List */}
-        <div className="border border-zinc-200/80 rounded-lg bg-zinc-50/10 p-2 dark:border-zinc-850 dark:bg-zinc-950/20">
+        <div className="border border-zinc-200/80 bg-zinc-50/10 p-2 dark:border-zinc-850 dark:bg-zinc-950/20">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id} className="border-b border-zinc-100 dark:border-zinc-900 px-4 last:border-b-0">

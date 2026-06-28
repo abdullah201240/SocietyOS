@@ -97,7 +97,7 @@ export function PricingSection() {
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`rounded-lg border flex flex-col justify-between p-1.5 shadow-none transition-all ${
+              className={`border flex flex-col justify-between p-1.5 shadow-none ${
                 plan.variant === "highlight"
                   ? "border-indigo-650 dark:border-indigo-500 bg-indigo-50/10 dark:bg-indigo-950/10 ring-1 ring-indigo-650 dark:ring-indigo-500"
                   : "border-zinc-200 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 hover:border-zinc-300 dark:hover:border-zinc-700"

@@ -40,7 +40,7 @@ export function DashboardPreviewSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT: Main Dashboard Card (8 Columns) */}
-          <div className="lg:col-span-8 w-full rounded-xl border border-zinc-200/60 bg-gradient-to-br from-white to-zinc-50/50 shadow-lg shadow-zinc-200/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 dark:shadow-zinc-950/50 overflow-hidden xoss-slide-up">
+          <div className="lg:col-span-8 w-full border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 overflow-hidden">
             {/* Console topbar */}
             <div className="flex h-14 items-center justify-between border-b border-zinc-200/60 bg-zinc-50/80 backdrop-blur-sm px-5 dark:border-zinc-800/60 dark:bg-zinc-950/60">
               <div className="flex items-center gap-2 text-xs font-semibold text-zinc-850 dark:text-zinc-250">
@@ -57,7 +57,7 @@ export function DashboardPreviewSection() {
 
             {/* Core Summary Metrics */}
             <div className="p-5 sm:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 border-b border-zinc-200/60 dark:border-zinc-800/60">
-              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 rounded-lg transition-all">
+              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 transition-all">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Complaints Stat</span>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-baseline gap-2">
                   <span>4 Open</span>
@@ -69,7 +69,7 @@ export function DashboardPreviewSection() {
                 </div>
               </div>
 
-              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 rounded-lg transition-all">
+              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 transition-all">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Maintenance Progress</span>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">88.5%</div>
                 <div className="text-[10px] text-zinc-500 flex items-center gap-1.5">
@@ -78,7 +78,7 @@ export function DashboardPreviewSection() {
                 </div>
               </div>
 
-              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 rounded-lg transition-all">
+              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 transition-all">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Collection Dues</span>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">96.4%</div>
                 <div className="text-[10px] text-zinc-500 flex items-center gap-1.5">
@@ -87,7 +87,7 @@ export function DashboardPreviewSection() {
                 </div>
               </div>
 
-              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 rounded-lg transition-all">
+              <div className="space-y-2 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-3 transition-all">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Active Residents</span>
                 <div className="text-lg font-bold text-zinc-900 dark:text-zinc-100">1,248</div>
                 <div className="text-[10px] text-zinc-500 flex items-center gap-1.5">
@@ -171,13 +171,13 @@ export function DashboardPreviewSection() {
           <div className="lg:col-span-4 w-full flex flex-col gap-4">
             
             {/* Widget 1: Pending Complaints */}
-            <Card className="rounded-xl border border-zinc-200/60 shadow-sm bg-gradient-to-br from-white to-zinc-50/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 p-4 space-y-3 hover:shadow-md transition-all duration-200 xoss-slide-up" style={{ animationDelay: '0.1s' }}>
+            <Card className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 p-4 space-y-3 hover:shadow-md transition-all duration-200" style={{ animationDelay: '0.1s' }}>
               <div className="flex items-center justify-between text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><AlertCircle className="h-4 w-4 text-zinc-500" /> Pending Complaints</span>
                 <span className="text-[9px] font-medium text-rose-600">2 Critical</span>
               </div>
               <div className="space-y-2 text-[11px]">
-                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 rounded-lg transition-all cursor-pointer">
+                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 transition-all cursor-pointer">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Elevator B Brake malfunction</span>
                   <Badge variant="outline" className="text-[8px] px-1.5 py-0.5 border-rose-200/60 text-rose-700 bg-rose-50/80 dark:border-rose-900/60 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">High</Badge>
                 </div>
@@ -189,13 +189,13 @@ export function DashboardPreviewSection() {
             </Card>
 
             {/* Widget 2: Today's Maintenance Tasks */}
-            <Card className="rounded-xl border border-zinc-200/60 shadow-sm bg-gradient-to-br from-white to-zinc-50/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 p-4 space-y-3 hover:shadow-md transition-all duration-200 xoss-slide-up" style={{ animationDelay: '0.15s' }}>
+            <Card className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 p-4 space-y-3 hover:shadow-md transition-all duration-200" style={{ animationDelay: '0.15s' }}>
               <div className="flex items-center justify-between text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><Wrench className="h-4 w-4 text-zinc-500" /> Dispatch Tasks</span>
                 <span className="text-[9px] font-medium text-zinc-500">4 Remaining</span>
               </div>
               <div className="space-y-2 text-[11px]">
-                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 rounded-lg transition-all cursor-pointer">
+                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 transition-all cursor-pointer">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Fire safety inspection - T2</span>
                   <span className="text-[9px] text-amber-600 font-medium">In Progress</span>
                 </div>
@@ -207,7 +207,7 @@ export function DashboardPreviewSection() {
             </Card>
 
             {/* Widget 3: Parking Occupancy */}
-            <Card className="rounded-xl border border-zinc-200/60 shadow-sm bg-gradient-to-br from-white to-zinc-50/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 p-4 space-y-3 hover:shadow-md transition-all duration-200 xoss-slide-up" style={{ animationDelay: '0.2s' }}>
+            <Card className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 p-4 space-y-3 hover:shadow-md transition-all duration-200" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><Car className="h-4 w-4 text-zinc-500" /> Parking Occupancy</span>
                 <span className="text-[10px] font-semibold text-zinc-700 dark:text-zinc-300">82.3% Filled</span>
@@ -231,13 +231,13 @@ export function DashboardPreviewSection() {
             </Card>
 
             {/* Widget 4: Pending Utility Payments */}
-            <Card className="rounded-xl border border-zinc-200/60 shadow-sm bg-gradient-to-br from-white to-zinc-50/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 p-4 space-y-3 hover:shadow-md transition-all duration-200 xoss-slide-up" style={{ animationDelay: '0.25s' }}>
+            <Card className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 p-4 space-y-3 hover:shadow-md transition-all duration-200" style={{ animationDelay: '0.25s' }}>
               <div className="flex items-center justify-between text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><CreditCard className="h-4 w-4 text-zinc-500" /> Pending Utilities</span>
                 <span className="text-[10px] font-semibold text-zinc-700 dark:text-zinc-300">5 Accounts</span>
               </div>
               <div className="space-y-2 text-[11px]">
-                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 rounded-lg transition-all cursor-pointer">
+                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 transition-all cursor-pointer">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Unit 803 • Water & Waste Dues</span>
                   <span className="font-bold text-zinc-800 dark:text-zinc-200">$45.00</span>
                 </div>
@@ -249,13 +249,13 @@ export function DashboardPreviewSection() {
             </Card>
 
             {/* Widget 5: Recent Visitor Entries */}
-            <Card className="rounded-xl border border-zinc-200/60 shadow-sm bg-gradient-to-br from-white to-zinc-50/50 dark:border-zinc-800/60 dark:bg-gradient-to-br dark:from-zinc-950/60 dark:to-zinc-900/40 p-4 space-y-3 hover:shadow-md transition-all duration-200 xoss-slide-up" style={{ animationDelay: '0.3s' }}>
+            <Card className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-950/60 p-4 space-y-3 hover:shadow-md transition-all duration-200" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-center justify-between text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><Users className="h-4 w-4 text-zinc-500" /> Live Gate Passes</span>
                 <span className="text-[10px] font-semibold text-zinc-700 dark:text-zinc-300">Gate #2</span>
               </div>
               <div className="space-y-2 text-[11px]">
-                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 rounded-lg transition-all cursor-pointer">
+                <div className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-900 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 px-2 transition-all cursor-pointer">
                   <div>
                     <div className="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Sarah Connor</div>
                     <div className="text-[9px] text-zinc-500 mt-0.5">Visitor • Guest Check-Out</div>

@@ -56,122 +56,23 @@ import {
   Flame,
   FileText,
 } from "lucide-react";
-
-// Types
-interface ComplaintTicket {
-  id: string; // e.g. #T-1002
-  residentName: string;
-  flatNumber: string;
-  buildingName: string;
-  category: "Plumbing" | "Electrical" | "Elevator" | "Facilities" | "Safety" | "HVAC" | "Comms";
-  priority: "Critical" | "High" | "Medium" | "Low";
-  assignee: string;
-  status: "Open" | "In Progress" | "Resolved" | "Escalated";
-  createdDate: string;
-  slaDeadline: string;
-  description: string;
-  images: string[];
-  timeline: { title: string; desc: string; date: string }[];
-  technicianNotes?: string;
-  comments: { sender: string; role: string; message: string; time: string }[];
-  residentFeedback?: string;
-  residentRating?: number;
-}
+import { useComplaints, complaintsApi } from "@/lib/api";
+import type { Complaint } from "@/lib/api";
 
 export default function ComplaintsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Complaint Tickets
-  const [tickets, setTickets] = React.useState<ComplaintTicket[]>([
-    {
-      id: "T-1024",
-      residentName: "Harold Brooks",
-      flatNumber: "1402",
-      buildingName: "Tower Alpha",
-      category: "Comms",
-      priority: "Medium",
-      assignee: "Steve Rogers",
-      status: "Open",
-      createdDate: "2026-06-25",
-      slaDeadline: "2026-06-26 12:00 PM",
-      description: "Intercom line dead since morning. No dial tone, cannot dial lobby or security gate.",
-      images: ["Lobby Intercom Panel (Front View)"],
-      timeline: [
-        { title: "Ticket Created", desc: "Resident raised a ticket online.", date: "2026-06-25, 08:30 AM" },
-        { title: "Dispatched Operator", desc: "Assigned technician Steve Rogers for diagnostic inspection.", date: "2026-06-25, 09:15 AM" }
-      ],
-      comments: [
-        { sender: "Harold Brooks", role: "Resident", message: "Need this resolved quickly, delivery drivers cannot reach me.", time: "2026-06-25, 10:00 AM" }
-      ]
-    },
-    {
-      id: "T-1025",
-      residentName: "Sarah Connor",
-      flatNumber: "805",
-      buildingName: "Tower Alpha",
-      category: "Plumbing",
-      priority: "High",
-      assignee: "Bruce Banner",
-      status: "In Progress",
-      createdDate: "2026-06-28",
-      slaDeadline: "2026-06-28 06:00 PM",
-      description: "Low water pressure in the master bathroom shower. Cold tap pressure is normal, only hot water line seems throttled.",
-      images: [],
-      timeline: [
-        { title: "Ticket Created", desc: "Resident raised a ticket via mobile app.", date: "2026-06-28, 08:00 AM" },
-        { title: "Status Updated", desc: "Technician Bruce Banner marked task In Progress.", date: "2026-06-28, 09:30 AM" }
-      ],
-      technicianNotes: "Checking block main vertical riser. Suspect airlock in heat loop line.",
-      comments: [
-        { sender: "Bruce Banner", role: "Technician", message: "Working on pressure diagnostics in basement L1 now.", time: "2026-06-28, 09:40 AM" }
-      ]
-    },
-    {
-      id: "T-1026",
-      residentName: "David Vance",
-      flatNumber: "1204",
-      buildingName: "Tower Alpha",
-      category: "Elevator",
-      priority: "Critical",
-      assignee: "Robert Downey",
-      status: "Escalated",
-      createdDate: "2026-06-28",
-      slaDeadline: "2026-06-28 11:30 AM",
-      description: "Lobby double door stuck closed. Interlocking mechanism failed. High priority safety risk.",
-      images: ["Safety Interlock Panel Stuck"],
-      timeline: [
-        { title: "Ticket Created", desc: "Emergency alarm raised by gate safety sensors.", date: "2026-06-28, 07:15 AM" },
-        { title: "Escalated", desc: "Automatic escalation triggered due to critical fire safety locks.", date: "2026-06-28, 08:15 AM" }
-      ],
-      technicianNotes: "Requires override panel keys from central security office.",
-      comments: [
-        { sender: "System", role: "Dispatcher", message: "Alert: SLA deadline exceeded. Escalating to Building Manager.", time: "2026-06-28, 11:30 AM" }
-      ]
-    },
-    {
-      id: "T-1020",
-      residentName: "Mark Wahlberg",
-      flatNumber: "604",
-      buildingName: "Tower Beta",
-      category: "Facilities",
-      priority: "Low",
-      assignee: "Natasha Romanoff",
-      status: "Resolved",
-      createdDate: "2026-06-24",
-      slaDeadline: "2026-06-25 05:00 PM",
-      description: "Balcony door slide alignment off track. Sliding handle keeps friction scrubbing the metal guide rail.",
-      images: [],
-      timeline: [
-        { title: "Ticket Created", desc: "Resident raised a ticket.", date: "2026-06-24, 10:00 AM" },
-        { title: "Completed", desc: "Realigned balancer guide wheels. Sliding is operational.", date: "2026-06-24, 02:30 PM" }
-      ],
-      technicianNotes: "Guide track cleared of sand debris. Balance screw tightened.",
-      comments: [],
-      residentFeedback: "Very fast fix. Doors are sliding perfectly fine now. Thank you!",
-      residentRating: 5
+  // Fetch complaints from API
+  const { complaints, loading, error, refetch } = useComplaints();
+  const [tickets, setTickets] = React.useState<Complaint[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (complaints) {
+      setTickets(complaints);
     }
-  ]);
+  }, [complaints]);
 
   // Form State
   const [newTicket, setNewTicket] = React.useState({
@@ -185,7 +86,7 @@ export default function ComplaintsPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedTicket, setSelectedTicket] = React.useState<ComplaintTicket | null>(null);
+  const [selectedTicket, setSelectedTicket] = React.useState<Complaint | null>(null);
 
   // Filter States
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -199,10 +100,9 @@ export default function ComplaintsPage() {
   // Dialog new comment state
   const [newComment, setNewComment] = React.useState("");
 
-  const handleCreateTicket = (e: React.FormEvent) => {
+  const handleCreateTicket = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: ComplaintTicket = {
-      id: `T-${1000 + tickets.length + 1}`,
+    const newComplaint: Omit<Complaint, 'id'> = {
       residentName: newTicket.residentName,
       flatNumber: newTicket.flatNumber,
       buildingName: newTicket.buildingName,
@@ -220,9 +120,15 @@ export default function ComplaintsPage() {
       comments: []
     };
 
-    setTickets((prev) => [created, ...prev]);
-    setCreateOpen(false);
-    toast.success(`Ticket #${created.id} raised successfully in queue!`);
+    const response = await complaintsApi.create(newComplaint);
+    if (response.success) {
+      setTickets((prev) => [response.data, ...prev]);
+      setCreateOpen(false);
+      toast.success(`Ticket #${response.data.id} raised successfully in queue!`);
+      refetch(); // Refresh data from API
+    } else {
+      toast.error(response.error || 'Failed to create ticket');
+    }
 
     // Reset Form
     setNewTicket({
@@ -237,41 +143,61 @@ export default function ComplaintsPage() {
   };
 
   // Dispatch Action
-  const handleResolveTicket = (id: string) => {
-    setTickets((prev) =>
-      prev.map((t) => {
-        if (t.id === id) {
-          return {
-            ...t,
-            status: "Resolved",
-            timeline: [...t.timeline, { title: "Completed", desc: "Resolved by manager request.", date: "Just now" }]
-          };
-        }
-        return t;
-      })
-    );
-    setSelectedTicket((prev) => prev && prev.id === id ? { ...prev, status: "Resolved" } : prev);
-    toast.success(`Ticket #${id} resolved successfully!`);
+  const handleResolveTicket = async (id: string) => {
+    const response = await complaintsApi.update(id, {
+      status: "Resolved",
+      timeline: [...(tickets.find(t => t.id === id)?.timeline || []), { title: "Completed", desc: "Resolved by manager request.", date: "Just now" }]
+    });
+    
+    if (response.success) {
+      setTickets((prev) =>
+        prev.map((t) => {
+          if (t.id === id) {
+            return {
+              ...t,
+              status: "Resolved",
+              timeline: [...t.timeline, { title: "Completed", desc: "Resolved by manager request.", date: "Just now" }]
+            };
+          }
+          return t;
+        })
+      );
+      setSelectedTicket((prev: Complaint | null) => prev && prev.id === id ? { ...prev, status: "Resolved" } : prev);
+      toast.success(`Ticket #${id} resolved successfully!`);
+      refetch();
+    } else {
+      toast.error(response.error || 'Failed to resolve ticket');
+    }
   };
 
-  const handleEscalateTicket = (id: string) => {
-    setTickets((prev) =>
-      prev.map((t) => {
-        if (t.id === id) {
-          return {
-            ...t,
-            status: "Escalated",
-            timeline: [...t.timeline, { title: "Escalated", desc: "Triggered priority supervisor dispatch.", date: "Just now" }]
-          };
-        }
-        return t;
-      })
-    );
-    setSelectedTicket((prev) => prev && prev.id === id ? { ...prev, status: "Escalated" } : prev);
-    toast.error(`Ticket #${id} escalated!`);
+  const handleEscalateTicket = async (id: string) => {
+    const response = await complaintsApi.update(id, {
+      status: "Escalated",
+      timeline: [...(tickets.find(t => t.id === id)?.timeline || []), { title: "Escalated", desc: "Triggered priority supervisor dispatch.", date: "Just now" }]
+    });
+    
+    if (response.success) {
+      setTickets((prev) =>
+        prev.map((t) => {
+          if (t.id === id) {
+            return {
+              ...t,
+              status: "Escalated",
+              timeline: [...t.timeline, { title: "Escalated", desc: "Triggered priority supervisor dispatch.", date: "Just now" }]
+            };
+          }
+          return t;
+        })
+      );
+      setSelectedTicket((prev: Complaint | null) => prev && prev.id === id ? { ...prev, status: "Escalated" } : prev);
+      toast.error(`Ticket #${id} escalated!`);
+      refetch();
+    } else {
+      toast.error(response.error || 'Failed to escalate ticket');
+    }
   };
 
-  const handleAddComment = (e: React.FormEvent, id: string) => {
+  const handleAddComment = async (e: React.FormEvent, id: string) => {
     e.preventDefault();
     if (!newComment.trim()) return;
 
@@ -282,18 +208,24 @@ export default function ComplaintsPage() {
       time: "Just now"
     };
 
-    setTickets((prev) =>
-      prev.map((t) => {
-        if (t.id === id) {
-          return { ...t, comments: [...t.comments, commentItem] };
-        }
-        return t;
-      })
-    );
+    const response = await complaintsApi.addComment(id, commentItem);
+    if (response.success) {
+      setTickets((prev) =>
+        prev.map((t) => {
+          if (t.id === id) {
+            return { ...t, comments: [...t.comments, commentItem] };
+          }
+          return t;
+        })
+      );
 
-    setSelectedTicket((prev) => prev && prev.id === id ? { ...prev, comments: [...prev.comments, commentItem] } : prev);
-    setNewComment("");
-    toast.success("Comment added to logs.");
+      setSelectedTicket((prev: Complaint | null) => prev && prev.id === id ? { ...prev, comments: [...prev.comments, commentItem] } : prev);
+      setNewComment("");
+      toast.success("Comment added to logs.");
+      refetch();
+    } else {
+      toast.error(response.error || 'Failed to add comment');
+    }
   };
 
   const handleExport = () => {

@@ -45,11 +45,11 @@ export function DashboardMockup() {
   };
 
   return (
-    <div className="w-full rounded-xl border border-zinc-200/80 bg-gradient-to-br from-zinc-50 to-zinc-100/50 shadow-lg shadow-zinc-200/50 overflow-hidden dark:border-zinc-800/80 dark:bg-gradient-to-br dark:from-zinc-950 dark:to-zinc-900/40 dark:shadow-zinc-950/50 xoss-scale-in">
+    <div className="w-full border border-zinc-200/80 bg-zinc-50 overflow-hidden dark:border-zinc-800/80 dark:bg-zinc-950">
       {/* App Header Mockup */}
       <div className="flex h-14 items-center justify-between border-b border-zinc-200/60 bg-white/80 backdrop-blur-sm px-5 dark:border-zinc-800/60 dark:bg-zinc-900/60">
         <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="flex h-6 w-6 items-center justify-center bg-zinc-50 dark:bg-zinc-900">
             <Building className="h-3 w-3 text-zinc-800 dark:text-zinc-200" />
           </div>
           <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">SocietyOS Console</span>
@@ -63,14 +63,14 @@ export function DashboardMockup() {
               type="text"
               placeholder="Search..."
               disabled
-              className="h-8 w-44 rounded-lg border border-zinc-200/80 bg-zinc-50/80 pl-8 pr-3 text-[11px] text-zinc-600 outline-none transition-all hover:bg-zinc-100/80 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 disabled:cursor-not-allowed dark:border-zinc-800/80 dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:bg-zinc-800/80"
+              className="h-8 w-44 border border-zinc-200/80 bg-zinc-50/80 pl-8 pr-3 text-[11px] text-zinc-600 outline-none transition-all hover:bg-zinc-100/80 focus:border-indigo-300 disabled:cursor-not-allowed dark:border-zinc-800/80 dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:bg-zinc-800/80"
             />
           </div>
           <Button variant="ghost" size="icon-xs" className="relative text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 dark:hover:text-zinc-200 dark:hover:bg-zinc-800 transition-all">
             <Bell className="h-4 w-4" />
             <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-indigo-500 xoss-pulse-soft" />
           </Button>
-          <div className="h-7 w-7 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 border-2 border-white dark:border-zinc-800 flex items-center justify-center text-[10px] font-bold text-white shadow-md cursor-pointer hover:scale-105 transition-transform">
+          <div className="h-7 w-7 bg-indigo-500 flex items-center justify-center text-[10px] font-bold text-white cursor-pointer">
             JD
           </div>
         </div>

@@ -33,7 +33,7 @@ export default function PaymentCenterPage() {
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Fetch payments from API
-  const { payments: paymentsFromApi, loading, error } = usePayments();
+  const { payments: paymentsFromApi, loading, error, refetch } = usePayments();
   const [payments, setPayments] = React.useState<PaymentType[]>([]);
 
   // Sync API data with local state
@@ -122,37 +122,59 @@ export default function PaymentCenterPage() {
                   </Badge>
                 </CardHeader>
                 <div className="overflow-x-auto w-full">
-                  <Table>
-                    <TableHeader className="bg-zinc-50/50">
-                      <TableRow>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Payment ID</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Flat/Unit</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Category</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-right h-8">Amount</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Timestamp</TableHead>
-                        <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Status</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {payments.map((pay) => (
-                        <TableRow key={pay.id}>
-                          <TableCell className="text-xs font-semibold py-2">{pay.id}</TableCell>
-                          <TableCell className="text-xs py-2">{pay.flatNumber}</TableCell>
-                          <TableCell className="text-xs py-2">
-                            <span className="block font-semibold text-zinc-800 dark:text-zinc-200">{pay.residentName}</span>
-                            <span className="text-[9.5px] text-zinc-450 block font-normal">{pay.buildingName}</span>
-                          </TableCell>
-                          <TableCell className="text-xs text-right font-bold py-2">${pay.amount.toLocaleString()}</TableCell>
-                          <TableCell className="text-[11px] text-zinc-500 text-center py-2">{pay.paymentDate}</TableCell>
-                          <TableCell className="text-center py-2">
-                            <span className="inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold border bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-450">
-                              {pay.status}
-                            </span>
-                          </TableCell>
+                  {loading ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400 select-none">
+                      <div className="h-6 w-6 animate-spin rounded-full border-2 border-zinc-200 border-t-indigo-600 dark:border-zinc-800 dark:border-t-indigo-400 mb-2" />
+                      <span className="text-xs font-semibold animate-pulse">Loading receipt ledger...</span>
+                    </div>
+                  ) : error ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center text-rose-500 select-none">
+                      <AlertCircle className="h-8 w-8 mb-2" />
+                      <span className="text-xs font-semibold">Failed to load payments</span>
+                      <span className="text-[10px] text-zinc-500 mt-0.5">{error}</span>
+                      <Button size="xs" variant="outline" className="mt-3 text-[10px] h-7 cursor-pointer" onClick={() => refetch()}>
+                        Retry Sync
+                      </Button>
+                    </div>
+                  ) : payments.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400 select-none">
+                      <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
+                      <span className="text-xs font-semibold">No payment records found</span>
+                      <span className="text-[10px] mt-0.5">Sync server records manually.</span>
+                    </div>
+                  ) : (
+                    <Table>
+                      <TableHeader className="bg-zinc-50/50">
+                        <TableRow>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Payment ID</TableHead>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Flat/Unit</TableHead>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 h-8">Category</TableHead>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-right h-8">Amount</TableHead>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Timestamp</TableHead>
+                          <TableHead className="text-[9px] uppercase font-bold text-zinc-500 text-center h-8">Status</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        {payments.map((pay) => (
+                          <TableRow key={pay.id}>
+                            <TableCell className="text-xs font-semibold py-2">{pay.id}</TableCell>
+                            <TableCell className="text-xs py-2">{pay.flatNumber}</TableCell>
+                            <TableCell className="text-xs py-2">
+                              <span className="block font-semibold text-zinc-800 dark:text-zinc-200">{pay.residentName}</span>
+                              <span className="text-[9.5px] text-zinc-450 block font-normal">{pay.buildingName}</span>
+                            </TableCell>
+                            <TableCell className="text-xs text-right font-bold py-2">${pay.amount.toLocaleString()}</TableCell>
+                            <TableCell className="text-[11px] text-zinc-500 text-center py-2">{pay.paymentDate}</TableCell>
+                            <TableCell className="text-center py-2">
+                              <span className="inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold border bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-450">
+                                {pay.status}
+                              </span>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  )}
                 </div>
               </Card>
 

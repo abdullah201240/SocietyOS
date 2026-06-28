@@ -1,6 +1,6 @@
 // ============================================================================
-// API Client - Centralized Data Access Layer
-// Simulates API calls with mock data (replace with real API endpoints later)
+// API Client - Centralized Data Access Layer with localStorage Persistence
+// Simulates API calls with mock data but persists mutations in localStorage
 // ============================================================================
 
 import type {
@@ -22,23 +22,59 @@ import type {
 } from './types';
 
 import {
-  buildingsData,
-  flatsData,
-  residentsData,
-  complaintsData,
-  maintenanceData,
-  invoicesData,
-  paymentsData,
-  parkingData,
-  visitorsData,
-  staffData,
-  userProfileData,
-  systemSettingsData
+  buildingsData as initialBuildings,
+  flatsData as initialFlats,
+  residentsData as initialResidents,
+  complaintsData as initialComplaints,
+  maintenanceData as initialMaintenance,
+  invoicesData as initialInvoices,
+  paymentsData as initialPayments,
+  parkingData as initialParking,
+  visitorsData as initialVisitors,
+  staffData as initialStaff,
+  userProfileData as initialUserProfile,
+  systemSettingsData as initialSystemSettings
 } from './data';
 
 // ============================================================================
-// Helper Functions
+// Helper Functions & Local Storage Sync
 // ============================================================================
+
+const isClient = typeof window !== 'undefined';
+
+function loadDb<T>(key: string, initialData: T): T {
+  if (!isClient) return initialData;
+  const data = localStorage.getItem(key);
+  if (!data) {
+    localStorage.setItem(key, JSON.stringify(initialData));
+    return initialData;
+  }
+  try {
+    return JSON.parse(data);
+  } catch {
+    return initialData;
+  }
+}
+
+function saveDb<T>(key: string, data: T) {
+  if (isClient) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+}
+
+// Memory database states
+const buildingsData = loadDb<Building[]>('buildingos_db_buildings', initialBuildings);
+const flatsData = loadDb<Flat[]>('buildingos_db_flats', initialFlats);
+const residentsData = loadDb<Resident[]>('buildingos_db_residents', initialResidents);
+const complaintsData = loadDb<Complaint[]>('buildingos_db_complaints', initialComplaints);
+const maintenanceData = loadDb<MaintenanceTask[]>('buildingos_db_maintenance', initialMaintenance);
+const invoicesData = loadDb<Invoice[]>('buildingos_db_invoices', initialInvoices);
+const paymentsData = loadDb<Payment[]>('buildingos_db_payments', initialPayments);
+const parkingData = loadDb<ParkingSlot[]>('buildingos_db_parking', initialParking);
+const visitorsData = loadDb<Visitor[]>('buildingos_db_visitors', initialVisitors);
+const staffData = loadDb<Staff[]>('buildingos_db_staff', initialStaff);
+const userProfileData = loadDb<UserProfile>('buildingos_db_userprofile', initialUserProfile);
+const systemSettingsData = loadDb<SystemSettings>('buildingos_db_settings', initialSystemSettings);
 
 // Simulate network delay
 const delay = (ms: number = 300) => new Promise(resolve => setTimeout(resolve, ms));
@@ -104,11 +140,13 @@ export const buildingsApi = {
 
   create: async (data: Omit<Building, 'id'>): Promise<ApiResponse<Building>> => {
     await delay();
+    const nextId = buildingsData.length > 0 ? Math.max(...buildingsData.map(b => b.id)) + 1 : 1;
     const newBuilding = {
       ...data,
-      id: Math.max(...buildingsData.map(b => b.id)) + 1
+      id: nextId
     };
     buildingsData.push(newBuilding);
+    saveDb('buildingos_db_buildings', buildingsData);
     return { success: true, data: cloneData(newBuilding), message: 'Building created' };
   },
 
@@ -119,6 +157,7 @@ export const buildingsApi = {
       return { success: false, data: null as any, error: 'Building not found' };
     }
     buildingsData[index] = { ...buildingsData[index], ...data };
+    saveDb('buildingos_db_buildings', buildingsData);
     return { success: true, data: cloneData(buildingsData[index]), message: 'Building updated' };
   },
 
@@ -129,6 +168,7 @@ export const buildingsApi = {
       return { success: false, data: undefined, error: 'Building not found' };
     }
     buildingsData.splice(index, 1);
+    saveDb('buildingos_db_buildings', buildingsData);
     return { success: true, data: undefined, message: 'Building deleted' };
   }
 };
@@ -166,11 +206,13 @@ export const flatsApi = {
 
   create: async (data: Omit<Flat, 'id'>): Promise<ApiResponse<Flat>> => {
     await delay();
+    const nextId = flatsData.length > 0 ? Math.max(...flatsData.map(f => f.id)) + 1 : 1;
     const newFlat = {
       ...data,
-      id: Math.max(...flatsData.map(f => f.id)) + 1
+      id: nextId
     };
     flatsData.push(newFlat);
+    saveDb('buildingos_db_flats', flatsData);
     return { success: true, data: cloneData(newFlat), message: 'Flat created' };
   },
 
@@ -181,6 +223,7 @@ export const flatsApi = {
       return { success: false, data: null as any, error: 'Flat not found' };
     }
     flatsData[index] = { ...flatsData[index], ...data };
+    saveDb('buildingos_db_flats', flatsData);
     return { success: true, data: cloneData(flatsData[index]), message: 'Flat updated' };
   },
 
@@ -191,6 +234,7 @@ export const flatsApi = {
       return { success: false, data: undefined, error: 'Flat not found' };
     }
     flatsData.splice(index, 1);
+    saveDb('buildingos_db_flats', flatsData);
     return { success: true, data: undefined, message: 'Flat deleted' };
   }
 };
@@ -228,11 +272,13 @@ export const residentsApi = {
 
   create: async (data: Omit<Resident, 'id'>): Promise<ApiResponse<Resident>> => {
     await delay();
+    const nextId = residentsData.length > 0 ? Math.max(...residentsData.map(r => r.id)) + 1 : 1;
     const newResident = {
       ...data,
-      id: Math.max(...residentsData.map(r => r.id)) + 1
+      id: nextId
     };
     residentsData.push(newResident);
+    saveDb('buildingos_db_residents', residentsData);
     return { success: true, data: cloneData(newResident), message: 'Resident created' };
   },
 
@@ -243,6 +289,7 @@ export const residentsApi = {
       return { success: false, data: null as any, error: 'Resident not found' };
     }
     residentsData[index] = { ...residentsData[index], ...data };
+    saveDb('buildingos_db_residents', residentsData);
     return { success: true, data: cloneData(residentsData[index]), message: 'Resident updated' };
   },
 
@@ -253,6 +300,7 @@ export const residentsApi = {
       return { success: false, data: undefined, error: 'Resident not found' };
     }
     residentsData.splice(index, 1);
+    saveDb('buildingos_db_residents', residentsData);
     return { success: true, data: undefined, message: 'Resident deleted' };
   }
 };
@@ -293,6 +341,7 @@ export const complaintsApi = {
     const newId = `T-${1000 + complaintsData.length + 1}`;
     const newComplaint = { ...data, id: newId };
     complaintsData.unshift(newComplaint);
+    saveDb('buildingos_db_complaints', complaintsData);
     return { success: true, data: cloneData(newComplaint), message: 'Complaint created' };
   },
 
@@ -303,6 +352,7 @@ export const complaintsApi = {
       return { success: false, data: null as any, error: 'Complaint not found' };
     }
     complaintsData[index] = { ...complaintsData[index], ...data };
+    saveDb('buildingos_db_complaints', complaintsData);
     return { success: true, data: cloneData(complaintsData[index]), message: 'Complaint updated' };
   },
 
@@ -313,6 +363,7 @@ export const complaintsApi = {
       return { success: false, data: undefined, error: 'Complaint not found' };
     }
     complaintsData.splice(index, 1);
+    saveDb('buildingos_db_complaints', complaintsData);
     return { success: true, data: undefined, message: 'Complaint deleted' };
   },
 
@@ -326,6 +377,7 @@ export const complaintsApi = {
       return { success: false, data: null as any, error: 'Complaint not found' };
     }
     complaintsData[index].comments.push(comment);
+    saveDb('buildingos_db_complaints', complaintsData);
     return {
       success: true,
       data: cloneData(complaintsData[index]),
@@ -367,11 +419,13 @@ export const maintenanceApi = {
 
   create: async (data: Omit<MaintenanceTask, 'id'>): Promise<ApiResponse<MaintenanceTask>> => {
     await delay();
+    const nextId = maintenanceData.length > 0 ? Math.max(...maintenanceData.map(t => t.id)) + 1 : 1;
     const newTask = {
       ...data,
-      id: Math.max(...maintenanceData.map(t => t.id)) + 1
+      id: nextId
     };
     maintenanceData.push(newTask);
+    saveDb('buildingos_db_maintenance', maintenanceData);
     return { success: true, data: cloneData(newTask), message: 'Task created' };
   },
 
@@ -382,6 +436,7 @@ export const maintenanceApi = {
       return { success: false, data: null as any, error: 'Task not found' };
     }
     maintenanceData[index] = { ...maintenanceData[index], ...data };
+    saveDb('buildingos_db_maintenance', maintenanceData);
     return { success: true, data: cloneData(maintenanceData[index]), message: 'Task updated' };
   },
 
@@ -392,6 +447,7 @@ export const maintenanceApi = {
       return { success: false, data: undefined, error: 'Task not found' };
     }
     maintenanceData.splice(index, 1);
+    saveDb('buildingos_db_maintenance', maintenanceData);
     return { success: true, data: undefined, message: 'Task deleted' };
   }
 };
@@ -432,6 +488,7 @@ export const invoicesApi = {
     const newId = `INV-${9000 + invoicesData.length + 1}`;
     const newInvoice = { ...data, id: newId };
     invoicesData.push(newInvoice);
+    saveDb('buildingos_db_invoices', invoicesData);
     return { success: true, data: cloneData(newInvoice), message: 'Invoice created' };
   },
 
@@ -442,6 +499,7 @@ export const invoicesApi = {
       return { success: false, data: null as any, error: 'Invoice not found' };
     }
     invoicesData[index] = { ...invoicesData[index], ...data };
+    saveDb('buildingos_db_invoices', invoicesData);
     return { success: true, data: cloneData(invoicesData[index]), message: 'Invoice updated' };
   },
 
@@ -452,6 +510,7 @@ export const invoicesApi = {
       return { success: false, data: undefined, error: 'Invoice not found' };
     }
     invoicesData.splice(index, 1);
+    saveDb('buildingos_db_invoices', invoicesData);
     return { success: true, data: undefined, message: 'Invoice deleted' };
   }
 };
@@ -492,6 +551,7 @@ export const paymentsApi = {
     const newId = `PAY-${5000 + paymentsData.length + 1}`;
     const newPayment = { ...data, id: newId };
     paymentsData.push(newPayment);
+    saveDb('buildingos_db_payments', paymentsData);
     return { success: true, data: cloneData(newPayment), message: 'Payment created' };
   }
 };
@@ -534,6 +594,7 @@ export const parkingApi = {
       return { success: false, data: null as any, error: 'Slot not found' };
     }
     parkingData[index] = { ...parkingData[index], ...data };
+    saveDb('buildingos_db_parking', parkingData);
     return { success: true, data: cloneData(parkingData[index]), message: 'Slot updated' };
   }
 };
@@ -574,6 +635,7 @@ export const visitorsApi = {
     const newId = `VIS-${1000 + visitorsData.length + 1}`;
     const newVisitor = { ...data, id: newId };
     visitorsData.unshift(newVisitor);
+    saveDb('buildingos_db_visitors', visitorsData);
     return { success: true, data: cloneData(newVisitor), message: 'Visitor created' };
   },
 
@@ -584,6 +646,7 @@ export const visitorsApi = {
       return { success: false, data: null as any, error: 'Visitor not found' };
     }
     visitorsData[index] = { ...visitorsData[index], ...data };
+    saveDb('buildingos_db_visitors', visitorsData);
     return { success: true, data: cloneData(visitorsData[index]), message: 'Visitor updated' };
   }
 };
@@ -624,6 +687,7 @@ export const staffApi = {
     const newId = `STF-${100 + staffData.length + 1}`;
     const newStaff = { ...data, id: newId };
     staffData.push(newStaff);
+    saveDb('buildingos_db_staff', staffData);
     return { success: true, data: cloneData(newStaff), message: 'Staff created' };
   },
 
@@ -634,6 +698,7 @@ export const staffApi = {
       return { success: false, data: null as any, error: 'Staff not found' };
     }
     staffData[index] = { ...staffData[index], ...data };
+    saveDb('buildingos_db_staff', staffData);
     return { success: true, data: cloneData(staffData[index]), message: 'Staff updated' };
   },
 
@@ -644,6 +709,7 @@ export const staffApi = {
       return { success: false, data: undefined, error: 'Staff not found' };
     }
     staffData.splice(index, 1);
+    saveDb('buildingos_db_staff', staffData);
     return { success: true, data: undefined, message: 'Staff deleted' };
   }
 };
@@ -660,6 +726,7 @@ export const userProfileApi = {
   update: async (data: Partial<UserProfile>): Promise<ApiResponse<UserProfile>> => {
     await delay();
     Object.assign(userProfileData, data, { updatedAt: new Date().toISOString() });
+    saveDb('buildingos_db_userprofile', userProfileData);
     return { success: true, data: cloneData(userProfileData), message: 'Profile updated' };
   }
 };
@@ -676,6 +743,7 @@ export const systemSettingsApi = {
   update: async (data: Partial<SystemSettings>): Promise<ApiResponse<SystemSettings>> => {
     await delay();
     Object.assign(systemSettingsData, data, { updatedAt: new Date().toISOString() });
+    saveDb('buildingos_db_settings', systemSettingsData);
     return { success: true, data: cloneData(systemSettingsData), message: 'Settings updated' };
   }
 };

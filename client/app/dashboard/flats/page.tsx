@@ -166,7 +166,31 @@ export default function FlatsPage() {
   };
 
   const handleExport = () => {
-    toast.success("Flat occupancy audit sheet downloaded as CSV.");
+    if (flats.length === 0) {
+      toast.error("No flats to export.");
+      return;
+    }
+    const headers = ["ID", "Flat Number", "Floor", "Building", "Owner", "Tenant Status", "Occupancy Status", "Utility Balance"];
+    const rows = flats.map(f => [
+      f.id,
+      `"${f.flatNumber}"`,
+      f.floor,
+      `"${f.buildingName.replace(/"/g, '""')}"`,
+      `"${f.ownerName.replace(/"/g, '""')}"`,
+      `"${f.tenantStatus}"`,
+      `"${f.occupancyStatus}"`,
+      f.utilityBalance
+    ]);
+    const csvContent = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `flats_occupancy_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success("Flat occupancy report downloaded successfully!");
   };
 
   // Filter Table List

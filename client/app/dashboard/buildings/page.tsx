@@ -177,7 +177,33 @@ export default function BuildingsPage() {
   };
 
   const handleExport = () => {
-    toast.success("Building infrastructure report downloaded as CSV.");
+    if (buildings.length === 0) {
+      toast.error("No buildings to export.");
+      return;
+    }
+    const headers = ["ID", "Name", "Group", "Type", "Floors", "Total Flats", "Occupied", "Maintenance", "Parking Util %", "Status"];
+    const rows = buildings.map(b => [
+      b.id,
+      `"${b.name.replace(/"/g, '""')}"`,
+      `"${b.buildingGroup.replace(/"/g, '""')}"`,
+      `"${b.type}"`,
+      b.floors,
+      b.totalFlats,
+      b.occupiedFlats,
+      `"${b.maintenanceStatus}"`,
+      b.parkingUtilization,
+      `"${b.operationalStatus}"`
+    ]);
+    const csvContent = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `buildings_report_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success("Building infrastructure report downloaded successfully!");
   };
 
   // Filter Table Records

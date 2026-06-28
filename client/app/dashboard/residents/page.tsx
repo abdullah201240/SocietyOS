@@ -170,7 +170,32 @@ export default function ResidentsPage() {
   };
 
   const handleExport = () => {
-    toast.success("Resident register list exported as CSV.");
+    if (residents.length === 0) {
+      toast.error("No residents to export.");
+      return;
+    }
+    const headers = ["ID", "Name", "Flat", "Building", "Phone", "Email", "Resident Type", "Family Members Count", "Status"];
+    const rows = residents.map(r => [
+      r.id,
+      `"${r.name.replace(/"/g, '""')}"`,
+      `"${r.flatNumber}"`,
+      `"${r.buildingName.replace(/"/g, '""')}"`,
+      `"${r.phone}"`,
+      `"${r.email}"`,
+      `"${r.residentType}"`,
+      r.familyMembers.length,
+      `"${r.operationalStatus}"`
+    ]);
+    const csvContent = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `residents_register_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success("Resident register list exported successfully!");
   };
 
   // Filter Table List

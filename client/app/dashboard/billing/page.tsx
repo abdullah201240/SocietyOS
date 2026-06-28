@@ -48,91 +48,23 @@ import {
   ShieldCheck,
   BellRing,
 } from "lucide-react";
-
-// Types
-interface InvoiceRecord {
-  id: string; // e.g. INV-9021
-  buildingGroup: string;
-  buildingName: string;
-  flatNumber: string;
-  residentName: string;
-  ownerName: string;
-  amount: number;
-  status: "Paid" | "Unpaid" | "Overdue";
-  dueDate: string;
-  utilityCharges: number;
-  maintenanceCharges: number;
-  otherCharges: number;
-  paymentMethod: string;
-}
+import { useInvoices, invoicesApi } from "@/lib/api";
+import type { Invoice as InvoiceType } from "@/lib/api";
 
 export default function GlobalBillingPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Global Billing Data
-  const [invoices, setInvoices] = React.useState<InvoiceRecord[]>([
-    {
-      id: "INV-9021",
-      buildingGroup: "Grandview Towers",
-      buildingName: "Tower Alpha",
-      flatNumber: "1402",
-      residentName: "Marcus Aurelius",
-      ownerName: "Arthur Pendragon",
-      amount: 1600,
-      status: "Paid",
-      dueDate: "2026-07-05",
-      utilityCharges: 80,
-      maintenanceCharges: 120,
-      otherCharges: 1400, // Rent
-      paymentMethod: "Bank Transfer"
-    },
-    {
-      id: "INV-9022",
-      buildingGroup: "Grandview Towers",
-      buildingName: "Tower Alpha",
-      flatNumber: "805",
-      residentName: "Sarah Connor",
-      ownerName: "Arthur Pendragon",
-      amount: 1375,
-      status: "Paid",
-      dueDate: "2026-07-05",
-      utilityCharges: 75,
-      maintenanceCharges: 100,
-      otherCharges: 1200,
-      paymentMethod: "Credit Card"
-    },
-    {
-      id: "INV-9023",
-      buildingGroup: "Grandview Towers",
-      buildingName: "Tower Alpha",
-      flatNumber: "302",
-      residentName: "Elena Rostova",
-      ownerName: "Arthur Pendragon",
-      amount: 1200,
-      status: "Overdue",
-      dueDate: "2026-06-20",
-      utilityCharges: 100,
-      maintenanceCharges: 100,
-      otherCharges: 1000,
-      paymentMethod: "None"
-    },
-    {
-      id: "INV-9024",
-      buildingGroup: "Meadow View Complex",
-      buildingName: "Oak Block",
-      flatNumber: "501",
-      residentName: "Arthur Dent",
-      ownerName: "Uther Lightbringer",
-      amount: 1100,
-      status: "Unpaid",
-      dueDate: "2026-07-05",
-      utilityCharges: 60,
-      maintenanceCharges: 90,
-      otherCharges: 950,
-      paymentMethod: "None"
+  // Fetch invoices from API
+  const { invoices: invoicesFromApi, loading, error, refetch } = useInvoices();
+  const [invoices, setInvoices] = React.useState<InvoiceType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (invoicesFromApi) {
+      setInvoices(invoicesFromApi);
     }
-  ]);
+  }, [invoicesFromApi]);
 
   // Form State
   const [newInvoice, setNewInvoice] = React.useState({
@@ -148,7 +80,7 @@ export default function GlobalBillingPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedInvoice, setSelectedInvoice] = React.useState<InvoiceRecord | null>(null);
+  const [selectedInvoice, setSelectedInvoice] = React.useState<InvoiceType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -156,10 +88,9 @@ export default function GlobalBillingPage() {
   const [filterBuildingGroup, setFilterBuildingGroup] = React.useState("All");
   const [filterBuilding, setFilterBuilding] = React.useState("All");
 
-  const handleGenerateInvoice = (e: React.FormEvent) => {
+  const handleGenerateInvoice = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: InvoiceRecord = {
-      id: `INV-${9000 + invoices.length + 1}`,
+    const newInvoiceData: Omit<InvoiceType, 'id'> = {
       buildingGroup: newInvoice.buildingGroup,
       buildingName: newInvoice.buildingName,
       flatNumber: newInvoice.flatNumber,
@@ -174,9 +105,15 @@ export default function GlobalBillingPage() {
       paymentMethod: "None"
     };
 
-    setInvoices((prev) => [created, ...prev]);
-    setCreateOpen(false);
-    toast.success(`Invoice "${created.id}" generated successfully.`);
+    const response = await invoicesApi.create(newInvoiceData);
+    if (response.success) {
+      setInvoices((prev) => [response.data, ...prev]);
+      setCreateOpen(false);
+      toast.success(`Invoice "${response.data.id}" generated successfully.`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to generate invoice");
+    }
 
     // Reset Form
     setNewInvoice({

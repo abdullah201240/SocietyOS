@@ -26,17 +26,23 @@ import {
   History,
   CheckCircle2,
 } from "lucide-react";
+import { usePayments } from "@/lib/api";
+import type { Payment as PaymentType } from "@/lib/api";
 
 export default function PaymentCenterPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Recent Payments Feed state
-  const [payments, setPayments] = React.useState([
-    { id: "PAY-301", type: "Resident Rent", flat: "Flat 1402", description: "Arthur Pendragon rent ledger", amount: 1400, date: "Today, 11:20 AM", status: "Completed" },
-    { id: "PAY-302", type: "Tenant Utility", flat: "Flat 805", description: "Sarah Connor utility invoice", amount: 175, date: "Today, 10:45 AM", status: "Completed" },
-    { id: "PAY-303", type: "Amenities Fee", flat: "Flat 201", description: "Guinevere Slytherin clubhouse booking", amount: 250, date: "Yesterday, 3:30 PM", status: "Completed" }
-  ]);
+  // Fetch payments from API
+  const { payments: paymentsFromApi, loading, error } = usePayments();
+  const [payments, setPayments] = React.useState<PaymentType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (paymentsFromApi) {
+      setPayments(paymentsFromApi);
+    }
+  }, [paymentsFromApi]);
 
   // Failed Payments state
   const [failedPayments, setFailedPayments] = React.useState([
@@ -54,20 +60,8 @@ export default function PaymentCenterPage() {
     toast.loading("Retrying payment collection...");
     setTimeout(() => {
       setFailedPayments((prev) => prev.filter((p) => p.id !== id));
-      setPayments((prev) => [
-        {
-          id,
-          type: "Retried Payment",
-          flat: "Flat Unit",
-          description: "Successful collection retry",
-          amount,
-          date: "Just now",
-          status: "Completed"
-        },
-        ...prev
-      ]);
       toast.dismiss();
-      toast.success(`Payment collection for ${amount} completed successfully!`);
+      toast.success(`Payment collection for $${amount} completed successfully!`);
     }, 800);
   };
 
@@ -144,13 +138,13 @@ export default function PaymentCenterPage() {
                       {payments.map((pay) => (
                         <TableRow key={pay.id}>
                           <TableCell className="text-xs font-semibold py-2">{pay.id}</TableCell>
-                          <TableCell className="text-xs py-2">{pay.flat}</TableCell>
+                          <TableCell className="text-xs py-2">{pay.flatNumber}</TableCell>
                           <TableCell className="text-xs py-2">
-                            <span className="block font-semibold text-zinc-800 dark:text-zinc-200">{pay.type}</span>
-                            <span className="text-[9.5px] text-zinc-450 block font-normal">{pay.description}</span>
+                            <span className="block font-semibold text-zinc-800 dark:text-zinc-200">{pay.residentName}</span>
+                            <span className="text-[9.5px] text-zinc-450 block font-normal">{pay.buildingName}</span>
                           </TableCell>
                           <TableCell className="text-xs text-right font-bold py-2">${pay.amount.toLocaleString()}</TableCell>
-                          <TableCell className="text-[11px] text-zinc-500 text-center py-2">{pay.date}</TableCell>
+                          <TableCell className="text-[11px] text-zinc-500 text-center py-2">{pay.paymentDate}</TableCell>
                           <TableCell className="text-center py-2">
                             <span className="inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold border bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-450">
                               {pay.status}

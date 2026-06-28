@@ -52,104 +52,23 @@ import {
   FileText,
   Key,
 } from "lucide-react";
-
-// Types
-interface VisitorRecord {
-  id: string; // e.g. VIS-1002
-  name: string;
-  hostName: string;
-  flatNumber: string;
-  buildingName: string;
-  purpose: "Delivery" | "Guest" | "Maintenance" | "Emergency" | "Other";
-  entryTime: string;
-  exitTime: string;
-  status: "Approved" | "Pending" | "Rejected" | "Checked-in";
-  verificationStatus: "Verified (OTP)" | "Verified (Manual)" | "Pending" | "Failed";
-  vehicleNumber: string;
-  timeline: { title: string; time: string; note: string }[];
-  incidentNotes?: string;
-  securityApprovalLog: string[];
-}
+import { useVisitors, visitorsApi } from "@/lib/api";
+import type { Visitor as VisitorType } from "@/lib/api";
 
 export default function VisitorsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Visitor Records
-  const [visitors, setVisitors] = React.useState<VisitorRecord[]>([
-    {
-      id: "VIS-1082",
-      name: "Marcus Aurelius",
-      hostName: "Harold Brooks",
-      flatNumber: "1402",
-      buildingName: "Tower Alpha",
-      purpose: "Guest",
-      entryTime: "10:30 AM",
-      exitTime: "Active",
-      status: "Checked-in",
-      verificationStatus: "Verified (OTP)",
-      vehicleNumber: "ROM-77BC",
-      timeline: [
-        { title: "Pre-Approval Requested", time: "09:00 AM", note: "Harold Brooks generated visitor pass key." },
-        { title: "OTP Verified", time: "10:25 AM", note: "OTP verified at Main Gate A." },
-        { title: "Checked-in", time: "10:30 AM", note: "Passed vehicle check. Entry allowed." }
-      ],
-      securityApprovalLog: ["Lobby Guard Marcus checked ID proof."]
-    },
-    {
-      id: "VIS-1083",
-      name: "FedEx Express (John)",
-      hostName: "Sarah Connor",
-      flatNumber: "805",
-      buildingName: "Tower Alpha",
-      purpose: "Delivery",
-      entryTime: "11:20 AM",
-      exitTime: "11:35 AM",
-      status: "Approved",
-      verificationStatus: "Verified (Manual)",
-      vehicleNumber: "FED-400X",
-      timeline: [
-        { title: "Manual Checkin", time: "11:20 AM", note: "Host resident verbally confirmed delivery request." },
-        { title: "Checked-out", time: "11:35 AM", note: "Delivery completed. Guard logged exit." }
-      ],
-      securityApprovalLog: ["Verbal confirmation call logged."]
-    },
-    {
-      id: "VIS-1084",
-      name: "Acme Plumbing (Dave)",
-      hostName: "David Vance",
-      flatNumber: "1204",
-      buildingName: "Tower Alpha",
-      purpose: "Maintenance",
-      entryTime: "Pending",
-      exitTime: "Pending",
-      status: "Pending",
-      verificationStatus: "Pending",
-      vehicleNumber: "N/A",
-      timeline: [
-        { title: "Request Pending", time: "08:15 AM", note: "Awaiting resident confirmation verification." }
-      ],
-      securityApprovalLog: []
-    },
-    {
-      id: "VIS-1080",
-      name: "Arthur Dent",
-      hostName: "Elena Rostova",
-      flatNumber: "302",
-      buildingName: "Tower Beta",
-      purpose: "Other",
-      entryTime: "02:00 PM",
-      exitTime: "02:15 PM",
-      status: "Rejected",
-      verificationStatus: "Failed",
-      vehicleNumber: "N/A",
-      timeline: [
-        { title: "Declined", time: "02:00 PM", note: "Resident Elena Rostova declined access request." }
-      ],
-      incidentNotes: "Visitor claimed to have lost his towel. Security guard escorted off premises.",
-      securityApprovalLog: []
+  // Fetch visitors from API
+  const { visitors: visitorsFromApi, loading, error, refetch } = useVisitors();
+  const [visitors, setVisitors] = React.useState<VisitorType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (visitorsFromApi) {
+      setVisitors(visitorsFromApi);
     }
-  ]);
+  }, [visitorsFromApi]);
 
   // Form State
   const [newVisitor, setNewVisitor] = React.useState({
@@ -162,7 +81,7 @@ export default function VisitorsPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedVisitor, setSelectedVisitor] = React.useState<VisitorRecord | null>(null);
+  const [selectedVisitor, setSelectedVisitor] = React.useState<VisitorType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -171,10 +90,9 @@ export default function VisitorsPage() {
   const [filterType, setFilterType] = React.useState("All"); // Purpose
   const [filterSecurity, setFilterSecurity] = React.useState("All"); // Verification status
 
-  const handlePreApprove = (e: React.FormEvent) => {
+  const handlePreApprove = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: VisitorRecord = {
-      id: `VIS-${1000 + visitors.length + 1}`,
+    const newVisitorData: Omit<VisitorType, 'id'> = {
       name: newVisitor.name,
       hostName: newVisitor.hostName,
       flatNumber: newVisitor.flatNumber,
@@ -191,9 +109,15 @@ export default function VisitorsPage() {
       securityApprovalLog: ["Pre-approved by host resident."]
     };
 
-    setVisitors((prev) => [created, ...prev]);
-    setCreateOpen(false);
-    toast.success(`Visitor Pre-Approved! Pass OTP sent to ${created.name}`);
+    const response = await visitorsApi.create(newVisitorData);
+    if (response.success) {
+      setVisitors((prev) => [response.data, ...prev]);
+      setCreateOpen(false);
+      toast.success(`Visitor Pre-Approved! Pass OTP sent to ${response.data.name}`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to pre-approve visitor");
+    }
 
     // Reset Form
     setNewVisitor({

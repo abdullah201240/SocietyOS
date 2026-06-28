@@ -51,137 +51,23 @@ import {
   FileText,
   DollarSign,
 } from "lucide-react";
-
-// Types
-interface ParkingSlot {
-  id: string; // e.g. Slot L1-42
-  slotNumber: string;
-  buildingName: string;
-  flatNumber: string;
-  residentName: string;
-  vehicleType: "Sedan" | "SUV" | "Motorcycle" | "EV Hatchback" | "None";
-  vehicleNumber: string; // license plate or N/A
-  category: "Resident" | "Visitor" | "Reserved" | "Staff";
-  occupancyStatus: "Occupied" | "Available" | "Reserved" | "Violation";
-  paymentStatus: "Paid" | "Pending" | "Unpaid";
-  parkingHistory: { vehicleNumber: string; checkIn: string; checkOut: string }[];
-  visitorActivity: { visitorName: string; purpose: string; date: string }[];
-  securityLogs: { time: string; event: string; guard: string }[];
-}
+import { useParking, parkingApi } from "@/lib/api";
+import type { ParkingSlot as ParkingSlotType } from "@/lib/api";
 
 export default function ParkingPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Parking Data
-  const [slots, setSlots] = React.useState<ParkingSlot[]>([
-    {
-      id: "Slot L1-42",
-      slotNumber: "L1-42",
-      buildingName: "Tower Alpha",
-      flatNumber: "1402",
-      residentName: "Harold Brooks",
-      vehicleType: "SUV",
-      vehicleNumber: "CA-9Y12",
-      category: "Resident",
-      occupancyStatus: "Occupied",
-      paymentStatus: "Paid",
-      parkingHistory: [
-        { vehicleNumber: "CA-9Y12", checkIn: "2026-06-27, 06:10 PM", checkOut: "Active" }
-      ],
-      visitorActivity: [],
-      securityLogs: [
-        { time: "2026-06-27, 06:10 PM", event: "Automated RFID Gate entry logged", guard: "System" }
-      ]
-    },
-    {
-      id: "Slot L2-19",
-      slotNumber: "L2-19",
-      buildingName: "Tower Alpha",
-      flatNumber: "805",
-      residentName: "Sarah Connor",
-      vehicleType: "Motorcycle",
-      vehicleNumber: "LA-4Z20",
-      category: "Resident",
-      occupancyStatus: "Occupied",
-      paymentStatus: "Paid",
-      parkingHistory: [
-        { vehicleNumber: "LA-4Z20", checkIn: "2026-06-28, 08:30 AM", checkOut: "Active" }
-      ],
-      visitorActivity: [
-        { visitorName: "John Connor", purpose: "Family", date: "2026-06-25" }
-      ],
-      securityLogs: []
-    },
-    {
-      id: "Slot L1-02",
-      slotNumber: "L1-02",
-      buildingName: "Tower Beta",
-      flatNumber: "604",
-      residentName: "Mark Wahlberg",
-      vehicleType: "SUV",
-      vehicleNumber: "MA-7X99",
-      category: "Reserved",
-      occupancyStatus: "Reserved",
-      paymentStatus: "Paid",
-      parkingHistory: [],
-      visitorActivity: [],
-      securityLogs: []
-    },
-    {
-      id: "Slot V-10",
-      slotNumber: "V-10",
-      buildingName: "Tower Alpha",
-      flatNumber: "N/A",
-      residentName: "Guest (Kyle)",
-      vehicleType: "Sedan",
-      vehicleNumber: "TX-3M10",
-      category: "Visitor",
-      occupancyStatus: "Occupied",
-      paymentStatus: "Pending",
-      parkingHistory: [
-        { vehicleNumber: "TX-3M10", checkIn: "Today, 10:30 AM", checkOut: "Active" }
-      ],
-      visitorActivity: [],
-      securityLogs: [
-        { time: "Today, 10:30 AM", event: "Visitor manual entry logged", guard: "Marcus" }
-      ]
-    },
-    {
-      id: "Slot L2-50",
-      slotNumber: "L2-50",
-      buildingName: "Tower Gamma",
-      flatNumber: "N/A",
-      residentName: "Unknown",
-      vehicleType: "Sedan",
-      vehicleNumber: "FL-8Y88",
-      category: "Resident",
-      occupancyStatus: "Violation",
-      paymentStatus: "Unpaid",
-      parkingHistory: [
-        { vehicleNumber: "FL-8Y88", checkIn: "Yesterday, 04:00 PM", checkOut: "Active" }
-      ],
-      visitorActivity: [],
-      securityLogs: [
-        { time: "Yesterday, 04:00 PM", event: "Unauthorized vehicle detected in resident slot without RFID tag", guard: "System" }
-      ]
-    },
-    {
-      id: "Slot L1-15",
-      slotNumber: "L1-15",
-      buildingName: "Tower Beta",
-      flatNumber: "None",
-      residentName: "Available",
-      vehicleType: "None",
-      vehicleNumber: "N/A",
-      category: "Resident",
-      occupancyStatus: "Available",
-      paymentStatus: "Paid",
-      parkingHistory: [],
-      visitorActivity: [],
-      securityLogs: []
+  // Fetch parking slots from API
+  const { slots: slotsFromApi, loading, error, refetch } = useParking();
+  const [slots, setSlots] = React.useState<ParkingSlotType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (slotsFromApi) {
+      setSlots(slotsFromApi);
     }
-  ]);
+  }, [slotsFromApi]);
 
   // Form State
   const [newSlot, setNewSlot] = React.useState({
@@ -196,7 +82,7 @@ export default function ParkingPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedSlot, setSelectedSlot] = React.useState<ParkingSlot | null>(null);
+  const [selectedSlot, setSelectedSlot] = React.useState<ParkingSlotType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -208,8 +94,7 @@ export default function ParkingPage() {
 
   const handleAssignSlot = (e: React.FormEvent) => {
     e.preventDefault();
-    const created: ParkingSlot = {
-      id: `Slot ${newSlot.slotNumber}`,
+    const newSlotData: Omit<ParkingSlotType, 'id'> = {
       slotNumber: newSlot.slotNumber,
       buildingName: newSlot.buildingName,
       flatNumber: newSlot.flatNumber || "N/A",
@@ -225,6 +110,11 @@ export default function ParkingPage() {
         { time: new Date().toLocaleString(), event: "Parking space allocated", guard: "John Doe" }
       ]
     };
+
+    const created: ParkingSlotType = {
+      ...newSlotData,
+      id: `Slot ${newSlot.slotNumber}`
+    } as ParkingSlotType;
 
     setSlots((prev) => [created, ...prev]);
     setCreateOpen(false);

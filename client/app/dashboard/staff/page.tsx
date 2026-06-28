@@ -51,94 +51,23 @@ import {
   ShieldCheck,
   Lock,
 } from "lucide-react";
-
-// Types
-interface StaffRecord {
-  id: string; // e.g. STF-102
-  name: string;
-  role: "admin" | "manager" | "security" | "maintenance" | "accountant" | "viewer";
-  department: string;
-  assignedBuilding: string;
-  shiftTiming: string;
-  activeTasks: number;
-  performanceStatus: "Optimal" | "Degraded" | "Warning";
-  accessLevel: "Root Level" | "Lobby Access" | "Financial Read" | "Maintenance Log" | "Read Only";
-  status: "Active" | "Inactive" | "On Shift" | "Overloaded";
-  phone: string;
-  email: string;
-  taskHistory: { taskName: string; status: "Completed" | "Pending"; date: string }[];
-  activityLogs: { action: string; timestamp: string }[];
-  permissions: string[];
-}
+import { useStaff, staffApi } from "@/lib/api";
+import type { Staff as StaffType } from "@/lib/api";
 
 export default function StaffPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Staff Records
-  const [staffList, setStaffList] = React.useState<StaffRecord[]>([
-    {
-      id: "STF-102",
-      name: "Marcus Stone",
-      role: "manager",
-      department: "Property Operations",
-      assignedBuilding: "Tower Alpha",
-      shiftTiming: "09:00 AM - 05:00 PM",
-      activeTasks: 3,
-      performanceStatus: "Optimal",
-      accessLevel: "Root Level",
-      status: "On Shift",
-      phone: "+1 555-0810",
-      email: "m.stone@buildingos.com",
-      taskHistory: [
-        { taskName: "Onboarded Grandview Towers Block East structure", status: "Completed", date: "2026-06-27" }
-      ],
-      activityLogs: [
-        { action: "Updated building metadata settings", timestamp: "Today, 10:00 AM" }
-      ],
-      permissions: ["Write: Societies", "Write: Buildings", "Assign Staff Roles", "Invoice Audit Logs"]
-    },
-    {
-      id: "STF-105",
-      name: "Bruce Banner",
-      role: "maintenance",
-      department: "Facilities & Plumbing",
-      assignedBuilding: "Tower Alpha",
-      shiftTiming: "08:00 AM - 04:00 PM",
-      activeTasks: 5,
-      performanceStatus: "Warning",
-      accessLevel: "Maintenance Log",
-      status: "Overloaded",
-      phone: "+1 555-0112",
-      email: "b.banner@buildingos.com",
-      taskHistory: [
-        { taskName: "Basement riser water pressure diagnostics", status: "Pending", date: "2026-06-28" }
-      ],
-      activityLogs: [
-        { action: "Marked plumbing ticket #T-1025 in progress", timestamp: "Today, 09:30 AM" }
-      ],
-      permissions: ["Write: Maintenance tickets", "Update meter readings"]
-    },
-    {
-      id: "STF-106",
-      name: "Steve Rogers",
-      role: "security",
-      department: "Gate Security & Patrol",
-      assignedBuilding: "Main Gate A",
-      shiftTiming: "12:00 PM - 08:00 PM",
-      activeTasks: 1,
-      performanceStatus: "Optimal",
-      accessLevel: "Lobby Access",
-      status: "Active",
-      phone: "+1 555-0199",
-      email: "s.rogers@buildingos.com",
-      taskHistory: [],
-      activityLogs: [
-        { action: "Verified OTP entry for guest Marcus Aurelius", timestamp: "Today, 10:25 AM" }
-      ],
-      permissions: ["Verify visitor OTP passes", "Log entry/exit checkouts"]
+  // Fetch staff from API
+  const { staff: staffFromApi, loading, error, refetch } = useStaff();
+  const [staffList, setStaffList] = React.useState<StaffType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (staffFromApi) {
+      setStaffList(staffFromApi);
     }
-  ]);
+  }, [staffFromApi]);
 
   // Form State
   const [newStaff, setNewStaff] = React.useState({
@@ -153,7 +82,7 @@ export default function StaffPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedStaff, setSelectedStaff] = React.useState<StaffRecord | null>(null);
+  const [selectedStaff, setSelectedStaff] = React.useState<StaffType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -162,10 +91,9 @@ export default function StaffPage() {
   const [filterBuilding, setFilterBuilding] = React.useState("All");
   const [filterDepartment, setFilterDepartment] = React.useState("All");
 
-  const handleAddStaff = (e: React.FormEvent) => {
+  const handleAddStaff = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: StaffRecord = {
-      id: `STF-${100 + staffList.length + 1}`,
+    const newStaffData: Omit<StaffType, 'id'> = {
       name: newStaff.name,
       role: newStaff.role,
       department: newStaff.department,
@@ -184,9 +112,15 @@ export default function StaffPage() {
       permissions: []
     };
 
-    setStaffList((prev) => [...prev, created]);
-    setCreateOpen(false);
-    toast.success(`Staff member "${created.name}" onboarded successfully!`);
+    const response = await staffApi.create(newStaffData);
+    if (response.success) {
+      setStaffList((prev) => [...prev, response.data]);
+      setCreateOpen(false);
+      toast.success(`Staff member "${response.data.name}" onboarded successfully!`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to add staff");
+    }
 
     // Reset Form
     setNewStaff({

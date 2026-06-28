@@ -39,108 +39,25 @@ import {
   Calendar,
   Activity,
 } from "lucide-react";
-
-// Types
-interface MaintenanceTask {
-  id: number;
-  title: string;
-  building: string;
-  category: "Elevator" | "Plumbing" | "Electrical" | "HVAC" | "Structural" | "Landscaping";
-  priority: "Critical" | "High" | "Medium" | "Low";
-  status: "Open" | "In Progress" | "Completed" | "On Hold";
-  assignedTo: string;
-  reportedDate: string;
-  dueDate: string;
-  estimatedCost: string;
-  description: string;
-}
+import { useMaintenance, maintenanceApi } from "@/lib/api";
+import type { MaintenanceTask as MaintenanceTaskType } from "@/lib/api";
 
 export default function MaintenancePage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [selectedTask, setSelectedTask] = React.useState<MaintenanceTask | null>(null);
+  const [selectedTask, setSelectedTask] = React.useState<MaintenanceTaskType | null>(null);
 
-  const maintenanceTasks: MaintenanceTask[] = [
-    {
-      id: 1,
-      title: "Elevator B - Annual Safety Inspection",
-      building: "Tower A",
-      category: "Elevator",
-      priority: "Critical",
-      status: "In Progress",
-      assignedTo: "Otis Maintenance Team",
-      reportedDate: "2026-06-25",
-      dueDate: "2026-06-30",
-      estimatedCost: "$2,500",
-      description: "Mandatory annual safety brake testing and certification for Elevator B.",
-    },
-    {
-      id: 2,
-      title: "Water Pump Replacement - Block C",
-      building: "Block C",
-      category: "Plumbing",
-      priority: "High",
-      status: "Open",
-      assignedTo: "Plumbing Services Inc.",
-      reportedDate: "2026-06-26",
-      dueDate: "2026-07-05",
-      estimatedCost: "$1,800",
-      description: "Main water pump showing signs of failure, requires immediate replacement.",
-    },
-    {
-      id: 3,
-      title: "HVAC System Filter Replacement",
-      building: "Common Area",
-      category: "HVAC",
-      priority: "Medium",
-      status: "Open",
-      assignedTo: "ClimateControl Ltd.",
-      reportedDate: "2026-06-27",
-      dueDate: "2026-07-10",
-      estimatedCost: "$450",
-      description: "Quarterly filter replacement for central HVAC system.",
-    },
-    {
-      id: 4,
-      title: "Parking Lot Pothole Repair",
-      building: "Parking Level 1",
-      category: "Structural",
-      priority: "Medium",
-      status: "In Progress",
-      assignedTo: "RoadFix Contractors",
-      reportedDate: "2026-06-20",
-      dueDate: "2026-07-01",
-      estimatedCost: "$800",
-      description: "Repair multiple potholes in parking level 1 near entrance.",
-    },
-    {
-      id: 5,
-      title: "Electrical Panel Upgrade - Tower D",
-      building: "Tower D",
-      category: "Electrical",
-      priority: "High",
-      status: "On Hold",
-      assignedTo: "PowerTech Electricians",
-      reportedDate: "2026-06-15",
-      dueDate: "2026-07-15",
-      estimatedCost: "$3,200",
-      description: "Upgrade electrical panel to support increased load from new EV charging stations.",
-    },
-    {
-      id: 6,
-      title: "Garden Irrigation System Maintenance",
-      building: "Grounds",
-      category: "Landscaping",
-      priority: "Low",
-      status: "Completed",
-      assignedTo: "GreenThumb Landscaping",
-      reportedDate: "2026-06-18",
-      dueDate: "2026-06-28",
-      estimatedCost: "$320",
-      description: "Seasonal maintenance of irrigation system and sprinkler heads.",
-    },
-  ];
+  // Fetch maintenance tasks from API
+  const { tasks: tasksFromApi, loading, error, refetch } = useMaintenance();
+  const [maintenanceTasks, setMaintenanceTasks] = React.useState<MaintenanceTaskType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (tasksFromApi) {
+      setMaintenanceTasks(tasksFromApi);
+    }
+  }, [tasksFromApi]);
 
   const stats = {
     total: maintenanceTasks.length,

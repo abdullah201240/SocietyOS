@@ -57,160 +57,23 @@ import {
   FileText,
   Phone,
 } from "lucide-react";
-
-// Types
-interface FlatRecord {
-  id: number;
-  flatNumber: string;
-  floor: string;
-  buildingName: string;
-  ownerName: string;
-  ownerPhone: string;
-  ownerEmail: string;
-  tenantStatus: "Self-Occupied" | "Tenant-Occupied" | "Vacant";
-  tenantName?: string;
-  tenantPhone?: string;
-  tenantEmail?: string;
-  occupancyStatus: "Occupied" | "Vacant";
-  utilityBalance: number; // positive is credit, negative is outstanding due
-  parkingAssignment: string; // Slot ID or "None"
-  activeComplaints: number;
-  rentAmount?: string;
-  leaseExpires?: string;
-  familyMembers: { name: string; relation: string; age: number }[];
-  emergencyContacts: { name: string; relation: string; phone: string }[];
-  maintenanceHistory: { id: number; ticket: string; date: string; status: string }[];
-}
+import { useFlats, flatsApi } from "@/lib/api";
+import type { Flat as FlatType } from "@/lib/api";
 
 export default function FlatsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Flat Records
-  const [flats, setFlats] = React.useState<FlatRecord[]>([
-    {
-      id: 1,
-      flatNumber: "1402",
-      floor: "14th Floor",
-      buildingName: "Tower Alpha",
-      ownerName: "Harold Brooks",
-      ownerPhone: "+1 555-0102",
-      ownerEmail: "h.brooks@gmail.com",
-      tenantStatus: "Self-Occupied",
-      occupancyStatus: "Occupied",
-      utilityBalance: -185.00,
-      parkingAssignment: "Slot L1-42",
-      activeComplaints: 1,
-      familyMembers: [
-        { name: "Linda Brooks", relation: "Spouse", age: 42 },
-        { name: "Tim Brooks", relation: "Son", age: 14 }
-      ],
-      emergencyContacts: [
-        { name: "Arthur Brooks", relation: "Brother", phone: "+1 555-0190" }
-      ],
-      maintenanceHistory: [
-        { id: 1, ticket: "Kitchen sink drain replacement", date: "2026-05-12", status: "Resolved" },
-        { id: 2, ticket: "Intercom line dead repair request", date: "2026-06-25", status: "Assigned" }
-      ]
-    },
-    {
-      id: 2,
-      flatNumber: "805",
-      floor: "8th Floor",
-      buildingName: "Tower Alpha",
-      ownerName: "Amit Patel",
-      ownerPhone: "+1 555-0145",
-      ownerEmail: "amit.patel@patelindustries.com",
-      tenantStatus: "Tenant-Occupied",
-      tenantName: "Sarah Connor",
-      tenantPhone: "+1 555-0212",
-      tenantEmail: "s.connor@cyberdyne.net",
-      occupancyStatus: "Occupied",
-      utilityBalance: -45.00,
-      parkingAssignment: "Slot L2-19",
-      activeComplaints: 1,
-      rentAmount: "$2,200 / month",
-      leaseExpires: "2027-04-30",
-      familyMembers: [
-        { name: "John Connor", relation: "Son", age: 10 }
-      ],
-      emergencyContacts: [
-        { name: "Dr. Silberman", relation: "Physician", phone: "+1 555-0900" }
-      ],
-      maintenanceHistory: [
-        { id: 1, ticket: "Master bathroom shower head replacement", date: "2026-04-20", status: "Resolved" },
-        { id: 2, ticket: "Water pressure drop diagnostics", date: "2026-06-28", status: "In Progress" }
-      ]
-    },
-    {
-      id: 3,
-      flatNumber: "302",
-      floor: "3rd Floor",
-      buildingName: "Tower Beta",
-      ownerName: "Elena Rostova",
-      ownerPhone: "+1 555-0352",
-      ownerEmail: "elena.r@meadowview.com",
-      tenantStatus: "Vacant",
-      occupancyStatus: "Vacant",
-      utilityBalance: 0.00,
-      parkingAssignment: "None",
-      activeComplaints: 0,
-      familyMembers: [],
-      emergencyContacts: [
-        { name: "Nikolai Rostov", relation: "Father", phone: "+1 555-0310" }
-      ],
-      maintenanceHistory: [
-        { id: 1, ticket: "Air conditioning coolant top-up", date: "2026-05-30", status: "Resolved" }
-      ]
-    },
-    {
-      id: 4,
-      flatNumber: "604",
-      floor: "6th Floor",
-      buildingName: "Tower Beta",
-      ownerName: "Thomas Brady",
-      ownerPhone: "+1 555-0812",
-      ownerEmail: "t.brady@nfl.org",
-      tenantStatus: "Tenant-Occupied",
-      tenantName: "Mark Wahlberg",
-      tenantPhone: "+1 555-0955",
-      tenantEmail: "marky.mark@ Wahlbergers.com",
-      occupancyStatus: "Occupied",
-      utilityBalance: 120.00,
-      parkingAssignment: "Slot L1-02",
-      activeComplaints: 0,
-      rentAmount: "$2,800 / month",
-      leaseExpires: "2026-12-31",
-      familyMembers: [
-        { name: "Rhea Wahlberg", relation: "Spouse", age: 38 }
-      ],
-      emergencyContacts: [
-        { name: "Donnie Wahlberg", relation: "Brother", phone: "+1 555-0921" }
-      ],
-      maintenanceHistory: [
-        { id: 1, ticket: "Balcony door slide alignment", date: "2026-02-15", status: "Resolved" }
-      ]
-    },
-    {
-      id: 5,
-      flatNumber: "1204",
-      floor: "12th Floor",
-      buildingName: "Tower Alpha",
-      ownerName: "David Vance",
-      ownerPhone: "+1 555-0105",
-      ownerEmail: "david.vance@techcorp.com",
-      tenantStatus: "Self-Occupied",
-      occupancyStatus: "Occupied",
-      utilityBalance: -250.00,
-      parkingAssignment: "Slot L2-05",
-      activeComplaints: 0,
-      familyMembers: [],
-      emergencyContacts: [
-        { name: "Janet Vance", relation: "Mother", phone: "+1 555-0111" }
-      ],
-      maintenanceHistory: []
+  // Fetch flats from API
+  const { flats: flatsFromApi, loading, error, refetch } = useFlats();
+  const [flats, setFlats] = React.useState<FlatType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (flatsFromApi) {
+      setFlats(flatsFromApi);
     }
-  ]);
+  }, [flatsFromApi]);
 
   // Form State
   const [newFlat, setNewFlat] = React.useState({
@@ -226,7 +89,7 @@ export default function FlatsPage() {
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
-  const [selectedFlat, setSelectedFlat] = React.useState<FlatRecord | null>(null);
+  const [selectedFlat, setSelectedFlat] = React.useState<FlatType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -236,10 +99,9 @@ export default function FlatsPage() {
   const [filterComplaints, setFilterComplaints] = React.useState("All");
 
   // Onboard new flat
-  const handleAddFlat = (e: React.FormEvent) => {
+  const handleAddFlat = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: FlatRecord = {
-      id: flats.length + 1,
+    const newFlatData: Omit<FlatType, 'id'> = {
       flatNumber: newFlat.flatNumber,
       floor: newFlat.floor,
       buildingName: newFlat.buildingName,
@@ -256,9 +118,15 @@ export default function FlatsPage() {
       maintenanceHistory: []
     };
 
-    setFlats((prev) => [...prev, created]);
-    setCreateOpen(false);
-    toast.success(`Flat Unit "${created.flatNumber}" onboarded successfully!`);
+    const response = await flatsApi.create(newFlatData);
+    if (response.success) {
+      setFlats((prev) => [...prev, response.data]);
+      setCreateOpen(false);
+      toast.success(`Flat Unit "${response.data.flatNumber}" onboarded successfully!`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to add flat");
+    }
 
     // Reset Form
     setNewFlat({
@@ -840,7 +708,7 @@ export default function FlatsPage() {
                       <span className="text-[10px] text-zinc-450 block italic">No family members registered.</span>
                     ) : (
                       <div className="grid grid-cols-2 gap-2">
-                        {selectedFlat.familyMembers.map((m, idx) => (
+                        {selectedFlat.familyMembers.map((m: { name: string; relation: string; age: number }, idx: number) => (
                           <div key={idx} className="rounded -150 p-2 bg-zinc-50/50 dark:bg-zinc-950/40">
                             <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">{m.name}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{m.relation} • {m.age} yrs</span>
@@ -858,7 +726,7 @@ export default function FlatsPage() {
                     <span className="text-[10px] text-zinc-450 block italic">No emergency contacts registered.</span>
                   ) : (
                     <div className="space-y-2">
-                      {selectedFlat.emergencyContacts.map((c, idx) => (
+                      {selectedFlat.emergencyContacts.map((c: { name: string; relation: string; phone: string }, idx: number) => (
                         <div key={idx} className="flex items-center gap-2.5 -150 rounded p-2.5">
                           <div className="h-6.5 w-6.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-zinc-450 flex items-center justify-center font-bold text-[10px]">
                             <User className="h-3.5 w-3.5" />
@@ -880,7 +748,7 @@ export default function FlatsPage() {
                     <span className="text-[10px] text-zinc-455 block italic">No past tickets reported from this unit.</span>
                   ) : (
                     <div className="space-y-2.5">
-                      {selectedFlat.maintenanceHistory.map((m) => (
+                      {selectedFlat.maintenanceHistory.map((m: { id: number; ticket: string; date: string; status: string }) => (
                         <div key={m.id} className="flex gap-2 text-xs -100 pb-2.5 last:0 last:pb-0">
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div className="min-w-0 flex-1">

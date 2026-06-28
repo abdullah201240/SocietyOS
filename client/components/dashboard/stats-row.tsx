@@ -21,8 +21,8 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
     : { total: 9, overdue: 1, scheduled: 8, trend: "1 task urgent" };
 
   const monthlyCollections = isGrandview
-    ? { amount: "$142,500", target: "$148,000", percent: 96.3, trend: "96.3% collected" }
-    : { amount: "$94,200", target: "$98,000", percent: 96.1, trend: "96.1% collected" };
+    ? { amount: "৳142,500", target: "৳148,000", percent: 96.3, trend: "96.3% collected" }
+    : { amount: "৳94,200", target: "৳98,000", percent: 96.1, trend: "96.1% collected" };
 
   const occupiedFlats = isGrandview
     ? { occupied: 312, total: 342, percent: 91.2, trend: "+1.2% this month" }

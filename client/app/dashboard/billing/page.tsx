@@ -510,7 +510,7 @@ export default function GlobalBillingPage() {
                                 {inv.ownerName}
                               </TableCell>
                               <TableCell className="text-xs font-bold text-right text-zinc-900 dark:text-white py-2.5">
-                                ${inv.amount.toLocaleString()}
+                                ৳{inv.amount.toLocaleString()}
                               </TableCell>
                               <TableCell className="text-center py-2.5">
                                 <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
@@ -571,6 +571,7 @@ export default function GlobalBillingPage() {
                     <div>
                       <span className="font-bold block">Invoice Overdue Warning</span>
                       <span className="text-[10px] block mt-0.5 leading-snug">This invoice is overdue by several days. Automated late fee rules have been enforced on the balance ledger.</span>
+                    </div>
                   </div>
                 )}
 
@@ -593,18 +594,21 @@ export default function GlobalBillingPage() {
                   <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-2">
                     <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
                       <span className="text-zinc-450">Maintenance Charges:</span>
-                      <span className="font-semibold">${selectedInvoice.maintenanceCharges}</span>
+                      <span className="font-semibold">৳{selectedInvoice.maintenanceCharges}</span>
+                    </div>
                     <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
                       <span className="text-zinc-450">Utility Charges:</span>
-                      <span className="font-semibold">${selectedInvoice.utilityCharges}</span>
+                      <span className="font-semibold">৳{selectedInvoice.utilityCharges}</span>
+                    </div>
                     <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
                       <span className="text-zinc-455">Other Surcharges (Rent):</span>
-                      <span className="font-semibold">${selectedInvoice.otherCharges}</span>
+                      <span className="font-semibold">৳{selectedInvoice.otherCharges}</span>
+                    </div>
                     <div className="flex justify-between pt-1 font-bold text-zinc-900 dark:text-white">
                       <span>Total Invoice Amount:</span>
-                      <span>${selectedInvoice.amount.toLocaleString()}</span>
+                      <span>৳{selectedInvoice.amount.toLocaleString()}</span>
+                    </div>
                   </div>
-                </div>
 
                 {/* 3. Transaction Details */}
                 <div className="space-y-2">
@@ -613,9 +617,11 @@ export default function GlobalBillingPage() {
                     <div className="flex justify-between">
                       <span>Payment Method:</span>
                       <span className="font-semibold">{selectedInvoice.paymentMethod}</span>
+                    </div>
                     <div className="flex justify-between">
                       <span>Due Date Deadline:</span>
                       <span className="font-semibold">{selectedInvoice.dueDate}</span>
+                    </div>
                   </div>
                 </div>
 

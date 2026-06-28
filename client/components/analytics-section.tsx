@@ -114,7 +114,7 @@ export function AnalyticsSection() {
               <div>
                 <span className="text-[8.5px] text-zinc-400 font-semibold block">MONTHLY COLLECTION RATE</span>
                 <div className="text-lg font-extrabold text-emerald-650 dark:text-emerald-400 mt-0.5">
-                  96.3% <span className="text-[10px] text-zinc-400 font-normal">($142,500 collected)</span>
+                  96.3% <span className="text-[10px] text-zinc-400 font-normal">(৳142,500 collected)</span>
                 </div>
               </div>
 
@@ -125,21 +125,21 @@ export function AnalyticsSection() {
                   <div className="flex justify-between py-1 -50">
                     <span className="font-medium text-zinc-600 dark:text-zinc-400">Unit 1402 • Water & Waste Dues</span>
                     <div className="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
-                      <span>$45.00</span>
+                      <span>৳45.00</span>
                       <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                     </div>
                   </div>
                   <div className="flex justify-between py-1 -50">
                     <span className="font-medium text-zinc-600 dark:text-zinc-400">Unit 811 • Parking Service Dues</span>
                     <div className="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
-                      <span>$50.00</span>
+                      <span>৳50.00</span>
                       <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                     </div>
                   </div>
                   <div className="flex justify-between py-1">
                     <span className="font-medium text-zinc-600 dark:text-zinc-400">Unit 305 • Generator Surcharge</span>
                     <div className="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
-                      <span>$112.50</span>
+                      <span>৳112.50</span>
                       <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
                     </div>
                   </div>

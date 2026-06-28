@@ -52,9 +52,9 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
 
   // 4. Recent Payments
   const payments = [
-    { id: 1, flat: "Flat 1402", description: "June Maintenance dues", amount: "$185.00", date: "Today, 11:20 AM", type: "Maintenance" },
-    { id: 2, flat: "Flat 805", description: "Water surcharge (Q2)", amount: "$45.00", date: "Today, 10:45 AM", type: "Utility" },
-    { id: 3, flat: "Flat 301", description: "Clubhouse event booking", amount: "$250.00", date: "Yesterday, 3:30 PM", type: "Amenities" },
+    { id: 1, flat: "Flat 1402", description: "June Maintenance dues", amount: "৳185.00", date: "Today, 11:20 AM", type: "Maintenance" },
+    { id: 2, flat: "Flat 805", description: "Water surcharge (Q2)", amount: "৳45.00", date: "Today, 10:45 AM", type: "Utility" },
+    { id: 3, flat: "Flat 301", description: "Clubhouse event booking", amount: "৳250.00", date: "Yesterday, 3:30 PM", type: "Amenities" },
   ];
 
   // 5. Visitor Activity Log

@@ -105,7 +105,7 @@ export default function OwnerFinancialDashboard() {
                 <span>Monthly Cashflow</span>
                 <DollarSign className="h-4 w-4 text-zinc-400" />
               </div>
-              <div className="mt-1 text-2xl font-bold tracking-tight">$29,200</div>
+              <div className="mt-1 text-2xl font-bold tracking-tight">৳29,200</div>
               <span className="text-[9px] text-zinc-400 block mt-1">Rent + service charges ledger</span>
             </Card>
 
@@ -114,7 +114,7 @@ export default function OwnerFinancialDashboard() {
                 <span>Outstanding Dues</span>
                 <AlertCircle className="h-4 w-4 text-rose-500" />
               </div>
-              <div className="mt-1 text-2xl font-bold tracking-tight text-rose-600 dark:text-rose-455">$2,050</div>
+              <div className="mt-1 text-2xl font-bold tracking-tight text-rose-600 dark:text-rose-455">৳2,050</div>
               <span className="text-[9px] text-rose-600 block mt-1">2 Overdue accounts</span>
             </Card>
 
@@ -123,7 +123,7 @@ export default function OwnerFinancialDashboard() {
                 <span>Collected Payments</span>
                 <TrendingUp className="h-4 w-4 text-emerald-500" />
               </div>
-              <div className="mt-1 text-2xl font-bold tracking-tight text-emerald-600 dark:text-emerald-450">$27,150</div>
+              <div className="mt-1 text-2xl font-bold tracking-tight text-emerald-600 dark:text-emerald-450">৳27,150</div>
               <span className="text-[9px] text-emerald-650 block mt-1">93% Portfolio collection rate</span>
             </Card>
 
@@ -166,10 +166,10 @@ export default function OwnerFinancialDashboard() {
                           <span className="text-[9px] text-zinc-400 font-normal">{item.building}</span>
                         </TableCell>
                         <TableCell className="text-xs py-2">{item.tenant}</TableCell>
-                        <TableCell className="text-xs text-right py-2">${item.rent}</TableCell>
-                        <TableCell className="text-xs text-right py-2">${item.charges}</TableCell>
-                        <TableCell className="text-xs text-right py-2">${item.utility}</TableCell>
-                        <TableCell className="text-xs text-right font-bold text-zinc-900 dark:text-white py-2">${item.total}</TableCell>
+                        <TableCell className="text-xs text-right py-2">৳{item.rent}</TableCell>
+                        <TableCell className="text-xs text-right py-2">৳{item.charges}</TableCell>
+                        <TableCell className="text-xs text-right py-2">৳{item.utility}</TableCell>
+                        <TableCell className="text-xs text-right font-bold text-zinc-900 dark:text-white py-2">৳{item.total}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -198,7 +198,7 @@ export default function OwnerFinancialDashboard() {
                     <TableRow key={txn.id}>
                       <TableCell className="text-xs font-semibold py-2">{txn.id}</TableCell>
                       <TableCell className="text-[11px] text-zinc-550 py-2">{txn.date}</TableCell>
-                      <TableCell className="text-xs text-right font-bold py-2">${txn.amount}</TableCell>
+                      <TableCell className="text-xs text-right font-bold py-2">৳{txn.amount}</TableCell>
                       <TableCell className="text-xs text-center py-2">{txn.method}</TableCell>
                       <TableCell className="text-center py-2">
                         <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold border ${
@@ -238,7 +238,7 @@ export default function OwnerFinancialDashboard() {
                         <span className="text-[9.5px] text-zinc-400 block font-normal">{due.building}</span>
                       </TableCell>
                       <TableCell className="text-xs py-2">{due.tenant}</TableCell>
-                      <TableCell className="text-xs text-right font-bold text-rose-650 py-2">${due.amount}</TableCell>
+                      <TableCell className="text-xs text-right font-bold text-rose-650 py-2">৳{due.amount}</TableCell>
                       <TableCell className="text-center py-2">
                         <Badge className="bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-455 text-[9px] font-bold rounded-sm">
                           {due.overdueDays} Days

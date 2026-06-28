@@ -155,13 +155,13 @@ export function MobileExperienceSection() {
                         <h4 className="text-[11px] font-bold text-zinc-800 dark:text-zinc-200 mb-2">Service Fee Ledger</h4>
                         <Card className="rounded-lg bg-indigo-600 p-3 text-white dark:bg-indigo-950/40 dark:text-indigo-400 mb-3 shadow-none ">
                           <span className="text-[7.5px] opacity-75 font-semibold">UNIT 1204</span>
-                          <div className="text-lg font-bold mt-0.5">$185.00</div>
+                          <div className="text-lg font-bold mt-0.5">৳185.00</div>
                           <div className="text-[7.5px] opacity-80 mt-1">Due Date: June 30, 2026</div>
                         </Card>
                         <div className="space-y-1.5 text-[9px]">
                           <div className="flex justify-between items-center py-1 -100">
                             <span className="text-zinc-500">Electricity Bill</span>
-                            <span className="font-semibold text-zinc-800 dark:text-zinc-200">$54.50</span>
+                            <span className="font-semibold text-zinc-800 dark:text-zinc-200">৳54.50</span>
                           </div>
                           <div className="flex justify-between items-center py-1">
                             <span className="text-zinc-500">Clubhouse Deposit</span>

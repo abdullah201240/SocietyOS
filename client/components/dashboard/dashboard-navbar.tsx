@@ -57,7 +57,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
   const [notifications, setNotifications] = React.useState([
     { id: 1, text: "New complaint filed for Flat 302 (Water leak)", time: "5m ago", unread: true },
     { id: 2, text: "Maintenance scheduled for Passenger Elevator A", time: "1h ago", unread: true },
-    { id: 3, text: "Payment of $185 received from Unit 1402", time: "2h ago", unread: false },
+    { id: 3, text: "Payment of ৳185 received from Unit 1402", time: "2h ago", unread: false },
   ]);
 
   const unreadCount = notifications.filter((n) => n.unread).length;

@@ -196,14 +196,14 @@ export default function UtilitiesPage() {
   const handleAddMeter = (e: React.FormEvent) => {
     e.preventDefault();
     const created: UtilityMeter = {
-      id: `MET-${newMeter.utilityType.substring(0,3).toUpperCase()}-${newMeter.flatNumber}`,
+      id: `MET-৳{newMeter.utilityType.substring(0,3).toUpperCase()}-৳{newMeter.flatNumber}`,
       utilityType: newMeter.utilityType,
       flatNumber: newMeter.flatNumber,
       buildingName: newMeter.buildingName,
       meterId: newMeter.meterId,
       currentReading: Number(newMeter.currentReading),
       previousReading: Number(newMeter.previousReading),
-      usageAmount: newMeter.usageAmount || `${Number(newMeter.currentReading) - Number(newMeter.previousReading)} units`,
+      usageAmount: newMeter.usageAmount || `৳{Number(newMeter.currentReading) - Number(newMeter.previousReading)} units`,
       billingAmount: Number(newMeter.billingAmount),
       paymentStatus: "Pending",
       dueDate: newMeter.dueDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
@@ -216,7 +216,7 @@ export default function UtilitiesPage() {
 
     setMeters((prev) => [created, ...prev]);
     setCreateOpen(false);
-    toast.success(`Meter entry registered for Flat ${created.flatNumber}`);
+    toast.success(`Meter entry registered for Flat ৳{created.flatNumber}`);
 
     // Reset Form
     setNewMeter({
@@ -419,7 +419,7 @@ export default function UtilitiesPage() {
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="u-amount" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Billing Amount ($)</Label>
+                        <Label htmlFor="u-amount" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Billing Amount (৳)</Label>
                         <Input
                           id="u-amount"
                           type="number"
@@ -462,7 +462,7 @@ export default function UtilitiesPage() {
                   <AlertCircle className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
                 <div className="mt-1.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${outstandingDues.toFixed(2)}</span>
+                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">৳{outstandingDues.toFixed(2)}</span>
               </div>
             </CardContent>
             </Card>
@@ -474,7 +474,7 @@ export default function UtilitiesPage() {
                   <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
                 </div>
                 <div className="mt-1.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${utilityRevenue.toFixed(2)}</span>
+                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">৳{utilityRevenue.toFixed(2)}</span>
               </div>
             </CardContent>
             </Card>
@@ -656,10 +656,10 @@ export default function UtilitiesPage() {
                               {m.usageAmount}
                             </TableCell>
                             <TableCell className="text-xs font-bold text-right text-zinc-900 dark:text-white py-2.5">
-                              ${m.billingAmount.toFixed(2)}
+                              ৳{m.billingAmount.toFixed(2)}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ৳{
                                 m.paymentStatus === "Paid"
                                   ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : m.paymentStatus === "Pending"
@@ -735,10 +735,10 @@ export default function UtilitiesPage() {
                   <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs space-y-2">
                     <div className="flex justify-between items-center text-zinc-500">
                       <span>Usage ({selectedMeter.usageAmount})</span>
-                      <span className="font-semibold text-zinc-800 dark:text-zinc-200">${selectedMeter.billingAmount.toFixed(2)}</span>
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-200">৳{selectedMeter.billingAmount.toFixed(2)}</span>
                     <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold -100 pt-2">
                       <span>Total Utility Amount</span>
-                      <span>${selectedMeter.billingAmount.toFixed(2)}</span>
+                      <span>৳{selectedMeter.billingAmount.toFixed(2)}</span>
                   </div>
                 </div>
 

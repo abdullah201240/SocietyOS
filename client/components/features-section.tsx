@@ -134,14 +134,14 @@ export function FeaturesSection() {
                 <div className="flex items-center justify-between text-[9px] bg-white p-1.5 rounded -100 dark:bg-zinc-900/60">
                   <span className="text-zinc-500 font-medium">Unit 402 Maintenance</span>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">$185.00</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200">৳185.00</span>
                     <span className="text-[8px] text-emerald-600 bg-emerald-50 px-1 py-0.2 rounded -100 dark:bg-emerald-950/20">Paid</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-[9px] bg-white p-1.5 rounded -100 dark:bg-zinc-900/60">
                   <span className="text-zinc-500 font-medium">Unit 811 Parking Fee</span>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">$50.00</span>
+                    <span className="font-bold text-zinc-800 dark:text-zinc-200">৳50.00</span>
                     <span className="text-[8px] text-amber-600 bg-amber-50 px-1 py-0.2 rounded -100 dark:bg-amber-950/20">Pending</span>
                   </div>
                 </div>

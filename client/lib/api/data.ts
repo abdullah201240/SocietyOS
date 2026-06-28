@@ -14,7 +14,13 @@ import type {
   Visitor,
   Staff,
   UserProfile,
-  SystemSettings
+  SystemSettings,
+  UtilityMeter,
+  UtilityBill,
+  GeneratorLog,
+  Announcement,
+  DocumentRecord,
+  InventoryAsset
 } from './types';
 
 // ============================================================================
@@ -785,3 +791,70 @@ export const systemSettingsData: SystemSettings = {
   createdAt: "2025-01-01T00:00:00Z",
   updatedAt: "2026-06-28T00:00:00Z"
 };
+
+// ============================================================================
+// Utility Meters Mock Data
+// ============================================================================
+export const utilityMetersData: UtilityMeter[] = [
+  { id: "MTR-101", flatNumber: "101", buildingName: "Tower Alpha", type: "Electricity", meterNumber: "E-EL-901A", lastReading: 12450, currentReading: 12680, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-102", flatNumber: "101", buildingName: "Tower Alpha", type: "Water", meterNumber: "W-WT-901B", lastReading: 4890, currentReading: 4945, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-103", flatNumber: "101", buildingName: "Tower Alpha", type: "Gas", meterNumber: "G-GS-901C", lastReading: 2310, currentReading: 2328, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-104", flatNumber: "202", buildingName: "Tower Alpha", type: "Electricity", meterNumber: "E-EL-902A", lastReading: 15680, currentReading: 15920, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-105", flatNumber: "202", buildingName: "Tower Alpha", type: "Water", meterNumber: "W-WT-902B", lastReading: 5120, currentReading: 5195, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-106", flatNumber: "302", buildingName: "Tower Alpha", type: "Electricity", meterNumber: "E-EL-903A", lastReading: 11230, currentReading: 11450, lastReadingDate: "2026-05-30T10:00:00Z", status: "Maintenance", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-107", flatNumber: "302", buildingName: "Tower Alpha", type: "Water", meterNumber: "W-WT-903B", lastReading: 3900, currentReading: 3952, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-108", flatNumber: "404", buildingName: "Tower Beta", type: "Electricity", meterNumber: "E-EL-904A", lastReading: 14100, currentReading: 14350, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" },
+  { id: "MTR-109", flatNumber: "404", buildingName: "Tower Beta", type: "Water", meterNumber: "W-WT-904B", lastReading: 6100, currentReading: 6185, lastReadingDate: "2026-05-30T10:00:00Z", status: "Active", createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" }
+];
+
+// ============================================================================
+// Utility Bills Mock Data
+// ============================================================================
+export const utilityBillsData: UtilityBill[] = [
+  { id: "UB-801", flatNumber: "101", buildingName: "Tower Alpha", type: "Electricity", amount: 46.00, usage: 230, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Paid", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-06-10T12:00:00Z" },
+  { id: "UB-802", flatNumber: "101", buildingName: "Tower Alpha", type: "Water", amount: 1.595, usage: 55, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Paid", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-06-10T12:00:00Z" },
+  { id: "UB-803", flatNumber: "101", buildingName: "Tower Alpha", type: "Gas", amount: 18.00, usage: 18, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Paid", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-06-10T12:00:00Z" },
+  { id: "UB-804", flatNumber: "202", buildingName: "Tower Alpha", type: "Electricity", amount: 48.00, usage: 240, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Unpaid", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-05-31T00:00:00Z" },
+  { id: "UB-805", flatNumber: "202", buildingName: "Tower Alpha", type: "Water", amount: 2.175, usage: 75, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Overdue", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-05-31T00:00:00Z" },
+  { id: "UB-806", flatNumber: "404", buildingName: "Tower Beta", type: "Electricity", amount: 50.00, usage: 250, billingPeriod: "May 2026", dueDate: "2026-06-15T23:59:59Z", status: "Paid", createdAt: "2026-05-31T00:00:00Z", updatedAt: "2026-06-12T14:30:00Z" }
+];
+
+// ============================================================================
+// Generator Log Data
+// ============================================================================
+export const generatorLogsData: GeneratorLog[] = [
+  { id: "GEN-501", date: "2026-06-25T10:00:00Z", fuelAdded: 150, fuelLevel: 92, runHours: 4, status: "Operational", notes: "Regular routine monthly run test. Topped up diesel.", createdAt: "2026-06-25T10:00:00Z", updatedAt: "2026-06-25T10:00:00Z" },
+  { id: "GEN-502", date: "2026-06-10T14:00:00Z", fuelAdded: 0, fuelLevel: 75, runHours: 8, status: "Operational", notes: "Uptime due to utility line outage. Run smoothly.", createdAt: "2026-06-10T14:00:00Z", updatedAt: "2026-06-10T14:00:00Z" },
+  { id: "GEN-503", date: "2026-05-20T09:00:00Z", fuelAdded: 200, fuelLevel: 98, runHours: 2, status: "Refueling", notes: "Uptime test + diesel delivery bulk check.", createdAt: "2026-05-20T09:00:00Z", updatedAt: "2026-05-20T09:00:00Z" }
+];
+
+// ============================================================================
+// Announcements Mock Data
+// ============================================================================
+export const announcementsData: Announcement[] = [
+  { id: "ANN-301", title: "Annual General Assembly Meeting", content: "Dear Residents, the Annual General Assembly meeting will be held on July 10th, 2026 at the Tower Alpha rooftop garden at 7:00 PM. Please RSVP.", type: "General", targetAudience: "All", author: "Sarah Jenkins (Manager)", date: "2026-06-28T09:00:00Z", createdAt: "2026-06-28T09:00:00Z", updatedAt: "2026-06-28T09:00:00Z" },
+  { id: "ANN-302", title: "Emergency Water Outage - Tower Beta", content: "CRITICAL: Tower Beta main pump replacement scheduled for tomorrow between 2:00 AM - 5:00 AM. Water line outage expected during this time.", type: "Emergency", targetAudience: "All", author: "Emergency Desk", date: "2026-06-28T14:00:00Z", createdAt: "2026-06-28T14:00:00Z", updatedAt: "2026-06-28T14:00:00Z" },
+  { id: "ANN-303", title: "Rooftop Pool Maintenance Shutdown", content: "The rooftop swimming pool will be closed for quarterly chemical treatment and filter washes from June 30th to July 2nd.", type: "Event", targetAudience: "Tenants", author: "Sarah Jenkins (Manager)", date: "2026-06-27T10:00:00Z", createdAt: "2026-06-27T10:00:00Z", updatedAt: "2026-06-27T10:00:00Z" }
+];
+
+// ============================================================================
+// Document Records Mock Data
+// ============================================================================
+export const documentRecordsData: DocumentRecord[] = [
+  { id: "DOC-201", title: "Tenant Lease Agreement - Flat 101", residentName: "Alice Vance", flatNumber: "101", buildingName: "Tower Alpha", documentType: "Lease", status: "Verified", uploadedAt: "2025-12-15T10:00:00Z", expiresAt: "2026-12-15T00:00:00Z", downloadUrl: "#", createdAt: "2025-12-15T00:00:00Z", updatedAt: "2025-12-15T00:00:00Z" },
+  { id: "DOC-202", title: "National ID Card copy", residentName: "Bob Smith", flatNumber: "202", buildingName: "Tower Alpha", documentType: "ID Proof", status: "Verified", uploadedAt: "2026-01-10T14:30:00Z", downloadUrl: "#", createdAt: "2026-01-10T00:00:00Z", updatedAt: "2026-01-10T00:00:00Z" },
+  { id: "DOC-203", title: "Electricity Bill Verification", residentName: "Charlie Brown", flatNumber: "302", buildingName: "Tower Alpha", documentType: "Utility Bill", status: "Pending", uploadedAt: "2026-06-20T11:00:00Z", downloadUrl: "#", createdAt: "2026-06-20T00:00:00Z", updatedAt: "2026-06-20T00:00:00Z" },
+  { id: "DOC-204", title: "Passport scan copy", residentName: "Daniel Craig", flatNumber: "404", buildingName: "Tower Beta", documentType: "ID Proof", status: "Missing", uploadedAt: "", createdAt: "2026-06-28T00:00:00Z", updatedAt: "2026-06-28T00:00:00Z" }
+];
+
+// ============================================================================
+// Inventory Assets Mock Data
+// ============================================================================
+export const inventoryAssetsData: InventoryAsset[] = [
+  { id: "AST-701", name: "Tower Alpha Main Elevator A", buildingName: "Tower Alpha", category: "Equipment", status: "Operational", lastServiced: "2026-05-15T08:00:00Z", warrantyExpires: "2028-12-31T00:00:00Z", stockCount: 1, createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-05-15T08:00:00Z" },
+  { id: "AST-702", name: "Rooftop Water Main Pump B", buildingName: "Tower Alpha", category: "Equipment", status: "Maintenance Required", lastServiced: "2026-04-10T09:00:00Z", warrantyExpires: "2027-04-10T00:00:00Z", stockCount: 1, createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-04-10T09:00:00Z" },
+  { id: "AST-703", name: "Backup Generator Fuel Filters", buildingName: "Tower Alpha", category: "Supplies", status: "Operational", stockCount: 15, createdAt: "2026-01-01T00:00:00Z", updatedAt: "2026-06-20T10:00:00Z" },
+  { id: "AST-704", name: "Fire Extinguishers ABC Dry Chem", buildingName: "Tower Beta", category: "Utility", status: "Operational", lastServiced: "2026-06-01T10:00:00Z", warrantyExpires: "2029-06-01T00:00:00Z", stockCount: 24, createdAt: "2025-01-01T00:00:00Z", updatedAt: "2026-06-01T10:00:00Z" }
+];
+
+

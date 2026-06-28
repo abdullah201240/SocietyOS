@@ -470,3 +470,203 @@ export function useSystemSettings() {
 
   return { settings, loading, error, refetch: fetchSettings };
 }
+
+// ============================================================================
+// Utility Hooks
+// ============================================================================
+import { utilitiesApi } from './client';
+import type { UtilityMeter, UtilityBill, GeneratorLog } from './types';
+
+export function useUtilityMeters(filters?: ApiFilters) {
+  const [meters, setMeters] = useState<UtilityMeter[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchMeters = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await utilitiesApi.getAllMeters(filters);
+      if (response.success) {
+        setMeters(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch meters');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchMeters();
+  }, [fetchMeters]);
+
+  return { meters, loading, error, refetch: fetchMeters };
+}
+
+export function useUtilityBills(filters?: ApiFilters) {
+  const [bills, setBills] = useState<UtilityBill[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchBills = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await utilitiesApi.getAllBills(filters);
+      if (response.success) {
+        setBills(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch bills');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchBills();
+  }, [fetchBills]);
+
+  return { bills, loading, error, refetch: fetchBills };
+}
+
+export function useGeneratorLogs() {
+  const [logs, setLogs] = useState<GeneratorLog[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchLogs = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await utilitiesApi.getAllGeneratorLogs();
+      if (response.success) {
+        setLogs(response.data);
+      } else {
+        setError(response.error || 'Failed to fetch generator logs');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [fetchLogs]);
+
+  return { logs, loading, error, refetch: fetchLogs };
+}
+
+// ============================================================================
+// Communication Hooks
+// ============================================================================
+import { communicationsApi } from './client';
+import type { Announcement } from './types';
+
+export function useAnnouncements(filters?: ApiFilters) {
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAnnouncements = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await communicationsApi.getAll(filters);
+      if (response.success) {
+        setAnnouncements(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch announcements');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchAnnouncements();
+  }, [fetchAnnouncements]);
+
+  return { announcements, loading, error, refetch: fetchAnnouncements };
+}
+
+// ============================================================================
+// Document Hooks
+// ============================================================================
+import { documentsApi } from './client';
+import type { DocumentRecord } from './types';
+
+export function useDocumentRecords(filters?: ApiFilters) {
+  const [documents, setDocuments] = useState<DocumentRecord[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchDocuments = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await documentsApi.getAll(filters);
+      if (response.success) {
+        setDocuments(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch documents');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
+
+  return { documents, loading, error, refetch: fetchDocuments };
+}
+
+// ============================================================================
+// Inventory & Asset Hooks
+// ============================================================================
+import { inventoryApi } from './client';
+import type { InventoryAsset } from './types';
+
+export function useInventoryAssets(filters?: ApiFilters) {
+  const [assets, setAssets] = useState<InventoryAsset[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAssets = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await inventoryApi.getAll(filters);
+      if (response.success) {
+        setAssets(response.data.data);
+      } else {
+        setError(response.error || 'Failed to fetch assets');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    fetchAssets();
+  }, [fetchAssets]);
+
+  return { assets, loading, error, refetch: fetchAssets };
+}
+
+

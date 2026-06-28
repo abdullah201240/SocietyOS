@@ -209,3 +209,68 @@ export const systemSettingsSchema = z.object({
   stripeApiKey: z.string().optional(),
   gateWebhookUrl: z.string().url("Gate webhook URL must be a valid URL").optional().or(z.literal("")),
 });
+
+// 20. Utility Meter Schema
+export const utilityMeterSchema = z.object({
+  buildingName: z.string().min(1, "Building name is required"),
+  flatNumber: z.string().min(1, "Flat unit number is required"),
+  type: z.enum(["Electricity", "Water", "Gas"]),
+  meterNumber: z.string().min(3, "Meter serial number must be at least 3 characters"),
+  lastReading: z.coerce
+    .number({ message: "Initial reading must be a valid number" })
+    .min(0, "Initial reading cannot be negative"),
+});
+
+// 21. Meter Reading Schema
+export const meterReadingSchema = z.object({
+  currentReading: z.coerce
+    .number({ message: "Current reading must be a valid number" })
+    .min(0, "Current reading cannot be negative"),
+});
+
+// 22. Generator Log Schema
+export const generatorLogSchema = z.object({
+  fuelAdded: z.coerce
+    .number({ message: "Fuel added must be a valid number" })
+    .min(0, "Fuel level cannot be negative"),
+  fuelLevel: z.coerce
+    .number({ message: "Fuel percentage must be a number" })
+    .min(0, "Fuel percentage cannot be negative")
+    .max(100, "Fuel percentage cannot exceed 100%"),
+  runHours: z.coerce
+    .number({ message: "Uptime hours must be a valid number" })
+    .min(0, "Uptime hours cannot be negative"),
+  status: z.enum(["Operational", "Maintenance Required", "Refueling"]),
+  notes: z.string().optional(),
+});
+
+// 23. Announcement Schema
+export const announcementSchema = z.object({
+  title: z.string().min(3, "Title must be at least 3 characters"),
+  content: z.string().min(5, "Content message must be at least 5 characters"),
+  type: z.enum(["General", "Emergency", "Event"]),
+  targetAudience: z.enum(["All", "Tenants", "Owners"]),
+});
+
+// 24. Document Record Schema
+export const documentRecordSchema = z.object({
+  title: z.string().min(3, "Document title must be at least 3 characters"),
+  residentName: z.string().min(2, "Resident name must be at least 2 characters"),
+  flatNumber: z.string().min(1, "Flat unit number is required"),
+  documentType: z.enum(["Lease", "ID Proof", "NID", "Utility Bill"]),
+  expiresAt: z.string().optional(),
+});
+
+// 25. Inventory Asset Schema
+export const inventoryAssetSchema = z.object({
+  name: z.string().min(3, "Asset name must be at least 3 characters"),
+  category: z.enum(["Equipment", "Supplies", "Utility"]),
+  status: z.enum(["Operational", "Maintenance Required", "Decommissioned"]),
+  stockCount: z.coerce
+    .number({ message: "Stock count must be a valid number" })
+    .min(0, "Stock count cannot be negative"),
+  lastServiced: z.string().optional(),
+  warrantyExpires: z.string().optional(),
+});
+
+

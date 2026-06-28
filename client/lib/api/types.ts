@@ -303,3 +303,86 @@ export interface SystemSettings extends BaseEntity {
   stripeApiKey?: string;
   gateWebhookUrl?: string;
 }
+
+// ============================================================================
+// Utility Types
+// ============================================================================
+
+export interface UtilityMeter extends BaseEntity {
+  id: string;
+  flatNumber: string;
+  buildingName: string;
+  type: "Electricity" | "Water" | "Gas";
+  meterNumber: string;
+  lastReading: number;
+  currentReading: number;
+  lastReadingDate: string;
+  status: "Active" | "Suspended" | "Maintenance";
+}
+
+export interface UtilityBill extends BaseEntity {
+  id: string;
+  flatNumber: string;
+  buildingName: string;
+  type: "Electricity" | "Water" | "Gas";
+  amount: number;
+  usage: number; // kWh, Liters, or M3
+  billingPeriod: string; // e.g. "June 2026"
+  dueDate: string;
+  status: "Paid" | "Unpaid" | "Overdue";
+}
+
+export interface GeneratorLog extends BaseEntity {
+  id: string;
+  date: string;
+  fuelAdded: number; // Liters
+  fuelLevel: number; // %
+  runHours: number;
+  status: "Operational" | "Maintenance Required" | "Refueling";
+  notes?: string;
+}
+
+// ============================================================================
+// Communication Types
+// ============================================================================
+export interface Announcement extends BaseEntity {
+  id: string;
+  title: string;
+  content: string;
+  type: "General" | "Emergency" | "Event";
+  targetAudience: "All" | "Tenants" | "Owners";
+  author: string;
+  date: string;
+}
+
+// ============================================================================
+// Document Types
+// ============================================================================
+export interface DocumentRecord extends BaseEntity {
+  id: string;
+  title: string;
+  residentName: string;
+  flatNumber: string;
+  buildingName: string;
+  documentType: "Lease" | "ID Proof" | "NID" | "Utility Bill";
+  status: "Verified" | "Pending" | "Missing";
+  uploadedAt: string;
+  expiresAt?: string;
+  downloadUrl?: string;
+}
+
+// ============================================================================
+// Inventory & Asset Types
+// ============================================================================
+export interface InventoryAsset extends BaseEntity {
+  id: string;
+  name: string;
+  buildingName: string;
+  category: "Equipment" | "Supplies" | "Utility";
+  status: "Operational" | "Maintenance Required" | "Decommissioned";
+  lastServiced?: string;
+  warrantyExpires?: string;
+  stockCount: number;
+}
+
+

@@ -8,7 +8,6 @@ import { OperationalWidgets } from "@/components/dashboard/operational-widgets";
 import { AnalyticsWidgets } from "@/components/dashboard/analytics-widgets";
 import { QuickActions } from "@/components/dashboard/quick-actions";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, complaintSchema } from "@/lib/validations";
 import { Label } from "@/components/ui/label";
@@ -159,7 +158,7 @@ export default function DashboardPage() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Sidebar navigation */}
       <DashboardSidebar

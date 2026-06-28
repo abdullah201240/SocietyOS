@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, contactSchema } from "@/lib/validations";
 import { Mail, Phone, MapPin, Send, HelpCircle } from "lucide-react";
@@ -37,7 +36,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-16 md:py-24 border-t border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-black/30 relative">
-      <Toaster position="top-right" />
+      
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 text-zinc-600 dark:text-zinc-400 bg-white dark:bg-zinc-950">

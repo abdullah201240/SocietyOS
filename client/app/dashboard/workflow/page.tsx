@@ -16,7 +16,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { useComplaints, useInvoices, useMaintenance } from "@/lib/api";
 import type { Complaint, Invoice, MaintenanceTask } from "@/lib/api";
@@ -149,7 +148,7 @@ export default function OperationalWorkflowDashboard() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Sidebar Links */}
       <DashboardSidebar

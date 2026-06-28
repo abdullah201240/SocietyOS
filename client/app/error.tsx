@@ -1,0 +1,56 @@
+"use client";
+
+import { useEffect } from "react";
+import Link from "next/link";
+import { Building2, RefreshCw, Home } from "lucide-react";
+
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error("[BuildingOS] Unhandled error:", error);
+  }, [error]);
+
+  return (
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-white dark:bg-black font-sans">
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] opacity-60" />
+      <div className="flex flex-col items-center gap-6 text-center px-4">
+        <div className="flex h-12 w-12 items-center justify-center bg-red-50 dark:bg-red-950">
+          <Building2 className="h-6 w-6 text-red-600 dark:text-red-400" />
+        </div>
+        <div className="flex flex-col gap-2">
+          <p className="text-xs font-semibold tracking-widest text-red-400 uppercase">System Error</p>
+          <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Something went wrong
+          </h1>
+          <p className="mt-2 text-base text-zinc-500 dark:text-zinc-400 max-w-sm">
+            An unexpected error occurred. The system has been notified. Please try again.
+          </p>
+          {error.digest && (
+            <p className="text-xs text-zinc-400 font-mono mt-1">Error ID: {error.digest}</p>
+          )}
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 mt-2">
+          <button
+            onClick={reset}
+            className="inline-flex items-center justify-center gap-2 h-10 px-5 text-sm font-semibold bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
+          >
+            <RefreshCw className="h-4 w-4" />
+            Try Again
+          </button>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-2 h-10 px-5 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+          >
+            <Home className="h-4 w-4" />
+            Go Home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

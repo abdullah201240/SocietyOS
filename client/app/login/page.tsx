@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, loginSchema } from "@/lib/validations";
 import {
@@ -46,7 +45,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-zinc-50 text-zinc-900 dark:bg-[#030303] dark:text-zinc-100 flex flex-col justify-between selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-white font-sans transition-colors duration-200">
-      <Toaster position="top-right" />
+      
       
       {/* Background glow effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -77,7 +76,7 @@ export default function LoginPage() {
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+      <main id="main-content" className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-md w-full space-y-6">
           
           {/* Main Card */}
@@ -110,6 +109,9 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="h-8.5 pl-9 text-xs rounded bg-white border-zinc-250 text-zinc-950 dark:bg-zinc-950/60 dark:border-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-indigo-500/50 focus-visible:border-indigo-500/50 focus-visible:ring-offset-0"
                     required
+                    aria-required="true"
+                    aria-label="Email address"
+                    autoComplete="email"
                   />
                 </div>
               </div>
@@ -130,6 +132,9 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="h-8.5 pl-9 pr-9 text-xs rounded bg-white border-zinc-250 text-zinc-950 dark:bg-zinc-950/60 dark:border-zinc-850 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-indigo-500/50 focus-visible:border-indigo-500/50 focus-visible:ring-offset-0"
                     required
+                    aria-required="true"
+                    aria-label="Password"
+                    autoComplete="current-password"
                   />
                   <button
                     type="button"

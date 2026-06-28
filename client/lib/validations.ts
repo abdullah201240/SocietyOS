@@ -187,3 +187,25 @@ export const contactSchema = z.object({
   subject: z.string(),
   message: z.string().min(5, "Message details must be at least 5 characters"),
 });
+
+// 19. System Settings Schema
+export const systemSettingsSchema = z.object({
+  buildingGroupName: z.string().min(2, "Organization name must be at least 2 characters"),
+  buildingAddress: z.string().min(5, "Building address must be at least 5 characters"),
+  timezone: z.string().min(1, "Timezone is required"),
+  lateFeeAmount: z.coerce
+    .number({ message: "Late fee must be a valid number" })
+    .min(0, "Late fee cannot be negative"),
+  billingCycle: z.enum(["Weekly", "Monthly", "Quarterly"]),
+  smsAlerts: z.boolean(),
+  emailNotifications: z.boolean(),
+  electricityRate: z.coerce
+    .number({ message: "Electricity rate must be a valid number" })
+    .min(0, "Electricity rate cannot be negative"),
+  waterRate: z.coerce
+    .number({ message: "Water rate must be a valid number" })
+    .min(0, "Water rate cannot be negative"),
+  otpVerification: z.boolean(),
+  stripeApiKey: z.string().optional(),
+  gateWebhookUrl: z.string().url("Gate webhook URL must be a valid URL").optional().or(z.literal("")),
+});

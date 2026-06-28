@@ -26,7 +26,7 @@ export default function Home() {
       <NavBar />
 
       {/* Hero Section Container */}
-      <main className="flex-1 flex items-center justify-center py-12 md:py-20 lg:py-24">
+      <main id="main-content" className="flex-1 flex items-center justify-center py-12 md:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-center">
             

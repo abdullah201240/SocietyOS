@@ -33,6 +33,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useComplaints, useMaintenance } from "@/lib/api";
 
 interface DashboardSidebarProps {
   currentOrg: string;
@@ -43,6 +44,17 @@ interface DashboardSidebarProps {
 export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSidebarProps) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+  // Live badge counts from API
+  const { complaints } = useComplaints();
+  const { tasks } = useMaintenance();
+
+  const openComplaints = complaints
+    ? complaints.filter((c) => c.status === "Open" || c.status === "In Progress").length
+    : 0;
+  const openMaintenance = tasks
+    ? tasks.filter((t) => t.status === "Open" || t.status === "In Progress").length
+    : 0;
 
   React.useEffect(() => {
     const saved = localStorage.getItem("buildingos-sidebar-collapsed");
@@ -63,8 +75,8 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },
     { name: "Residents", href: "/dashboard/residents", icon: Users },
-    { name: "Complaints", href: "/dashboard/complaints", icon: AlertCircle, badge: "12" },
-    { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: "8" },
+    { name: "Complaints", href: "/dashboard/complaints", icon: AlertCircle, badge: openComplaints > 0 ? String(openComplaints) : undefined },
+    { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: openMaintenance > 0 ? String(openMaintenance) : undefined },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
     { name: "Payments", href: "/dashboard/payments", icon: Wallet },
     { name: "Parking", href: "/dashboard/parking", icon: Car },

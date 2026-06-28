@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, profileSchema } from "@/lib/validations";
 import { useUserProfile, userProfileApi } from "@/lib/api";
@@ -114,7 +113,7 @@ export default function ProfilePage() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Sidebar Links */}
       <DashboardSidebar

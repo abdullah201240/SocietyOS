@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, bookDemoSchema } from "@/lib/validations";
 import {
@@ -54,7 +53,7 @@ export default function BookDemoPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans relative flex flex-col justify-between selection:bg-zinc-200 dark:selection:bg-zinc-800">
-      <Toaster position="top-right" />
+      
       
       {/* Background grid line patterns */}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] opacity-50" />

@@ -33,7 +33,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, buildingSchema } from "@/lib/validations";
 import {
@@ -212,7 +211,7 @@ export default function BuildingsPage() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Left Sidebar Menu */}
       <DashboardSidebar

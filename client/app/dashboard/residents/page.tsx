@@ -34,7 +34,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { validateData, residentSchema } from "@/lib/validations";
 import {
@@ -205,7 +204,7 @@ export default function ResidentsPage() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Sidebar Links */}
       <DashboardSidebar

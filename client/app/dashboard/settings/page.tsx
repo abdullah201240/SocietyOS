@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { validateData, systemSettingsSchema } from "@/lib/validations";
 import { useSystemSettings, systemSettingsApi } from "@/lib/api";
 import type { SystemSettings } from "@/lib/api";
 import {
@@ -36,7 +36,28 @@ export default function SettingsPage() {
 
   const handleSaveSettings = async (category: string) => {
     if (!settings) return;
-    
+
+    // Validate settings before submitting
+    const validation = validateData(systemSettingsSchema, {
+      buildingGroupName: settings.buildingGroupName,
+      buildingAddress: settings.buildingAddress,
+      timezone: settings.timezone,
+      lateFeeAmount: settings.lateFeeAmount,
+      billingCycle: settings.billingCycle,
+      smsAlerts: settings.smsAlerts,
+      emailNotifications: settings.emailNotifications,
+      electricityRate: settings.electricityRate,
+      waterRate: settings.waterRate,
+      otpVerification: settings.otpVerification,
+      stripeApiKey: settings.stripeApiKey,
+      gateWebhookUrl: settings.gateWebhookUrl,
+    });
+
+    if (!validation.success) {
+      toast.error(validation.error);
+      return;
+    }
+
     setIsSaving(true);
     try {
       const response = await systemSettingsApi.update(settings);
@@ -77,7 +98,7 @@ export default function SettingsPage() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
-      <Toaster position="top-right" />
+      
 
       {/* Sidebar Links */}
       <DashboardSidebar

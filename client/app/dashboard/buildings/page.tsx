@@ -58,172 +58,23 @@ import {
   ShieldCheck,
   HelpCircle,
 } from "lucide-react";
-
-// Types
-interface BuildingRecord {
-  id: number;
-  name: string;
-  buildingGroup: string;
-  type: "Residential" | "Commercial" | "Amenity";
-  floors: number;
-  totalFlats: number;
-  occupiedFlats: number;
-  maintenanceStatus: "Stable" | "Pending Service" | "Critical Warning";
-  parkingUtilization: number; // percentage
-  activeComplaints: number;
-  operationalStatus: "Online" | "Degraded" | "Offline";
-  waterConsumption: string; // e.g. "4.2k Liters"
-  electricityConsumption: string; // e.g. "820 kWh"
-  managers: string[];
-  assignedStaff: { name: string; role: string; contact: string }[];
-  activity: { id: number; log: string; time: string }[];
-  towersBreakdown: { floor: number; occupied: number; total: number }[];
-}
+import { useBuildings, buildingsApi } from "@/lib/api";
+import type { Building as BuildingType } from "@/lib/api";
 
 export default function BuildingsPage() {
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Building Data
-  const [buildings, setBuildings] = React.useState<BuildingRecord[]>([
-    {
-      id: 1,
-      name: "Tower Alpha",
-      buildingGroup: "Grandview Towers",
-      type: "Residential",
-      floors: 15,
-      totalFlats: 125,
-      occupiedFlats: 118,
-      maintenanceStatus: "Stable",
-      parkingUtilization: 82,
-      activeComplaints: 3,
-      operationalStatus: "Online",
-      waterConsumption: "4.2k Liters",
-      electricityConsumption: "820 kWh",
-      managers: ["John Doe", "Sarah Jenkins"],
-      assignedStaff: [
-        { name: "Robert Downey", role: "HVAC Mechanic", contact: "+1 555-0105" },
-        { name: "Clara Oswald", role: "Lobby Receptionist", contact: "+1 555-0177" }
-      ],
-      activity: [
-        { id: 1, log: "Elevator A monthly cables check completed", time: "1h ago" },
-        { id: 2, log: "Lobby light fixtures upgraded to LED", time: "1d ago" }
-      ],
-      towersBreakdown: [
-        { floor: 1, occupied: 8, total: 8 },
-        { floor: 2, occupied: 8, total: 8 },
-        { floor: 3, occupied: 6, total: 8 },
-        { floor: 4, occupied: 7, total: 8 }
-      ]
-    },
-    {
-      id: 2,
-      name: "Tower Beta",
-      buildingGroup: "Grandview Towers",
-      type: "Residential",
-      floors: 15,
-      totalFlats: 125,
-      occupiedFlats: 112,
-      maintenanceStatus: "Pending Service",
-      parkingUtilization: 78,
-      activeComplaints: 5,
-      operationalStatus: "Online",
-      waterConsumption: "3.9k Liters",
-      electricityConsumption: "790 kWh",
-      managers: ["John Doe"],
-      assignedStaff: [
-        { name: "Bruce Banner", role: "Lead Plumber", contact: "+1 555-0112" }
-      ],
-      activity: [
-        { id: 1, log: "Water pump B scheduled repair started", time: "2h ago" },
-        { id: 2, log: "CCTV camera #4 replaced on Floor 12", time: "2d ago" }
-      ],
-      towersBreakdown: [
-        { floor: 1, occupied: 8, total: 8 },
-        { floor: 2, occupied: 7, total: 8 },
-        { floor: 3, occupied: 7, total: 8 }
-      ]
-    },
-    {
-      id: 3,
-      name: "Tower Gamma",
-      buildingGroup: "Grandview Towers",
-      type: "Residential",
-      floors: 12,
-      totalFlats: 93,
-      occupiedFlats: 82,
-      maintenanceStatus: "Critical Warning",
-      parkingUtilization: 90,
-      activeComplaints: 4,
-      operationalStatus: "Degraded",
-      waterConsumption: "5.5k Liters",
-      electricityConsumption: "940 kWh",
-      managers: ["Sarah Jenkins"],
-      assignedStaff: [
-        { name: "Steve Rogers", role: "Electrical Specialist", contact: "+1 555-0199" }
-      ],
-      activity: [
-        { id: 1, log: "Boiler system pressure warning reported", time: "30m ago" },
-        { id: 2, log: "Sprinkler head replaced on Floor 5 corridor", time: "3d ago" }
-      ],
-      towersBreakdown: [
-        { floor: 1, occupied: 8, total: 8 },
-        { floor: 2, occupied: 6, total: 8 }
-      ]
-    },
-    {
-      id: 4,
-      name: "Clubhouse Wing",
-      buildingGroup: "Grandview Towers",
-      type: "Amenity",
-      floors: 2,
-      totalFlats: 10,
-      occupiedFlats: 8,
-      maintenanceStatus: "Stable",
-      parkingUtilization: 40,
-      activeComplaints: 0,
-      operationalStatus: "Online",
-      waterConsumption: "1.2k Liters",
-      electricityConsumption: "310 kWh",
-      managers: ["John Doe"],
-      assignedStaff: [
-        { name: "Natasha Romanoff", role: "Amenity Attendant", contact: "+1 555-0155" }
-      ],
-      activity: [
-        { id: 1, log: "Gym air conditioning filter cleaned", time: "4h ago" },
-        { id: 2, log: "Pool pH testing logged & optimal", time: "1d ago" }
-      ],
-      towersBreakdown: [
-        { floor: 1, occupied: 4, total: 5 },
-        { floor: 2, occupied: 4, total: 5 }
-      ]
-    },
-    {
-      id: 5,
-      name: "Block East",
-      buildingGroup: "Meadow View Complex",
-      type: "Residential",
-      floors: 10,
-      totalFlats: 100,
-      occupiedFlats: 92,
-      maintenanceStatus: "Stable",
-      parkingUtilization: 85,
-      activeComplaints: 2,
-      operationalStatus: "Online",
-      waterConsumption: "3.1k Liters",
-      electricityConsumption: "610 kWh",
-      managers: ["Marcus Stone"],
-      assignedStaff: [
-        { name: "Peter Parker", role: "Building Inspector", contact: "+1 555-0810" }
-      ],
-      activity: [
-        { id: 1, log: "Fire exit door alignment fixed", time: "1d ago" }
-      ],
-      towersBreakdown: [
-        { floor: 1, occupied: 10, total: 10 }
-      ]
+  // Fetch buildings from API
+  const { buildings: buildingsFromApi, loading, error, refetch } = useBuildings();
+  const [buildings, setBuildings] = React.useState<BuildingType[]>([]);
+
+  // Sync API data with local state
+  React.useEffect(() => {
+    if (buildingsFromApi) {
+      setBuildings(buildingsFromApi);
     }
-  ]);
+  }, [buildingsFromApi]);
 
   // Form Dialog State
   const [newBuilding, setNewBuilding] = React.useState({
@@ -241,7 +92,7 @@ export default function BuildingsPage() {
   const [createOpen, setCreateOpen] = React.useState(false);
 
   // Detail Sheet State
-  const [selectedBuilding, setSelectedBuilding] = React.useState<BuildingRecord | null>(null);
+  const [selectedBuilding, setSelectedBuilding] = React.useState<BuildingType | null>(null);
 
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -251,10 +102,9 @@ export default function BuildingsPage() {
   const [filterAlerts, setFilterAlerts] = React.useState("All");
 
   // Onboard new building handler
-  const handleAddBuilding = (e: React.FormEvent) => {
+  const handleAddBuilding = async (e: React.FormEvent) => {
     e.preventDefault();
-    const created: BuildingRecord = {
-      id: buildings.length + 1,
+    const newBuildingData: Omit<BuildingType, 'id'> = {
       name: newBuilding.name,
       buildingGroup: newBuilding.buildingGroup,
       type: newBuilding.type,
@@ -279,9 +129,15 @@ export default function BuildingsPage() {
       ]
     };
 
-    setBuildings((prev) => [...prev, created]);
-    setCreateOpen(false);
-    toast.success(`Building "${created.name}" registered successfully!`);
+    const response = await buildingsApi.create(newBuildingData);
+    if (response.success) {
+      setBuildings((prev) => [...prev, response.data]);
+      setCreateOpen(false);
+      toast.success(`Building "${response.data.name}" registered successfully!`);
+      refetch();
+    } else {
+      toast.error(response.error || "Failed to add building");
+    }
 
     // Reset Form
     setNewBuilding({
@@ -866,7 +722,7 @@ export default function BuildingsPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Assigned Staff ({selectedBuilding.assignedStaff.length})</span>
                   <div className="space-y-2">
-                    {selectedBuilding.assignedStaff.map((staff, idx) => (
+                    {selectedBuilding.assignedStaff.map((staff: { name: string; role: string; contact: string }, idx: number) => (
                       <div key={idx} className="flex items-center gap-2.5 -150 rounded p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors">
                         <div className="h-7 w-7 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-zinc-450 flex items-center justify-center font-bold text-[10px]">
                           <User className="h-4 w-4" />
@@ -884,7 +740,7 @@ export default function BuildingsPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Recent operational activity</span>
                   <div className="space-y-2">
-                    {selectedBuilding.activity.map((a) => (
+                    {selectedBuilding.activity.map((a: { id: number; log: string; time: string }) => (
                       <div key={a.id} className="flex gap-2 text-xs -100 pb-2 last:0 last:pb-0">
                         <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                         <div>

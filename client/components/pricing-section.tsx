@@ -76,12 +76,12 @@ export function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-16 md:py-24 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-black">
+    <section id="pricing" className="py-16 md:py-24 -100 bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Headers */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
+          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1-200 text-zinc-600 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
             Pricing Plans
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
@@ -97,10 +97,10 @@ export function PricingSection() {
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`border flex flex-col justify-between p-1.5 shadow-none ${
+              className={`flex flex-col justify-between p-1.5 shadow-none ${
                 plan.variant === "highlight"
-                  ? "border-indigo-650 dark:border-indigo-500 bg-indigo-50/10 dark:bg-indigo-950/10 ring-1 ring-indigo-650 dark:ring-indigo-500"
-                  : "border-zinc-200 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 hover:border-zinc-300 dark:hover:border-zinc-700"
+                  ? "indigo-650 bg-indigo-50/10 dark:bg-indigo-950/10  ring-indigo-650 dark:ring-indigo-500"
+                  : "zinc-200 bg-white dark:bg-zinc-950/30 hover:zinc-300 dark:hover:zinc-700"
               }`}
             >
               <div className="p-5 flex-grow">
@@ -120,7 +120,7 @@ export function PricingSection() {
                 </div>
 
                 {/* Price Display */}
-                <div className="py-4 my-2 border-y border-zinc-100 dark:border-zinc-900">
+                <div className="py-4 my-2 -100">
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
                       {plan.price}

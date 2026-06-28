@@ -45,9 +45,9 @@ export function DashboardMockup() {
   };
 
   return (
-    <div className="w-full border border-zinc-200/80 bg-zinc-50 overflow-hidden dark:border-zinc-800/80 dark:bg-zinc-950">
+    <div className="w-full -200/80 bg-zinc-50 overflow-hidden dark:bg-zinc-950">
       {/* App Header Mockup */}
-      <div className="flex h-14 items-center justify-between border-b border-zinc-200/60 bg-white/80 backdrop-blur-sm px-5 dark:border-zinc-800/60 dark:bg-zinc-900/60">
+      <div className="flex h-14 items-center justify-between -200/60 bg-white/80 backdrop-blur-sm px-5 dark:bg-zinc-900/60">
         <div className="flex items-center gap-2">
           <div className="flex h-6 w-6 items-center justify-center bg-zinc-50 dark:bg-zinc-900">
             <Building className="h-3 w-3 text-zinc-800 dark:text-zinc-200" />
@@ -63,7 +63,7 @@ export function DashboardMockup() {
               type="text"
               placeholder="Search..."
               disabled
-              className="h-8 w-44 border border-zinc-200/80 bg-zinc-50/80 pl-8 pr-3 text-[11px] text-zinc-600 outline-none transition-all hover:bg-zinc-100/80 focus:border-indigo-300 disabled:cursor-not-allowed dark:border-zinc-800/80 dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:bg-zinc-800/80"
+              className="h-8 w-44 -200/80 bg-zinc-50/80 pl-8 pr-3 text-[11px] text-zinc-600 outline-none transition-all hover:bg-zinc-100/80 focus:indigo-300 disabled:cursor-not-allowed dark:bg-zinc-900/80 dark:text-zinc-400 dark:hover:bg-zinc-800/80"
             />
           </div>
           <Button variant="ghost" size="icon-xs" className="relative text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 dark:hover:text-zinc-200 dark:hover:bg-zinc-800 transition-all">
@@ -78,7 +78,7 @@ export function DashboardMockup() {
 
       <div className="flex min-h-[380px] flex-col lg:flex-row">
         {/* Sidebar Mockup */}
-        <div className="hidden lg:flex w-40 flex-col border-r border-zinc-200/60 bg-gradient-to-b from-zinc-50/80 to-zinc-100/40 p-3 dark:border-zinc-800/60 dark:bg-gradient-to-b dark:from-zinc-950/40 dark:to-zinc-900/20">
+        <div className="hidden lg:flex w-40 flex-col -200/60 bg-gradient-to-b from-zinc-50/80 to-zinc-100/40 p-3 dark:bg-gradient-to-b dark:from-zinc-950/40 dark:to-zinc-900/20">
           <div className="space-y-1.5">
             <button
               onClick={() => setActiveTab("overview")}
@@ -128,7 +128,7 @@ export function DashboardMockup() {
         </div>
  
         {/* Mobile View Toggle Bar */}
-        <div className="flex lg:hidden overflow-x-auto border-b border-zinc-200/60 bg-white/80 backdrop-blur-sm p-1.5 gap-1.5 dark:border-zinc-800/60 dark:bg-zinc-900/80">
+        <div className="flex lg:hidden overflow-x-auto -200/60 bg-white/80 backdrop-blur-sm p-1.5 gap-1.5 dark:bg-zinc-900/80">
           {(["overview", "complaints", "maintenance", "billing"] as const).map((tab) => (
             <Button
               key={tab}
@@ -150,19 +150,19 @@ export function DashboardMockup() {
           {activeTab === "overview" && (
             <div className="space-y-6 xoss-fade-in">
               {/* Header Section */}
-              <div className="flex items-center justify-between pb-3 border-b border-zinc-200/60 dark:border-zinc-800/60">
+              <div className="flex items-center justify-between pb-3 -200/60">
                 <div>
                   <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Grandview Towers Overview</h3>
                   <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Live operational status and community health indicators.</p>
                 </div>
-                <Badge variant="outline" className="text-[10px] px-2.5 py-1 rounded-full border-emerald-200/60 bg-emerald-50/50 text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-950/30 dark:text-emerald-400 shadow-sm">
+                <Badge variant="outline" className="text-[10px] px-2.5 py-1 rounded-full-200/60 bg-emerald-50/50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 shadow-sm">
                   <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
                   System Online
                 </Badge>
               </div>
               {/* Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50-200/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Residents</span>
@@ -180,7 +180,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50-200/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Complaints</span>
@@ -198,7 +198,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50-200/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Maintenance</span>
@@ -216,7 +216,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="bg-zinc-50 border-zinc-200/60 dark:bg-zinc-900/50 dark:border-zinc-800/60">
+                <Card size="sm" className="bg-zinc-50-200/60 dark:bg-zinc-900/50">
                   <CardHeader className="p-2.5 pb-1 sm:p-3 sm:pb-1.5">
                     <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400 gap-1.5 min-w-0">
                       <span className="text-[9px] uppercase tracking-normal font-semibold truncate">Billing</span>
@@ -238,11 +238,11 @@ export function DashboardMockup() {
               {/* Analytics and Active tasks preview */}
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {/* Chart Card */}
-                <Card size="sm" className="md:col-span-3 border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                <Card size="sm" className="md:col-span-3 -200/60 bg-white dark:bg-zinc-900/50">
                   <CardHeader className="p-5 pb-3">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Building Energy & Maintenance Expenses</CardTitle>
-                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-zinc-200/60 text-zinc-600 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-900/50">Utility Analytics</Badge>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-zinc-600 bg-zinc-50/50 dark:bg-zinc-900/50">Utility Analytics</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="p-5 pt-0">
@@ -284,31 +284,31 @@ export function DashboardMockup() {
                 </Card>
 
                 {/* Quick tasks overview */}
-                <Card size="sm" className="md:col-span-2 border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                <Card size="sm" className="md:col-span-2 -200/60 bg-white dark:bg-zinc-900/50">
                   <CardHeader className="p-5 pb-3">
                     <CardTitle className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Active Incidents</CardTitle>
                   </CardHeader>
                   <CardContent className="p-5 pt-0 space-y-3">
-                    <div className="flex items-center justify-between text-xs pb-3 border-b border-zinc-100 dark:border-zinc-800/60 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-2 rounded-lg transition-all cursor-pointer -m-2">
+                    <div className="flex items-center justify-between text-xs pb-3 -100 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-2 rounded-lg transition-all cursor-pointer -m-2">
                       <div className="flex flex-col gap-0.5">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Water Tank C level low</span>
                         <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Sensor Warning • Block A</span>
                       </div>
-                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-amber-200/60 text-amber-700 bg-amber-50/50 dark:border-amber-900/60 dark:text-amber-400 dark:bg-amber-950/30 shadow-sm">Active</Badge>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-amber-700 bg-amber-50/50 dark:text-amber-400 dark:bg-amber-950/30 shadow-sm">Active</Badge>
                     </div>
-                    <div className="flex items-center justify-between text-xs pb-3 border-b border-zinc-100 dark:border-zinc-800/60 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-2 rounded-lg transition-all cursor-pointer -m-2">
+                    <div className="flex items-center justify-between text-xs pb-3 -100 group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-2 rounded-lg transition-all cursor-pointer -m-2">
                       <div className="flex flex-col gap-0.5">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Visitor Gate #2 system offline</span>
                         <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Hardware Failure • Security</span>
                       </div>
-                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-rose-200/60 text-rose-700 bg-rose-50/50 dark:border-rose-900/60 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">Critical</Badge>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-rose-700 bg-rose-50/50 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">Critical</Badge>
                     </div>
                     <div className="flex items-center justify-between text-xs group hover:bg-zinc-50/80 dark:hover:bg-zinc-900/30 p-2 rounded-lg transition-all cursor-pointer -m-2">
                       <div className="flex flex-col gap-0.5">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">Pest Control scheduled</span>
                         <span className="text-[10px] text-zinc-500 dark:text-zinc-400">Gardens & Parking • 14:00</span>
                       </div>
-                      <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-zinc-200/60 text-zinc-600 bg-zinc-50/50 dark:border-zinc-800/60 dark:text-zinc-400 dark:bg-zinc-900/50 shadow-sm">Upcoming</Badge>
+                      <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-zinc-600 bg-zinc-50/50 dark:text-zinc-400 dark:bg-zinc-900/50 shadow-sm">Upcoming</Badge>
                     </div>
                   </CardContent>
                 </Card>
@@ -334,7 +334,7 @@ export function DashboardMockup() {
                   <div
                     key={item.id}
                     onClick={() => toggleComplaintStatus(item.id)}
-                    className="group flex items-center justify-between border border-zinc-200/60 bg-zinc-50/80 p-3 hover:bg-zinc-100/80 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/40 transition-all cursor-pointer"
+                    className="group flex items-center justify-between -200/60 bg-zinc-50/80 p-3 hover:bg-zinc-100/80 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/40 transition-all cursor-pointer"
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
                     <div className="flex items-start gap-3">
@@ -356,7 +356,7 @@ export function DashboardMockup() {
                     <div className="flex items-center gap-2.5">
                       <Badge
                         variant="outline"
-                        className={`text-[9px] px-2 py-0.5 rounded-lg border-zinc-200/60 dark:border-zinc-800/60 font-medium ${
+                        className={`text-[9px] px-2 py-0.5 rounded-lg-200/60 font-medium ${
                           item.priority === "Critical"
                             ? "text-rose-700 bg-rose-50/80 dark:text-rose-400 dark:bg-rose-950/30"
                             : item.priority === "High"
@@ -369,14 +369,14 @@ export function DashboardMockup() {
                         {item.priority}
                       </Badge>
                       <Badge
-                        className={`text-[9px] px-2 py-0.5 rounded-lg font-medium border shadow-sm ${
+                        className={`text-[9px] px-2 py-0.5 rounded-lg font-medium  shadow-sm ${
                           item.status === "Resolved"
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200/60 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-900/60"
+                            ? "bg-emerald-50 text-emerald-700-200/60 dark:bg-emerald-950/30 dark:text-emerald-400"
                             : item.status === "In Progress"
-                            ? "bg-blue-50 text-blue-700 border-blue-200/60 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-900/60"
+                            ? "bg-blue-50 text-blue-700-200/60 dark:bg-blue-950/30 dark:text-blue-400"
                             : item.status === "Assigned"
-                            ? "bg-purple-50 text-purple-700 border-purple-200/60 dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-900/60"
-                            : "bg-zinc-100 text-zinc-600 border-zinc-200/60 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700/60"
+                            ? "bg-purple-50 text-purple-700-200/60 dark:bg-purple-950/30 dark:text-purple-400"
+                            : "bg-zinc-100 text-zinc-600-200/60 dark:bg-zinc-800 dark:text-zinc-400"
                         }`}
                       >
                         {item.status}
@@ -398,7 +398,7 @@ export function DashboardMockup() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card size="sm" className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                <Card size="sm" className="200/60 bg-white dark:bg-zinc-900/50">
                   <CardHeader className="p-4">
                     <CardTitle className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Upcoming Schedule</CardTitle>
                   </CardHeader>
@@ -427,7 +427,7 @@ export function DashboardMockup() {
                   </CardContent>
                 </Card>
 
-                <Card size="sm" className="border border-zinc-200/60 bg-white dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                <Card size="sm" className="200/60 bg-white dark:bg-zinc-900/50">
                   <CardHeader className="p-4">
                     <CardTitle className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Asset Health</CardTitle>
                   </CardHeader>
@@ -482,7 +482,7 @@ export function DashboardMockup() {
               </div>
 
               {/* Progress bar */}
-              <div className="space-y-2 bg-zinc-50/80 p-3.5 border border-zinc-200/60 dark:bg-zinc-900/40 dark:border-zinc-800/60">
+              <div className="space-y-2 bg-zinc-50/80 p-3.5 -200/60 dark:bg-zinc-900/40">
                 <div className="flex justify-between text-[10px] text-zinc-600 dark:text-zinc-400">
                   <span className="font-semibold">Collection Progress</span>
                   <span className="font-bold text-zinc-800 dark:text-zinc-200">96.3%</span>
@@ -494,36 +494,36 @@ export function DashboardMockup() {
 
               {/* Transaction list */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
+                <div className="flex items-center justify-between text-[11px] p-3 -200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 1402 (H. Brooks)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 26</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <span className="font-bold text-zinc-800 dark:text-zinc-200">$185.00</span>
-                    <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-200/60 text-emerald-700 bg-emerald-50/80 dark:border-emerald-900/60 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
+                    <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-emerald-700 bg-emerald-50/80 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
+                <div className="flex items-center justify-between text-[11px] p-3 -200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 805 (A. Patel)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Maintenance Fee • June 25</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <span className="font-bold text-zinc-800 dark:text-zinc-200">$185.00</span>
-                    <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-emerald-200/60 text-emerald-700 bg-emerald-50/80 dark:border-emerald-900/60 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
+                    <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-emerald-700 bg-emerald-50/80 dark:text-emerald-400 dark:bg-emerald-950/30 shadow-sm">Paid</Badge>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] p-3 border border-zinc-200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:border-zinc-800/60 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
+                <div className="flex items-center justify-between text-[11px] p-3 -200/60 bg-zinc-50/50 hover:bg-zinc-100/50 transition-all duration-200 dark:bg-zinc-900/20 dark:hover:bg-zinc-900/30">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Unit 301 (S. Henderson)</span>
                     <span className="text-[9px] text-zinc-500 mt-0.5">Clubhouse Deposit • June 24</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <span className="font-bold text-zinc-800 dark:text-zinc-200">$250.00</span>
-                    <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-rose-200/60 text-rose-700 bg-rose-50/80 dark:border-rose-900/60 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">Overdue</Badge>
+                    <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 text-rose-700 bg-rose-50/80 dark:text-rose-400 dark:bg-rose-950/30 shadow-sm">Overdue</Badge>
                   </div>
                 </div>
               </div>

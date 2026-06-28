@@ -75,7 +75,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
   ];
 
   return (
-    <header className="flex h-12 items-center justify-between border-b border-zinc-200 bg-white px-4 dark:border-zinc-850 dark:bg-zinc-950">
+    <header className="flex h-12 items-center justify-between -200 bg-white px-4 dark:bg-zinc-950">
       {/* Left side: Hamburger (mobile only) & Search & Org Name */}
       <div className="flex items-center gap-2">
         {/* Mobile Navigation Drawer */}
@@ -89,8 +89,8 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
               <Menu className="h-4.5 w-4.5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-60 border-r border-zinc-200 bg-zinc-50 dark:border-zinc-855 dark:bg-zinc-950 p-0 flex flex-col h-full text-zinc-900 dark:text-zinc-50">
-            <SheetHeader className="p-4 border-b border-zinc-200 dark:border-zinc-900 text-left">
+          <SheetContent side="left" className="w-60 -200 bg-zinc-50 dark:bg-zinc-950 p-0 flex flex-col h-full text-zinc-900 dark:text-zinc-50">
+            <SheetHeader className="p-4 -200 text-left">
               <div className="flex items-center gap-2">
                 <div className="flex h-6 w-6 items-center justify-center rounded bg-indigo-600 text-white font-bold text-xs select-none">
                   S
@@ -156,7 +156,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
               })}
             </nav>
 
-            <div className="mt-auto border-t border-zinc-200 dark:border-zinc-850 p-2 space-y-1 bg-zinc-100/50 dark:bg-zinc-950/40">
+            <div className="mt-auto -200 p-2 space-y-1 bg-zinc-100/50 dark:bg-zinc-950/40">
               <Link
                 href="#help"
                 className="flex items-center gap-2.5 rounded px-3 py-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900"
@@ -181,7 +181,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
           <input
             type="text"
             placeholder="Search complaints, residents..."
-            className="h-7.5 w-full rounded border border-zinc-200 bg-zinc-50 pl-8 pr-3 text-xs text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:border-indigo-500 focus:bg-white dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
+            className="h-7.5 w-full rounded -200 bg-zinc-50 pl-8 pr-3 text-xs text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:indigo-500 focus:bg-white dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500"
           />
         </div>
       </div>
@@ -202,7 +202,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
               )}
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80 border border-zinc-200 dark:border-zinc-850 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
+          <DropdownMenuContent align="end" className="w-80 -200 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
             <div className="flex items-center justify-between px-2 py-1.5">
               <DropdownMenuLabel className="text-[10px] uppercase font-bold text-zinc-455 tracking-wider p-0">
                 Notifications ({unreadCount} unread)
@@ -252,7 +252,7 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
               <ChevronDown className="h-3 w-3 text-zinc-400" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56 border border-zinc-200 dark:border-zinc-850 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
+          <DropdownMenuContent align="end" className="w-56 -200 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
             <div className="flex flex-col px-3 py-2 text-left">
               <span className="text-xs font-semibold text-zinc-900 dark:text-white">John Doe</span>
               <span className="text-[10px] text-zinc-400 mt-0.5">john.doe@societyos.com</span>

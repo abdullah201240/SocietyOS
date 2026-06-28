@@ -352,7 +352,7 @@ export default function ComplaintsPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Complaint & Ticket Management
@@ -367,7 +367,7 @@ export default function ComplaintsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Upload className="h-3.5 w-3.5" />
                 <span>Export Complaints</span>
@@ -376,7 +376,7 @@ export default function ComplaintsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleSlaReport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Generate SLA Report</span>
@@ -393,7 +393,7 @@ export default function ComplaintsPage() {
                     <span>Create Ticket</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleCreateTicket}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Raise Service Ticket</DialogTitle>
@@ -408,7 +408,7 @@ export default function ComplaintsPage() {
                           value={newTicket.residentName}
                           onChange={(e) => setNewTicket({ ...newTicket, residentName: e.target.value })}
                           placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -419,7 +419,7 @@ export default function ComplaintsPage() {
                           value={newTicket.flatNumber}
                           onChange={(e) => setNewTicket({ ...newTicket, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -428,7 +428,7 @@ export default function ComplaintsPage() {
                           id="t-tower"
                           value={newTicket.buildingName}
                           onChange={(e) => setNewTicket({ ...newTicket, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -441,7 +441,7 @@ export default function ComplaintsPage() {
                           id="t-cat"
                           value={newTicket.category}
                           onChange={(e) => setNewTicket({ ...newTicket, category: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Plumbing">Plumbing</option>
                           <option value="Electrical">Electrical</option>
@@ -458,7 +458,7 @@ export default function ComplaintsPage() {
                           id="t-priority"
                           value={newTicket.priority}
                           onChange={(e) => setNewTicket({ ...newTicket, priority: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Critical">Critical</option>
                           <option value="High">High</option>
@@ -472,7 +472,7 @@ export default function ComplaintsPage() {
                           id="t-assign"
                           value={newTicket.assignee}
                           onChange={(e) => setNewTicket({ ...newTicket, assignee: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Unassigned">Unassigned</option>
                           <option value="Steve Rogers">Steve Rogers (Electrical)</option>
@@ -489,7 +489,7 @@ export default function ComplaintsPage() {
                           value={newTicket.description}
                           onChange={(e) => setNewTicket({ ...newTicket, description: e.target.value })}
                           placeholder="Describe the complaint issues in detail..."
-                          className="col-span-3 text-xs rounded-sm border border-zinc-205 p-2 bg-white dark:border-zinc-800 dark:bg-zinc-900 outline-none min-h-[60px]"
+                          className="col-span-3 text-xs rounded-sm -205 p-2 bg-white dark:bg-zinc-900 outline-none min-h-[60px]"
                         />
                       </div>
                     </div>
@@ -506,7 +506,7 @@ export default function ComplaintsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -517,7 +517,7 @@ export default function ComplaintsPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total unresolved active complaints.
                       </TooltipContent>
                     </Tooltip>
@@ -531,7 +531,7 @@ export default function ComplaintsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">High Priority</span>
@@ -544,7 +544,7 @@ export default function ComplaintsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Avg Resolution SLA</span>
@@ -557,7 +557,7 @@ export default function ComplaintsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">SLA Compliance Rate</span>
@@ -576,8 +576,8 @@ export default function ComplaintsPage() {
             
             {/* Sidebar Filters panel */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Operational Filters
@@ -591,7 +591,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Open">Open</option>
@@ -607,7 +607,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterPriority}
                       onChange={(e) => setFilterPriority(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All levels</option>
                       <option value="Critical">Critical</option>
@@ -623,7 +623,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All buildings</option>
                       <option value="Tower Alpha">Tower Alpha</option>
@@ -638,7 +638,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterCategory}
                       onChange={(e) => setFilterCategory(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All categories</option>
                       <option value="Plumbing">Plumbing</option>
@@ -657,7 +657,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterTechnician}
                       onChange={(e) => setFilterTechnician(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All technicians</option>
                       <option value="Assigned">Assigned dispatch</option>
@@ -671,7 +671,7 @@ export default function ComplaintsPage() {
                     <select
                       value={filterSla}
                       onChange={(e) => setFilterSla(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All risks</option>
                       <option value="AtRisk">SLA Overdue / Critical Risk</option>
@@ -689,7 +689,7 @@ export default function ComplaintsPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -699,8 +699,8 @@ export default function ComplaintsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -708,7 +708,7 @@ export default function ComplaintsPage() {
                       placeholder="Search tickets by ID, resident, issue details..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -724,8 +724,8 @@ export default function ComplaintsPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Ticket ID</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building</TableHead>
@@ -743,7 +743,7 @@ export default function ComplaintsPage() {
                           <TableRow
                             key={t.id}
                             onClick={() => setSelectedTicket(t)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-bold text-indigo-600 dark:text-indigo-400 py-2.5">
                               #{t.id}
@@ -758,14 +758,14 @@ export default function ComplaintsPage() {
                               {t.category}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 t.priority === "Critical"
-                                  ? "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-450 dark:border-rose-900"
+                                  ? "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-450"
                                   : t.priority === "High"
-                                  ? "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900"
+                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-950/20 dark:text-amber-450"
                                   : t.priority === "Medium"
-                                  ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/20 dark:text-indigo-400 dark:border-indigo-900"
-                                  : "bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+                                  ? "bg-indigo-50 text-indigo-700-200 dark:bg-indigo-950/20 dark:text-indigo-400"
+                                  : "bg-zinc-100 text-zinc-600-200 dark:bg-zinc-800 dark:text-zinc-400"
                               }`}>
                                 {t.priority}
                               </span>
@@ -774,14 +774,14 @@ export default function ComplaintsPage() {
                               {t.assignee}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 t.status === "Open"
-                                  ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-450"
+                                  ? "bg-amber-50 text-amber-700-200 dark:bg-amber-950/20 dark:text-amber-450"
                                   : t.status === "In Progress"
-                                  ? "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/20 dark:text-blue-450"
+                                  ? "bg-blue-50 text-blue-700-200 dark:bg-blue-950/20 dark:text-blue-450"
                                   : t.status === "Resolved"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
-                                  : "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-450"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                  : "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-450"
                               }`}>
                                 {t.status}
                               </span>
@@ -811,10 +811,10 @@ export default function ComplaintsPage() {
 
       {/* COMPLAINT DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedTicket !== null} onOpenChange={(open) => !open && setSelectedTicket(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedTicket && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
                   <AlertCircle className="h-3.5 w-3.5" /> Complaint Dispatch details
                 </div>
@@ -830,29 +830,29 @@ export default function ComplaintsPage() {
               <div className="flex-1 overflow-y-auto p-4 space-y-5 scrollbar-thin">
                 
                 {/* 1. Ticket status overview */}
-                <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 grid grid-cols-2 gap-y-2 text-xs">
+                <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 grid grid-cols-2 gap-y-2 text-xs">
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">STATUS</span>
-                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1 border ${
+                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
                       selectedTicket.status === "Open"
-                        ? "bg-amber-50 text-amber-700 border-amber-200"
+                        ? "bg-amber-50 text-amber-700-200"
                         : selectedTicket.status === "In Progress"
-                        ? "bg-blue-50 text-blue-700 border-blue-200"
+                        ? "bg-blue-50 text-blue-700-200"
                         : selectedTicket.status === "Resolved"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-255"
-                        : "bg-rose-50 text-rose-700 border-rose-255"
+                        ? "bg-emerald-50 text-emerald-700-255"
+                        : "bg-rose-50 text-rose-700-255"
                     }`}>
                       {selectedTicket.status}
                     </span>
                   </div>
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">PRIORITY</span>
-                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1 border ${
+                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
                       selectedTicket.priority === "Critical"
-                        ? "bg-rose-50 text-rose-700 border-rose-255"
+                        ? "bg-rose-50 text-rose-700-255"
                         : selectedTicket.priority === "High"
-                        ? "bg-amber-50 text-amber-700 border-amber-200"
-                        : "bg-zinc-100 text-zinc-650 border-zinc-200"
+                        ? "bg-amber-50 text-amber-700-200"
+                        : "bg-zinc-100 text-zinc-650-200"
                     }`}>
                       {selectedTicket.priority}
                     </span>
@@ -870,7 +870,7 @@ export default function ComplaintsPage() {
                 {/* 2. Complaint Description */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Description Details</span>
-                  <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
                     {selectedTicket.description}
                   </div>
                 </div>
@@ -879,7 +879,7 @@ export default function ComplaintsPage() {
                 {selectedTicket.images.length > 0 && (
                   <div className="space-y-2.5">
                     <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Attachments</span>
-                    <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs text-zinc-450 italic flex items-center gap-1.5">
+                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs text-zinc-450 italic flex items-center gap-1.5">
                       <FileText className="h-4 w-4" /> {selectedTicket.images[0]}
                     </div>
                   </div>
@@ -890,7 +890,7 @@ export default function ComplaintsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Escalation & Operational timeline</span>
                   <div className="space-y-3 font-medium">
                     {selectedTicket.timeline.map((item, idx) => (
-                      <div key={idx} className="flex gap-2.5 text-xs border-l-2 border-zinc-100 pl-3 dark:border-zinc-900 ml-1.5">
+                      <div key={idx} className="flex gap-2.5 text-xs -100 pl-3 ml-1.5">
                         <div>
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.title}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.desc}</span>
@@ -906,7 +906,7 @@ export default function ComplaintsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Communication Logs ({selectedTicket.comments.length})</span>
                   <div className="space-y-2.5">
                     {selectedTicket.comments.map((comment, idx) => (
-                      <div key={idx} className="p-2 rounded bg-zinc-50/50 dark:bg-zinc-900/20 border border-zinc-100 dark:border-zinc-900 text-xs">
+                      <div key={idx} className="p-2 rounded bg-zinc-50/50 dark:bg-zinc-900/20 -100 text-xs">
                         <div className="flex justify-between items-center text-[10px] text-zinc-400 mb-1 font-semibold">
                           <span>{comment.sender} ({comment.role})</span>
                           <span>{comment.time}</span>
@@ -921,7 +921,7 @@ export default function ComplaintsPage() {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                         placeholder="Log update or comment thread..."
-                        className="h-8.5 rounded-sm border-zinc-200 text-xs"
+                        className="h-8.5 rounded-sm-200 text-xs"
                       />
                       <Button type="submit" size="icon" className="h-8.5 w-8.5 shrink-0 bg-indigo-650 hover:bg-indigo-700 text-white rounded-sm">
                         <Send className="h-4 w-4" />
@@ -934,7 +934,7 @@ export default function ComplaintsPage() {
                 {selectedTicket.status === "Resolved" && selectedTicket.residentRating && (
                   <div className="space-y-2.5">
                     <span className="text-[9.5px] uppercase font-bold text-zinc-455 dark:text-zinc-500 tracking-wider block">Resident feedback</span>
-                    <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-1.5">
+                    <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs space-y-1.5">
                       <div className="flex items-center gap-1">
                         <span className="text-zinc-500">Rating:</span>
                         <span className="font-bold text-amber-600">{"★".repeat(selectedTicket.residentRating)}</span>
@@ -949,13 +949,13 @@ export default function ComplaintsPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 {selectedTicket.status !== "Resolved" ? (
                   <>
                     <Button
                       onClick={() => handleEscalateTicket(selectedTicket.id)}
                       variant="outline"
-                      className="flex-1 h-8 rounded-sm text-xs border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-955/20 cursor-pointer"
+                      className="flex-1 h-8 rounded-sm text-xs-200 text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-955/20 cursor-pointer"
                     >
                       <AlertTriangle className="h-3.5 w-3.5 mr-1 inline-block" /> Escalate
                     </Button>

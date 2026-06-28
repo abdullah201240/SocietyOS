@@ -355,7 +355,7 @@ export default function BuildingsPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Building Management
@@ -370,7 +370,7 @@ export default function BuildingsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleImport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Upload className="h-3.5 w-3.5" />
                 <span>Import Building Data</span>
@@ -379,7 +379,7 @@ export default function BuildingsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Generate Report</span>
@@ -396,7 +396,7 @@ export default function BuildingsPage() {
                     <span>Add Building</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleAddBuilding}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Add Infrastructure Building</DialogTitle>
@@ -411,7 +411,7 @@ export default function BuildingsPage() {
                           value={newBuilding.name}
                           onChange={(e) => setNewBuilding({ ...newBuilding, name: e.target.value })}
                           placeholder="e.g. Tower Delta"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -420,7 +420,7 @@ export default function BuildingsPage() {
                           id="b-society"
                           value={newBuilding.societyName}
                           onChange={(e) => setNewBuilding({ ...newBuilding, societyName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           {orgs.map((org) => (
                             <option key={org} value={org}>{org}</option>
@@ -433,7 +433,7 @@ export default function BuildingsPage() {
                           id="b-type"
                           value={newBuilding.type}
                           onChange={(e) => setNewBuilding({ ...newBuilding, type: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Residential">Residential Tower</option>
                           <option value="Commercial">Commercial Wing</option>
@@ -449,7 +449,7 @@ export default function BuildingsPage() {
                           value={newBuilding.floors}
                           onChange={(e) => setNewBuilding({ ...newBuilding, floors: Number(e.target.value) })}
                           min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -461,7 +461,7 @@ export default function BuildingsPage() {
                           value={newBuilding.totalFlats}
                           onChange={(e) => setNewBuilding({ ...newBuilding, totalFlats: Number(e.target.value) })}
                           min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -473,7 +473,7 @@ export default function BuildingsPage() {
                           value={newBuilding.occupiedFlats}
                           onChange={(e) => setNewBuilding({ ...newBuilding, occupiedFlats: Number(e.target.value) })}
                           min={0}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -482,7 +482,7 @@ export default function BuildingsPage() {
                           id="b-maint"
                           value={newBuilding.maintenanceStatus}
                           onChange={(e) => setNewBuilding({ ...newBuilding, maintenanceStatus: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Stable">Stable</option>
                           <option value="Pending Service">Pending Service</option>
@@ -495,7 +495,7 @@ export default function BuildingsPage() {
                           id="b-ops"
                           value={newBuilding.operationalStatus}
                           onChange={(e) => setNewBuilding({ ...newBuilding, operationalStatus: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Online">Online</option>
                           <option value="Degraded">Degraded</option>
@@ -516,7 +516,7 @@ export default function BuildingsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -527,7 +527,7 @@ export default function BuildingsPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total structural building units.
                       </TooltipContent>
                     </Tooltip>
@@ -541,7 +541,7 @@ export default function BuildingsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Occupancy Rate</span>
@@ -554,7 +554,7 @@ export default function BuildingsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Issues</span>
@@ -567,7 +567,7 @@ export default function BuildingsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Utility Summary</span>
@@ -586,8 +586,8 @@ export default function BuildingsPage() {
             
             {/* Sidebar Filters panel */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Infrastructure Filters
@@ -601,7 +601,7 @@ export default function BuildingsPage() {
                     <select
                       value={filterOccupancy}
                       onChange={(e) => setFilterOccupancy(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All occupancy rates</option>
                       <option value="High">&ge; 90% Occupied</option>
@@ -616,7 +616,7 @@ export default function BuildingsPage() {
                     <select
                       value={filterMaintenance}
                       onChange={(e) => setFilterMaintenance(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Stable">Stable</option>
@@ -631,7 +631,7 @@ export default function BuildingsPage() {
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All building types</option>
                       <option value="Residential">Residential Tower</option>
@@ -646,7 +646,7 @@ export default function BuildingsPage() {
                     <select
                       value={filterAlerts}
                       onChange={(e) => setFilterAlerts(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All alerts statuses</option>
                       <option value="Active">Active issues present</option>
@@ -663,7 +663,7 @@ export default function BuildingsPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -673,8 +673,8 @@ export default function BuildingsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -682,7 +682,7 @@ export default function BuildingsPage() {
                       placeholder="Search buildings by name, society..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -698,8 +698,8 @@ export default function BuildingsPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Society Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Floors</TableHead>
@@ -717,7 +717,7 @@ export default function BuildingsPage() {
                           <TableRow
                             key={b.id}
                             onClick={() => setSelectedBuilding(b)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {b.name}
@@ -735,12 +735,12 @@ export default function BuildingsPage() {
                               {b.occupiedFlats} ({Math.round((b.occupiedFlats / b.totalFlats) * 100)}%)
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 b.maintenanceStatus === "Stable"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : b.maintenanceStatus === "Pending Service"
-                                  ? "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900"
-                                  : "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-450 dark:border-rose-900"
+                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-950/20 dark:text-amber-450"
+                                  : "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-450"
                               }`}>
                                 {b.maintenanceStatus}
                               </span>
@@ -751,9 +751,9 @@ export default function BuildingsPage() {
                             <TableCell className="text-center py-2.5">
                               <Badge
                                 variant="outline"
-                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm border-zinc-200/60 ${
+                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm-200/60 ${
                                   b.activeComplaints > 0
-                                    ? "text-indigo-700 bg-indigo-50 border-indigo-200 dark:text-indigo-400 dark:bg-indigo-950/20 dark:border-indigo-900"
+                                    ? "text-indigo-700 bg-indigo-50-200 dark:text-indigo-400 dark:bg-indigo-950/20"
                                     : "text-zinc-400 bg-zinc-50 dark:bg-zinc-900"
                                 }`}
                               >
@@ -797,10 +797,10 @@ export default function BuildingsPage() {
 
       {/* BUILDING DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedBuilding !== null} onOpenChange={(open) => !open && setSelectedBuilding(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedBuilding && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
                   <Building2 className="h-3 w-3" /> Building layout Profile
                 </div>
@@ -819,7 +819,7 @@ export default function BuildingsPage() {
                 {/* 1. Occupancy Analytics floors breakdown */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Occupancy analytics</span>
-                  <div className="space-y-3.5 rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40">
+                  <div className="space-y-3.5 rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40">
                     <div className="flex justify-between text-xs">
                       <span className="text-zinc-500">Occupancy rate</span>
                       <span className="font-bold text-zinc-900 dark:text-white">
@@ -827,7 +827,7 @@ export default function BuildingsPage() {
                       </span>
                     </div>
                     <Progress value={Math.round((selectedBuilding.occupiedFlats / selectedBuilding.totalFlats) * 100)} className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
-                    <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] border-t border-zinc-100 pt-2 dark:border-zinc-900">
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-[11px] -100 pt-2">
                       <div className="flex justify-between">
                         <span className="text-zinc-450">TOTAL FLATS</span>
                         <span className="font-semibold">{selectedBuilding.totalFlats}</span>
@@ -844,7 +844,7 @@ export default function BuildingsPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Utility overview counters</span>
                   <div className="grid grid-cols-2 gap-3.5">
-                    <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 flex items-center gap-2">
+                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 flex items-center gap-2">
                       <div className="rounded p-1 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400">
                         <Droplet className="h-4 w-4" />
                       </div>
@@ -853,7 +853,7 @@ export default function BuildingsPage() {
                         <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{selectedBuilding.waterConsumption}</span>
                       </div>
                     </div>
-                    <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 flex items-center gap-2">
+                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 flex items-center gap-2">
                       <div className="rounded p-1 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-650 dark:text-indigo-400">
                         <Bolt className="h-4 w-4" />
                       </div>
@@ -868,7 +868,7 @@ export default function BuildingsPage() {
                 {/* 3. Parking Allocation */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Parking Allocation status</span>
-                  <div className="space-y-3 rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40">
+                  <div className="space-y-3 rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40">
                     <div className="space-y-1">
                       <div className="flex justify-between text-[10px] text-zinc-500">
                         <span>Parking utilization rate</span>
@@ -884,7 +884,7 @@ export default function BuildingsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Assigned Staff ({selectedBuilding.assignedStaff.length})</span>
                   <div className="space-y-2">
                     {selectedBuilding.assignedStaff.map((staff, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 border border-zinc-150 rounded p-2.5 dark:border-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors">
+                      <div key={idx} className="flex items-center gap-2.5 -150 rounded p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors">
                         <div className="h-7 w-7 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-zinc-450 flex items-center justify-center font-bold text-[10px]">
                           <User className="h-4 w-4" />
                         </div>
@@ -902,7 +902,7 @@ export default function BuildingsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Recent operational activity</span>
                   <div className="space-y-2">
                     {selectedBuilding.activity.map((a) => (
-                      <div key={a.id} className="flex gap-2 text-xs border-b border-zinc-100 pb-2 dark:border-zinc-900 last:border-0 last:pb-0">
+                      <div key={a.id} className="flex gap-2 text-xs -100 pb-2 last:0 last:pb-0">
                         <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                         <div>
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.log}</span>
@@ -916,14 +916,14 @@ export default function BuildingsPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 <Button
                   onClick={() => {
                     setSelectedBuilding(null);
                     toast.info(`Configured emergency drills schedule for ${selectedBuilding.name}`);
                   }}
                   variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs border-zinc-200 dark:border-indigo-900 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   Configure Alerts
                 </Button>

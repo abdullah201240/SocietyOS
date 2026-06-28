@@ -76,8 +76,8 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
       <div className="lg:col-span-2 space-y-6">
         
         {/* COMPLAINTS FEED */}
-        <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-          <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+        <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+          <CardHeader className="p-4 -100">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
@@ -85,7 +85,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
                 </CardTitle>
                 <CardDescription className="text-[10px] text-zinc-550">Click a complaint status badge to step through stages.</CardDescription>
               </div>
-              <Badge variant="outline" className="text-[9px] px-2 py-0.5 border-zinc-200/60 dark:border-zinc-800/60 font-semibold text-zinc-500">
+              <Badge variant="outline" className="text-[9px] px-2 py-0.5-200/60 font-semibold text-zinc-500">
                 {complaints.filter(c => c.status !== "Resolved").length} Unresolved
               </Badge>
             </div>
@@ -94,7 +94,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
             {complaints.map((c) => (
               <div
                 key={c.id}
-                className="group flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40 border border-transparent hover:border-zinc-100 dark:hover:border-zinc-900 transition-all"
+                className="group flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40  hover:zinc-100 dark:hover:zinc-900 transition-all"
               >
                 <div className="flex items-start gap-2.5 min-w-0">
                   <div className={`mt-0.5 rounded-full p-1 ${
@@ -123,7 +123,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
                 <div className="flex items-center gap-2 shrink-0">
                   <Badge
                     variant="outline"
-                    className={`text-[9.5px] px-1.5 py-0.5 rounded-sm border-zinc-200/60 font-semibold ${
+                    className={`text-[9.5px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold ${
                       c.priority === "Critical"
                         ? "text-rose-700 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/30"
                         : c.priority === "High"
@@ -135,14 +135,14 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
                   </Badge>
                   <button
                     onClick={() => handleStatusChange(c.id)}
-                    className={`text-[9.5px] px-1.5 py-0.5 rounded-sm font-bold border transition-colors outline-none cursor-pointer ${
+                    className={`text-[9.5px] px-1.5 py-0.5 rounded-sm font-bold  transition-colors outline-none cursor-pointer ${
                       c.status === "Resolved"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                        ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                         : c.status === "In Progress"
-                        ? "bg-blue-50 text-blue-700 border-blue-250 dark:bg-blue-950/20 dark:text-blue-450"
+                        ? "bg-blue-50 text-blue-700-250 dark:bg-blue-950/20 dark:text-blue-450"
                         : c.status === "Assigned"
-                        ? "bg-purple-50 text-purple-700 border-purple-250 dark:bg-purple-950/20 dark:text-purple-450"
-                        : "bg-zinc-100 text-zinc-650 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+                        ? "bg-purple-50 text-purple-700-250 dark:bg-purple-950/20 dark:text-purple-450"
+                        : "bg-zinc-100 text-zinc-650-200 dark:bg-zinc-800 dark:text-zinc-400"
                     }`}
                   >
                     {c.status}
@@ -154,8 +154,8 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
         </Card>
 
         {/* RECENT PAYMENTS */}
-        <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-          <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+        <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+          <CardHeader className="p-4 -100">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
                 <CreditCard className="h-4 w-4 text-indigo-650" /> Recent Transactions
@@ -167,7 +167,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
             {payments.map((p) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40 border border-transparent transition-all"
+                className="flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40  transition-all"
               >
                 <div className="flex items-center gap-3">
                   <div className="rounded bg-zinc-100 dark:bg-zinc-900 p-2 text-zinc-600 dark:text-zinc-400">
@@ -193,8 +193,8 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
       <div className="space-y-6">
 
         {/* PENDING APPROVALS */}
-        <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-          <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+        <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+          <CardHeader className="p-4 -100">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
                 <Users className="h-4 w-4 text-indigo-650" /> Pending Approvals
@@ -216,7 +216,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
             ) : (
               <div className="space-y-3">
                 {approvals.map((a) => (
-                  <div key={a.id} className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 space-y-2">
+                  <div key={a.id} className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 space-y-2">
                     <div className="flex justify-between items-start gap-1">
                       <div>
                         <span className="text-[9px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wide block">
@@ -230,7 +230,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 border-t border-zinc-100 pt-2 dark:border-zinc-900">
+                    <div className="flex items-center gap-2 -100 pt-2">
                       <Button
                         onClick={() => handleApprovalAction(a.id, false)}
                         variant="ghost"
@@ -255,13 +255,13 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
         </Card>
 
         {/* VISITOR ACTIVITY LOG */}
-        <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-          <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+        <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+          <CardHeader className="p-4 -100">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
                 <Clock className="h-4 w-4 text-indigo-650" /> Gate visitor log
               </CardTitle>
-              <Badge variant="secondary" className="text-[8px] bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 font-bold uppercase rounded-sm border border-emerald-100 dark:border-emerald-900">
+              <Badge variant="secondary" className="text-[8px] bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 font-bold uppercase rounded-sm -100">
                 Gate #1 Active
               </Badge>
             </div>
@@ -270,7 +270,7 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
             {visitors.map((v) => (
               <div
                 key={v.id}
-                className="flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40 border border-transparent transition-all"
+                className="flex items-center justify-between p-2 rounded hover:bg-zinc-50 dark:hover:bg-zinc-900/40  transition-all"
               >
                 <div className="min-w-0">
                   <span className="text-xs font-semibold text-zinc-900 dark:text-white block truncate">
@@ -286,12 +286,12 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
                       onClick={() => handleVisitorCheckOut(v.id)}
                       variant="outline"
                       size="xs"
-                      className="h-6 text-[9px] font-semibold border-zinc-200 hover:bg-zinc-100 text-zinc-650 rounded-sm hover:text-zinc-900"
+                      className="h-6 text-[9px] font-semibold-200 hover:bg-zinc-100 text-zinc-650 rounded-sm hover:text-zinc-900"
                     >
                       Check Out
                     </Button>
                   ) : (
-                    <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm border-zinc-200/60 font-semibold text-zinc-400 bg-zinc-50/50">
+                    <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold text-zinc-400 bg-zinc-50/50">
                       Departed
                     </Badge>
                   )}
@@ -302,8 +302,8 @@ export function OperationalWidgets({ currentOrg }: OperationalWidgetsProps) {
         </Card>
 
         {/* PARKING OCCUPANCY */}
-        <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-          <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+        <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+          <CardHeader className="p-4 -100">
             <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
               <Car className="h-4 w-4 text-indigo-650" /> Parking utilization
             </CardTitle>

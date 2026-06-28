@@ -4,7 +4,7 @@ import { Building } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-150 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20 py-12 md:py-16 text-xs text-zinc-500 dark:text-zinc-400">
+    <footer className="t-150 bg-zinc-50/50 dark:bg-zinc-950/20 py-12 md:py-16 text-xs text-zinc-500 dark:text-zinc-400">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Footer Top Grid */}
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Legal & Footer Metas */}
-        <div className="pt-8 border-t border-zinc-150 dark:border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="pt-8 -150 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left text-[10px] text-zinc-400">
             <p>SocietyOS © 2026. Empowering modern residential communities worldwide.</p>
             <p className="text-[9px] text-zinc-400/85">

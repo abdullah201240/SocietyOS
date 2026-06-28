@@ -330,7 +330,7 @@ export default function BillingPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Billing & Financial Operations
@@ -345,7 +345,7 @@ export default function BillingPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <FileSpreadsheet className="h-3.5 w-3.5" />
                 <span>Export Financial Report</span>
@@ -354,7 +354,7 @@ export default function BillingPage() {
                 variant="outline"
                 size="xs"
                 onClick={() => handleSendReminder("INV-2026-403")}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Send className="h-3.5 w-3.5" />
                 <span>Send Payment Reminder</span>
@@ -371,7 +371,7 @@ export default function BillingPage() {
                     <span>Generate Invoice</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleGenerateInvoice}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Generate Ledger Invoice</DialogTitle>
@@ -386,7 +386,7 @@ export default function BillingPage() {
                           value={newInvoice.residentName}
                           onChange={(e) => setNewInvoice({ ...newInvoice, residentName: e.target.value })}
                           placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -397,7 +397,7 @@ export default function BillingPage() {
                           value={newInvoice.flatNumber}
                           onChange={(e) => setNewInvoice({ ...newInvoice, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -406,7 +406,7 @@ export default function BillingPage() {
                           id="i-tower"
                           value={newInvoice.buildingName}
                           onChange={(e) => setNewInvoice({ ...newInvoice, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -419,7 +419,7 @@ export default function BillingPage() {
                           id="i-cat"
                           value={newInvoice.category}
                           onChange={(e) => setNewInvoice({ ...newInvoice, category: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Maintenance">Maintenance</option>
                           <option value="Utilities">Utilities</option>
@@ -437,7 +437,7 @@ export default function BillingPage() {
                           value={newInvoice.amount}
                           onChange={(e) => setNewInvoice({ ...newInvoice, amount: Number(e.target.value) })}
                           min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -447,7 +447,7 @@ export default function BillingPage() {
                           type="date"
                           value={newInvoice.dueDate}
                           onChange={(e) => setNewInvoice({ ...newInvoice, dueDate: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                     </div>
@@ -464,7 +464,7 @@ export default function BillingPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -475,7 +475,7 @@ export default function BillingPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total collections in active billing run cycle.
                       </TooltipContent>
                     </Tooltip>
@@ -489,7 +489,7 @@ export default function BillingPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Outstanding Dues</span>
@@ -502,7 +502,7 @@ export default function BillingPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Collection Rate</span>
@@ -515,7 +515,7 @@ export default function BillingPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Invoices</span>
@@ -534,8 +534,8 @@ export default function BillingPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Financial Filters
@@ -549,7 +549,7 @@ export default function BillingPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Paid">Paid</option>
@@ -565,7 +565,7 @@ export default function BillingPage() {
                     <select
                       value={filterCategory}
                       onChange={(e) => setFilterCategory(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All categories</option>
                       <option value="Maintenance">Maintenance</option>
@@ -582,7 +582,7 @@ export default function BillingPage() {
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All buildings</option>
                       <option value="Tower Alpha">Tower Alpha</option>
@@ -597,7 +597,7 @@ export default function BillingPage() {
                     <select
                       value={filterMethod}
                       onChange={(e) => setFilterMethod(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All methods</option>
                       <option value="Bank Transfer">Bank Transfer</option>
@@ -613,7 +613,7 @@ export default function BillingPage() {
                     <select
                       value={filterUtility}
                       onChange={(e) => setFilterUtility(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All utility types</option>
                       <option value="Water">Water</option>
@@ -632,7 +632,7 @@ export default function BillingPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -642,8 +642,8 @@ export default function BillingPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -651,7 +651,7 @@ export default function BillingPage() {
                       placeholder="Search invoices by ID, resident, flat..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -667,8 +667,8 @@ export default function BillingPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Invoice ID</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building/Flat</TableHead>
@@ -686,7 +686,7 @@ export default function BillingPage() {
                           <TableRow
                             key={inv.id}
                             onClick={() => setSelectedInvoice(inv)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {inv.id}
@@ -707,14 +707,14 @@ export default function BillingPage() {
                               {inv.dueDate}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 inv.status === "Paid"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : inv.status === "Pending"
-                                  ? "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-955/20 dark:text-amber-450 dark:border-amber-900"
+                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-955/20 dark:text-amber-450"
                                   : inv.status === "Processing"
-                                  ? "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-955/20 dark:text-blue-450 dark:border-blue-900"
-                                  : "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-450 dark:border-rose-900"
+                                  ? "bg-blue-50 text-blue-700-200 dark:bg-blue-955/20 dark:text-blue-450"
+                                  : "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-450"
                               }`}>
                                 {inv.status}
                               </span>
@@ -746,10 +746,10 @@ export default function BillingPage() {
 
       {/* BILLING DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedInvoice !== null} onOpenChange={(open) => !open && setSelectedInvoice(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedInvoice && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
                   <CreditCard className="h-3.5 w-3.5" /> Billing invoice ledger
                 </div>
@@ -765,17 +765,17 @@ export default function BillingPage() {
               <div className="flex-1 overflow-y-auto p-4 space-y-5 scrollbar-thin">
                 
                 {/* 1. Transaction Overview card */}
-                <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 grid grid-cols-2 gap-y-2 text-xs">
+                <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 grid grid-cols-2 gap-y-2 text-xs">
                   <div>
                     <span className="text-zinc-400 block text-[9px] font-bold">STATUS</span>
-                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1 border ${
+                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
                       selectedInvoice.status === "Paid"
-                        ? "bg-emerald-50 text-emerald-700 border-emerald-250"
+                        ? "bg-emerald-50 text-emerald-700-250"
                         : selectedInvoice.status === "Pending"
-                        ? "bg-amber-50 text-amber-700 border-amber-200"
+                        ? "bg-amber-50 text-amber-700-200"
                         : selectedInvoice.status === "Processing"
-                        ? "bg-blue-50 text-blue-700 border-blue-200"
-                        : "bg-rose-50 text-rose-700 border-rose-250"
+                        ? "bg-blue-50 text-blue-700-200"
+                        : "bg-rose-50 text-rose-700-250"
                     }`}>
                       {selectedInvoice.status}
                     </span>
@@ -803,7 +803,7 @@ export default function BillingPage() {
                 {/* 2. Billing Breakdown */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Billing Breakdown</span>
-                  <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-2">
+                  <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs space-y-2">
                     {selectedInvoice.breakdown.map((item, idx) => (
                       <div key={idx} className="flex justify-between items-center text-zinc-800 dark:text-zinc-300">
                         <span>{item.item}</span>
@@ -811,12 +811,12 @@ export default function BillingPage() {
                       </div>
                     ))}
                     {selectedInvoice.lateFee > 0 && (
-                      <div className="flex justify-between items-center text-rose-600 font-semibold border-t border-zinc-100 pt-2 dark:border-zinc-900">
+                      <div className="flex justify-between items-center text-rose-600 font-semibold -100 pt-2">
                         <span>Late Fees Assessment</span>
                         <span>+${selectedInvoice.lateFee.toFixed(2)}</span>
                       </div>
                     )}
-                    <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold border-t border-zinc-100 pt-2 dark:border-zinc-900">
+                    <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold -100 pt-2">
                       <span>Total Invoice Due</span>
                       <span>${(selectedInvoice.amount + selectedInvoice.lateFee).toFixed(2)}</span>
                     </div>
@@ -827,7 +827,7 @@ export default function BillingPage() {
                 {selectedInvoice.category === "Utilities" && selectedInvoice.utilityBreakdown && (
                   <div className="space-y-2.5">
                     <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Utility usage metrics</span>
-                    <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs grid grid-cols-3 gap-2">
+                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-3 gap-2">
                       <div>
                         <span className="text-zinc-450 block text-[9px] font-bold">TYPE</span>
                         <span className="font-semibold">{selectedInvoice.utilityBreakdown.type}</span>
@@ -849,7 +849,7 @@ export default function BillingPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Invoice timeline logs</span>
                   <div className="space-y-3 font-medium">
                     {selectedInvoice.timeline.map((item, idx) => (
-                      <div key={idx} className="flex gap-2.5 text-xs border-l-2 border-zinc-100 pl-3 dark:border-zinc-900 ml-1.5">
+                      <div key={idx} className="flex gap-2.5 text-xs -100 pl-3 ml-1.5">
                         <div>
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.step}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.note}</span>
@@ -865,7 +865,7 @@ export default function BillingPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Notification dispatch history</span>
                   <div className="space-y-2 font-medium">
                     {selectedInvoice.commsLog.map((log, idx) => (
-                      <div key={idx} className="flex items-center justify-between border border-zinc-150 rounded p-2.5 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
+                      <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-250">{log.action} ({log.medium})</span>
                         <span className="text-[9.5px] text-zinc-400">{log.time}</span>
                       </div>
@@ -876,14 +876,14 @@ export default function BillingPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 <Button
                   onClick={() => {
                     setSelectedInvoice(null);
                     toast.success(`Invoice receipt downloaded as PDF.`);
                   }}
                   variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs border-zinc-200 dark:border-zinc-850 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   <FileText className="h-3.5 w-3.5 mr-1 inline-block" /> Download PDF
                 </Button>

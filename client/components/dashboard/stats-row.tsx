@@ -32,7 +32,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {/* 1. Active Complaints */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
         <CardContent className="p-3">
           <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center gap-1">
@@ -43,7 +43,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
                     <HelpCircle className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                   Unresolved resident service tickets.
                 </TooltipContent>
               </Tooltip>
@@ -58,7 +58,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
               {activeComplaints.high} Urgent
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between border-t border-zinc-100 pt-2 text-[10px] text-zinc-500 dark:border-zinc-900 dark:text-zinc-455">
+          <div className="mt-2 flex items-center justify-between -100 pt-2 text-[10px] text-zinc-500 dark:text-zinc-455">
             <span>{activeComplaints.medium} normal priority</span>
             <span className="font-medium text-rose-600 dark:text-rose-400">{activeComplaints.trend}</span>
           </div>
@@ -66,7 +66,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
       </Card>
 
       {/* 2. Pending Maintenance */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
         <CardContent className="p-3">
           <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center gap-1">
@@ -77,7 +77,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
                     <HelpCircle className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                   Scheduled assets & equipment tasks.
                 </TooltipContent>
               </Tooltip>
@@ -92,7 +92,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
               {pendingMaintenance.overdue} Overdue
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between border-t border-zinc-100 pt-2 text-[10px] text-zinc-500 dark:border-zinc-900 dark:text-zinc-455">
+          <div className="mt-2 flex items-center justify-between -100 pt-2 text-[10px] text-zinc-500 dark:text-zinc-455">
             <span>{pendingMaintenance.scheduled} dispatch jobs</span>
             <span className="font-semibold text-amber-600 dark:text-amber-400">{pendingMaintenance.trend}</span>
           </div>
@@ -100,7 +100,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
       </Card>
 
       {/* 3. Monthly Collections */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
         <CardContent className="p-3">
           <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center gap-1">
@@ -111,7 +111,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
                     <HelpCircle className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                   Maintenance & invoice collection progress.
                 </TooltipContent>
               </Tooltip>
@@ -126,7 +126,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
               of {monthlyCollections.target}
             </span>
           </div>
-          <div className="mt-3 space-y-1.5 border-t border-zinc-100 pt-2 dark:border-zinc-900">
+          <div className="mt-3 space-y-1.5 -100 pt-2">
             <div className="flex justify-between text-[10px] text-zinc-500 dark:text-zinc-455">
               <span>Collection rate</span>
               <span className="font-bold text-zinc-850 dark:text-zinc-300">{monthlyCollections.percent}%</span>
@@ -142,7 +142,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
       </Card>
 
       {/* 4. Occupied Flats */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
         <CardContent className="p-3">
           <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center gap-1">
@@ -153,7 +153,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
                     <HelpCircle className="h-3 w-3" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                   Flats occupied by active residents.
                 </TooltipContent>
               </Tooltip>
@@ -168,7 +168,7 @@ export function StatsRow({ currentOrg }: StatsRowProps) {
               {occupiedFlats.percent}% Occupied
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between border-t border-zinc-100 pt-2 text-[10px] text-zinc-500 dark:border-zinc-900 dark:text-zinc-455">
+          <div className="mt-2 flex items-center justify-between -100 pt-2 text-[10px] text-zinc-500 dark:text-zinc-455">
             <span>{occupiedFlats.total - occupiedFlats.occupied} vacant units</span>
             <span className="font-semibold text-emerald-600 dark:text-emerald-450 flex items-center gap-0.5">
               <TrendingUp className="h-3 w-3" />

@@ -381,7 +381,7 @@ export default function ResidentsPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Resident Management
@@ -396,7 +396,7 @@ export default function ResidentsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleImport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Upload className="h-3.5 w-3.5" />
                 <span>Import Resident Data</span>
@@ -405,7 +405,7 @@ export default function ResidentsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleInvite}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Users className="h-3.5 w-3.5" />
                 <span>Invite Resident</span>
@@ -414,7 +414,7 @@ export default function ResidentsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Generate Report</span>
@@ -431,7 +431,7 @@ export default function ResidentsPage() {
                     <span>Add Resident</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleAddResident}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Add Resident Profile</DialogTitle>
@@ -446,7 +446,7 @@ export default function ResidentsPage() {
                           value={newResident.name}
                           onChange={(e) => setNewResident({ ...newResident, name: e.target.value })}
                           placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -457,7 +457,7 @@ export default function ResidentsPage() {
                           value={newResident.flatNumber}
                           onChange={(e) => setNewResident({ ...newResident, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -466,7 +466,7 @@ export default function ResidentsPage() {
                           id="r-tower"
                           value={newResident.buildingName}
                           onChange={(e) => setNewResident({ ...newResident, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -479,7 +479,7 @@ export default function ResidentsPage() {
                           id="r-type"
                           value={newResident.residentType}
                           onChange={(e) => setNewResident({ ...newResident, residentType: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Owner">Owner Occupied</option>
                           <option value="Tenant">Tenant Occupied</option>
@@ -493,7 +493,7 @@ export default function ResidentsPage() {
                           value={newResident.phone}
                           onChange={(e) => setNewResident({ ...newResident, phone: e.target.value })}
                           placeholder="e.g. +1 555-0102"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -504,7 +504,7 @@ export default function ResidentsPage() {
                           value={newResident.email}
                           onChange={(e) => setNewResident({ ...newResident, email: e.target.value })}
                           placeholder="e.g. resident@gmail.com"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -515,7 +515,7 @@ export default function ResidentsPage() {
                           value={newResident.outstandingDues}
                           onChange={(e) => setNewResident({ ...newResident, outstandingDues: Number(e.target.value) })}
                           placeholder="e.g. -185.00"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -524,7 +524,7 @@ export default function ResidentsPage() {
                           id="r-status"
                           value={newResident.operationalStatus}
                           onChange={(e) => setNewResident({ ...newResident, operationalStatus: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Active">Active</option>
                           <option value="Pending Verification">Pending Verification</option>
@@ -544,7 +544,7 @@ export default function ResidentsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -555,7 +555,7 @@ export default function ResidentsPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total onboarded occupants.
                       </TooltipContent>
                     </Tooltip>
@@ -569,7 +569,7 @@ export default function ResidentsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Occupancy</span>
@@ -582,7 +582,7 @@ export default function ResidentsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Owner vs Tenant Ratio</span>
@@ -597,7 +597,7 @@ export default function ResidentsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Verifications</span>
@@ -616,8 +616,8 @@ export default function ResidentsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Resident Filters
@@ -631,7 +631,7 @@ export default function ResidentsPage() {
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Owner">Owner Occupied</option>
@@ -645,7 +645,7 @@ export default function ResidentsPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Active">Active</option>
@@ -660,7 +660,7 @@ export default function ResidentsPage() {
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All building blocks</option>
                       <option value="Tower Alpha">Tower Alpha</option>
@@ -675,7 +675,7 @@ export default function ResidentsPage() {
                     <select
                       value={filterDues}
                       onChange={(e) => setFilterDues(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All dues ledger</option>
                       <option value="Unpaid">Has pending payments</option>
@@ -689,7 +689,7 @@ export default function ResidentsPage() {
                     <select
                       value={filterComplaints}
                       onChange={(e) => setFilterComplaints(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All tickets status</option>
                       <option value="Active">Has unresolved tickets</option>
@@ -707,7 +707,7 @@ export default function ResidentsPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -717,8 +717,8 @@ export default function ResidentsPage() {
 
             {/* Resident Table Card */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -726,7 +726,7 @@ export default function ResidentsPage() {
                       placeholder="Search residents by name, flat..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -742,8 +742,8 @@ export default function ResidentsPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Flat Number</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building</TableHead>
@@ -761,7 +761,7 @@ export default function ResidentsPage() {
                           <TableRow
                             key={r.id}
                             onClick={() => setSelectedResident(r)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {r.name}
@@ -773,10 +773,10 @@ export default function ResidentsPage() {
                               {r.buildingName}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 r.residentType === "Owner"
-                                  ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/20 dark:text-indigo-400 dark:border-indigo-900"
-                                  : "bg-zinc-100 text-zinc-700 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700"
+                                  ? "bg-indigo-50 text-indigo-700-200 dark:bg-indigo-950/20 dark:text-indigo-400"
+                                  : "bg-zinc-100 text-zinc-700-200 dark:bg-zinc-800 dark:text-zinc-300"
                               }`}>
                                 {r.residentType}
                               </span>
@@ -790,9 +790,9 @@ export default function ResidentsPage() {
                             <TableCell className="text-center py-2.5">
                               <Badge
                                 variant="outline"
-                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm border-zinc-200/60 ${
+                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm-200/60 ${
                                   r.complaints.length > 0
-                                    ? "text-rose-700 bg-rose-50 border-rose-200 dark:text-rose-455 dark:bg-rose-950/20 dark:border-rose-900"
+                                    ? "text-rose-700 bg-rose-50-200 dark:text-rose-455 dark:bg-rose-950/20"
                                     : "text-zinc-400 bg-zinc-50 dark:bg-zinc-900"
                                 }`}
                               >
@@ -805,12 +805,12 @@ export default function ResidentsPage() {
                               {r.outstandingDues < 0 ? `-$${Math.abs(r.outstandingDues)}` : "$0.00"}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 r.operationalStatus === "Active"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : r.operationalStatus === "Pending Verification"
-                                  ? "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900"
-                                  : "bg-zinc-150 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-950/20 dark:text-amber-450"
+                                  : "bg-zinc-150 text-zinc-600-200 dark:bg-zinc-800 dark:text-zinc-400"
                               }`}>
                                 {r.operationalStatus}
                               </span>
@@ -834,10 +834,10 @@ export default function ResidentsPage() {
 
       {/* RESIDENT DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedResident !== null} onOpenChange={(open) => !open && setSelectedResident(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedResident && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
                   <Users className="h-3.5 w-3.5" /> Resident account profile
                 </div>
@@ -855,7 +855,7 @@ export default function ResidentsPage() {
                 {/* 1. Account Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Contact details</span>
-                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs">
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">PHONE</span>
                       <span className="font-semibold text-zinc-900 dark:text-white">{selectedResident.phone}</span>
@@ -875,7 +875,7 @@ export default function ResidentsPage() {
                   ) : (
                     <div className="space-y-2">
                       {selectedResident.vehicles.map((v, idx) => (
-                        <div key={idx} className="flex items-center justify-between border border-zinc-150 rounded p-2.5 dark:border-zinc-900 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
+                        <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
                           <div className="flex items-center gap-2">
                             <Car className="h-4 w-4 text-zinc-400" />
                             <div>
@@ -883,7 +883,7 @@ export default function ResidentsPage() {
                               <span className="text-[9.5px] text-zinc-450 block">{v.plate}</span>
                             </div>
                           </div>
-                          <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm border-zinc-200/60 font-semibold bg-zinc-50">
+                          <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold bg-zinc-50">
                             {v.slot}
                           </Badge>
                         </div>
@@ -897,14 +897,14 @@ export default function ResidentsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-455 dark:text-zinc-500 tracking-wider block">Verification documents</span>
                   <div className="space-y-2">
                     {selectedResident.documents.map((d, idx) => (
-                      <div key={idx} className="flex items-center justify-between border border-zinc-150 rounded p-2.5 dark:border-zinc-900 text-xs bg-zinc-50/50 dark:bg-zinc-950/20">
+                      <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 text-xs bg-zinc-50/50 dark:bg-zinc-950/20">
                         <span className="font-semibold text-zinc-800 dark:text-zinc-250 flex items-center gap-1.5">
                           <FileText className="h-3.5 w-3.5 text-zinc-400" /> {d.name}
                         </span>
-                        <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold border ${
+                        <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold  ${
                           d.status === "Verified"
-                            ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-450"
-                            : "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-950/20 dark:text-amber-450"
+                            ? "bg-emerald-50 text-emerald-700-200 dark:bg-emerald-950/20 dark:text-emerald-450"
+                            : "bg-amber-50 text-amber-700-250 dark:bg-amber-950/20 dark:text-amber-450"
                         }`}>
                           {d.status}
                         </Badge>
@@ -922,7 +922,7 @@ export default function ResidentsPage() {
                     ) : (
                       <div className="space-y-1.5">
                         {selectedResident.familyMembers.map((m, idx) => (
-                          <div key={idx} className="text-xs p-1.5 border border-zinc-150 rounded bg-zinc-50/30 dark:border-zinc-900">
+                          <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{m.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{m.relation}</span>
                           </div>
@@ -937,7 +937,7 @@ export default function ResidentsPage() {
                     ) : (
                       <div className="space-y-1.5">
                         {selectedResident.emergencyContacts.map((c, idx) => (
-                          <div key={idx} className="text-xs p-1.5 border border-zinc-150 rounded bg-zinc-50/30 dark:border-zinc-900">
+                          <div key={idx} className="text-xs p-1.5 -150 rounded bg-zinc-50/30">
                             <span className="font-semibold block">{c.name}</span>
                             <span className="text-[9px] text-zinc-450 block">{c.relation} • {c.phone}</span>
                           </div>
@@ -955,7 +955,7 @@ export default function ResidentsPage() {
                   ) : (
                     <div className="space-y-2.5">
                       {selectedResident.gatePasses.map((g, idx) => (
-                        <div key={idx} className="flex gap-2 text-xs border-b border-zinc-100 pb-2 dark:border-zinc-900 last:border-0 last:pb-0">
+                        <div key={idx} className="flex gap-2 text-xs -100 pb-2 last:0 last:pb-0">
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div>
                             <span className="text-zinc-800 dark:text-zinc-200 block leading-tight">{g.visitorName} ({g.type})</span>
@@ -970,7 +970,7 @@ export default function ResidentsPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 {selectedResident.operationalStatus === "Pending Verification" ? (
                   <Button
                     onClick={() => {
@@ -989,7 +989,7 @@ export default function ResidentsPage() {
                         toast.info(`Sent account broadcast log to ${selectedResident.name}`);
                       }}
                       variant="outline"
-                      className="flex-1 h-8 rounded-sm text-xs border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800"
+                      className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50"
                     >
                       Send Message
                     </Button>

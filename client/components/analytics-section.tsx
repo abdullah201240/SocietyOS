@@ -21,12 +21,12 @@ import {
 
 export function AnalyticsSection() {
   return (
-    <section id="analytics" className="py-16 md:py-24 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/30 dark:bg-black/40">
+    <section id="analytics" className="py-16 md:py-24 -100 bg-zinc-50/30 dark:bg-black/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Headers */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-white dark:bg-zinc-950">
+          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1-200 text-zinc-600 dark:text-zinc-400 bg-white dark:bg-zinc-950">
             Real-Time Reporting
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
@@ -41,7 +41,7 @@ export function AnalyticsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Card 1: Complaint Resolution Analytics (lg:col-span-7) */}
-          <Card className="lg:col-span-7 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
+          <Card className="lg:col-span-7 -200/80 bg-white dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Complaint Resolution Analytics</CardTitle>
@@ -50,7 +50,7 @@ export function AnalyticsSection() {
             </CardHeader>
             <CardContent className="p-4 pt-0 space-y-4 flex-1 flex flex-col justify-between">
               {/* KPIs */}
-              <div className="grid grid-cols-3 gap-2 py-1 border-b border-zinc-100 dark:border-zinc-900">
+              <div className="grid grid-cols-3 gap-2 py-1 -100">
                 <div>
                   <span className="text-[8.5px] text-zinc-400 font-semibold block">AVG RESOLUTION TIME</span>
                   <div className="text-lg font-extrabold text-zinc-900 dark:text-zinc-50 mt-0.5 flex items-baseline gap-1">
@@ -103,11 +103,11 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 2: Financial Overview (lg:col-span-5) */}
-          <Card className="lg:col-span-5 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
+          <Card className="lg:col-span-5 -200/80 bg-white dark:bg-zinc-950/30 flex flex-col justify-between p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Financial Overview</CardTitle>
-                <Badge variant="outline" className="text-[8px] border-zinc-200 text-emerald-600 dark:border-zinc-800">Accounting</Badge>
+                <Badge variant="outline" className="text-[8px]-200 text-emerald-600">Accounting</Badge>
               </div>
             </CardHeader>
             <CardContent className="p-4 pt-0 space-y-4 flex-1 flex flex-col justify-between">
@@ -122,14 +122,14 @@ export function AnalyticsSection() {
               <div className="space-y-1.5 pt-2">
                 <h4 className="text-[10px] font-bold text-zinc-800 dark:text-zinc-200">Pending Dues & Utilities</h4>
                 <div className="space-y-1 text-[9px]">
-                  <div className="flex justify-between py-1 border-b border-zinc-50 dark:border-zinc-900">
+                  <div className="flex justify-between py-1 -50">
                     <span className="font-medium text-zinc-600 dark:text-zinc-400">Unit 1402 • Water & Waste Dues</span>
                     <div className="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
                       <span>$45.00</span>
                       <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                     </div>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-zinc-50 dark:border-zinc-900">
+                  <div className="flex justify-between py-1 -50">
                     <span className="font-medium text-zinc-600 dark:text-zinc-400">Unit 811 • Parking Service Dues</span>
                     <div className="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
                       <span>$50.00</span>
@@ -149,7 +149,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 3: Maintenance Performance (lg:col-span-4) */}
-          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
+          <Card className="lg:col-span-4 -200/80 bg-white dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Maintenance SLA</CardTitle>
@@ -170,27 +170,27 @@ export function AnalyticsSection() {
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">David K. (Plumbing)</span>
                     <span className="text-[7.5px] text-zinc-400">SLA: 98% • 12 resolved</span>
                   </div>
-                  <Badge variant="outline" className="text-[7.5px] px-1 py-0 border-emerald-100 text-emerald-600 dark:border-emerald-950 dark:text-emerald-400">Active</Badge>
+                  <Badge variant="outline" className="text-[7.5px] px-1 py-0-100 text-emerald-600 dark:text-emerald-400">Active</Badge>
                 </div>
                 <div className="flex items-center justify-between text-zinc-650 dark:text-zinc-400">
                   <div className="flex flex-col">
                     <span className="font-semibold text-zinc-800 dark:text-zinc-200">Marcus A. (Electrical)</span>
                     <span className="text-[7.5px] text-zinc-400">SLA: 91% • 16 resolved</span>
                   </div>
-                  <Badge variant="outline" className="text-[7.5px] px-1 py-0 border-emerald-100 text-emerald-600 dark:border-emerald-950 dark:text-emerald-400">Active</Badge>
+                  <Badge variant="outline" className="text-[7.5px] px-1 py-0-100 text-emerald-600 dark:text-emerald-400">Active</Badge>
                 </div>
               </div>
 
               {/* Preventative Schedule preview */}
-              <div className="pt-2.5 border-t border-zinc-100 dark:border-zinc-900 flex items-center justify-between text-[9px] text-zinc-500">
+              <div className="pt-2.5 -100 flex items-center justify-between text-[9px] text-zinc-500">
                 <span className="flex items-center gap-1 font-medium"><ListTodo className="h-3.5 w-3.5 text-zinc-400" /> Elevator safety inspection</span>
-                <span className="text-[8px] text-amber-600 font-semibold bg-amber-50 px-1 py-0.2 rounded border border-amber-100 dark:bg-amber-950/20 dark:border-amber-900/50">2 days left</span>
+                <span className="text-[8px] text-amber-600 font-semibold bg-amber-50 px-1 py-0.2 rounded -100 dark:bg-amber-950/20">2 days left</span>
               </div>
             </CardContent>
           </Card>
 
           {/* Card 4: Building Occupancy Metrics (lg:col-span-4) */}
-          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
+          <Card className="lg:col-span-4 -200/80 bg-white dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Occupancy Metrics</CardTitle>
@@ -235,7 +235,7 @@ export function AnalyticsSection() {
           </Card>
 
           {/* Card 5: Multi-Building Insights (lg:col-span-4) */}
-          <Card className="lg:col-span-4 border border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-950/30 p-1.5">
+          <Card className="lg:col-span-4 -200/80 bg-white dark:bg-zinc-950/30 p-1.5">
             <CardHeader className="p-4 pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Multi-Building Hub</CardTitle>
@@ -247,17 +247,17 @@ export function AnalyticsSection() {
               
               {/* Comparative table */}
               <div className="space-y-1.5 text-[9px]">
-                <div className="flex items-center justify-between py-1 border-b border-zinc-50 dark:border-zinc-900 font-semibold text-zinc-400 text-[8px] uppercase">
+                <div className="flex items-center justify-between py-1 -50 font-semibold text-zinc-400 text-[8px] uppercase">
                   <span>Building</span>
                   <span>Collection</span>
                   <span>Active SLA</span>
                 </div>
-                <div className="flex items-center justify-between py-1 border-b border-zinc-50 dark:border-zinc-900">
+                <div className="flex items-center justify-between py-1 -50">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200">Apex Towers</span>
                   <span className="font-semibold text-emerald-600">98.2%</span>
                   <span className="text-zinc-500">1.4 hrs</span>
                 </div>
-                <div className="flex items-center justify-between py-1 border-b border-zinc-50 dark:border-zinc-900">
+                <div className="flex items-center justify-between py-1 -50">
                   <span className="font-medium text-zinc-800 dark:text-zinc-200">Belvedere Estate</span>
                   <span className="font-semibold text-emerald-600">95.4%</span>
                   <span className="text-zinc-500">2.1 hrs</span>

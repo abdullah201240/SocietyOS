@@ -244,7 +244,7 @@ export default function StaffPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Staff & Roles Management
@@ -259,7 +259,7 @@ export default function StaffPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Export Staff Report</span>
@@ -276,7 +276,7 @@ export default function StaffPage() {
                     <span>Add Staff Member</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleAddStaff}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Onboard Staff Member</DialogTitle>
@@ -291,7 +291,7 @@ export default function StaffPage() {
                           value={newStaff.name}
                           onChange={(e) => setNewStaff({ ...newStaff, name: e.target.value })}
                           placeholder="e.g. Bruce Banner"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -300,7 +300,7 @@ export default function StaffPage() {
                           id="s-role"
                           value={newStaff.role}
                           onChange={(e) => setNewStaff({ ...newStaff, role: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="manager">Manager</option>
                           <option value="security">Security</option>
@@ -316,7 +316,7 @@ export default function StaffPage() {
                           value={newStaff.department}
                           onChange={(e) => setNewStaff({ ...newStaff, department: e.target.value })}
                           placeholder="e.g. Facilities & Plumbing"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -325,7 +325,7 @@ export default function StaffPage() {
                           id="s-tower"
                           value={newStaff.assignedBuilding}
                           onChange={(e) => setNewStaff({ ...newStaff, assignedBuilding: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -340,7 +340,7 @@ export default function StaffPage() {
                           value={newStaff.shiftTiming}
                           onChange={(e) => setNewStaff({ ...newStaff, shiftTiming: e.target.value })}
                           placeholder="e.g. 08:00 AM - 04:00 PM"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -351,7 +351,7 @@ export default function StaffPage() {
                           value={newStaff.phone}
                           onChange={(e) => setNewStaff({ ...newStaff, phone: e.target.value })}
                           placeholder="e.g. +1 555-0112"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -362,7 +362,7 @@ export default function StaffPage() {
                           value={newStaff.email}
                           onChange={(e) => setNewStaff({ ...newStaff, email: e.target.value })}
                           placeholder="e.g. staff@societyos.com"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -371,7 +371,7 @@ export default function StaffPage() {
                           id="s-access"
                           value={newStaff.accessLevel}
                           onChange={(e) => setNewStaff({ ...newStaff, accessLevel: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Maintenance Log">Maintenance Log</option>
                           <option value="Lobby Access">Lobby Access</option>
@@ -393,7 +393,7 @@ export default function StaffPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -404,7 +404,7 @@ export default function StaffPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total onboarded staff records.
                       </TooltipContent>
                     </Tooltip>
@@ -418,7 +418,7 @@ export default function StaffPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Active Shifts</span>
@@ -431,7 +431,7 @@ export default function StaffPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Role Distribution</span>
@@ -444,7 +444,7 @@ export default function StaffPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Assignments</span>
@@ -463,8 +463,8 @@ export default function StaffPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Staff Filters
@@ -478,7 +478,7 @@ export default function StaffPage() {
                     <select
                       value={filterRole}
                       onChange={(e) => setFilterRole(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All roles</option>
                       <option value="admin">Admin</option>
@@ -495,7 +495,7 @@ export default function StaffPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All personnel</option>
                       <option value="Active">Active</option>
@@ -510,7 +510,7 @@ export default function StaffPage() {
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All assignments</option>
                       <option value="Tower Alpha">Tower Alpha</option>
@@ -528,7 +528,7 @@ export default function StaffPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -538,8 +538,8 @@ export default function StaffPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -547,7 +547,7 @@ export default function StaffPage() {
                       placeholder="Search staff by name, department..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -563,8 +563,8 @@ export default function StaffPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Staff Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Role</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Department</TableHead>
@@ -582,7 +582,7 @@ export default function StaffPage() {
                           <TableRow
                             key={s.id}
                             onClick={() => setSelectedStaff(s)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {s.name}
@@ -603,10 +603,10 @@ export default function StaffPage() {
                               {s.activeTasks}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 s.performanceStatus === "Optimal"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
-                                  : "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-955/20 dark:text-amber-450"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                  : "bg-amber-50 text-amber-700-200 dark:bg-amber-955/20 dark:text-amber-450"
                               }`}>
                                 {s.performanceStatus}
                               </span>
@@ -615,14 +615,14 @@ export default function StaffPage() {
                               {s.accessLevel}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 s.status === "Active"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : s.status === "On Shift"
-                                  ? "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-955/20 dark:text-blue-450"
+                                  ? "bg-blue-50 text-blue-700-200 dark:bg-blue-955/20 dark:text-blue-450"
                                   : s.status === "Overloaded"
-                                  ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-955/20 dark:text-amber-450"
-                                  : "bg-zinc-100 text-zinc-650 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400"
+                                  ? "bg-amber-50 text-amber-700-200 dark:bg-amber-955/20 dark:text-amber-450"
+                                  : "bg-zinc-100 text-zinc-650-200 dark:bg-zinc-800 dark:text-zinc-400"
                               }`}>
                                 {s.status}
                               </span>
@@ -646,10 +646,10 @@ export default function StaffPage() {
 
       {/* STAFF DETAILS DRAWER */}
       <Sheet open={selectedStaff !== null} onOpenChange={(open) => !open && setSelectedStaff(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedStaff && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
                   <UserCheck className="h-3.5 w-3.5" /> Staff profile diagnostic
                 </div>
@@ -666,7 +666,7 @@ export default function StaffPage() {
                 
                 {/* Overloaded Alert */}
                 {selectedStaff.status === "Overloaded" && (
-                  <div className="rounded border border-amber-200 bg-amber-50/50 p-3 text-xs text-amber-700 dark:border-amber-900/60 dark:bg-amber-955/20 flex gap-2">
+                  <div className="rounded -200 bg-amber-50/50 p-3 text-xs text-amber-700 dark:bg-amber-955/20 flex gap-2">
                     <AlertCircle className="h-4.5 w-4.5 shrink-0 mt-0.5 text-amber-600" />
                     <div>
                       <span className="font-bold block">Workload Warning Spike</span>
@@ -678,7 +678,7 @@ export default function StaffPage() {
                 {/* 1. Account Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Contact credentials</span>
-                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-zinc-400 block text-[9px]">PHONE</span>
                       <span className="font-semibold">{selectedStaff.phone}</span>
@@ -695,7 +695,7 @@ export default function StaffPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">RBAC Role Permissions</span>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedStaff.permissions.map((perm, idx) => (
-                      <Badge key={idx} variant="outline" className="text-[9px] px-1.5 py-0.5 rounded-sm border-zinc-200/60 font-semibold bg-zinc-50/50">
+                      <Badge key={idx} variant="outline" className="text-[9px] px-1.5 py-0.5 rounded-sm-200/60 font-semibold bg-zinc-50/50">
                         <Lock className="h-2.5 w-2.5 mr-1 inline-block" /> {perm}
                       </Badge>
                     ))}
@@ -713,7 +713,7 @@ export default function StaffPage() {
                   ) : (
                     <div className="space-y-2">
                       {selectedStaff.taskHistory.map((item, idx) => (
-                        <div key={idx} className="flex justify-between border-b border-zinc-100 pb-2 dark:border-zinc-900 last:border-0 last:pb-0 text-xs">
+                        <div key={idx} className="flex justify-between -100 pb-2 last:0 last:pb-0 text-xs">
                           <span>{item.taskName}</span>
                           <span className="font-semibold">{item.status} ({item.date})</span>
                         </div>
@@ -726,7 +726,7 @@ export default function StaffPage() {
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Audit activity logs</span>
                   {selectedStaff.activityLogs.map((log, idx) => (
-                    <div key={idx} className="flex justify-between text-xs border-b border-zinc-100 pb-2 dark:border-zinc-900 last:border-0 last:pb-0 text-zinc-550 dark:text-zinc-450">
+                    <div key={idx} className="flex justify-between text-xs -100 pb-2 last:0 last:pb-0 text-zinc-550 dark:text-zinc-450">
                       <span>{log.action}</span>
                       <span>{log.timestamp}</span>
                     </div>
@@ -736,14 +736,14 @@ export default function StaffPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 <Button
                   onClick={() => {
                     setSelectedStaff(null);
                     toast.success("Shift schedule status updated to Out of Shift.");
                   }}
                   variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800"
+                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50"
                 >
                   Clock Out Shift
                 </Button>

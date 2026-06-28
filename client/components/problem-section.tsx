@@ -19,7 +19,7 @@ interface PainCardProps {
 
 function PainCard({ icon, title, description }: PainCardProps) {
   return (
-    <div className="group flex items-start gap-4 p-4 border border-zinc-200/80 bg-white hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:hover:border-zinc-700">
+    <div className="group flex items-start gap-4 p-4 -200/80 bg-white hover:zinc-300 dark:bg-zinc-950/20 dark:hover:zinc-700">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-zinc-50 text-zinc-700 group-hover:bg-indigo-50/60 group-hover:text-indigo-600 dark:bg-zinc-900 dark:text-zinc-300 dark:group-hover:bg-indigo-950/30 dark:group-hover:text-indigo-400">
         {icon}
       </div>
@@ -70,13 +70,13 @@ export function ProblemSection() {
   ];
 
   return (
-    <section id="challenges" className="py-16 md:py-24 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-black">
+    <section id="challenges" className="py-16 md:py-24 -100 bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           
           {/* Left Column: Title & Subtitle (Sticky on Desktop) */}
           <div className="lg:col-span-5 flex flex-col gap-4 lg:sticky lg:top-24 self-start">
-            <Badge variant="outline" className="w-fit rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
+            <Badge variant="outline" className="w-fit rounded-full px-3 py-1-200 text-zinc-600 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
               The Challenges
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl leading-tight">

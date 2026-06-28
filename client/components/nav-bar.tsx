@@ -30,10 +30,10 @@ export function NavBar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 border-b ${
+      className={`sticky top-0 z-50 w-full transition-all duration-200  ${
         isScrolled
-          ? "border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-black/80"
-          : "border-transparent bg-transparent"
+          ? "zinc-200 bg-white/80 backdrop-blur-md dark:bg-black/80"
+          : "transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -86,7 +86,7 @@ export function NavBar() {
 
       {/* Mobile menu panel */}
       {isOpen && (
-        <div className="md:hidden border-b border-zinc-200 bg-white px-4 pt-2 pb-6 dark:border-zinc-800 dark:bg-black">
+        <div className="md:hidden -200 bg-white px-4 pt-2 pb-6 dark:bg-black">
           <nav className="flex flex-col gap-4">
             {navigation.map((item) => (
               <Link
@@ -98,7 +98,7 @@ export function NavBar() {
                 {item.name}
               </Link>
             ))}
-            <div className="mt-4 flex flex-col gap-2 pt-4 border-t border-zinc-100 dark:border-zinc-900">
+            <div className="mt-4 flex flex-col gap-2 pt-4 -100">
               <Button variant="outline" size="sm" className="w-full justify-center" asChild>
                 <Link href="/login">Login</Link>
               </Button>

@@ -294,7 +294,7 @@ export default function VisitorsPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Visitor & Security Management
@@ -309,7 +309,7 @@ export default function VisitorsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleAddSecurityLog}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <AlertCircle className="h-3.5 w-3.5 text-zinc-400" />
                 <span>Add Security Log</span>
@@ -318,7 +318,7 @@ export default function VisitorsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Export Visitor Report</span>
@@ -335,7 +335,7 @@ export default function VisitorsPage() {
                     <span>Pre-Approve Visitor</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handlePreApprove}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Pre-Approve Visitor entry</DialogTitle>
@@ -350,7 +350,7 @@ export default function VisitorsPage() {
                           value={newVisitor.name}
                           onChange={(e) => setNewVisitor({ ...newVisitor, name: e.target.value })}
                           placeholder="e.g. Marcus Aurelius"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -361,7 +361,7 @@ export default function VisitorsPage() {
                           value={newVisitor.hostName}
                           onChange={(e) => setNewVisitor({ ...newVisitor, hostName: e.target.value })}
                           placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -372,7 +372,7 @@ export default function VisitorsPage() {
                           value={newVisitor.flatNumber}
                           onChange={(e) => setNewVisitor({ ...newVisitor, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -381,7 +381,7 @@ export default function VisitorsPage() {
                           id="v-tower"
                           value={newVisitor.buildingName}
                           onChange={(e) => setNewVisitor({ ...newVisitor, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -394,7 +394,7 @@ export default function VisitorsPage() {
                           id="v-purpose"
                           value={newVisitor.purpose}
                           onChange={(e) => setNewVisitor({ ...newVisitor, purpose: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Guest">Guest</option>
                           <option value="Delivery">Delivery</option>
@@ -410,7 +410,7 @@ export default function VisitorsPage() {
                           value={newVisitor.vehicleNumber}
                           onChange={(e) => setNewVisitor({ ...newVisitor, vehicleNumber: e.target.value })}
                           placeholder="e.g. ROM-77BC"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                     </div>
@@ -427,7 +427,7 @@ export default function VisitorsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -438,7 +438,7 @@ export default function VisitorsPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total visitors logged today.
                       </TooltipContent>
                     </Tooltip>
@@ -452,7 +452,7 @@ export default function VisitorsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Approvals</span>
@@ -465,7 +465,7 @@ export default function VisitorsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Security Alerts</span>
@@ -478,7 +478,7 @@ export default function VisitorsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Delivery Entries</span>
@@ -497,8 +497,8 @@ export default function VisitorsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Access Filters
@@ -512,7 +512,7 @@ export default function VisitorsPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Approved">Approved</option>
@@ -528,7 +528,7 @@ export default function VisitorsPage() {
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All buildings</option>
                       <option value="Tower Alpha">Tower Alpha</option>
@@ -543,7 +543,7 @@ export default function VisitorsPage() {
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All types</option>
                       <option value="Guest">Guest</option>
@@ -559,7 +559,7 @@ export default function VisitorsPage() {
                     <select
                       value={filterSecurity}
                       onChange={(e) => setFilterSecurity(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All verifications</option>
                       <option value="Verified">Verified credentials</option>
@@ -576,7 +576,7 @@ export default function VisitorsPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -586,8 +586,8 @@ export default function VisitorsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -595,7 +595,7 @@ export default function VisitorsPage() {
                       placeholder="Search visitors by name, Flat, vehicle..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -611,8 +611,8 @@ export default function VisitorsPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Visitor Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Host Resident</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building/Flat</TableHead>
@@ -630,7 +630,7 @@ export default function VisitorsPage() {
                           <TableRow
                             key={v.id}
                             onClick={() => setSelectedVisitor(v)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {v.name}
@@ -651,14 +651,14 @@ export default function VisitorsPage() {
                               {v.exitTime}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 v.status === "Approved"
-                                  ? "bg-emerald-55 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                  ? "bg-emerald-55 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : v.status === "Pending"
-                                  ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-955/20 dark:text-amber-450"
+                                  ? "bg-amber-50 text-amber-700-200 dark:bg-amber-955/20 dark:text-amber-450"
                                   : v.status === "Rejected"
-                                  ? "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-455"
-                                  : "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-955/20 dark:text-blue-450"
+                                  ? "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-455"
+                                  : "bg-blue-50 text-blue-700-200 dark:bg-blue-955/20 dark:text-blue-450"
                               }`}>
                                 {v.status}
                               </span>
@@ -688,10 +688,10 @@ export default function VisitorsPage() {
 
       {/* VISITOR DETAILS DRAWER */}
       <Sheet open={selectedVisitor !== null} onOpenChange={(open) => !open && setSelectedVisitor(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedVisitor && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
                   <Fingerprint className="h-3.5 w-3.5" /> Visitor access profile
                 </div>
@@ -708,7 +708,7 @@ export default function VisitorsPage() {
                 
                 {/* Security incident panel */}
                 {selectedVisitor.incidentNotes && (
-                  <div className="rounded border border-rose-200 bg-rose-50/50 p-3 text-xs text-rose-700 dark:border-rose-900/60 dark:bg-rose-955/20 flex gap-2">
+                  <div className="rounded -200 bg-rose-50/50 p-3 text-xs text-rose-700 dark:bg-rose-955/20 flex gap-2">
                     <AlertCircle className="h-4.5 w-4.5 shrink-0 mt-0.5 text-rose-600" />
                     <div>
                       <span className="font-bold block">Incident Log Report</span>
@@ -720,7 +720,7 @@ export default function VisitorsPage() {
                 {/* 1. Host & Visitor Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Access credentials</span>
-                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-zinc-400 block text-[9px]">VEHICLE REGISTRATION</span>
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">{selectedVisitor.vehicleNumber}</span>
@@ -737,7 +737,7 @@ export default function VisitorsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Check-in timeline checkpoints</span>
                   <div className="space-y-3 font-medium">
                     {selectedVisitor.timeline.map((item, idx) => (
-                      <div key={idx} className="flex gap-2.5 text-xs border-l-2 border-zinc-100 pl-3 dark:border-zinc-900 ml-1.5">
+                      <div key={idx} className="flex gap-2.5 text-xs -100 pl-3 ml-1.5">
                         <div>
                           <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.title}</span>
                           <span className="text-[10px] text-zinc-550 block mt-0.5">{item.note}</span>
@@ -756,7 +756,7 @@ export default function VisitorsPage() {
                   ) : (
                     <div className="space-y-2">
                       {selectedVisitor.securityApprovalLog.map((log, idx) => (
-                        <div key={idx} className="text-xs p-2 border border-zinc-150 rounded bg-zinc-50/50 dark:border-zinc-900">
+                        <div key={idx} className="text-xs p-2 -150 rounded bg-zinc-50/50">
                           {log}
                         </div>
                       ))}
@@ -767,7 +767,7 @@ export default function VisitorsPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 {selectedVisitor.status === "Approved" && (
                   <Button
                     onClick={() => handleCheckin(selectedVisitor.id)}

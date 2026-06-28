@@ -49,8 +49,8 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       {/* 1. COMPLAINT RESOLUTION TREND */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-        <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+        <CardHeader className="p-4 -100">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
@@ -58,7 +58,7 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
               </CardTitle>
               <CardDescription className="text-[10px] text-zinc-550">Open active complaints count (6 month trend)</CardDescription>
             </div>
-            <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 border-zinc-200/60 font-semibold text-zinc-500">
+            <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5-200/60 font-semibold text-zinc-500">
               Avg: 14 Hrs SLA
             </Badge>
           </div>
@@ -111,7 +111,7 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
               ))}
             </svg>
           </div>
-          <div className="w-full flex justify-between mt-2.5 text-[9px] font-semibold text-zinc-400 dark:text-zinc-550 border-t border-zinc-100 pt-2 dark:border-zinc-900">
+          <div className="w-full flex justify-between mt-2.5 text-[9px] font-semibold text-zinc-400 dark:text-zinc-550 -100 pt-2">
             <span>Jan</span>
             <span>Feb</span>
             <span>Mar</span>
@@ -123,8 +123,8 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
       </Card>
 
       {/* 2. MONTHLY COLLECTION OVERVIEW */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-        <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+        <CardHeader className="p-4 -100">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
@@ -132,7 +132,7 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
               </CardTitle>
               <CardDescription className="text-[10px] text-zinc-550">Comparing collected (indigo) vs pending (slate)</CardDescription>
             </div>
-            <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5 border-zinc-200/60 font-semibold text-zinc-500">
+            <Badge variant="outline" className="text-[8.5px] px-1.5 py-0.5-200/60 font-semibold text-zinc-500">
               Auto-Invoiced
             </Badge>
           </div>
@@ -161,8 +161,8 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
                   <span className="text-[9px] font-semibold text-zinc-400 dark:text-zinc-550 mt-2">{data.month}</span>
                   
                   {/* Custom Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block bg-zinc-900 text-white rounded p-1.5 text-[9px] w-28 text-center pointer-events-none shadow-md z-15 border border-zinc-850">
-                    <div className="font-bold border-b border-zinc-800 pb-0.5 mb-0.5">{data.month} Breakdown</div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block bg-zinc-900 text-white rounded p-1.5 text-[9px] w-28 text-center pointer-events-none shadow-md z-15 -850">
+                    <div className="font-bold -800 pb-0.5 mb-0.5">{data.month} Breakdown</div>
                     <div>Paid: ${(data.collected/1000).toFixed(1)}k</div>
                     <div className="text-zinc-400">Due: ${(data.pending/1000).toFixed(1)}k</div>
                   </div>
@@ -174,8 +174,8 @@ export function AnalyticsWidgets({ currentOrg }: AnalyticsWidgetsProps) {
       </Card>
 
       {/* 3. BUILDING OCCUPANCY METRICS */}
-      <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-        <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+      <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+        <CardHeader className="p-4 -100">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">

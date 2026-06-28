@@ -327,7 +327,7 @@ export default function SocietiesPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Society Management
@@ -342,7 +342,7 @@ export default function SocietiesPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleImport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Upload className="h-3.5 w-3.5" />
                 <span>Import Data</span>
@@ -351,7 +351,7 @@ export default function SocietiesPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Export Report</span>
@@ -368,7 +368,7 @@ export default function SocietiesPage() {
                     <span>Create Society</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleCreateSociety}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Onboard Residential Society</DialogTitle>
@@ -383,7 +383,7 @@ export default function SocietiesPage() {
                           value={newSociety.name}
                           onChange={(e) => setNewSociety({ ...newSociety, name: e.target.value })}
                           placeholder="e.g. Pine Crest Society"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -394,7 +394,7 @@ export default function SocietiesPage() {
                           value={newSociety.location}
                           onChange={(e) => setNewSociety({ ...newSociety, location: e.target.value })}
                           placeholder="e.g. Oak Lane, Seattle"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -403,7 +403,7 @@ export default function SocietiesPage() {
                           id="s-city"
                           value={newSociety.city}
                           onChange={(e) => setNewSociety({ ...newSociety, city: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Miami">Miami</option>
                           <option value="Seattle">Seattle</option>
@@ -420,7 +420,7 @@ export default function SocietiesPage() {
                           value={newSociety.buildings}
                           onChange={(e) => setNewSociety({ ...newSociety, buildings: Number(e.target.value) })}
                           min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -432,7 +432,7 @@ export default function SocietiesPage() {
                           value={newSociety.residents}
                           onChange={(e) => setNewSociety({ ...newSociety, residents: Number(e.target.value) })}
                           min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -443,7 +443,7 @@ export default function SocietiesPage() {
                           value={newSociety.collections}
                           onChange={(e) => setNewSociety({ ...newSociety, collections: e.target.value })}
                           placeholder="e.g. $94,200"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -452,7 +452,7 @@ export default function SocietiesPage() {
                           id="s-status"
                           value={newSociety.status}
                           onChange={(e) => setNewSociety({ ...newSociety, status: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Active">Active</option>
                           <option value="Under Maintenance">Under Maintenance</option>
@@ -473,7 +473,7 @@ export default function SocietiesPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Societies</span>
@@ -486,7 +486,7 @@ export default function SocietiesPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Total Residents</span>
@@ -499,7 +499,7 @@ export default function SocietiesPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Operations</span>
@@ -512,7 +512,7 @@ export default function SocietiesPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">SLA Efficiency Score</span>
@@ -531,8 +531,8 @@ export default function SocietiesPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Sidebar Filters
@@ -545,7 +545,7 @@ export default function SocietiesPage() {
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Active">Active</option>
@@ -560,7 +560,7 @@ export default function SocietiesPage() {
                     <select
                       value={filterCity}
                       onChange={(e) => setFilterCity(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All cities</option>
                       {cities.map((city) => (
@@ -575,7 +575,7 @@ export default function SocietiesPage() {
                     <select
                       value={filterOccupancy}
                       onChange={(e) => setFilterOccupancy(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All rates</option>
                       <option value="High">&ge; 90% Occupancy</option>
@@ -590,7 +590,7 @@ export default function SocietiesPage() {
                     <select
                       value={filterComplaints}
                       onChange={(e) => setFilterComplaints(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All levels</option>
                       <option value="High">&ge; 10 Active tickets</option>
@@ -608,7 +608,7 @@ export default function SocietiesPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear all filters
                   </Button>
@@ -618,8 +618,8 @@ export default function SocietiesPage() {
 
             {/* Society Table Card */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -627,7 +627,7 @@ export default function SocietiesPage() {
                       placeholder="Search societies by name, location..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -643,8 +643,8 @@ export default function SocietiesPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Society Name</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Location</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Buildings</TableHead>
@@ -661,7 +661,7 @@ export default function SocietiesPage() {
                           <TableRow
                             key={s.id}
                             onClick={() => setSelectedSociety(s)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               {s.name}
@@ -684,7 +684,7 @@ export default function SocietiesPage() {
                             <TableCell className="text-center py-2.5">
                               <Badge
                                 variant="outline"
-                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm border-zinc-200/60 ${
+                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm-200/60 ${
                                   s.complaints >= 10
                                     ? "text-rose-700 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/20"
                                     : s.complaints > 0
@@ -699,12 +699,12 @@ export default function SocietiesPage() {
                               {s.collections}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 s.status === "Active"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900"
+                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : s.status === "Under Maintenance"
-                                  ? "bg-amber-50 text-amber-700 border-amber-250 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900"
-                                  : "bg-zinc-100 text-zinc-650 border-zinc-200 dark:bg-zinc-850 dark:text-zinc-400 dark:border-zinc-700"
+                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-950/20 dark:text-amber-450"
+                                  : "bg-zinc-100 text-zinc-650-200 dark:bg-zinc-850 dark:text-zinc-400"
                               }`}>
                                 {s.status}
                               </span>
@@ -728,10 +728,10 @@ export default function SocietiesPage() {
 
       {/* SOCIETY DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedSociety !== null} onOpenChange={(open) => !open && setSelectedSociety(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedSociety && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
                   <Building2 className="h-3 w-3" /> Society profile
                 </div>
@@ -750,7 +750,7 @@ export default function SocietiesPage() {
                 {/* Section 1: Profile Details */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Information Profile</span>
-                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs">
+                  <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs">
                     <div>
                       <span className="text-zinc-400 block text-[9.5px]">CONTACT EMAIL</span>
                       <span className="font-medium text-zinc-900 dark:text-white break-all">{selectedSociety.email}</span>
@@ -765,7 +765,7 @@ export default function SocietiesPage() {
                 {/* Section 2: Operational Metrics */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-455 dark:text-zinc-500 tracking-wider block">Operational compliance</span>
-                  <div className="space-y-3.5 rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40">
+                  <div className="space-y-3.5 rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40">
                     <div className="space-y-1">
                       <div className="flex justify-between text-[10.5px] text-zinc-600 dark:text-zinc-400">
                         <span className="font-semibold">Collections compliance</span>
@@ -789,7 +789,7 @@ export default function SocietiesPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Estate managers ({selectedSociety.managers.length})</span>
                   <div className="space-y-2">
                     {selectedSociety.managers.map((m, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 border border-zinc-150 rounded p-2.5 dark:border-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors">
+                      <div key={idx} className="flex items-center gap-2.5 -150 rounded p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40 transition-colors">
                         <div className="h-7 w-7 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-450 flex items-center justify-center font-bold text-[10px]">
                           <User className="h-4 w-4" />
                         </div>
@@ -809,7 +809,7 @@ export default function SocietiesPage() {
                     {selectedSociety.towers.map((t, idx) => {
                       const occupancyPercent = Math.round((t.occupied / t.total) * 100);
                       return (
-                        <div key={idx} className="border border-zinc-150 rounded p-2.5 dark:border-zinc-900 space-y-2 bg-zinc-50/50 dark:bg-zinc-950/20">
+                        <div key={idx} className="150 rounded p-2.5 space-y-2 bg-zinc-50/50 dark:bg-zinc-950/20">
                           <div className="flex justify-between items-center text-xs">
                             <span className="font-semibold text-zinc-900 dark:text-white flex items-center gap-1.5">
                               <Building className="h-3.5 w-3.5 text-zinc-400" /> {t.name}
@@ -828,7 +828,7 @@ export default function SocietiesPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Operational audit feed</span>
                   <div className="space-y-2">
                     {selectedSociety.activity.map((a) => (
-                      <div key={a.id} className="flex gap-2 text-xs border-b border-zinc-100 pb-2 dark:border-zinc-900 last:border-0 last:pb-0">
+                      <div key={a.id} className="flex gap-2 text-xs -100 pb-2 last:0 last:pb-0">
                         <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                         <div>
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.action}</span>
@@ -842,14 +842,14 @@ export default function SocietiesPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 <Button
                   onClick={() => {
                     setSelectedSociety(null);
                     toast.info(`Configured manager permissions for ${selectedSociety.name}`);
                   }}
                   variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   Edit Permissions
                 </Button>

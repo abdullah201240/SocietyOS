@@ -59,9 +59,9 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
   ];
 
   return (
-    <div className="hidden md:flex h-full w-60 flex-col border-r border-zinc-200 bg-zinc-50 text-zinc-900 dark:border-zinc-850 dark:bg-zinc-950 dark:text-zinc-50">
+    <div className="hidden md:flex h-full w-60 flex-col -200 bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50">
       {/* Header / Logo */}
-      <div className="flex h-12 items-center px-4 border-b border-zinc-200 dark:border-zinc-850">
+      <div className="flex h-12 items-center px-4 -200">
         <div className="flex items-center gap-2">
           <div className="flex h-6 w-6 items-center justify-center rounded bg-indigo-600 text-white font-bold text-xs select-none">
             S
@@ -74,15 +74,15 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
       </div>
 
       {/* Organization Switcher */}
-      <div className="p-3 border-b border-zinc-200 dark:border-zinc-850">
+      <div className="p-3 -200">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex w-full items-center justify-between rounded bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-850 transition-colors border border-zinc-200 dark:border-zinc-800 shadow-sm outline-none">
+            <button className="flex w-full items-center justify-between rounded bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-850 transition-colors -200 shadow-sm outline-none">
               <span className="truncate">{currentOrg}</span>
               <ChevronsUpDown className="ml-1 h-3.5 w-3.5 shrink-0 text-zinc-400" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-52 border border-zinc-200 dark:border-zinc-850 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
+          <DropdownMenuContent align="start" className="w-52 -200 bg-white dark:bg-zinc-900 rounded shadow-md text-zinc-900 dark:text-zinc-50 p-1">
             <DropdownMenuLabel className="text-[10px] uppercase font-bold text-zinc-455 tracking-wider px-2 py-1">
               Select Community
             </DropdownMenuLabel>
@@ -163,7 +163,7 @@ export function DashboardSidebar({ currentOrg, onOrgChange, orgs }: DashboardSid
       </nav>
 
       {/* Bottom Footer Section */}
-      <div className="mt-auto border-t border-zinc-200 dark:border-zinc-850 p-2 space-y-1 bg-zinc-100/50 dark:bg-zinc-950/40">
+      <div className="mt-auto -200 p-2 space-y-1 bg-zinc-100/50 dark:bg-zinc-950/40">
         <Link
           href="#help"
           className="flex items-center gap-2.5 rounded px-3 py-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200"

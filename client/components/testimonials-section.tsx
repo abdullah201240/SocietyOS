@@ -72,12 +72,12 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section id="trust" className="py-16 md:py-24 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-50/30 dark:bg-black/40">
+    <section id="trust" className="py-16 md:py-24 -100 bg-zinc-50/30 dark:bg-black/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Headers */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-white dark:bg-zinc-950">
+          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1-200 text-zinc-600 dark:text-zinc-400 bg-white dark:bg-zinc-950">
             Trust & Credibility
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
@@ -93,7 +93,7 @@ export function TestimonialsSection() {
           {testimonials.map((t, idx) => (
             <Card
               key={idx}
-              className="border border-zinc-200/80 bg-white p-6 hover:border-zinc-300 dark:border-zinc-850 dark:bg-zinc-950/30 dark:hover:border-zinc-700 shadow-none flex flex-col justify-between"
+              className="200/80 bg-white p-6 hover:zinc-300 dark:bg-zinc-950/30 dark:hover:zinc-700 shadow-none flex flex-col justify-between"
             >
               <div className="space-y-4">
                 {/* 5 stars */}
@@ -107,7 +107,7 @@ export function TestimonialsSection() {
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-900">
+              <div className="mt-6 pt-4 -100">
                 <div className="text-xs font-bold text-zinc-900 dark:text-zinc-50">{t.name}</div>
                 <div className="text-[10px] text-zinc-450 mt-0.5">{t.role}</div>
                 <div className="text-[9px] text-zinc-500 font-medium mt-1">{t.property}</div>
@@ -117,7 +117,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Trust Metrics Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-10 border-y border-zinc-200/80 dark:border-zinc-900 mb-16 md:mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-10 -200/80 mb-16 md:mb-24">
           {metrics.map((m, idx) => (
             <div key={idx} className="space-y-1.5 text-center sm:text-left">
               <span className="text-3xl font-extrabold text-indigo-650 dark:text-indigo-400 block tracking-tight">

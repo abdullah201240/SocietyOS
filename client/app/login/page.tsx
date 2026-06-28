@@ -51,7 +51,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="relative z-10">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 group-hover:bg-white/20 transition-all">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm  group-hover:bg-white/20 transition-all">
                 <Building2 className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -64,7 +64,7 @@ export default function LoginPage() {
           {/* Main content */}
           <div className="relative z-10 space-y-8 max-w-md">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 text-sm text-white/90">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm  px-4 py-1.5 text-sm text-white/90">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>Trusted by 500+ Communities</span>
               </div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
                 { icon: CheckCircle, text: "99.9% uptime guaranteed" },
                 { icon: Sparkles, text: "AI-powered insights" },
               ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                <div key={index} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 ">
                   <feature.icon className="h-5 w-5 text-indigo-200" />
                   <span className="text-sm text-white font-medium">{feature.text}</span>
                 </div>
@@ -123,7 +123,7 @@ export default function LoginPage() {
               {/* Card glow effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-10" />
               
-              <div className="relative bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xl p-8 space-y-6">
+              <div className="relative bg-white dark:bg-zinc-900 rounded-2xl -200 shadow-xl p-8 space-y-6">
                 {/* Header */}
                 <div className="space-y-2">
                   <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
@@ -150,7 +150,7 @@ export default function LoginPage() {
                         placeholder="you@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="h-11 pl-10 rounded-lg border-zinc-200 dark:border-zinc-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:bg-zinc-800/50 transition-all"
+                        className="h-11 pl-10 rounded-lg-200 focus:indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:bg-zinc-800/50 transition-all"
                       />
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function LoginPage() {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="h-11 pl-10 pr-10 rounded-lg border-zinc-200 dark:border-zinc-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:bg-zinc-800/50 transition-all"
+                        className="h-11 pl-10 pr-10 rounded-lg-200 focus:indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:bg-zinc-800/50 transition-all"
                       />
                       <button
                         type="button"
@@ -195,7 +195,7 @@ export default function LoginPage() {
                       id="remember"
                       checked={rememberMe}
                       onCheckedChange={(checked) => setRememberMe(!!checked)}
-                      className="rounded border-zinc-300 text-indigo-600 focus:ring-indigo-500 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600"
+                      className="rounded-300 text-indigo-600 focus:ring-indigo-500 data-[state=checked]:bg-indigo-600 data-[state=checked]:indigo-600"
                     />
                     <Label htmlFor="remember" className="text-sm text-zinc-600 dark:text-zinc-400 cursor-pointer">
                       Keep me signed in for 30 days
@@ -215,7 +215,7 @@ export default function LoginPage() {
                 {/* Divider */}
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-zinc-200 dark:border-zinc-700" />
+                    <div className="w-full -200" />
                   </div>
                   <div className="relative flex justify-center text-xs">
                     <span className="bg-white dark:bg-zinc-900 px-3 text-zinc-500">or continue with</span>
@@ -224,7 +224,7 @@ export default function LoginPage() {
 
                 {/* Social login */}
                 <div className="grid grid-cols-2 gap-3">
-                  <Button variant="outline" className="h-10 rounded-lg border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
+                  <Button variant="outline" className="h-10 rounded-lg-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
                     <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24">
                       <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                       <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -233,7 +233,7 @@ export default function LoginPage() {
                     </svg>
                     Google
                   </Button>
-                  <Button variant="outline" className="h-10 rounded-lg border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
+                  <Button variant="outline" className="h-10 rounded-lg-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
                     <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 2.614-.254.817-1.182 2.361-2.025 4.126-2.025 1.765 0 3.309.843 4.126 2.026 1.606-.068 2.614.254 2.614.254.653 1.652.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>

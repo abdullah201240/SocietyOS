@@ -339,7 +339,7 @@ export default function FlatsPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
                 Floor & Flat Management
@@ -354,7 +354,7 @@ export default function FlatsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleImport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Upload className="h-3.5 w-3.5" />
                 <span>Import Resident Data</span>
@@ -363,7 +363,7 @@ export default function FlatsPage() {
                 variant="outline"
                 size="xs"
                 onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>Generate Occupancy Report</span>
@@ -380,7 +380,7 @@ export default function FlatsPage() {
                     <span>Add Flat</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleAddFlat}>
                     <DialogHeader>
                       <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Add Apartment Flat Unit</DialogTitle>
@@ -395,7 +395,7 @@ export default function FlatsPage() {
                           value={newFlat.flatNumber}
                           onChange={(e) => setNewFlat({ ...newFlat, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -404,7 +404,7 @@ export default function FlatsPage() {
                           id="f-floor"
                           value={newFlat.floor}
                           onChange={(e) => setNewFlat({ ...newFlat, floor: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="1st Floor">1st Floor</option>
                           <option value="2nd Floor">2nd Floor</option>
@@ -421,7 +421,7 @@ export default function FlatsPage() {
                           id="f-tower"
                           value={newFlat.buildingName}
                           onChange={(e) => setNewFlat({ ...newFlat, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Tower Alpha">Tower Alpha</option>
                           <option value="Tower Beta">Tower Beta</option>
@@ -436,7 +436,7 @@ export default function FlatsPage() {
                           value={newFlat.ownerName}
                           onChange={(e) => setNewFlat({ ...newFlat, ownerName: e.target.value })}
                           placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -447,7 +447,7 @@ export default function FlatsPage() {
                           value={newFlat.ownerPhone}
                           onChange={(e) => setNewFlat({ ...newFlat, ownerPhone: e.target.value })}
                           placeholder="e.g. +1 555-0102"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -458,7 +458,7 @@ export default function FlatsPage() {
                           value={newFlat.ownerEmail}
                           onChange={(e) => setNewFlat({ ...newFlat, ownerEmail: e.target.value })}
                           placeholder="e.g. owner@gmail.com"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -467,7 +467,7 @@ export default function FlatsPage() {
                           id="f-status"
                           value={newFlat.tenantStatus}
                           onChange={(e) => setNewFlat({ ...newFlat, tenantStatus: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                         >
                           <option value="Self-Occupied">Self-Occupied</option>
                           <option value="Tenant-Occupied">Tenant-Occupied</option>
@@ -481,7 +481,7 @@ export default function FlatsPage() {
                           value={newFlat.parkingAssignment}
                           onChange={(e) => setNewFlat({ ...newFlat, parkingAssignment: e.target.value })}
                           placeholder="e.g. Slot L1-42"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
@@ -492,7 +492,7 @@ export default function FlatsPage() {
                           value={newFlat.utilityBalance}
                           onChange={(e) => setNewFlat({ ...newFlat, utilityBalance: Number(e.target.value) })}
                           placeholder="e.g. -185.00"
-                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>
                     </div>
@@ -509,7 +509,7 @@ export default function FlatsPage() {
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <div className="flex items-center gap-1">
@@ -520,7 +520,7 @@ export default function FlatsPage() {
                           <HelpCircle className="h-3 w-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white border-zinc-800 rounded px-2 py-1 text-[10px]">
+                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
                         Total registered apartment flat units.
                       </TooltipContent>
                     </Tooltip>
@@ -534,7 +534,7 @@ export default function FlatsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Occupied Units</span>
@@ -547,7 +547,7 @@ export default function FlatsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Vacant Units</span>
@@ -560,7 +560,7 @@ export default function FlatsPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
               <CardContent className="p-3">
                 <div className="flex items-center justify-between text-zinc-500">
                   <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Active Residents</span>
@@ -579,8 +579,8 @@ export default function FlatsPage() {
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
                     Flat Unit Filters
@@ -594,7 +594,7 @@ export default function FlatsPage() {
                     <select
                       value={filterOccupancy}
                       onChange={(e) => setFilterOccupancy(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Occupied">Occupied</option>
@@ -608,7 +608,7 @@ export default function FlatsPage() {
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All types</option>
                       <option value="Owner">Owner Occupied</option>
@@ -622,7 +622,7 @@ export default function FlatsPage() {
                     <select
                       value={filterDues}
                       onChange={(e) => setFilterDues(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All accounts</option>
                       <option value="Unpaid">Has outstanding dues</option>
@@ -636,7 +636,7 @@ export default function FlatsPage() {
                     <select
                       value={filterComplaints}
                       onChange={(e) => setFilterComplaints(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All records</option>
                       <option value="Active">Has active tickets</option>
@@ -653,7 +653,7 @@ export default function FlatsPage() {
                       setSearchQuery("");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -663,8 +663,8 @@ export default function FlatsPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
-                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
+                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
@@ -672,7 +672,7 @@ export default function FlatsPage() {
                       placeholder="Search flats by number, resident..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
@@ -688,8 +688,8 @@ export default function FlatsPage() {
                     </div>
                   ) : (
                     <Table>
-                      <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-950/20 dark:border-zinc-850">
-                        <TableRow className="hover:bg-transparent dark:border-zinc-850">
+                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
+                        <TableRow className="hover:bg-transparent">
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Flat Number</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Floor</TableHead>
                           <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building</TableHead>
@@ -707,7 +707,7 @@ export default function FlatsPage() {
                           <TableRow
                             key={f.id}
                             onClick={() => setSelectedFlat(f)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
                           >
                             <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                               Flat {f.flatNumber}
@@ -722,12 +722,12 @@ export default function FlatsPage() {
                               {f.ownerName}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
                                 f.tenantStatus === "Self-Occupied"
-                                  ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/20 dark:text-indigo-400 dark:border-indigo-900"
+                                  ? "bg-indigo-50 text-indigo-700-200 dark:bg-indigo-950/20 dark:text-indigo-400"
                                   : f.tenantStatus === "Tenant-Occupied"
-                                  ? "bg-zinc-100 text-zinc-700 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700"
-                                  : "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/20 dark:text-rose-400 dark:border-rose-900"
+                                  ? "bg-zinc-100 text-zinc-700-200 dark:bg-zinc-800 dark:text-zinc-300"
+                                  : "bg-rose-50 text-rose-700-200 dark:bg-rose-950/20 dark:text-rose-400"
                               }`}>
                                 {f.tenantStatus}
                               </span>
@@ -735,8 +735,8 @@ export default function FlatsPage() {
                             <TableCell className="text-center py-2.5">
                               <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold ${
                                 f.occupancyStatus === "Occupied"
-                                  ? "bg-emerald-50 text-emerald-700 border border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900"
-                                  : "bg-zinc-100 text-zinc-400 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-500"
+                                  ? "bg-emerald-50 text-emerald-700 -250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                  : "bg-zinc-100 text-zinc-400 -200 dark:bg-zinc-900 dark:text-zinc-500"
                               }`}>
                                 {f.occupancyStatus}
                               </span>
@@ -752,9 +752,9 @@ export default function FlatsPage() {
                             <TableCell className="text-center py-2.5">
                               <Badge
                                 variant="outline"
-                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm border-zinc-200/60 ${
+                                className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded-sm-200/60 ${
                                   f.activeComplaints > 0
-                                    ? "text-rose-700 bg-rose-50 dark:text-rose-455 dark:bg-rose-950/20 dark:border-rose-900"
+                                    ? "text-rose-700 bg-rose-50 dark:text-rose-455 dark:bg-rose-950/20"
                                     : "text-zinc-400 bg-zinc-50 dark:bg-zinc-900"
                                 }`}
                               >
@@ -780,10 +780,10 @@ export default function FlatsPage() {
 
       {/* FLAT DETAILS DRAWER (SHEET) */}
       <Sheet open={selectedFlat !== null} onOpenChange={(open) => !open && setSelectedFlat(null)}>
-        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedFlat && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
+              <SheetHeader className="p-4 -100">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
                   <Home className="h-3 w-3" /> Flat profile details
                 </div>
@@ -803,7 +803,7 @@ export default function FlatsPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Resident profiles</span>
                   <div className="space-y-2">
                     {/* Owner profile card */}
-                    <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 space-y-1">
+                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 space-y-1">
                       <span className="text-[9px] text-zinc-400 block uppercase font-bold tracking-wider">Flat Owner</span>
                       <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{selectedFlat.ownerName}</span>
                       <span className="text-[10px] text-zinc-500 block flex items-center gap-1">
@@ -813,13 +813,13 @@ export default function FlatsPage() {
 
                     {/* Tenant profile card (if present) */}
                     {selectedFlat.tenantStatus === "Tenant-Occupied" && (
-                      <div className="rounded border border-zinc-150 p-2.5 bg-indigo-50/20 dark:border-indigo-900/40 dark:bg-indigo-950/10 space-y-1">
+                      <div className="rounded -150 p-2.5 bg-indigo-50/20 dark:bg-indigo-950/10 space-y-1">
                         <span className="text-[9px] text-indigo-600 dark:text-indigo-400 block uppercase font-bold tracking-wider">Primary Tenant</span>
                         <span className="text-xs font-semibold text-zinc-900 dark:text-white block">{selectedFlat.tenantName}</span>
                         <span className="text-[10px] text-zinc-500 block flex items-center gap-1">
                           <Phone className="h-3 w-3" /> {selectedFlat.tenantPhone} • {selectedFlat.tenantEmail}
                         </span>
-                        <div className="mt-1.5 flex justify-between text-[9.5px] text-zinc-500 border-t border-zinc-100 pt-1.5 dark:border-zinc-800">
+                        <div className="mt-1.5 flex justify-between text-[9.5px] text-zinc-500 -100 pt-1.5">
                           <span>Rent: {selectedFlat.rentAmount}</span>
                           <span>Lease ends: {selectedFlat.leaseExpires}</span>
                         </div>
@@ -831,7 +831,7 @@ export default function FlatsPage() {
                 {/* 2. Utility Billing Ledger */}
                 <div className="space-y-2.5">
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Utility Billing ledger</span>
-                  <div className="rounded border border-zinc-150 p-3 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 space-y-2">
+                  <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 space-y-2">
                     <div className="flex justify-between items-center text-xs">
                       <span className="text-zinc-500">Current Balance:</span>
                       <span className={`font-bold ${
@@ -841,7 +841,7 @@ export default function FlatsPage() {
                       </span>
                     </div>
                     {selectedFlat.utilityBalance < 0 && (
-                      <div className="mt-1.5 text-[9px] text-rose-600 font-semibold bg-rose-50 dark:bg-rose-950/20 px-2 py-1 rounded border border-rose-100 dark:border-rose-900">
+                      <div className="mt-1.5 text-[9px] text-rose-600 font-semibold bg-rose-50 dark:bg-rose-950/20 px-2 py-1 rounded -100">
                         Notice: Outstanding dues in maintenance bills. Payment invoice due.
                       </div>
                     )}
@@ -857,7 +857,7 @@ export default function FlatsPage() {
                     ) : (
                       <div className="grid grid-cols-2 gap-2">
                         {selectedFlat.familyMembers.map((m, idx) => (
-                          <div key={idx} className="rounded border border-zinc-150 p-2 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40">
+                          <div key={idx} className="rounded -150 p-2 bg-zinc-50/50 dark:bg-zinc-950/40">
                             <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 block">{m.name}</span>
                             <span className="text-[9.5px] text-zinc-450 block mt-0.5">{m.relation} • {m.age} yrs</span>
                           </div>
@@ -875,7 +875,7 @@ export default function FlatsPage() {
                   ) : (
                     <div className="space-y-2">
                       {selectedFlat.emergencyContacts.map((c, idx) => (
-                        <div key={idx} className="flex items-center gap-2.5 border border-zinc-150 rounded p-2.5 dark:border-zinc-900">
+                        <div key={idx} className="flex items-center gap-2.5 -150 rounded p-2.5">
                           <div className="h-6.5 w-6.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-zinc-450 flex items-center justify-center font-bold text-[10px]">
                             <User className="h-3.5 w-3.5" />
                           </div>
@@ -897,16 +897,16 @@ export default function FlatsPage() {
                   ) : (
                     <div className="space-y-2.5">
                       {selectedFlat.maintenanceHistory.map((m) => (
-                        <div key={m.id} className="flex gap-2 text-xs border-b border-zinc-100 pb-2.5 dark:border-zinc-900 last:border-0 last:pb-0">
+                        <div key={m.id} className="flex gap-2 text-xs -100 pb-2.5 last:0 last:pb-0">
                           <Clock className="h-3.5 w-3.5 text-zinc-400 shrink-0 mt-0.5" />
                           <div className="min-w-0 flex-1">
                             <span className="text-zinc-800 dark:text-zinc-200 font-semibold block leading-tight truncate">{m.ticket}</span>
                             <span className="text-[9.5px] text-zinc-400 block mt-0.5">{m.date}</span>
                           </div>
-                          <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold border shrink-0 ${
+                          <Badge variant="outline" className={`text-[8.5px] px-1.5 py-0.5 rounded-sm font-semibold  shrink-0 ${
                             m.status === "Resolved"
-                              ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-450"
-                              : "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-450"
+                              ? "bg-emerald-50 text-emerald-700-200 dark:bg-emerald-950/20 dark:text-emerald-450"
+                              : "bg-amber-50 text-amber-700-200 dark:bg-amber-950/20 dark:text-amber-450"
                           }`}>
                             {m.status}
                           </Badge>
@@ -919,14 +919,14 @@ export default function FlatsPage() {
               </div>
               
               {/* Drawer Footer Panel */}
-              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
+              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 <Button
                   onClick={() => {
                     setSelectedFlat(null);
                     toast.info(`Generated utility statement bill for Flat ${selectedFlat.flatNumber}`);
                   }}
                   variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs border-zinc-200 dark:border-zinc-850 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   <FileText className="h-3.5 w-3.5 mr-1" /> Statement
                 </Button>

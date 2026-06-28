@@ -28,12 +28,12 @@ export function MobileExperienceSection() {
   ];
 
   return (
-    <section id="mobile-experience" className="py-16 md:py-24 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-black">
+    <section id="mobile-experience" className="py-16 md:py-24 -100 bg-white dark:bg-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Headers */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1 border-zinc-200 text-zinc-600 dark:border-zinc-800 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
+          <Badge variant="outline" className="mb-4 rounded-full px-3 py-1-200 text-zinc-600 dark:text-zinc-400 bg-zinc-50/50 dark:bg-zinc-950/40">
             Resident Mobile Application
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
@@ -64,16 +64,16 @@ export function MobileExperienceSection() {
                 <button
                   key={screen.id}
                   onClick={() => setActiveScreen(screen.id as any)}
-                  className={`w-full text-left p-3.5 border transition-all flex items-start gap-4 ${
+                  className={`w-full text-left p-3.5  transition-all flex items-start gap-4 ${
                     activeScreen === screen.id
-                      ? "bg-indigo-50/20 border-indigo-200 dark:bg-indigo-950/20 dark:border-indigo-900"
-                      : "bg-white border-zinc-100 hover:border-zinc-200 dark:bg-transparent dark:border-zinc-900 dark:hover:border-zinc-800"
+                      ? "bg-indigo-50/20-200 dark:bg-indigo-950/20"
+                      : "bg-white-100 hover:zinc-200 dark:bg-transparent dark:hover:zinc-800"
                   }`}
                 >
-                  <div className={`mt-0.5 rounded p-1.5 border transition-colors ${
+                  <div className={`mt-0.5 rounded p-1.5  transition-colors ${
                     activeScreen === screen.id
-                      ? "bg-indigo-600 text-white dark:bg-indigo-500 dark:text-white border-transparent"
-                      : "bg-zinc-50 text-zinc-500 border-zinc-200 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800"
+                      ? "bg-indigo-600 text-white dark:bg-indigo-500 dark:text-white"
+                      : "bg-zinc-50 text-zinc-500-200 dark:bg-zinc-900 dark:text-zinc-400"
                   }`}>
                     {screen.id === "complaint" && <FileText className="h-4 w-4" />}
                     {screen.id === "payment" && <CreditCard className="h-4 w-4" />}
@@ -101,7 +101,7 @@ export function MobileExperienceSection() {
           <div className="lg:col-span-6 flex justify-center">
             <div className="relative">
               {/* Outer phone wrapper */}
-              <div className="relative mx-auto h-[530px] w-[265px] border-[7px] border-zinc-900 bg-white dark:border-zinc-800 dark:bg-zinc-950 overflow-hidden flex flex-col justify-between">
+              <div className="relative mx-auto h-[530px] w-[265px][7px]-900 bg-white dark:bg-zinc-950 overflow-hidden flex flex-col justify-between">
                 
                 {/* Dynamic island notches */}
                 <div className="absolute top-2 left-1/2 transform -translate-x-1/2 h-3.5 w-18 bg-zinc-900 rounded-full z-20 flex items-center justify-center dark:bg-zinc-800" />
@@ -111,7 +111,7 @@ export function MobileExperienceSection() {
                   <span>12:04</span>
                   <div className="flex items-center gap-1.5">
                     <span>5G</span>
-                    <div className="h-2 w-4 rounded-xs border border-zinc-400 bg-zinc-400" />
+                    <div className="h-2 w-4 rounded-xs -400 bg-zinc-400" />
                   </div>
                 </div>
 
@@ -126,19 +126,19 @@ export function MobileExperienceSection() {
                         <div className="space-y-2">
                           <div className="space-y-0.5">
                             <span className="text-[8px] text-zinc-400 block font-medium">INCIDENT DETAILS</span>
-                            <div className="px-2 py-1.5 rounded border border-zinc-100 bg-white dark:border-zinc-900 dark:bg-zinc-900 text-[9.5px] font-medium text-zinc-800 dark:text-zinc-200">
+                            <div className="px-2 py-1.5 rounded -100 bg-white dark:bg-zinc-900 text-[9.5px] font-medium text-zinc-800 dark:text-zinc-200">
                               Lobby Gate Lock Jammed
                             </div>
                           </div>
                           <div className="space-y-0.5">
                             <span className="text-[8px] text-zinc-400 block font-medium">LOCATION</span>
-                            <div className="px-2 py-1.5 rounded border border-zinc-100 bg-white dark:border-zinc-900 dark:bg-zinc-900 text-[9.5px] font-medium text-zinc-800 dark:text-zinc-200">
+                            <div className="px-2 py-1.5 rounded -100 bg-white dark:bg-zinc-900 text-[9.5px] font-medium text-zinc-800 dark:text-zinc-200">
                               Tower B Entrance Gate
                             </div>
                           </div>
                           <div className="space-y-0.5">
                             <span className="text-[8px] text-zinc-400 block font-medium">INCIDENT PHOTO</span>
-                            <div className="h-16 w-full rounded border border-dashed border-zinc-200 bg-zinc-50 flex items-center justify-center text-zinc-400 dark:border-zinc-850 dark:bg-zinc-900">
+                            <div className="h-16 w-full rounded -200 bg-zinc-50 flex items-center justify-center text-zinc-400 dark:bg-zinc-900">
                               <Camera className="h-4 w-4" />
                             </div>
                           </div>
@@ -153,19 +153,19 @@ export function MobileExperienceSection() {
                     <div className="flex-grow flex flex-col justify-between animate-in fade-in duration-200">
                       <div>
                         <h4 className="text-[11px] font-bold text-zinc-800 dark:text-zinc-200 mb-2">Service Fee Ledger</h4>
-                        <Card className="rounded-lg bg-indigo-600 p-3 text-white border-transparent dark:bg-indigo-950/40 dark:text-indigo-400 mb-3 shadow-none border dark:border-indigo-900/50">
+                        <Card className="rounded-lg bg-indigo-600 p-3 text-white dark:bg-indigo-950/40 dark:text-indigo-400 mb-3 shadow-none ">
                           <span className="text-[7.5px] opacity-75 font-semibold">UNIT 1204</span>
                           <div className="text-lg font-bold mt-0.5">$185.00</div>
                           <div className="text-[7.5px] opacity-80 mt-1">Due Date: June 30, 2026</div>
                         </Card>
                         <div className="space-y-1.5 text-[9px]">
-                          <div className="flex justify-between items-center py-1 border-b border-zinc-100 dark:border-zinc-900">
+                          <div className="flex justify-between items-center py-1 -100">
                             <span className="text-zinc-500">Electricity Bill</span>
                             <span className="font-semibold text-zinc-800 dark:text-zinc-200">$54.50</span>
                           </div>
                           <div className="flex justify-between items-center py-1">
                             <span className="text-zinc-500">Clubhouse Deposit</span>
-                            <Badge variant="outline" className="text-[7px] px-1 py-0 border-emerald-100 text-emerald-600 dark:border-emerald-950 dark:text-emerald-400">Paid</Badge>
+                            <Badge variant="outline" className="text-[7px] px-1 py-0-100 text-emerald-600 dark:text-emerald-400">Paid</Badge>
                           </div>
                         </div>
                       </div>
@@ -178,7 +178,7 @@ export function MobileExperienceSection() {
                     <div className="flex-grow flex flex-col justify-between animate-in fade-in duration-200">
                       <div>
                         <h4 className="text-[11px] font-bold text-zinc-800 dark:text-zinc-200 mb-2">Gate Pass Dispatch</h4>
-                        <div className="bg-amber-50 border border-amber-250 p-2.5 rounded-lg text-center dark:bg-amber-950/20 dark:border-amber-900 mb-3">
+                        <div className="bg-amber-50 -250 p-2.5 rounded-lg text-center dark:bg-amber-950/20 mb-3">
                           <span className="text-[7px] font-bold text-amber-800 uppercase block tracking-wider dark:text-amber-400">Visitor Requesting Access</span>
                           <span className="text-[10px] font-semibold text-zinc-800 dark:text-zinc-200 block mt-1">Sarah Connor</span>
                           <span className="text-[7.5px] text-zinc-500 block">Ingress: Gate #1 (12:02 PM)</span>
@@ -186,7 +186,7 @@ export function MobileExperienceSection() {
                         <p className="text-[8px] text-zinc-500 text-center leading-normal px-2">Clicking approve grants immediate entry authorization and registers the pass in the gate registry.</p>
                       </div>
                       <div className="flex gap-2 mt-4">
-                        <Button size="xs" variant="outline" disabled className="flex-1 text-[9px] h-7.5 rounded-md border-zinc-250">Deny</Button>
+                        <Button size="xs" variant="outline" disabled className="flex-1 text-[9px] h-7.5 rounded-md-250">Deny</Button>
                         <Button size="xs" disabled className="flex-1 text-[9px] h-7.5 rounded-md bg-indigo-650 hover:bg-indigo-700 text-white dark:bg-indigo-500">Approve</Button>
                       </div>
                     </div>
@@ -198,14 +198,14 @@ export function MobileExperienceSection() {
                       <div>
                         <h4 className="text-[11px] font-bold text-zinc-800 dark:text-zinc-200 mb-2">Notification Inbox</h4>
                         <div className="space-y-1.5 text-[8.5px]">
-                          <div className="p-2 bg-white rounded border border-zinc-100 dark:bg-zinc-900/60 dark:border-zinc-850">
+                          <div className="p-2 bg-white rounded -100 dark:bg-zinc-900/60">
                             <div className="flex items-center justify-between font-semibold text-zinc-850 dark:text-zinc-200">
                               <span>Staff Dispatched</span>
                               <span className="text-[7px] text-zinc-400 font-normal">2m ago</span>
                             </div>
                             <p className="text-zinc-500 mt-0.5">Electrician David K. has been assigned to ticket #2054.</p>
                           </div>
-                          <div className="p-2 bg-white rounded border border-zinc-100 dark:bg-zinc-900/60 dark:border-zinc-850">
+                          <div className="p-2 bg-white rounded -100 dark:bg-zinc-900/60">
                             <div className="flex items-center justify-between font-semibold text-zinc-850 dark:text-zinc-200">
                               <span>Utilities Invoice Paid</span>
                               <span className="text-[7px] text-zinc-400 font-normal">1d ago</span>

@@ -25,6 +25,12 @@ import {
   UserCheck,
   BarChart3,
   HelpCircle,
+  Contact,
+  Link as LinkIcon,
+  DollarSign,
+  Wallet,
+  Sun,
+  Moon,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -36,6 +42,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useTheme } from "next-themes";
 
 interface DashboardNavbarProps {
   currentOrg: string;
@@ -44,6 +51,7 @@ interface DashboardNavbarProps {
 export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { theme, setTheme } = useTheme();
 
   const [notifications, setNotifications] = React.useState([
     { id: 1, text: "New complaint filed for Flat 302 (Water leak)", time: "5m ago", unread: true },
@@ -63,9 +71,13 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },
     { name: "Residents", href: "/dashboard/residents", icon: Users },
+    { name: "Owners", href: "/dashboard/owners", icon: Contact },
+    { name: "Linking", href: "/dashboard/owners/linking", icon: LinkIcon },
     { name: "Complaints", href: "/dashboard/complaints", icon: AlertCircle, badge: "12" },
     { name: "Maintenance", href: "/dashboard/maintenance", icon: Wrench, badge: "8" },
     { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
+    { name: "Financials", href: "/dashboard/owners/financial", icon: DollarSign },
+    { name: "Payments", href: "/dashboard/payments", icon: Wallet },
     { name: "Utilities", href: "/dashboard/utilities", icon: Zap },
     { name: "Parking", href: "/dashboard/parking", icon: Car },
     { name: "Visitors", href: "/dashboard/visitors", icon: Fingerprint },
@@ -235,6 +247,18 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        {/* Theme Toggle Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className="h-8 w-8 text-zinc-550 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors outline-none relative"
+        >
+          <Sun className="h-4.5 w-4.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-4.5 w-4.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
 
         <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-800" />
 

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 import { DashboardNavbar } from "@/components/dashboard/dashboard-navbar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -32,165 +32,119 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import {
   CreditCard,
-  DollarSign,
   AlertCircle,
   Clock,
   ChevronRight,
   Filter,
   Plus,
-  Upload,
   Download,
   Search,
-  User,
   HelpCircle,
   ShieldCheck,
-  FileText,
-  Send,
-  History,
-  FileSpreadsheet,
+  BellRing,
 } from "lucide-react";
 
 // Types
 interface InvoiceRecord {
-  id: string; // e.g. INV-2026-102
-  residentName: string;
-  flatNumber: string;
+  id: string; // e.g. INV-9021
+  society: string;
   buildingName: string;
-  category: "Maintenance" | "Utilities" | "Amenities" | "Parking" | "Surcharges";
+  flatNumber: string;
+  residentName: string;
+  ownerName: string;
   amount: number;
+  status: "Paid" | "Unpaid" | "Overdue";
   dueDate: string;
-  status: "Paid" | "Pending" | "Overdue" | "Processing";
-  method: "Bank Transfer" | "Credit Card" | "Cash/Check" | "ACH Auto-debit" | "None";
-  outstandingBalance: number;
-  breakdown: { item: string; charge: number }[];
-  utilityBreakdown?: { type: "Water" | "Electricity" | "Gas"; usage: string; rate: string };
-  lateFee: number;
-  timeline: { step: string; timestamp: string; note: string }[];
-  commsLog: { action: string; time: string; medium: string }[];
+  utilityCharges: number;
+  maintenanceCharges: number;
+  otherCharges: number;
+  paymentMethod: string;
 }
 
-export default function BillingPage() {
+export default function GlobalBillingPage() {
   const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
-  // Initial Mock Financial Data
+  // Initial Mock Global Billing Data
   const [invoices, setInvoices] = React.useState<InvoiceRecord[]>([
     {
-      id: "INV-2026-402",
-      residentName: "Harold Brooks",
+      id: "INV-9021",
+      society: "Grandview Towers",
+      buildingName: "Tower Alpha",
       flatNumber: "1402",
-      buildingName: "Tower Alpha",
-      category: "Maintenance",
-      amount: 185.00,
-      dueDate: "2026-07-05",
-      status: "Pending",
-      method: "None",
-      outstandingBalance: 185.00,
-      breakdown: [
-        { item: "General Maintenance SLA Contribution", charge: 140.00 },
-        { item: "Security & Guard Service Levy", charge: 30.00 },
-        { item: "Elevator Upkeep Surcharge", charge: 15.00 }
-      ],
-      lateFee: 0.00,
-      timeline: [
-        { step: "Invoice Created", timestamp: "2026-06-25, 09:00 AM", note: "Billing run cycle #26 generated." },
-        { step: "Invoice Dispatched", timestamp: "2026-06-25, 09:15 AM", note: "Sent via email & resident portal notification." }
-      ],
-      commsLog: [
-        { action: "E-invoice Sent", time: "2026-06-25, 09:15 AM", medium: "Email" }
-      ]
-    },
-    {
-      id: "INV-2026-403",
-      residentName: "Sarah Connor",
-      flatNumber: "805",
-      buildingName: "Tower Alpha",
-      category: "Utilities",
-      amount: 45.00,
-      dueDate: "2026-06-28",
-      status: "Overdue",
-      method: "None",
-      outstandingBalance: 60.00, // Includes late fees
-      breakdown: [
-        { item: "Water consumption (1.2k Liters)", charge: 35.00 },
-        { item: "Sewage pipeline maintenance charge", charge: 10.00 }
-      ],
-      utilityBreakdown: { type: "Water", usage: "1.2k Liters", rate: "$0.029 / Liter" },
-      lateFee: 15.00,
-      timeline: [
-        { step: "Invoice Created", timestamp: "2026-06-10, 08:00 AM", note: "Utility meter counter automated billing." },
-        { step: "SLA Deadline Passed", timestamp: "2026-06-28, 12:00 AM", note: "System marked invoice overdue. Late fee applied." }
-      ],
-      commsLog: [
-        { action: "Utility Statement Sent", time: "2026-06-10, 08:30 AM", medium: "SMS Notification" },
-        { action: "Late Fee Alert Triggered", time: "2026-06-28, 09:00 AM", medium: "Email Alert" }
-      ]
-    },
-    {
-      id: "INV-2026-400",
-      residentName: "David Vance",
-      flatNumber: "1204",
-      buildingName: "Tower Alpha",
-      category: "Amenities",
-      amount: 250.00,
-      dueDate: "2026-06-24",
-      status: "Processing",
-      method: "Bank Transfer",
-      outstandingBalance: 250.00,
-      breakdown: [
-        { item: "Clubhouse booking reservation fee", charge: 200.00 },
-        { item: "Private lounge cleaning surcharge", charge: 50.00 }
-      ],
-      lateFee: 0.00,
-      timeline: [
-        { step: "Invoice Created", timestamp: "2026-06-20, 10:00 AM", note: "Amenity request deposit statement." },
-        { step: "Resident Paid", timestamp: "2026-06-24, 02:30 PM", note: "Resident uploaded payment transfer receipt." },
-        { step: "ACH Processing", timestamp: "2026-06-24, 03:00 PM", note: "Awaiting bank clearance confirmation check." }
-      ],
-      commsLog: [
-        { action: "Transaction Receipt Uploaded", time: "2026-06-24, 02:30 PM", medium: "Portal File" }
-      ]
-    },
-    {
-      id: "INV-2026-398",
-      residentName: "Mark Wahlberg",
-      flatNumber: "604",
-      buildingName: "Tower Beta",
-      category: "Parking",
-      amount: 120.00,
-      dueDate: "2026-06-20",
+      residentName: "Marcus Aurelius",
+      ownerName: "Arthur Pendragon",
+      amount: 1600,
       status: "Paid",
-      method: "ACH Auto-debit",
-      outstandingBalance: 0.00,
-      breakdown: [
-        { item: "Basement Level 1 Designated Parking space", charge: 100.00 },
-        { item: "EV Charger port connection flat fee", charge: 20.00 }
-      ],
-      lateFee: 0.00,
-      timeline: [
-        { step: "Invoice Created", timestamp: "2026-06-05, 09:00 AM", note: "Monthly recurring license." },
-        { step: "ACH Cleared", timestamp: "2026-06-06, 02:00 AM", note: "Direct bank debit cleared successfully." }
-      ],
-      commsLog: [
-        { action: "Paid Receipt Issued", time: "2026-06-06, 08:00 AM", medium: "Email Receipt" }
-      ]
+      dueDate: "2026-07-05",
+      utilityCharges: 80,
+      maintenanceCharges: 120,
+      otherCharges: 1400, // Rent
+      paymentMethod: "Bank Transfer"
+    },
+    {
+      id: "INV-9022",
+      society: "Grandview Towers",
+      buildingName: "Tower Alpha",
+      flatNumber: "805",
+      residentName: "Sarah Connor",
+      ownerName: "Arthur Pendragon",
+      amount: 1375,
+      status: "Paid",
+      dueDate: "2026-07-05",
+      utilityCharges: 75,
+      maintenanceCharges: 100,
+      otherCharges: 1200,
+      paymentMethod: "Credit Card"
+    },
+    {
+      id: "INV-9023",
+      society: "Grandview Towers",
+      buildingName: "Tower Alpha",
+      flatNumber: "302",
+      residentName: "Elena Rostova",
+      ownerName: "Arthur Pendragon",
+      amount: 1200,
+      status: "Overdue",
+      dueDate: "2026-06-20",
+      utilityCharges: 100,
+      maintenanceCharges: 100,
+      otherCharges: 1000,
+      paymentMethod: "None"
+    },
+    {
+      id: "INV-9024",
+      society: "Pine Crest Society",
+      buildingName: "Oak Block",
+      flatNumber: "501",
+      residentName: "Arthur Dent",
+      ownerName: "Uther Lightbringer",
+      amount: 1100,
+      status: "Unpaid",
+      dueDate: "2026-07-05",
+      utilityCharges: 60,
+      maintenanceCharges: 90,
+      otherCharges: 950,
+      paymentMethod: "None"
     }
   ]);
 
-  // Form States
+  // Form State
   const [newInvoice, setNewInvoice] = React.useState({
-    residentName: "",
-    flatNumber: "",
+    society: "Grandview Towers",
     buildingName: "Tower Alpha",
-    category: "Maintenance" as any,
-    amount: 100,
-    dueDate: "",
+    flatNumber: "",
+    residentName: "",
+    ownerName: "",
+    amount: 1000,
+    dueDate: "2026-07-10",
+    utilityCharges: 50,
+    maintenanceCharges: 100,
   });
 
   const [createOpen, setCreateOpen] = React.useState(false);
@@ -199,116 +153,73 @@ export default function BillingPage() {
   // Filters State
   const [searchQuery, setSearchQuery] = React.useState("");
   const [filterStatus, setFilterStatus] = React.useState("All");
-  const [filterCategory, setFilterCategory] = React.useState("All");
+  const [filterSociety, setFilterSociety] = React.useState("All");
   const [filterBuilding, setFilterBuilding] = React.useState("All");
-  const [filterMethod, setFilterMethod] = React.useState("All");
-  const [filterUtility, setFilterUtility] = React.useState("All");
 
   const handleGenerateInvoice = (e: React.FormEvent) => {
     e.preventDefault();
     const created: InvoiceRecord = {
-      id: `INV-2026-${100 + invoices.length + 1}`,
-      residentName: newInvoice.residentName,
-      flatNumber: newInvoice.flatNumber,
+      id: `INV-${9000 + invoices.length + 1}`,
+      society: newInvoice.society,
       buildingName: newInvoice.buildingName,
-      category: newInvoice.category,
+      flatNumber: newInvoice.flatNumber,
+      residentName: newInvoice.residentName,
+      ownerName: newInvoice.ownerName,
       amount: Number(newInvoice.amount),
-      dueDate: newInvoice.dueDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
-      status: "Pending",
-      method: "None",
-      outstandingBalance: Number(newInvoice.amount),
-      breakdown: [
-        { item: `${newInvoice.category} Assessment Charge`, charge: Number(newInvoice.amount) }
-      ],
-      lateFee: 0.00,
-      timeline: [
-        { step: "Invoice Created", timestamp: new Date().toLocaleString(), note: "Manual operator invoice intake." }
-      ],
-      commsLog: [
-        { action: "Manual Invoice Sent", time: new Date().toLocaleString(), medium: "Email" }
-      ]
+      status: "Unpaid",
+      dueDate: newInvoice.dueDate,
+      utilityCharges: Number(newInvoice.utilityCharges),
+      maintenanceCharges: Number(newInvoice.maintenanceCharges),
+      otherCharges: Number(newInvoice.amount) - Number(newInvoice.utilityCharges) - Number(newInvoice.maintenanceCharges),
+      paymentMethod: "None"
     };
 
     setInvoices((prev) => [created, ...prev]);
     setCreateOpen(false);
-    toast.success(`Invoice #${created.id} generated for Resident!`);
+    toast.success(`Invoice "${created.id}" generated successfully.`);
 
     // Reset Form
     setNewInvoice({
-      residentName: "",
-      flatNumber: "",
+      society: "Grandview Towers",
       buildingName: "Tower Alpha",
-      category: "Maintenance",
-      amount: 100,
-      dueDate: "",
+      flatNumber: "",
+      residentName: "",
+      ownerName: "",
+      amount: 1000,
+      dueDate: "2026-07-10",
+      utilityCharges: 50,
+      maintenanceCharges: 100,
     });
   };
 
-  // Dispatch Actions
-  const handleRecordPayment = (id: string) => {
-    setInvoices((prev) =>
-      prev.map((inv) => {
-        if (inv.id === id) {
-          return {
-            ...inv,
-            status: "Paid",
-            outstandingBalance: 0.00,
-            method: "Bank Transfer",
-            timeline: [...inv.timeline, { step: "Manual Payment Logged", timestamp: "Just now", note: "Manager recorded check/cash deposit." }]
-          };
-        }
-        return inv;
-      })
-    );
-    setSelectedInvoice((prev) => prev && prev.id === id ? { ...prev, status: "Paid", outstandingBalance: 0.00, method: "Bank Transfer" } : prev);
-    toast.success(`Payment recorded for Invoice #${id}!`);
-  };
-
-  const handleSendReminder = (id: string) => {
-    setInvoices((prev) =>
-      prev.map((inv) => {
-        if (inv.id === id) {
-          return {
-            ...inv,
-            commsLog: [...inv.commsLog, { action: "Payment Reminder Sent", time: "Just now", medium: "Email & SMS" }]
-          };
-        }
-        return inv;
-      })
-    );
-    setSelectedInvoice((prev) => prev && prev.id === id ? { ...prev, commsLog: [...prev.commsLog, { action: "Payment Reminder Sent", time: "Just now", medium: "Email & SMS" }] } : prev);
-    toast.success(`Outstanding balance payment reminder sent!`);
+  const handleSendReminders = () => {
+    toast.success("Outstanding balance payment email reminders sent.");
   };
 
   const handleExport = () => {
-    toast.success("Accounts receivable statement sheets exported.");
+    toast.success("Billing registry exported as CSV.");
   };
 
   // Filter Table List
-  const filteredInvoices = invoices.filter((inv) => {
+  const filteredInvoices = invoices.filter((i) => {
     const matchesSearch =
-      inv.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      inv.residentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      inv.flatNumber.includes(searchQuery);
+      i.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      i.residentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      i.ownerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      i.flatNumber.includes(searchQuery);
 
-    const matchesStatus = filterStatus === "All" || inv.status === filterStatus;
-    const matchesCategory = filterCategory === "All" || inv.category === filterCategory;
-    const matchesBuilding = filterBuilding === "All" || inv.buildingName === filterBuilding;
-    const matchesMethod = filterMethod === "All" || inv.method === filterMethod;
+    const matchesStatus =
+      filterStatus === "All"
+        ? true
+        : filterStatus === "Overdue"
+        ? i.status === "Overdue"
+        : i.status === filterStatus;
 
-    let matchesUtility = true;
-    if (filterUtility !== "All") {
-      matchesUtility = inv.category === "Utilities" && inv.utilityBreakdown?.type === filterUtility;
-    }
+    const matchesSociety = filterSociety === "All" || i.society === filterSociety;
+    const matchesBuilding = filterBuilding === "All" || i.buildingName === filterBuilding;
 
-    return matchesSearch && matchesStatus && matchesCategory && matchesBuilding && matchesMethod && matchesUtility;
+    return matchesSearch && matchesStatus && matchesSociety && matchesBuilding;
   });
-
-  // Calculate Metrics
-  const collectionsSum = invoices.filter((i) => i.status === "Paid").reduce((acc, curr) => acc + curr.amount, 0);
-  const outstandingSum = invoices.reduce((acc, curr) => acc + curr.outstandingBalance, 0);
-  const collectionRate = 96.3;
-  const pendingInvoicesCount = invoices.filter((i) => i.status === "Pending").length;
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-zinc-100/50 text-zinc-900 dark:bg-zinc-900/30 dark:text-zinc-100 font-sans selection:bg-zinc-200">
@@ -321,7 +232,7 @@ export default function BillingPage() {
         onOrgChange={(org) => setCurrentOrg(org)}
       />
 
-      {/* Main Content Workspace */}
+      {/* Main Workspace */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top Navbar */}
         <DashboardNavbar currentOrg={currentOrg} />
@@ -330,13 +241,13 @@ export default function BillingPage() {
         <main className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800">
           
           {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 -200/60">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-zinc-200/60 dark:border-zinc-800/60">
             <div className="space-y-0.5">
               <h1 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
-                Billing & Financial Operations
+                Billing System
               </h1>
               <p className="text-[11px] text-zinc-550 dark:text-zinc-400">
-                Manage invoices, utility charges, rent collection, service fees, and community financial operations.
+                Manage all billing across societies, buildings, flats, and residents.
               </p>
             </div>
             
@@ -344,20 +255,20 @@ export default function BillingPage() {
               <Button
                 variant="outline"
                 size="xs"
-                onClick={handleExport}
-                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                onClick={handleSendReminders}
+                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
-                <FileSpreadsheet className="h-3.5 w-3.5" />
-                <span>Export Financial Report</span>
+                <BellRing className="h-3.5 w-3.5" />
+                <span>Send Reminders</span>
               </Button>
               <Button
                 variant="outline"
                 size="xs"
-                onClick={() => handleSendReminder("INV-2026-403")}
-                className="h-8 rounded-sm text-[11px] font-semibold-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
+                onClick={handleExport}
+                className="h-8 rounded-sm text-[11px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-855 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-350 cursor-pointer shadow-sm gap-1"
               >
-                <Send className="h-3.5 w-3.5" />
-                <span>Send Payment Reminder</span>
+                <Download className="h-3.5 w-3.5" />
+                <span>Export Reports</span>
               </Button>
 
               {/* GENERATE INVOICE DIALOG */}
@@ -371,89 +282,87 @@ export default function BillingPage() {
                     <span>Generate Invoice</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[450px] -200 bg-white dark:bg-zinc-950 p-6 rounded-md">
+                <DialogContent className="sm:max-w-[450px] border border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-6 rounded-md">
                   <form onSubmit={handleGenerateInvoice}>
                     <DialogHeader>
-                      <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Generate Ledger Invoice</DialogTitle>
-                      <DialogDescription className="text-xs text-zinc-500">Bill a resident account for maintenance contribution or utility metrics dues.</DialogDescription>
+                      <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Generate Manual Invoice</DialogTitle>
+                      <DialogDescription className="text-xs text-zinc-500">Dispatch billing invoice statements manually across flats.</DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-3.5 py-4">
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-name" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Resident</Label>
-                        <Input
-                          id="i-name"
-                          required
-                          value={newInvoice.residentName}
-                          onChange={(e) => setNewInvoice({ ...newInvoice, residentName: e.target.value })}
-                          placeholder="e.g. Harold Brooks"
-                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
-                        />
+                        <Label htmlFor="i-soc" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Society</Label>
+                        <select
+                          id="i-soc"
+                          value={newInvoice.society}
+                          onChange={(e) => setNewInvoice({ ...newInvoice, society: e.target.value })}
+                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                        >
+                          <option value="Grandview Towers">Grandview Towers</option>
+                          <option value="Pine Crest Society">Pine Crest Society</option>
+                        </select>
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Flat Unit</Label>
+                        <Label htmlFor="i-bld" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building</Label>
+                        <select
+                          id="i-bld"
+                          value={newInvoice.buildingName}
+                          onChange={(e) => setNewInvoice({ ...newInvoice, buildingName: e.target.value })}
+                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
+                        >
+                          <option value="Tower Alpha">Tower Alpha</option>
+                          <option value="Tower Beta">Tower Beta</option>
+                          <option value="Oak Block">Oak Block</option>
+                        </select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-3">
+                        <Label htmlFor="i-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Flat</Label>
                         <Input
                           id="i-flat"
                           required
                           value={newInvoice.flatNumber}
                           onChange={(e) => setNewInvoice({ ...newInvoice, flatNumber: e.target.value })}
                           placeholder="e.g. 1402"
-                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
+                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-tower" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building</Label>
-                        <select
-                          id="i-tower"
-                          value={newInvoice.buildingName}
-                          onChange={(e) => setNewInvoice({ ...newInvoice, buildingName: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
-                        >
-                          <option value="Tower Alpha">Tower Alpha</option>
-                          <option value="Tower Beta">Tower Beta</option>
-                          <option value="Tower Gamma">Tower Gamma</option>
-                        </select>
+                        <Label htmlFor="i-resident" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Resident</Label>
+                        <Input
+                          id="i-resident"
+                          required
+                          value={newInvoice.residentName}
+                          onChange={(e) => setNewInvoice({ ...newInvoice, residentName: e.target.value })}
+                          placeholder="e.g. Marcus Aurelius"
+                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                        />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-cat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Category</Label>
-                        <select
-                          id="i-cat"
-                          value={newInvoice.category}
-                          onChange={(e) => setNewInvoice({ ...newInvoice, category: e.target.value as any })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
-                        >
-                          <option value="Maintenance">Maintenance</option>
-                          <option value="Utilities">Utilities</option>
-                          <option value="Amenities">Amenities</option>
-                          <option value="Parking">Parking</option>
-                          <option value="Surcharges">Surcharges</option>
-                        </select>
+                        <Label htmlFor="i-owner" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Owner</Label>
+                        <Input
+                          id="i-owner"
+                          required
+                          value={newInvoice.ownerName}
+                          onChange={(e) => setNewInvoice({ ...newInvoice, ownerName: e.target.value })}
+                          placeholder="e.g. Arthur Pendragon"
+                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
+                        />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-amount" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Amount ($)</Label>
+                        <Label htmlFor="i-amount" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Total Dues ($)</Label>
                         <Input
                           id="i-amount"
                           type="number"
                           required
                           value={newInvoice.amount}
                           onChange={(e) => setNewInvoice({ ...newInvoice, amount: Number(e.target.value) })}
-                          min={1}
-                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-due" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Due Date</Label>
-                        <Input
-                          id="i-due"
-                          type="date"
-                          value={newInvoice.dueDate}
-                          onChange={(e) => setNewInvoice({ ...newInvoice, dueDate: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm-200"
+                          min={0}
+                          className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
                         />
                       </div>
                     </div>
                     <DialogFooter>
                       <Button type="button" variant="outline" size="sm" onClick={() => setCreateOpen(false)} className="h-8.5 text-xs rounded-sm">Cancel</Button>
-                      <Button type="submit" size="sm" className="h-8.5 text-xs rounded-sm bg-indigo-600 text-white hover:bg-indigo-700">Generate Invoice</Button>
+                      <Button type="submit" size="sm" className="h-8.5 text-xs rounded-sm bg-indigo-600 text-white hover:bg-indigo-700">Generate</Button>
                     </DialogFooter>
                   </form>
                 </DialogContent>
@@ -462,177 +371,74 @@ export default function BillingPage() {
             </div>
           </div>
 
-          {/* Quick Stats Grid */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
-                <div className="flex items-center justify-between text-zinc-500">
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Monthly Collections</span>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="text-zinc-400 hover:text-zinc-650 outline-none">
-                          <HelpCircle className="h-3 w-3" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-zinc-900 text-white-800 rounded px-2 py-1 text-[10px]">
-                        Total collections in active billing run cycle.
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                  <DollarSign className="h-4 w-4 text-zinc-400 shrink-0" />
-                </div>
-                <div className="mt-2.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${collectionsSum.toLocaleString()}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total credited bank clearings</div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
-                <div className="flex items-center justify-between text-zinc-500">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Outstanding Dues</span>
-                  <AlertCircle className="h-4 w-4 text-zinc-400 shrink-0" />
-                </div>
-                <div className="mt-2.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${outstandingSum.toLocaleString()}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Total outstanding accounts receivable</div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
-                <div className="flex items-center justify-between text-zinc-500">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-455 dark:text-zinc-500">Collection Rate</span>
-                  <ShieldCheck className="h-4 w-4 text-zinc-400 shrink-0" />
-                </div>
-                <div className="mt-2.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{collectionRate}%</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Target collection parameters met</div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-              <CardContent className="p-3">
-                <div className="flex items-center justify-between text-zinc-500">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-450 dark:text-zinc-500">Pending Invoices</span>
-                  <Clock className="h-4 w-4 text-zinc-400 shrink-0" />
-                </div>
-                <div className="mt-2.5 flex items-baseline">
-                  <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">{pendingInvoicesCount}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-zinc-400">Invoices awaiting clearing action</div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Table & Sidebar filters grid layout */}
+          {/* Filtering Layout & Main Table */}
           <div className="flex flex-col lg:flex-row gap-6">
             
             {/* Sidebar Filters */}
             <div className="w-full lg:w-56 shrink-0 space-y-4">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-                <CardHeader className="p-3.5 -100 flex flex-row items-center gap-1.5 space-y-0">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+                <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900 flex flex-row items-center gap-1.5 space-y-0">
                   <Filter className="h-3.5 w-3.5 text-zinc-450" />
                   <CardTitle className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
-                    Financial Filters
+                    Billing Filters
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3.5 space-y-4">
                   
                   {/* Status Filter */}
                   <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Payment status</Label>
+                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Billing Status</Label>
                     <select
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All statuses</option>
                       <option value="Paid">Paid</option>
-                      <option value="Pending">Pending</option>
+                      <option value="Unpaid">Unpaid</option>
                       <option value="Overdue">Overdue</option>
-                      <option value="Processing">Processing</option>
                     </select>
                   </div>
 
-                  {/* Billing category Filter */}
+                  {/* Society Filter */}
                   <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Billing category</Label>
+                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Society Block</Label>
                     <select
-                      value={filterCategory}
-                      onChange={(e) => setFilterCategory(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
+                      value={filterSociety}
+                      onChange={(e) => setFilterSociety(e.target.value)}
+                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
                     >
-                      <option value="All">All categories</option>
-                      <option value="Maintenance">Maintenance</option>
-                      <option value="Utilities">Utilities</option>
-                      <option value="Amenities">Amenities</option>
-                      <option value="Parking">Parking</option>
-                      <option value="Surcharges">Surcharges</option>
+                      <option value="All">All societies</option>
+                      <option value="Grandview Towers">Grandview Towers</option>
+                      <option value="Pine Crest Society">Pine Crest Society</option>
                     </select>
                   </div>
 
                   {/* Building Filter */}
                   <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Building Block</Label>
+                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Building</Label>
                     <select
                       value={filterBuilding}
                       onChange={(e) => setFilterBuilding(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
+                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
                     >
                       <option value="All">All buildings</option>
                       <option value="Tower Alpha">Tower Alpha</option>
                       <option value="Tower Beta">Tower Beta</option>
-                      <option value="Tower Gamma">Tower Gamma</option>
-                    </select>
-                  </div>
-
-                  {/* Payment method Filter */}
-                  <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Payment method</Label>
-                    <select
-                      value={filterMethod}
-                      onChange={(e) => setFilterMethod(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
-                    >
-                      <option value="All">All methods</option>
-                      <option value="Bank Transfer">Bank Transfer</option>
-                      <option value="Credit Card">Credit Card</option>
-                      <option value="Cash/Check">Cash/Check</option>
-                      <option value="ACH Auto-debit">ACH Auto-debit</option>
-                    </select>
-                  </div>
-
-                  {/* Utility type Filter */}
-                  <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Utility Type</Label>
-                    <select
-                      value={filterUtility}
-                      onChange={(e) => setFilterUtility(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm -205 bg-white px-2 dark:bg-zinc-900 outline-none"
-                    >
-                      <option value="All">All utility types</option>
-                      <option value="Water">Water</option>
-                      <option value="Electricity">Electricity</option>
-                      <option value="Gas">Gas</option>
+                      <option value="Oak Block">Oak Block</option>
                     </select>
                   </div>
 
                   <Button
                     onClick={() => {
                       setFilterStatus("All");
-                      setFilterCategory("All");
+                      setFilterSociety("All");
                       setFilterBuilding("All");
-                      setFilterMethod("All");
-                      setFilterUtility("All");
                       setSearchQuery("");
+                      toast.success("Filters reset.");
                     }}
                     variant="outline"
-                    className="w-full h-7 text-[10px] font-semibold-200 hover:bg-zinc-50 rounded-sm"
+                    className="w-full h-7 text-[10px] font-semibold border-zinc-200 hover:bg-zinc-50 dark:border-zinc-850 rounded-sm"
                   >
                     Clear filters
                   </Button>
@@ -642,98 +448,93 @@ export default function BillingPage() {
 
             {/* Table Area */}
             <div className="flex-1 min-w-0">
-              <Card className="rounded-md -200 bg-white shadow-sm dark:bg-zinc-950">
-                <CardHeader className="p-4 -100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
+              <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
+                <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5 space-y-0">
                   <div className="relative max-w-sm w-72">
                     <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-400" />
                     <Input
                       type="text"
-                      placeholder="Search invoices by ID, resident, flat..."
+                      placeholder="Search invoices by ID, resident, owner..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-8 w-full rounded-sm-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:bg-zinc-900 focus:bg-white focus:indigo-500 transition-colors"
+                      className="h-8 w-full rounded-sm border-zinc-200 pl-8 text-xs outline-none bg-zinc-50/50 dark:border-zinc-800 dark:bg-zinc-900 focus:bg-white focus:border-indigo-500 transition-colors"
                     />
                   </div>
                   <span className="text-[10px] font-semibold text-zinc-400">
-                    Showing {filteredInvoices.length} of {invoices.length} transactions
+                    Showing {filteredInvoices.length} of {invoices.length} billing items
                   </span>
                 </CardHeader>
                 <CardContent className="p-0">
                   {filteredInvoices.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center text-zinc-400 select-none">
                       <AlertCircle className="h-8 w-8 text-zinc-300 mb-2" />
-                      <span className="text-xs font-semibold">No invoice records found</span>
-                      <span className="text-[10px] mt-0.5">Try clearing filters list.</span>
+                      <span className="text-xs font-semibold">No invoices match selected criteria</span>
+                      <span className="text-[10px] mt-0.5">Try resetting search metrics.</span>
                     </div>
                   ) : (
-                    <Table>
-                      <TableHeader className="bg-zinc-50/50 -200 dark:bg-zinc-950/20">
-                        <TableRow className="hover:bg-transparent">
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Invoice ID</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building/Flat</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Billing category</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-right h-9">Invoice amount</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Due date</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Payment Status</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-center h-9">Payment method</TableHead>
-                          <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider text-right h-9">Outstanding balance</TableHead>
-                          <TableHead className="w-9 h-9" />
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody className="divide-y divide-zinc-200 dark:divide-zinc-850">
-                        {filteredInvoices.map((inv) => (
-                          <TableRow
-                            key={inv.id}
-                            onClick={() => setSelectedInvoice(inv)}
-                            className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer transition-colors"
-                          >
-                            <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
-                              {inv.id}
-                            </TableCell>
-                            <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
-                              {inv.residentName}
-                            </TableCell>
-                            <TableCell className="text-[11px] text-zinc-550 dark:text-zinc-400 py-2.5">
-                              {inv.buildingName} - {inv.flatNumber}
-                            </TableCell>
-                            <TableCell className="text-xs font-medium text-zinc-800 dark:text-zinc-200 text-center py-2.5">
-                              {inv.category}
-                            </TableCell>
-                            <TableCell className="text-xs font-bold text-right text-zinc-900 dark:text-white py-2.5">
-                              ${inv.amount.toFixed(2)}
-                            </TableCell>
-                            <TableCell className="text-[11px] text-zinc-550 dark:text-zinc-400 text-center py-2.5">
-                              {inv.dueDate}
-                            </TableCell>
-                            <TableCell className="text-center py-2.5">
-                              <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold  ${
-                                inv.status === "Paid"
-                                  ? "bg-emerald-50 text-emerald-700-250 dark:bg-emerald-950/20 dark:text-emerald-450"
-                                  : inv.status === "Pending"
-                                  ? "bg-amber-50 text-amber-700-250 dark:bg-amber-955/20 dark:text-amber-450"
-                                  : inv.status === "Processing"
-                                  ? "bg-blue-50 text-blue-700-200 dark:bg-blue-955/20 dark:text-blue-450"
-                                  : "bg-rose-50 text-rose-700-250 dark:bg-rose-955/20 dark:text-rose-450"
-                              }`}>
-                                {inv.status}
-                              </span>
-                            </TableCell>
-                            <TableCell className="text-xs font-medium text-center text-zinc-850 dark:text-zinc-250 py-2.5">
-                              {inv.method}
-                            </TableCell>
-                            <TableCell className={`text-xs font-bold text-right py-2.5 ${
-                              inv.outstandingBalance > 0 ? "text-rose-600" : "text-zinc-650"
-                            }`}>
-                              ${inv.outstandingBalance.toFixed(2)}
-                            </TableCell>
-                            <TableCell className="py-2.5 text-zinc-400 text-right">
-                              <ChevronRight className="h-4 w-4 shrink-0 inline-block" />
-                            </TableCell>
+                    <div className="overflow-x-auto w-full">
+                      <Table>
+                        <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-955/20 dark:border-zinc-850">
+                          <TableRow className="hover:bg-transparent">
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Invoice ID</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Society</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building/Flat</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Owner</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 text-right h-9">Amount</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 text-center h-9">Status</TableHead>
+                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 text-center h-9">Due Date</TableHead>
+                            <TableHead className="w-9 h-9" />
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                        </TableHeader>
+                        <TableBody className="divide-y divide-zinc-200 dark:divide-zinc-850">
+                          {filteredInvoices.map((inv) => (
+                            <TableRow
+                              key={inv.id}
+                              onClick={() => setSelectedInvoice(inv)}
+                              className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/20 cursor-pointer dark:border-zinc-850 transition-colors"
+                            >
+                              <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
+                                {inv.id}
+                              </TableCell>
+                              <TableCell className="text-[11px] text-zinc-550 dark:text-zinc-400 py-2.5">
+                                {inv.society}
+                              </TableCell>
+                              <TableCell className="text-xs font-medium py-2.5">
+                                <span>{inv.flatNumber}</span>
+                                <span className="text-[9.5px] text-zinc-400 block font-normal">{inv.buildingName}</span>
+                              </TableCell>
+                              <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
+                                {inv.residentName}
+                              </TableCell>
+                              <TableCell className="text-xs font-medium py-2.5 text-zinc-700 dark:text-zinc-300">
+                                {inv.ownerName}
+                              </TableCell>
+                              <TableCell className="text-xs font-bold text-right text-zinc-900 dark:text-white py-2.5">
+                                ${inv.amount.toLocaleString()}
+                              </TableCell>
+                              <TableCell className="text-center py-2.5">
+                                <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold border ${
+                                  inv.status === "Paid"
+                                    ? "bg-emerald-50 text-emerald-700 border-emerald-250 dark:bg-emerald-950/20 dark:text-emerald-450"
+                                    : inv.status === "Unpaid"
+                                    ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-955/20 dark:text-amber-450"
+                                    : "bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-955/20 dark:text-rose-455"
+                                }`}>
+                                  {inv.status}
+                                </span>
+                              </TableCell>
+                              <TableCell className="text-xs font-medium text-center text-zinc-800 dark:text-zinc-200 py-2.5">
+                                {inv.dueDate}
+                              </TableCell>
+                              <TableCell className="py-2.5 text-zinc-400 text-right">
+                                <ChevronRight className="h-4 w-4 shrink-0 inline-block" />
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
                   )}
                 </CardContent>
               </Card>
@@ -744,155 +545,106 @@ export default function BillingPage() {
         </main>
       </div>
 
-      {/* BILLING DETAILS DRAWER (SHEET) */}
+      {/* BILLING INVOICE DETAILS DRAWER */}
       <Sheet open={selectedInvoice !== null} onOpenChange={(open) => !open && setSelectedInvoice(null)}>
-        <SheetContent className="w-full sm:max-w-md -200 bg-white dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
+        <SheetContent className="w-full sm:max-w-md border-l border-zinc-200 bg-white dark:border-zinc-850 dark:bg-zinc-950 p-0 text-zinc-900 dark:text-zinc-50 flex flex-col h-full shadow-lg">
           {selectedInvoice && (
             <div className="flex flex-col h-full overflow-hidden">
-              <SheetHeader className="p-4 -100">
+              <SheetHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
                 <div className="flex items-center gap-1.5 text-[9px] uppercase font-bold text-indigo-650 dark:text-indigo-400 tracking-wider">
-                  <CreditCard className="h-3.5 w-3.5" /> Billing invoice ledger
+                  <CreditCard className="h-3.5 w-3.5" /> Billing Invoice Details
                 </div>
                 <SheetTitle className="text-sm font-bold text-zinc-900 dark:text-white mt-1">
-                  Invoice {selectedInvoice.id}
+                  {selectedInvoice.id}
                 </SheetTitle>
                 <SheetDescription className="text-[10px] text-zinc-550 mt-0.5">
-                  Resident: {selectedInvoice.residentName} (Flat {selectedInvoice.flatNumber}) • Category: {selectedInvoice.category}
+                  Resident: {selectedInvoice.residentName} • Unit {selectedInvoice.flatNumber} ({selectedInvoice.buildingName})
                 </SheetDescription>
               </SheetHeader>
 
               {/* Drawer Body Viewport */}
               <div className="flex-1 overflow-y-auto p-4 space-y-5 scrollbar-thin">
                 
-                {/* 1. Transaction Overview card */}
-                <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 grid grid-cols-2 gap-y-2 text-xs">
-                  <div>
-                    <span className="text-zinc-400 block text-[9px] font-bold">STATUS</span>
-                    <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[9px] font-bold mt-1  ${
-                      selectedInvoice.status === "Paid"
-                        ? "bg-emerald-50 text-emerald-700-250"
-                        : selectedInvoice.status === "Pending"
-                        ? "bg-amber-50 text-amber-700-200"
-                        : selectedInvoice.status === "Processing"
-                        ? "bg-blue-50 text-blue-700-200"
-                        : "bg-rose-50 text-rose-700-250"
-                    }`}>
-                      {selectedInvoice.status}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-400 block text-[9px] font-bold">INVOICE AMOUNT</span>
-                    <span className="font-bold text-zinc-900 dark:text-white block mt-1">
-                      ${selectedInvoice.amount.toFixed(2)}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-400 block text-[9px] font-bold">DUE DATE</span>
-                    <span className="font-semibold block mt-1">{selectedInvoice.dueDate}</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-400 block text-[9px] font-bold">OUTSTANDING</span>
-                    <span className={`font-bold block mt-1 ${
-                      selectedInvoice.outstandingBalance > 0 ? "text-rose-600" : "text-zinc-650"
-                    }`}>
-                      ${selectedInvoice.outstandingBalance.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-
-                {/* 2. Billing Breakdown */}
-                <div className="space-y-2.5">
-                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Billing Breakdown</span>
-                  <div className="rounded -150 p-3 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs space-y-2">
-                    {selectedInvoice.breakdown.map((item, idx) => (
-                      <div key={idx} className="flex justify-between items-center text-zinc-800 dark:text-zinc-300">
-                        <span>{item.item}</span>
-                        <span className="font-semibold">${item.charge.toFixed(2)}</span>
-                      </div>
-                    ))}
-                    {selectedInvoice.lateFee > 0 && (
-                      <div className="flex justify-between items-center text-rose-600 font-semibold -100 pt-2">
-                        <span>Late Fees Assessment</span>
-                        <span>+${selectedInvoice.lateFee.toFixed(2)}</span>
-                      </div>
-                    )}
-                    <div className="flex justify-between items-center text-zinc-900 dark:text-white font-bold -100 pt-2">
-                      <span>Total Invoice Due</span>
-                      <span>${(selectedInvoice.amount + selectedInvoice.lateFee).toFixed(2)}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 3. Utility Charges details (if category === Utilities) */}
-                {selectedInvoice.category === "Utilities" && selectedInvoice.utilityBreakdown && (
-                  <div className="space-y-2.5">
-                    <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Utility usage metrics</span>
-                    <div className="rounded -150 p-2.5 bg-zinc-50/50 dark:bg-zinc-950/40 text-xs grid grid-cols-3 gap-2">
-                      <div>
-                        <span className="text-zinc-450 block text-[9px] font-bold">TYPE</span>
-                        <span className="font-semibold">{selectedInvoice.utilityBreakdown.type}</span>
-                      </div>
-                      <div>
-                        <span className="text-zinc-450 block text-[9px] font-bold">USAGE</span>
-                        <span className="font-semibold">{selectedInvoice.utilityBreakdown.usage}</span>
-                      </div>
-                      <div>
-                        <span className="text-zinc-450 block text-[9px] font-bold">RATE</span>
-                        <span className="font-semibold">{selectedInvoice.utilityBreakdown.rate}</span>
-                      </div>
+                {/* Dues Alert */}
+                {selectedInvoice.status === "Overdue" && (
+                  <div className="rounded border border-rose-200 bg-rose-50/50 p-3 text-xs text-rose-700 dark:border-rose-900/60 dark:bg-rose-955/20 flex gap-2">
+                    <AlertCircle className="h-4.5 w-4.5 shrink-0 mt-0.5 text-rose-600" />
+                    <div>
+                      <span className="font-bold block">Invoice Overdue Warning</span>
+                      <span className="text-[10px] block mt-0.5 leading-snug">This invoice is overdue by several days. Automated late fee rules have been enforced on the balance ledger.</span>
                     </div>
                   </div>
                 )}
 
-                {/* 4. Invoice Timeline */}
-                <div className="space-y-2.5">
-                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Invoice timeline logs</span>
-                  <div className="space-y-3 font-medium">
-                    {selectedInvoice.timeline.map((item, idx) => (
-                      <div key={idx} className="flex gap-2.5 text-xs -100 pl-3 ml-1.5">
-                        <div>
-                          <span className="font-bold text-zinc-900 dark:text-white block leading-tight">{item.step}</span>
-                          <span className="text-[10px] text-zinc-550 block mt-0.5">{item.note}</span>
-                          <span className="text-[9px] text-zinc-400 block mt-0.5">{item.timestamp}</span>
-                        </div>
-                      </div>
-                    ))}
+                {/* 1. Ownership metadata */}
+                <div className="space-y-2">
+                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Property Ownership</span>
+                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-1">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-450">Landlord Owner Name:</span>
+                      <span className="font-semibold">{selectedInvoice.ownerName}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-450">Society Address Block:</span>
+                      <span className="font-semibold">{selectedInvoice.society}</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* 5. Communication logs */}
+                {/* 2. Payment Breakdown */}
                 <div className="space-y-2.5">
-                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Notification dispatch history</span>
-                  <div className="space-y-2 font-medium">
-                    {selectedInvoice.commsLog.map((log, idx) => (
-                      <div key={idx} className="flex items-center justify-between -150 rounded p-2.5 bg-zinc-50/50 dark:bg-zinc-950/20 text-xs">
-                        <span className="font-semibold text-zinc-800 dark:text-zinc-250">{log.action} ({log.medium})</span>
-                        <span className="text-[9.5px] text-zinc-400">{log.time}</span>
-                      </div>
-                    ))}
+                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Billing Breakdown</span>
+                  <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-2">
+                    <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
+                      <span className="text-zinc-450">Maintenance Charges:</span>
+                      <span className="font-semibold">${selectedInvoice.maintenanceCharges}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
+                      <span className="text-zinc-450">Utility Charges:</span>
+                      <span className="font-semibold">${selectedInvoice.utilityCharges}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-zinc-100 pb-1.5 dark:border-zinc-900">
+                      <span className="text-zinc-455">Other Surcharges (Rent):</span>
+                      <span className="font-semibold">${selectedInvoice.otherCharges}</span>
+                    </div>
+                    <div className="flex justify-between pt-1 font-bold text-zinc-900 dark:text-white">
+                      <span>Total Invoice Amount:</span>
+                      <span>${selectedInvoice.amount.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Transaction Details */}
+                <div className="space-y-2">
+                  <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Transaction Details</span>
+                  <div className="text-xs space-y-1.5 text-zinc-650 dark:text-zinc-350">
+                    <div className="flex justify-between">
+                      <span>Payment Method:</span>
+                      <span className="font-semibold">{selectedInvoice.paymentMethod}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Due Date Deadline:</span>
+                      <span className="font-semibold">{selectedInvoice.dueDate}</span>
+                    </div>
                   </div>
                 </div>
 
               </div>
               
-              {/* Drawer Footer Panel */}
-              <div className="p-4 -100 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
-                <Button
-                  onClick={() => {
-                    setSelectedInvoice(null);
-                    toast.success(`Invoice receipt downloaded as PDF.`);
-                  }}
-                  variant="outline"
-                  className="flex-1 h-8 rounded-sm text-xs-200 hover:bg-zinc-50 dark:hover:bg-zinc-900"
-                >
-                  <FileText className="h-3.5 w-3.5 mr-1 inline-block" /> Download PDF
-                </Button>
+              {/* Drawer Footer */}
+              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-zinc-55/10 dark:bg-zinc-950/20 flex gap-2">
                 {selectedInvoice.status !== "Paid" && (
                   <Button
-                    onClick={() => handleRecordPayment(selectedInvoice.id)}
+                    onClick={() => {
+                      setInvoices((prev) =>
+                        prev.map((i) => (i.id === selectedInvoice.id ? { ...i, status: "Paid", paymentMethod: "Manual Cash" } : i))
+                      );
+                      setSelectedInvoice(null);
+                      toast.success(`Invoice marked as PAID.`);
+                    }}
                     className="flex-1 h-8 rounded-sm text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-semibold cursor-pointer"
                   >
-                    Record Payment
+                    Confirm Manual Payment
                   </Button>
                 )}
               </div>

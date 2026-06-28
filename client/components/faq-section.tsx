@@ -45,7 +45,7 @@ export function FAQSection() {
     {
       id: "faq-7",
       question: "Is onboarding and setup support included?",
-      answer: "Yes, onboarding assistance, data imports (resident lists, building units), and training guidance are included to ensure a seamless transition for your community committee and staff.",
+      answer: "Yes, onboarding assistance, data imports (resident lists, building units), and training guidance are included to ensure a seamless transition for your building management team and staff.",
     },
   ];
 

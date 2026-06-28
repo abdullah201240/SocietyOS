@@ -102,7 +102,7 @@ export default function BookDemoPage() {
                 </div>
                 <div>
                   <h3 className="text-xs font-bold text-zinc-900 dark:text-white">Custom Property Walkthrough</h3>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">We configure the demo dashboard live with building structures matching your community.</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">We configure the demo dashboard live with building structures matching your property.</p>
                 </div>
               </div>
 

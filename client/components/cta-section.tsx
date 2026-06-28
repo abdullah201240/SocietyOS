@@ -21,10 +21,10 @@ export function CTASection() {
               Get Started
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-              Modernize Your Community Operations
+              Modernize Your Building Operations
             </h2>
             <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Centralize complaints, maintenance, billing, security, and resident communication in one modern platform built for residential communities.
+              Centralize complaints, maintenance, billing, security, and resident communication in one modern platform built for residential buildings.
             </p>
 
             {/* Action buttons */}

@@ -72,7 +72,7 @@ interface StaffRecord {
 }
 
 export default function StaffPage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Initial Mock Staff Records
@@ -89,7 +89,7 @@ export default function StaffPage() {
       accessLevel: "Root Level",
       status: "On Shift",
       phone: "+1 555-0810",
-      email: "m.stone@societyos.com",
+      email: "m.stone@buildingos.com",
       taskHistory: [
         { taskName: "Onboarded Grandview Towers Block East structure", status: "Completed", date: "2026-06-27" }
       ],
@@ -110,7 +110,7 @@ export default function StaffPage() {
       accessLevel: "Maintenance Log",
       status: "Overloaded",
       phone: "+1 555-0112",
-      email: "b.banner@societyos.com",
+      email: "b.banner@buildingos.com",
       taskHistory: [
         { taskName: "Basement riser water pressure diagnostics", status: "Pending", date: "2026-06-28" }
       ],
@@ -131,7 +131,7 @@ export default function StaffPage() {
       accessLevel: "Lobby Access",
       status: "Active",
       phone: "+1 555-0199",
-      email: "s.rogers@societyos.com",
+      email: "s.rogers@buildingos.com",
       taskHistory: [],
       activityLogs: [
         { action: "Verified OTP entry for guest Marcus Aurelius", timestamp: "Today, 10:25 AM" }
@@ -361,7 +361,7 @@ export default function StaffPage() {
                           required
                           value={newStaff.email}
                           onChange={(e) => setNewStaff({ ...newStaff, email: e.target.value })}
-                          placeholder="e.g. staff@societyos.com"
+                          placeholder="e.g. staff@buildingos.com"
                           className="col-span-3 h-8.5 text-xs rounded-sm-200"
                         />
                       </div>

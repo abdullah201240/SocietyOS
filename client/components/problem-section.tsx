@@ -55,7 +55,7 @@ export function ProblemSection() {
     {
       icon: <BookOpen className="h-4.5 w-4.5" />,
       title: "Visitor Logs Managed on Paper",
-      description: "Gate registries are unreadable, impossible to audit, and leave community security compromised and slow.",
+      description: "Gate registries are unreadable, impossible to audit, and leave building security compromised and slow.",
     },
     {
       icon: <EyeOff className="h-4.5 w-4.5" />,

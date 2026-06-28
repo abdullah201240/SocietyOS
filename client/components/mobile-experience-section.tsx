@@ -51,7 +51,7 @@ export function MobileExperienceSection() {
           <div className="lg:col-span-6 space-y-6 lg:pr-8">
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-                A Unified Mobile Interface for Community Members
+                A Unified Mobile Interface for Building Residents
               </h3>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 Empower your residents with an easy-to-use application. Remove operational friction at the gate and automate monthly accounts.

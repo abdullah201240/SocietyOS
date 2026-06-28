@@ -153,7 +153,7 @@ export function DashboardMockup() {
               <div className="flex items-center justify-between pb-3 -200/60">
                 <div>
                   <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">Grandview Towers Overview</h3>
-                  <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Live operational status and community health indicators.</p>
+                  <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Live operational status and building health indicators.</p>
                 </div>
                 <Badge variant="outline" className="text-[10px] px-2.5 py-1 rounded-full-200/60 bg-emerald-50/50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 shadow-sm">
                   <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>

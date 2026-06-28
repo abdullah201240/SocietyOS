@@ -55,8 +55,8 @@ export default function LoginPage() {
                 <Building2 className="h-5 w-5 text-white" />
               </div>
               <div>
-                <span className="text-xl font-bold text-white tracking-tight">SocietyOS</span>
-                <div className="text-[10px] text-indigo-200 font-medium -mt-0.5">Community Platform</div>
+                <span className="text-xl font-bold text-white tracking-tight">BuildingOS</span>
+                <div className="text-[10px] text-indigo-200 font-medium -mt-0.5">Building Management Platform</div>
               </div>
             </Link>
           </div>
@@ -70,7 +70,7 @@ export default function LoginPage() {
               </div>
               
               <h1 className="text-4xl font-bold text-white leading-tight">
-                Manage Your Community
+                Manage Your Buildings
                 <br />
                 <span className="text-indigo-200">Like Never Before</span>
               </h1>
@@ -97,7 +97,7 @@ export default function LoginPage() {
 
           {/* Bottom */}
           <div className="relative z-10 flex items-center gap-6 text-xs text-indigo-200/60">
-            <span>© 2026 SocietyOS</span>
+            <span>© 2026 BuildingOS</span>
             <span>•</span>
             <Link href="#privacy" className="hover:text-white transition-colors">Privacy</Link>
             <span>•</span>
@@ -114,7 +114,7 @@ export default function LoginPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600">
                   <Building2 className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-xl font-bold text-zinc-900 dark:text-white">SocietyOS</span>
+                <span className="text-xl font-bold text-zinc-900 dark:text-white">BuildingOS</span>
               </Link>
             </div>
 

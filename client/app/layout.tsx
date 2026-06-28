@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SocietyOS - Community Management Platform",
-  description: "The modern operating system for gated communities. Manage buildings, residents, complaints, billing, parking, and security operations in one platform.",
+  title: "BuildingOS - Building & Flat Management Platform",
+  description: "The modern operating system for buildings and flats. Manage buildings, residents, complaints, billing, parking, and security operations in one platform.",
 };
 
 export default function RootLayout({

@@ -24,12 +24,12 @@ import {
 } from "lucide-react";
 
 export default function SettingsPage() {
-  const orgs = ["Grandview Towers", "Pine Crest Society", "Meadow View Estate"];
+  const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
   // Form states
-  const [societyName, setSocietyName] = React.useState("Grandview Towers");
-  const [societyAddress, setSocietyAddress] = React.useState("102 Ocean Drive, Sector 4, Metropolis");
+  const [buildingGroupName, setBuildingGroupName] = React.useState("Grandview Towers");
+  const [buildingAddress, setBuildingAddress] = React.useState("102 Ocean Drive, Sector 4, Metropolis");
   const [timezone, setTimezone] = React.useState("GMT-05:00 Eastern Time");
 
   const [lateFeeAmount, setLateFeeAmount] = React.useState(15.00);
@@ -108,17 +108,17 @@ export default function SettingsPage() {
             <TabsContent value="org" className="space-y-4">
               <Card className="200 bg-white dark:bg-zinc-950 max-w-2xl rounded-md shadow-sm">
                 <CardHeader className="p-4 -100">
-                  <CardTitle className="text-sm font-bold">Community Profile</CardTitle>
-                  <CardDescription className="text-xs">Configure central residential complex metadata credentials.</CardDescription>
+                  <CardTitle className="text-sm font-bold">Building Group Profile</CardTitle>
+                  <CardDescription className="text-xs">Configure central building complex metadata credentials.</CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">
-                    <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Community Name</Label>
-                    <Input value={societyName} onChange={(e) => setSocietyName(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building Group Name</Label>
+                    <Input value={buildingGroupName} onChange={(e) => setBuildingGroupName(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Address Location</Label>
-                    <Input value={societyAddress} onChange={(e) => setSocietyAddress(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
+                    <Input value={buildingAddress} onChange={(e) => setBuildingAddress(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Timezone</Label>
@@ -294,7 +294,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Gate Cameras Webhook API</Label>
-                    <Input value="https://api.societyos.com/v1/gate-stream" readOnly className="col-span-2 h-8.5 text-xs rounded-sm-200 bg-zinc-50" />
+                    <Input value="https://api.buildingos.com/v1/gate-stream" readOnly className="col-span-2 h-8.5 text-xs rounded-sm-200 bg-zinc-50" />
                   </div>
                   <div className="flex justify-end pt-2">
                     <Button onClick={() => handleSaveSettings("Integrations Key Links")} className="h-8.5 text-xs bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">

@@ -30,7 +30,7 @@ interface OwnerSummary {
 interface TreeItem {
   id: string;
   label: string;
-  type: "society" | "building" | "flat";
+  type: "building" | "flat";
   children?: TreeItem[];
 }
 
@@ -50,54 +50,41 @@ export default function PropertyLinkingPage() {
 
   // Middle panel tree state
   const [expandedItems, setExpandedItems] = React.useState<Record<string, boolean>>({
-    "soc-1": true,
-    "soc-2": false
+    "bld-1a": true,
+    "bld-1b": false,
+    "bld-2a": false
   });
 
   const [selectedPropertyIds, setSelectedPropertyIds] = React.useState<string[]>([]);
 
   const treeData: TreeItem[] = [
     {
-      id: "soc-1",
-      label: "Grandview Towers",
-      type: "society",
+      id: "bld-1a",
+      label: "Tower Alpha",
+      type: "building",
       children: [
-        {
-          id: "bld-1a",
-          label: "Tower Alpha",
-          type: "building",
-          children: [
-            { id: "flat-101", label: "Flat 101", type: "flat" },
-            { id: "flat-102", label: "Flat 102", type: "flat" },
-            { id: "flat-201", label: "Flat 201", type: "flat" },
-            { id: "flat-1402", label: "Flat 1402", type: "flat" }
-          ]
-        },
-        {
-          id: "bld-1b",
-          label: "Tower Beta",
-          type: "building",
-          children: [
-            { id: "flat-301", label: "Flat 301", type: "flat" },
-            { id: "flat-302", label: "Flat 302", type: "flat" }
-          ]
-        }
+        { id: "flat-101", label: "Flat 101", type: "flat" },
+        { id: "flat-102", label: "Flat 102", type: "flat" },
+        { id: "flat-201", label: "Flat 201", type: "flat" },
+        { id: "flat-1402", label: "Flat 1402", type: "flat" }
       ]
     },
     {
-      id: "soc-2",
-      label: "Pine Crest Society",
-      type: "society",
+      id: "bld-1b",
+      label: "Tower Beta",
+      type: "building",
       children: [
-        {
-          id: "bld-2a",
-          label: "Oak Block",
-          type: "building",
-          children: [
-            { id: "flat-501", label: "Flat 501", type: "flat" },
-            { id: "flat-502", label: "Flat 502", type: "flat" }
-          ]
-        }
+        { id: "flat-301", label: "Flat 301", type: "flat" },
+        { id: "flat-302", label: "Flat 302", type: "flat" }
+      ]
+    },
+    {
+      id: "bld-2a",
+      label: "Oak Block",
+      type: "building",
+      children: [
+        { id: "flat-501", label: "Flat 501", type: "flat" },
+        { id: "flat-502", label: "Flat 502", type: "flat" }
       ]
     }
   ];
@@ -163,10 +150,8 @@ export default function PropertyLinkingPage() {
             className="rounded border-zinc-200 text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
           />
           <span className={`font-semibold cursor-pointer ${
-            node.type === "society"
+            node.type === "building"
               ? "text-zinc-900 dark:text-white"
-              : node.type === "building"
-              ? "text-zinc-700 dark:text-zinc-350"
               : "text-zinc-550 dark:text-zinc-400 font-medium"
           }`} onClick={() => handleToggleSelectProperty(node.id)}>
             {node.label}
@@ -263,7 +248,7 @@ export default function PropertyLinkingPage() {
             <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950 flex flex-col overflow-hidden">
               <CardHeader className="p-3.5 border-b border-zinc-100 dark:border-zinc-900">
                 <CardTitle className="text-xs font-bold uppercase tracking-wider">Properties Tree Map</CardTitle>
-                <CardDescription className="text-[10px]">Select society, building blocks or individual flats.</CardDescription>
+                <CardDescription className="text-[10px]">Select building blocks or individual flats.</CardDescription>
               </CardHeader>
               <CardContent className="p-3 space-y-2 overflow-y-auto flex-1 scrollbar-thin">
                 {treeData.map((node) => renderTreeNode(node))}

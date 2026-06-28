@@ -69,7 +69,6 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
   const menuItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Workflows", href: "/dashboard/workflow", icon: Network },
-    { name: "Societies", href: "/dashboard/societies", icon: Building2 },
     { name: "Buildings", href: "/dashboard/buildings", icon: Building },
     { name: "Flats", href: "/dashboard/flats", icon: Home },
     { name: "Residents", href: "/dashboard/residents", icon: Users },
@@ -128,7 +127,6 @@ export function DashboardNavbar({ currentOrg }: DashboardNavbarProps) {
                     onClick={(e) => {
                       if (
                         item.href !== "/dashboard" &&
-                        item.href !== "/dashboard/societies" &&
                         item.href !== "/dashboard/buildings" &&
                         item.href !== "/dashboard/flats" &&
                         item.href !== "/dashboard/residents" &&

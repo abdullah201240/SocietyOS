@@ -218,7 +218,6 @@ export default function OperationalWorkflowDashboard() {
                     <TableHeader className="bg-zinc-50/50">
                       <TableRow>
                         <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 h-9">Ticket ID</TableHead>
-                        <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 h-9">Society</TableHead>
                         <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 h-9">Building/Flat</TableHead>
                         <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 text-center h-9">Stage</TableHead>
                         <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 h-9">Assigned Staff</TableHead>
@@ -230,7 +229,6 @@ export default function OperationalWorkflowDashboard() {
                       {workflowItems.map((item) => (
                         <TableRow key={item.ticketId}>
                           <TableCell className="text-xs font-semibold py-2.5">{item.ticketId}</TableCell>
-                          <TableCell className="text-xs text-zinc-550 dark:text-zinc-400 py-2.5">{item.society}</TableCell>
                           <TableCell className="text-xs py-2.5 font-medium">
                             {item.building} • {item.flat}
                           </TableCell>

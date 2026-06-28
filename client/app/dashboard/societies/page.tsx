@@ -830,7 +830,7 @@ export default function SocietiesPage() {
                           <span className="text-zinc-700 dark:text-zinc-300 block leading-tight">{a.action}</span>
                           <span className="text-[9.5px] text-zinc-400 block mt-0.5">{a.time}</span>
                         </div>
-                      </div>
+                      </div> 
                     ))}
                   </div>
                 </div>

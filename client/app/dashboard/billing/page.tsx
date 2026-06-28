@@ -215,10 +215,9 @@ export default function GlobalBillingPage() {
         ? i.status === "Overdue"
         : i.status === filterStatus;
 
-    const matchesSociety = filterSociety === "All" || i.society === filterSociety;
     const matchesBuilding = filterBuilding === "All" || i.buildingName === filterBuilding;
 
-    return matchesSearch && matchesStatus && matchesSociety && matchesBuilding;
+    return matchesSearch && matchesStatus && matchesBuilding;
   });
 
   return (
@@ -289,18 +288,6 @@ export default function GlobalBillingPage() {
                       <DialogDescription className="text-xs text-zinc-500">Dispatch billing invoice statements manually across flats.</DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-3.5 py-4">
-                      <div className="grid grid-cols-4 items-center gap-3">
-                        <Label htmlFor="i-soc" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Society</Label>
-                        <select
-                          id="i-soc"
-                          value={newInvoice.society}
-                          onChange={(e) => setNewInvoice({ ...newInvoice, society: e.target.value })}
-                          className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
-                        >
-                          <option value="Grandview Towers">Grandview Towers</option>
-                          <option value="Pine Crest Society">Pine Crest Society</option>
-                        </select>
-                      </div>
                       <div className="grid grid-cols-4 items-center gap-3">
                         <Label htmlFor="i-bld" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Building</Label>
                         <select
@@ -400,19 +387,6 @@ export default function GlobalBillingPage() {
                     </select>
                   </div>
 
-                  {/* Society Filter */}
-                  <div className="space-y-1.5">
-                    <Label className="text-[10.5px] font-semibold text-zinc-650 dark:text-zinc-300">Society Block</Label>
-                    <select
-                      value={filterSociety}
-                      onChange={(e) => setFilterSociety(e.target.value)}
-                      className="w-full h-8 text-[11px] rounded-sm border border-zinc-205 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
-                    >
-                      <option value="All">All societies</option>
-                      <option value="Grandview Towers">Grandview Towers</option>
-                      <option value="Pine Crest Society">Pine Crest Society</option>
-                    </select>
-                  </div>
 
                   {/* Building Filter */}
                   <div className="space-y-1.5">
@@ -477,7 +451,6 @@ export default function GlobalBillingPage() {
                         <TableHeader className="bg-zinc-50/50 border-b border-zinc-200 dark:bg-zinc-955/20 dark:border-zinc-850">
                           <TableRow className="hover:bg-transparent">
                             <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Invoice ID</TableHead>
-                            <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Society</TableHead>
                             <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Building/Flat</TableHead>
                             <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Resident</TableHead>
                             <TableHead className="text-[9.5px] uppercase font-bold text-zinc-500 tracking-wider h-9">Owner</TableHead>
@@ -496,9 +469,6 @@ export default function GlobalBillingPage() {
                             >
                               <TableCell className="text-xs font-semibold text-zinc-900 dark:text-white py-2.5">
                                 {inv.id}
-                              </TableCell>
-                              <TableCell className="text-[11px] text-zinc-550 dark:text-zinc-400 py-2.5">
-                                {inv.society}
                               </TableCell>
                               <TableCell className="text-xs font-medium py-2.5">
                                 <span>{inv.flatNumber}</span>
@@ -581,12 +551,8 @@ export default function GlobalBillingPage() {
                   <span className="text-[9.5px] uppercase font-bold text-zinc-450 dark:text-zinc-500 tracking-wider block">Property Ownership</span>
                   <div className="rounded border border-zinc-150 p-2.5 bg-zinc-50/50 dark:border-zinc-900 dark:bg-zinc-950/40 text-xs space-y-1">
                     <div className="flex justify-between">
-                      <span className="text-zinc-450">Landlord Owner Name:</span>
+                      <span className="text-zinc-455">Landlord Owner Name:</span>
                       <span className="font-semibold">{selectedInvoice.ownerName}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-zinc-400">Society Address Block:</span>
-                      <span className="font-semibold">{selectedInvoice.society}</span>
                     </div>
                   </div>
                 </div>

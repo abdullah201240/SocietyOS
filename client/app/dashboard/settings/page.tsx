@@ -108,12 +108,12 @@ export default function SettingsPage() {
             <TabsContent value="org" className="space-y-4">
               <Card className="200 bg-white dark:bg-zinc-950 max-w-2xl rounded-md shadow-sm">
                 <CardHeader className="p-4 -100">
-                  <CardTitle className="text-sm font-bold">Organization Profile</CardTitle>
-                  <CardDescription className="text-xs">Configure central residential society metadata credentials.</CardDescription>
+                  <CardTitle className="text-sm font-bold">Community Profile</CardTitle>
+                  <CardDescription className="text-xs">Configure central residential complex metadata credentials.</CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                   <div className="grid grid-cols-3 items-center gap-4">
-                    <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Society Name</Label>
+                    <Label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Community Name</Label>
                     <Input value={societyName} onChange={(e) => setSocietyName(e.target.value)} className="col-span-2 h-8.5 text-xs rounded-sm-200" />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">

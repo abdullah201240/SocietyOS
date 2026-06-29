@@ -43,8 +43,16 @@ import {
 } from "lucide-react";
 import { useUtilityMeters, useUtilityBills, useGeneratorLogs, utilitiesApi } from "@/lib/api";
 import { validateData, utilityMeterSchema, meterReadingSchema, generatorLogSchema } from "@/lib/validations";
+import { UtilityDialogs } from "./utility-dialogs";
 
 export default function UtilitiesPage() {
+  const formatCurrency = (val: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "—";
+    return new Intl.DateTimeFormat('en-US', { year: "numeric", month: "short", day: "numeric" }).format(new Date(dateString));
+  };
+  const formatNumber = (val: number) => val.toLocaleString();
+
   const orgs = ["Grandview Towers", "Meadow View Complex", "Parkside Residences"];
   const [currentOrg, setCurrentOrg] = React.useState(orgs[0]);
 
@@ -329,6 +337,7 @@ export default function UtilitiesPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             
             {/* Electricity summary card */}
+            {/* Electricity summary card */}
             <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
               <CardContent className="p-3.5">
                 <div className="flex items-center justify-between text-zinc-500">
@@ -336,11 +345,11 @@ export default function UtilitiesPage() {
                   <Zap className="h-4 w-4 text-amber-500 shrink-0" />
                 </div>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalElecUsage}</span>
+                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{formatNumber(totalElecUsage)}</span>
                   <span className="text-[9.5px] font-semibold text-zinc-400">kWh</span>
                 </div>
                 <div className="mt-1 text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-0.5">
-                  <span>Rate: $0.20 / kWh</span>
+                  <span>Rate: {formatCurrency(0.20)} / kWh</span>
                 </div>
               </CardContent>
             </Card>
@@ -353,11 +362,11 @@ export default function UtilitiesPage() {
                   <Droplet className="h-4 w-4 text-blue-500 shrink-0" />
                 </div>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalWaterUsage}</span>
+                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{formatNumber(totalWaterUsage)}</span>
                   <span className="text-[9.5px] font-semibold text-zinc-400">Liters</span>
                 </div>
                 <div className="mt-1 text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-0.5">
-                  <span>Rate: $0.029 / Liters</span>
+                  <span>Rate: {formatCurrency(0.029)} / Liters</span>
                 </div>
               </CardContent>
             </Card>
@@ -370,11 +379,11 @@ export default function UtilitiesPage() {
                   <Flame className="h-4 w-4 text-rose-500 shrink-0" />
                 </div>
                 <div className="mt-1 flex items-baseline gap-1">
-                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{totalGasUsage}</span>
+                  <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">{formatNumber(totalGasUsage)}</span>
                   <span className="text-[9.5px] font-semibold text-zinc-400">M³</span>
                 </div>
                 <div className="mt-1 text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-0.5">
-                  <span>Rate: $1.00 / M³</span>
+                  <span>Rate: {formatCurrency(1.00)} / M³</span>
                 </div>
               </CardContent>
             </Card>
@@ -533,11 +542,10 @@ export default function UtilitiesPage() {
                                 {m.type === "Gas" && <Flame className="h-3.5 w-3.5 text-rose-500 shrink-0" />}
                                 {m.type}
                               </span>
-                            </TableCell>
-                            <TableCell className="text-xs text-right font-medium text-zinc-500 py-2.5">{m.lastReading}</TableCell>
-                            <TableCell className="text-xs text-right font-bold text-indigo-650 dark:text-indigo-400 py-2.5">{m.currentReading}</TableCell>
+                            </TableCe                            <TableCell className="text-xs text-right font-medium text-zinc-500 py-2.5">{formatNumber(m.lastReading)}</TableCell>
+                            <TableCell className="text-xs text-right font-bold text-indigo-650 dark:text-indigo-400 py-2.5">{formatNumber(m.currentReading)}</TableCell>
                             <TableCell className="text-[10px] text-center text-zinc-450 dark:text-zinc-500 py-2.5">
-                              {new Date(m.lastReadingDate).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                              {formatDate(m.lastReadingDate)}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
                               <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold ${
@@ -657,12 +665,12 @@ export default function UtilitiesPage() {
                               </span>
                             </TableCell>
                             <TableCell className="text-xs text-center font-medium text-zinc-600 dark:text-zinc-350 py-2.5">
-                              {b.usage} {b.type === "Electricity" ? "kWh" : b.type === "Water" ? "Liters" : "M³"}
+                              {formatNumber(b.usage)} {b.type === "Electricity" ? "kWh" : b.type === "Water" ? "Liters" : "M³"}
                             </TableCell>
-                            <TableCell className="text-xs text-right font-bold py-2.5">${b.amount.toFixed(2)}</TableCell>
+                            <TableCell className="text-xs text-right font-bold py-2.5">{formatCurrency(b.amount)}</TableCell>
                             <TableCell className="text-xs text-center text-zinc-500 py-2.5">{b.billingPeriod}</TableCell>
                             <TableCell className="text-[10px] text-center text-zinc-450 dark:text-zinc-500 py-2.5">
-                              {new Date(b.dueDate).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                              {formatDate(b.dueDate)}
                             </TableCell>
                             <TableCell className="text-center py-2.5">
                               <span className={`inline-flex items-center rounded-sm px-1.5 py-0.5 text-[8.5px] font-bold ${
@@ -757,13 +765,13 @@ export default function UtilitiesPage() {
                         {genLogs.map((l) => (
                           <TableRow key={l.id}>
                             <TableCell className="text-xs font-semibold py-2.5">
-                              {new Date(l.date).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+                              {formatDate(l.date)}
                             </TableCell>
                             <TableCell className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 py-2.5">
                               {l.runHours} hrs
                             </TableCell>
                             <TableCell className="text-xs font-bold text-center text-zinc-800 dark:text-zinc-200 py-2.5">
-                              {l.fuelAdded > 0 ? `+${l.fuelAdded} L` : "—"}
+                              {l.fuelAdded > 0 ? `+${formatNumber(l.fuelAdded)} L` : "—"}
                             </TableCell>
                             <TableCell className="text-xs text-center font-bold text-indigo-650 dark:text-indigo-400 py-2.5">
                               {l.fuelLevel}%
@@ -774,7 +782,7 @@ export default function UtilitiesPage() {
                                   ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-450"
                                   : l.status === "Refueling"
                                   ? "bg-blue-50 text-blue-700 dark:bg-blue-950/20 dark:text-blue-450"
-                                  : "bg-rose-50 text-rose-700 dark:bg-rose-955/20 dark:text-rose-450"
+                                  : "bg-rose-50 text-rose-700 dark:bg-rose-955/20 dark:text-rose-455"
                               }`}>
                                 {l.status}
                               </span>
@@ -843,13 +851,13 @@ export default function UtilitiesPage() {
                           <div className="w-full bg-amber-500 hover:bg-amber-600 rounded-t-sm h-[90%] transition-all" />
                           <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9.5px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">225 kWh</span>
                         </div>
-                        <span className="text-[9.5px] font-bold text-zinc-450">Apr</span>
+                        <span className="text-[9.5px] font-bold text-zinc-455">Apr</span>
                       </div>
                       {/* Bar 5 */}
                       <div className="flex-1 flex flex-col items-center gap-1.5 group">
                         <div className="w-full bg-zinc-200 dark:bg-zinc-850 rounded-t-sm h-28 relative flex items-end">
                           <div className="w-full bg-amber-500 hover:bg-amber-600 rounded-t-sm h-[72%] transition-all" />
-                          <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9.5px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">{totalElecUsage} kWh</span>
+                          <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9.5px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">{formatNumber(totalElecUsage)} kWh</span>
                         </div>
                         <span className="text-[9.5px] font-bold text-zinc-900 dark:text-zinc-100">May</span>
                       </div>
@@ -862,7 +870,7 @@ export default function UtilitiesPage() {
                 <Card className="rounded-md border border-zinc-200 bg-white shadow-sm dark:border-zinc-850 dark:bg-zinc-950">
                   <CardHeader className="p-4 border-b border-zinc-100 dark:border-zinc-900">
                     <CardTitle className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                      <Gauge className="h-4 w-4 text-indigo-600" /> Utility Efficiency
+                      <Gauge className="h-4 w-4 text-indigo-650" /> Utility Efficiency
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 space-y-4">
@@ -908,219 +916,24 @@ export default function UtilitiesPage() {
         </main>
       </div>
 
-      {/* RECORD READING DIALOG */}
-      <Dialog open={readingOpen} onOpenChange={setReadingOpen}>
-        <DialogContent className="sm:max-w-[400px] bg-white dark:bg-zinc-950 p-6 rounded-md">
-          {selectedMeter && (
-            <form onSubmit={handleRecordReading}>
-              <DialogHeader>
-                <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Record Meter Reading</DialogTitle>
-                <DialogDescription className="text-xs text-zinc-500">
-                  Update utility consumption for Flat **{selectedMeter.flatNumber}** ({selectedMeter.type}).
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-3">
-                  <Label className="text-right text-xs font-semibold text-zinc-400">Serial</Label>
-                  <span className="col-span-3 text-xs font-mono bg-zinc-100 dark:bg-zinc-900 p-1 px-2 rounded-sm w-fit">{selectedMeter.meterNumber}</span>
-                </div>
-
-                <div className="grid grid-cols-4 items-center gap-3">
-                  <Label className="text-right text-xs font-semibold text-zinc-400">Previous</Label>
-                  <span className="col-span-3 text-xs font-bold text-zinc-700 dark:text-zinc-350">{selectedMeter.currentReading} units</span>
-                </div>
-
-                <div className="grid grid-cols-4 items-center gap-3">
-                  <Label htmlFor="current-reading" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">New Reading</Label>
-                  <Input
-                    id="current-reading"
-                    type="number"
-                    required
-                    value={newReading}
-                    onChange={(e) => setNewReading(e.target.value)}
-                    placeholder="e.g. 12900"
-                    className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                  />
-                </div>
-              </div>
-
-              <DialogFooter className="gap-2">
-                <Button size="xs" variant="outline" type="button" onClick={() => setReadingOpen(false)} className="h-8.5 text-xs font-semibold rounded-sm">
-                  Cancel
-                </Button>
-                <Button size="xs" type="submit" className="h-8.5 text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
-                  Save Reading
-                </Button>
-              </DialogFooter>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
-
-      {/* REGISTER NEW METER DIALOG */}
-      <Dialog open={addMeterOpen} onOpenChange={setAddMeterOpen}>
-        <DialogContent className="sm:max-w-[420px] bg-white dark:bg-zinc-950 p-6 rounded-md">
-          <form onSubmit={handleAddMeter}>
-            <DialogHeader>
-              <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Register Utility Sub-Meter</DialogTitle>
-              <DialogDescription className="text-xs text-zinc-500">Configure submeter assignment and type for local consumption auditing.</DialogDescription>
-            </DialogHeader>
-
-            <div className="grid gap-3.5 py-4">
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="m-flat" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Flat Unit</Label>
-                <Input
-                  id="m-flat"
-                  required
-                  value={meterForm.flatNumber}
-                  onChange={(e) => setMeterForm({ ...meterForm, flatNumber: e.target.value })}
-                  placeholder="e.g. 302"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="m-type" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Type</Label>
-                <select
-                  id="m-type"
-                  value={meterForm.type}
-                  onChange={(e) => setMeterForm({ ...meterForm, type: e.target.value as any })}
-                  className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-200 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
-                >
-                  <option value="Electricity">Electricity Grid</option>
-                  <option value="Water">Water Mains</option>
-                  <option value="Gas">Gas Supply</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="m-serial" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Serial No.</Label>
-                <Input
-                  id="m-serial"
-                  required
-                  value={meterForm.meterNumber}
-                  onChange={(e) => setMeterForm({ ...meterForm, meterNumber: e.target.value })}
-                  placeholder="e.g. E-EL-104X"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="m-reading" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Initial Units</Label>
-                <Input
-                  id="m-reading"
-                  type="number"
-                  required
-                  value={meterForm.lastReading}
-                  onChange={(e) => setMeterForm({ ...meterForm, lastReading: e.target.value })}
-                  placeholder="e.g. 0"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-            </div>
-
-            <DialogFooter className="gap-2">
-              <Button size="xs" variant="outline" type="button" onClick={() => setAddMeterOpen(false)} className="h-8.5 text-xs font-semibold rounded-sm">
-                Cancel
-              </Button>
-              <Button size="xs" type="submit" className="h-8.5 text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
-                Register
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* GENERATOR LOG DIALOG */}
-      <Dialog open={logOpen} onOpenChange={setLogOpen}>
-        <DialogContent className="sm:max-w-[420px] bg-white dark:bg-zinc-950 p-6 rounded-md">
-          <form onSubmit={handleAddGenLog}>
-            <DialogHeader>
-              <DialogTitle className="text-sm font-bold text-zinc-900 dark:text-white">Log Generator Activity</DialogTitle>
-              <DialogDescription className="text-xs text-zinc-500">Record fueling log, health check, or utility downtime run hours.</DialogDescription>
-            </DialogHeader>
-
-            <div className="grid gap-3.5 py-4">
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="g-fuel" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Fuel Added</Label>
-                <Input
-                  id="g-fuel"
-                  type="number"
-                  required
-                  value={generatorForm.fuelAdded}
-                  onChange={(e) => setGeneratorForm({ ...generatorForm, fuelAdded: e.target.value })}
-                  placeholder="Diesel added in Liters"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="g-level" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Tank Level</Label>
-                <Input
-                  id="g-level"
-                  type="number"
-                  required
-                  value={generatorForm.fuelLevel}
-                  onChange={(e) => setGeneratorForm({ ...generatorForm, fuelLevel: e.target.value })}
-                  placeholder="New fuel level % (0-100)"
-                  max={100}
-                  min={0}
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="g-hours" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Run Uptime</Label>
-                <Input
-                  id="g-hours"
-                  type="number"
-                  required
-                  value={generatorForm.runHours}
-                  onChange={(e) => setGeneratorForm({ ...generatorForm, runHours: e.target.value })}
-                  placeholder="Duration hours logged"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="g-status" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Status</Label>
-                <select
-                  id="g-status"
-                  value={generatorForm.status}
-                  onChange={(e) => setGeneratorForm({ ...generatorForm, status: e.target.value as any })}
-                  className="col-span-3 h-8.5 text-xs rounded-sm border border-zinc-200 bg-white px-2 dark:border-zinc-800 dark:bg-zinc-900 outline-none"
-                >
-                  <option value="Operational">Operational</option>
-                  <option value="Refueling">Refueling / Restocking</option>
-                  <option value="Maintenance Required">Maintenance Required</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-3">
-                <Label htmlFor="g-notes" className="text-right text-xs font-semibold text-zinc-700 dark:text-zinc-300">Notes</Label>
-                <Input
-                  id="g-notes"
-                  value={generatorForm.notes}
-                  onChange={(e) => setGeneratorForm({ ...generatorForm, notes: e.target.value })}
-                  placeholder="Log details / repair remarks"
-                  className="col-span-3 h-8.5 text-xs rounded-sm border-zinc-200"
-                />
-              </div>
-            </div>
-
-            <DialogFooter className="gap-2">
-              <Button size="xs" variant="outline" type="button" onClick={() => setLogOpen(false)} className="h-8.5 text-xs font-semibold rounded-sm">
-                Cancel
-              </Button>
-              <Button size="xs" type="submit" className="h-8.5 text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white rounded-sm">
-                Log Event
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
+      <UtilityDialogs
+        readingOpen={readingOpen}
+        setReadingOpen={setReadingOpen}
+        addMeterOpen={addMeterOpen}
+        setAddMeterOpen={setAddMeterOpen}
+        logOpen={logOpen}
+        setLogOpen={setLogOpen}
+        selectedMeter={selectedMeter}
+        newReading={newReading}
+        setNewReading={setNewReading}
+        handleRecordReading={handleRecordReading}
+        meterForm={meterForm}
+        setMeterForm={setMeterForm}
+        handleAddMeter={handleAddMeter}
+        generatorForm={generatorForm}
+        setGeneratorForm={setGeneratorForm}
+      />
     </div>
   );
 }
+
